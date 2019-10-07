@@ -1,0 +1,25 @@
+.collapsible-row-hidden {
+  display: none;
+  transition: 0.3s ease-in-out;
+}
+
+.collapsible-row-shown {
+  display: table-row;
+  width: 100%;
+  transition: 0.3s ease-in-out;
+}
+
+.detail-info-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.down {
+  transition: 0.3s ease-in-out;
+}
+
+.up {
+  transition: 0.3s ease-in-out;
+  transform: rotate(180deg);
+}

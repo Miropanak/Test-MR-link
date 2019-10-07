@@ -1,0 +1,57 @@
+.datetime-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.calendar-button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+}
+
+.test-datetime {
+  position: absolute;
+  z-index: 5;
+}
+
+.name-label {
+  font-size: 15px;
+}
+
+.name-input {
+  width: 100%;
+  border-color: hsl(0, 0%, 80%);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  outline: none;
+  font-size: 14px;
+  padding: 2px 8px;
+  min-height: 38px;
+}
+
+.statistics-container {
+  font-size: 15px;
+}
+
+.statistics-item {
+  margin: 15px 0;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 0;
+}

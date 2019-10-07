@@ -1,0 +1,9 @@
+.unit-item {
+  cursor: pointer;
+  padding: 10px;
+  font-weight: 400;
+}
+
+.selected {
+  font-weight: 700;
+}
