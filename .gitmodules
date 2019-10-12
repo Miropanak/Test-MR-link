@@ -2,3 +2,6 @@
 	path = team-website
 	url = https://github.com/Majky336/team-website
 	branch = hash-routing
+[submodule "laradock"]
+	path = laradock
+	url = https://github.com/Laradock/laradock.git
