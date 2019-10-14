@@ -14,12 +14,18 @@
     
     5.1 Install composer:
       
-        (if you dont have php) : 
-        
+    (if you dont have php run next line): 
+      
         `sudo apt install curl php-cli php-mbstring git unzip`
         
+     (if you have php continue here)
+      
         `curl -sS https://getcomposer.org/installer -o composer-setup.php`
 
+     and finally
+        
+        `sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer`
+        
 6. Run `php artisan key:generate`
 
 7. Run `npm install`  *nevim ci funguje, to som daval z hlavy*
