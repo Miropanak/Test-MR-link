@@ -11,6 +11,14 @@
 4. Go to laradock/ and run `sudo docker-compose up -d apache2 postgres pgadmin`
 
 5. Run `composer install`
+    
+    5.1 Install composer:
+      
+        (if you dont have php) : 
+        
+        `sudo apt install curl php-cli php-mbstring git unzip`
+        
+        `curl -sS https://getcomposer.org/installer -o composer-setup.php`
 
 6. Run `php artisan key:generate`
 
