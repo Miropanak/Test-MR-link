@@ -1,7 +1,7 @@
 # Steps to run this project: 
 ## WIP, nechytat, neskusat 
 
-1. Clone the repository
+1. Clone the repository inside /var/wwww folder
 
     `git clone https://gitlab.com/xbencat/team-project.git`
 2. Make a copy of `.env.example` file
@@ -10,7 +10,9 @@
 
 4. Go to laradock/ and run `sudo docker-compose up -d apache2 postgres pgadmin`
 
-5. Run `composer install`
+5. To access workspace bash run `sudo docker-compose exec workspace bash`.
+   
+5. Run `composer install` inside workspace bash aka `sudo docker-compose exec workspace bash`
     
     5.1 Install composer:
       
@@ -26,13 +28,12 @@
         
         `sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer`
         
-6. Run `php artisan key:generate`
+6. Run `php artisan key:generate` inside workspace bash
 
-7. Run `npm install`  *nevim ci funguje, to som daval z hlavy*
+7. Run `npm install`  ??????????
 
 8. Once it is done, you can see your project on localhost:81, to access Pgadmin, go to localhost:5051
 
-9. To access workspace bash run `sudo docker-compose exec workspace bash`
 
 10. To exit workspace bash run `exit`
 
