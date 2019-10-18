@@ -1,5 +1,11 @@
 # Steps to run this project: 
 ## WIP, nechytat, neskusat 
+### `c:/Windows/System32/Drivers/etc/hosts` windows hosts
+### `/etc/hosts/`  ubuntu hosts
+####    Add to these files `147.175.150.45  important-links.tp`
+
+
+
 
 1. Clone the repository inside /var/wwww folder
 
@@ -11,22 +17,6 @@
 4. Go to laradock/ and run `sudo docker-compose up -d apache2 postgres pgadmin`
 
 5. To access workspace bash run `sudo docker-compose exec workspace bash`.
-   
-5. Run `composer install` inside workspace bash aka `sudo docker-compose exec workspace bash`
-    
-    5.1 Install composer:
-      
-    (if you dont have php run next line): 
-      
-        `sudo apt install curl php-cli php-mbstring git unzip`
-        
-     (if you have php continue here)
-      
-        `curl -sS https://getcomposer.org/installer -o composer-setup.php`
-
-     and finally
-        
-        `sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer`
         
 6. Run `php artisan key:generate` inside workspace bash
 
