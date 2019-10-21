@@ -5,14 +5,16 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=7.2.0",
         "anhskohbo/no-captcha": "^2.4",
+        "darkaonline/l5-swagger": "5.5.*",
         "fideloper/proxy": "~3.3",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "5.5.*",
         "laravel/installer": "~1.1",
         "laravel/tinker": "~1.0",
-        "unisharp/laravel-ckeditor": "^4.6"
+        "unisharp/laravel-ckeditor": "^4.6",
+        "zircote/swagger-php": "2.*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

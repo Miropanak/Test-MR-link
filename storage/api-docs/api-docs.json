@@ -1,0 +1,27 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Team project generated Api documentation",
+        "description": "...",
+        "termsOfService": "TOS",
+        "contact": {
+            "email": "fiit.tim09@gmail.com"
+        },
+        "license": {
+            "name": "Private License",
+            "url": "/"
+        },
+        "version": "1.0.0"
+    },
+    "host": "http://team09-19.studenti.fiit.stuba.sk/",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {},
+    "definitions": {},
+    "externalDocs": {
+        "description": "Team webpage",
+        "url": "http://labss2.fiit.stuba.sk/TeamProject/2019/team09/"
+    }
+}
