@@ -7,8 +7,7 @@ return [
         | Edit to set the api's title
         |--------------------------------------------------------------------------
         */
-
-        'title' => 'L5 Swagger UI',
+        'title' => 'Databanka Api Doc',
     ],
 
     'routes' => [
@@ -154,7 +153,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'generate_always' => env('L5_SWAGGER_GENERATE_ALWAYS', false),
+    'generate_always' => env('L5_SWAGGER_GENERATE_ALWAYS', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -162,7 +161,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'swagger_version' => env('SWAGGER_VERSION', '2.0'),
+    'swagger_version' => env('SWAGGER_VERSION', '3.0'),
 
     /*
     |--------------------------------------------------------------------------

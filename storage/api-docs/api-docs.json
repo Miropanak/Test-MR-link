@@ -1,27 +1,28 @@
 {
-    "swagger": "2.0",
+    "openapi": "3.0.0",
     "info": {
-        "title": "Team project generated Api documentation",
-        "description": "...",
-        "termsOfService": "TOS",
+        "title": "Databnka Api Documentatino",
+        "description": "Swagger documentation.",
         "contact": {
             "email": "fiit.tim09@gmail.com"
         },
         "license": {
-            "name": "Private License",
-            "url": "/"
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         },
         "version": "1.0.0"
     },
-    "host": "http://team09-19.studenti.fiit.stuba.sk/",
-    "basePath": "/",
-    "schemes": [
-        "http"
-    ],
-    "paths": {},
-    "definitions": {},
-    "externalDocs": {
-        "description": "Team webpage",
-        "url": "http://labss2.fiit.stuba.sk/TeamProject/2019/team09/"
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Home page",
+                "operationId": "App\\Http\\Controllers\\HomeController::index",
+                "responses": {
+                    "default": {
+                        "description": "Dashboard page"
+                    }
+                }
+            }
+        }
     }
 }

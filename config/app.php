@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        L5Swagger\L5SwaggerServiceProvider::class,
     ],
 
     /*

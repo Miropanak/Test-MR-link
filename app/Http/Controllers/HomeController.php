@@ -17,9 +17,11 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/",
+     *     description="Home page",
+     *     @OA\Response(response="default", description="Dashboard page")
+     * )
      */
     public function index()
     {
