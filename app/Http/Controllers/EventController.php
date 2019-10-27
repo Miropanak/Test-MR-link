@@ -125,13 +125,26 @@ class EventController extends Controller
     }
 
     /**
-     * Function for showing an event
-     *
-     * Done, workingby Volko
-     *
-     *
-     * @param $event_id
-     * @return \Illuminate\Http\RedirectResponse
+     * @OA\Get(
+     *      path="/events/detail/{id}",
+     *      operationId="showEvent",
+     *      tags={"Event"},
+     *      summary="Show event",
+     *      description="Returns 'event' with 'helps' associated with them",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Event id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *     )
      */
     public function showEvent($event_id)
     {
@@ -141,9 +154,13 @@ class EventController extends Controller
 
         $helps = Help::where('id_events',$event_id)->get();
 
-        if ($event !== null) {
-            return view('events/showDetails', ['event' => $event, 'helps' => $helps]);
-        }
+//        if ($event !== null) {
+//            return view('events/showDetails', ['event' => $event, 'helps' => $helps]);
+//        }
+        return response()->json([
+            'event' => $event,
+            'helps' => $helps
+        ]);
     }
 
 

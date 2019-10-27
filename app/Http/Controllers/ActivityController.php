@@ -76,16 +76,42 @@ class ActivityController extends Controller
         return User::whereNotIn('id', $sub)->get();
     }
 
+    /**
+     * @OA\Get(
+     *      path="/activities/detail/{id}",
+     *      operationId="detail",
+     *      tags={"Activity"},
+     *      summary="Show activity detail",
+     *      description="Returns 'activity', 'users', 'registered' and title",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *     )
+     */
     public function detail($id)
     {
-
-
         $activity = Activity::find($id);
         $users = $this->getUsersForSelect($activity->subscriber);
         $registered = $this->isRegistered($activity->subscriber, Auth::user()->id);
         $title = $activity->name;
 
-        return view('activities.detail', ['activity' => $activity, 'registered' => $registered, 'users' => $users])->with(compact('title'));
+//        return view('activities.detail', ['activity' => $activity, 'registered' => $registered, 'users' => $users])->with(compact('title'));
+        return response()->json([
+            "activity" => $activity,
+            "registered" => $registered,
+            "users" => $users,
+            "title" => $title
+        ]);
     }
 
     /**

@@ -13,13 +13,54 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/": {
+        "/activities/detail/{id}": {
             "get": {
-                "description": "Home page",
-                "operationId": "App\\Http\\Controllers\\HomeController::index",
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Show activity detail",
+                "description": "Returns 'activity', 'users', 'registered' and title",
+                "operationId": "detail",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
-                    "default": {
-                        "description": "Dashboard page"
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/events/detail/{id}": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Show event",
+                "description": "Returns 'event' with 'helps' associated with them",
+                "operationId": "showEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
                     }
                 }
             }

@@ -16,13 +16,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * @OA\Get(
-     *     path="/",
-     *     description="Home page",
-     *     @OA\Response(response="default", description="Dashboard page")
-     * )
-     */
+
     public function index()
     {
         return redirect()->route('dashboard');
