@@ -7,6 +7,7 @@
 #/public/css/*
 /storage/*.key
 /storage/debugbar
+/storage/api-docs
 /vendor
 /.idea
 /.vagrant
