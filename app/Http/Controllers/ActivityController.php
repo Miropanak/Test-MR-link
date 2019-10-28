@@ -36,7 +36,7 @@ class ActivityController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -102,13 +102,13 @@ class ActivityController extends Controller
     {
         $activity = Activity::find($id);
         $users = $this->getUsersForSelect($activity->subscriber);
-        $registered = $this->isRegistered($activity->subscriber, Auth::user()->id);
+//        $registered = $this->isRegistered($activity->subscriber, Auth::user()->id); TODO: nefunguje lebo nie som prihlaseny
         $title = $activity->name;
 
 //        return view('activities.detail', ['activity' => $activity, 'registered' => $registered, 'users' => $users])->with(compact('title'));
         return response()->json([
             "activity" => $activity,
-            "registered" => $registered,
+            "registered" => "", //$registered, TODO: ked bude fungovat login
             "users" => $users,
             "title" => $title
         ]);

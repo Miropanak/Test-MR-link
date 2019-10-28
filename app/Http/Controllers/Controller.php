@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
  * @OA\Info(
  *      version="1.0.0",
  *      title="Databanka API Documentation",
- *      description="Swagger documentation.",
+ *      description="API documentation for project databanka",
  *      @OA\Contact(
  *          email="fiit.tim09@gmail.com"
  *      ),

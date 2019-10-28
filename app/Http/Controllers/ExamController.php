@@ -29,7 +29,7 @@ class ExamController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     public function examSearch(Request $request)

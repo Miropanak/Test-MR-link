@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Databnka Api Documentatino",
-        "description": "Swagger documentation.",
+        "title": "Databanka API Documentation",
+        "description": "API documentation for project databanka",
         "contact": {
             "email": "fiit.tim09@gmail.com"
         },
