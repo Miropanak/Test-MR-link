@@ -49,13 +49,60 @@ class EventController extends Controller
         return view('events.show');
     }
 
+    public function getEvent(Request $request, $id) {
+        $event = Event::find($id);
+        return response()->json("$event", 200);
+    }
+
+    public function updateEvent(Request $request, $id) {
+        $event = Event::find($id);
+        $event->update($request->all());
+        return response()->json($event, 200);
+    }
+
+    public function updateEvents(Request $request) {
+        $updatedEvents = [];
+        DB::beginTransaction();
+        foreach ($request->all() as $event) {
+            if (isset($event["id"])) {
+               $eventToUpdate = Event::find($event["id"]);
+               $eventToUpdate->update($event);
+               $updatedEvents[] = $eventToUpdate;
+            } else {
+                DB::rollback();
+                return response()->json(null, 400);
+            }
+        }
+        DB::commit();
+        return response()->json($updatedEvents, 200);
+    }
+
+    public function getEventOptions (Request $request, $id) {
+        $options = Option::where("id_events", $id)->get();
+        return response()->json($options, 200);
+    }
+
+    public function createEvent (Request $request){
+        $event = new Event();
+        if (isset($request["message"]) && isset($request["header"])){
+            $event->message = $request['message'];
+            $event->header = $request['header'];
+            $event->time_to_explain = isset($request['time_to_explain']) ? $request['time_to_explain'] : 100;
+            $event->time_to_handle = isset($request['time_to_handle']) ? $request['time_to_handle'] : 50;
+            $event->id_event_types = $request['id_event_types'];
+            $event->id_users = $request["id_users"]; // temporary solution, id should be determined by the server
+            $event->createdAt = now();
+        }
+    }
+
+
+
     /**
      * @param Request $request
      * @param null $unit_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function addEvents(Request $request, $unit_id = null) {
-
+    public function addEventsEvents(Request $request, $unit_id = null) {
         if(Auth::user()->id_user_types <= 2)
             return view('errors.404');
 

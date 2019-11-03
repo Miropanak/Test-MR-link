@@ -39,6 +39,17 @@ Auth::routes();
 /**
  * Events-related routes
  **/
+
+Route::get('events/{id}', 'EventController@getEvent');
+Route::get('events/{id}/options', 'EventController@getEventOptions');
+Route::put('events/{id}', 'EventController@updateEvent');
+Route::put('events', 'EventController@updateEvents');
+Route::post('events', 'EventController@updateEvents');
+
+
+
+
+ /*
 Route::get('events/show', 'EventController@eventGetAllEvents')->name('events/show');
 Route::get('events/detail/{id}', 'EventController@showEvent')->name('events/detail');
 Route::get('events/new', 'EventController@addEvents')->name('events/new');
@@ -48,6 +59,7 @@ Route::post('events/new/{unit_id}', 'EventController@eventCreateEvent')->name('e
 Route::get('events/edit/{event_id}', 'EventController@editEvents')->name('events/edit');
 Route::post('events/edit/{event_id}', 'EventController@eventUpdateEvent')->name('events/update');
 Route::get("events/delete/{id}", 'HelpController@delete')->name('events/delete');
+*/
 
 /**
  * Options-related routes
