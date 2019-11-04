@@ -78,7 +78,7 @@ class ActivityController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/activities/detail/{id}",
+     *      path="/api/activities/detail/{id}",
      *      operationId="detail",
      *      tags={"Activity"},
      *      summary="Show activity detail",
