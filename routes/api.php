@@ -18,5 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 });
 
+Route::get('activities/detail/{id}', 'ActivityController@detail')->name('activities/detail');
+
+
 Route::post('/login', 'API\UserController@login');
 Route::post('/register', 'API\UserController@register');
