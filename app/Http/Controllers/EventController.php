@@ -257,38 +257,7 @@ class EventController extends Controller
         }
         return response()->json($event, 200);
     }
-
-
-
-    /**
-     * @param Request $request
-     * @param null $unit_id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function addEventsEvents(Request $request, $unit_id = null) {
-        if(Auth::user()->id_user_types <= 2)
-            return view('errors.404');
-
-        return view('events.new', ['unit_id' => $unit_id]);
-    }
-
-    /**
-     * @param $events_id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-
-    public function editEvents($events_id) {
-
-        if(Auth::user()->id_user_types <= 2)
-            return view('errors.404');
-
-        $event = Event::find($events_id);
-        if(Auth::user()->id != $event->id_users) {
-            abort(403);
-        }
-        return view('events/edit', ['event' => $event]);
-
-    }
+    
 
     /**
      * @param $option_id
