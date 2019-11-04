@@ -21,6 +21,9 @@
 |
 */
 
+
+
+
 Route::get('/', function () {
     return redirect('/dilema');
 });
@@ -40,7 +43,11 @@ Auth::routes();
  * Events-related routes
  **/
 Route::get('events/show', 'EventController@eventGetAllEvents')->name('events/show');
-Route::get('events/detail/{id}', 'EventController@showEvent')->name('events/detail');
+
+Route::group(['middleware' => 'auth:api'], function()
+{
+    Route::get('events/detail/{id}', 'EventController@showEvent')->name('events/detail');
+});
 Route::get('events/new', 'EventController@addEvents')->name('events/new');
 Route::post('events/new', 'EventController@eventCreateEvent')->name('event/create');
 Route::get('events/new/{unit_id}', 'EventController@addEvents')->name('events/new/unit');
