@@ -17,9 +17,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 
 });
+Route::post('/login', 'API\UserController@login');
+Route::post('/register', 'API\UserController@register');
 
+Route::get('events/{id}', 'EventController@getEvent');
+Route::get('events/{id}/options', 'EventController@getEventOptions');
+Route::put('events/{id}', 'EventController@updateEvent');
+Route::put('events', 'EventController@updateEvents');
+Route::post('events', 'EventController@createEvent');
 Route::get('activities/detail/{id}', 'ActivityController@detail')->name('activities/detail');
 
 
-Route::post('/login', 'API\UserController@login');
-Route::post('/register', 'API\UserController@register');
+
