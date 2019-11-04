@@ -124,6 +124,7 @@ class UserController extends Controller
      *       description="The number of requests left for the time window"
      *     )
      *   ),
+     *   @OA\Response(response=401, description="--Validation problem--")
      * )
      */
     public function register(Request $request)
@@ -144,14 +145,5 @@ class UserController extends Controller
         $success['name'] =  $user->name;
         return response()->json(['success'=>$success], $this-> successStatus);
     }
-    /**
-     * details api
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function details()
-    {
-        $user = Auth::user();
-        return response()->json(['success' => $user], $this-> successStatus);
-    }
+
 }
