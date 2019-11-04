@@ -52,7 +52,7 @@ class EventController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/events/{id}",
+     *      path="/api/events/{id}",
      *      operationId="getEvent",
      *      tags={"Event"},
      *      summary="Get event",
@@ -96,7 +96,7 @@ class EventController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/events/{id}",
+     *      path="/api/events/{id}",
      *      operationId="putEvent",
      *      tags={"Event"},
      *      summary="Update event",
@@ -151,7 +151,7 @@ class EventController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/events",
+     *      path="/api/events",
      *      operationId="putEvents",
      *      tags={"Event"},
      *      summary="Update events",
@@ -166,7 +166,7 @@ class EventController extends Controller
      *                  @OA\Items(
      *                      type="object",
      *                      @OA\Property(property="id", type="integer"),
-     *                      @OA\Property(property="name", type="string")
+     *                      @OA\Property(property="message", type="string")
      *                  )
      *              )
      *          )
@@ -210,7 +210,7 @@ class EventController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/events/{id}/options",
+     *      path="/api/events/{id}/options",
      *      operationId="getEventOptions ",
      *      tags={"EventOptions"},
      *      summary="Get all options of event",
@@ -257,7 +257,7 @@ class EventController extends Controller
         }
         return response()->json($event, 200);
     }
-    
+
 
     /**
      * @param $option_id
