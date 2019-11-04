@@ -17,6 +17,7 @@ use App\EventType;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use function GuzzleHttp\Promise\all;
 
 /**
  * Class EventController
@@ -49,16 +50,141 @@ class EventController extends Controller
         return view('events.show');
     }
 
-    public function getEvent(Request $request, $id) {
-        $event = Event::find($id);
-        return response()->json("$event", 200);
+    /**
+     * @OA\Get(
+     *      path="/events/{id}",
+     *      operationId="getEvent",
+     *      tags={"Event"},
+     *      summary="Get event",
+     *      description="Returns 'event' by id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Event id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Event not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
+    public function getEvent($id) {
+        try {
+            $event = Event::find($id);
+            if ($event) {
+                return response()->json($event, 200);
+            } else {
+                return response()->json(null, 404);
+            }
+        }catch (Exception $e){
+            return response()->json(null, 400);
+        }
     }
 
+    /**
+     * @OA\Put(
+     *      path="/events/{id}",
+     *      operationId="putEvent",
+     *      tags={"Event"},
+     *      summary="Update event",
+     *      description="Updates event",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Event id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Request body does not need to contain all event fields",
+     *       @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="message", type="string"),
+     *          @OA\Property(property="time_to_explain", type="integer")
+     *          )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Event not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
     public function updateEvent(Request $request, $id) {
-        $event = Event::find($id);
-        $event->update($request->all());
-        return response()->json($event, 200);
+        try {
+            $event = Event::find($id);
+            if ($event){
+                $event->update($request->all());
+                return response()->json($event, 200);
+            } else {
+                return response()->json($event, 404);
+            }
+        } catch (Exception $e){
+            return response()->json(null, 400);
+        }
+
     }
+
+    /**
+     * @OA\Put(
+     *      path="/events",
+     *      operationId="putEvents",
+     *      tags={"Event"},
+     *      summary="Update events",
+     *      description="Updates events",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Array of JSON object with fields that are going to be updated.",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema(
+     *                  type="array",
+     *                  @OA\Items(
+     *                      type="object",
+     *                      @OA\Property(property="id", type="integer"),
+     *                      @OA\Property(property="name", type="string")
+     *                  )
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Event not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
 
     public function updateEvents(Request $request) {
         $updatedEvents = [];
@@ -66,8 +192,13 @@ class EventController extends Controller
         foreach ($request->all() as $event) {
             if (isset($event["id"])) {
                $eventToUpdate = Event::find($event["id"]);
-               $eventToUpdate->update($event);
-               $updatedEvents[] = $eventToUpdate;
+               if ($eventToUpdate){
+                   $eventToUpdate->update($event);
+                   $updatedEvents[] = $eventToUpdate;
+               } else {
+                   DB::rollback();
+                   return response()->json(null, 404);
+               }
             } else {
                 DB::rollback();
                 return response()->json(null, 400);
@@ -77,6 +208,37 @@ class EventController extends Controller
         return response()->json($updatedEvents, 200);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/events/{id}/options",
+     *      operationId="getEventOptions ",
+     *      tags={"EventOptions"},
+     *      summary="Get all options of event",
+     *      description="Returns 'options' by event id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Event id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Event not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
     public function getEventOptions (Request $request, $id) {
         $options = Option::where("id_events", $id)->get();
         return response()->json($options, 200);
@@ -84,15 +246,16 @@ class EventController extends Controller
 
     public function createEvent (Request $request){
         $event = new Event();
-        if (isset($request["message"]) && isset($request["header"])){
+        if (isset($request["message"]) && isset($request["header"]) && isset($request["id_event_types"])){
             $event->message = $request['message'];
             $event->header = $request['header'];
             $event->time_to_explain = isset($request['time_to_explain']) ? $request['time_to_explain'] : 100;
             $event->time_to_handle = isset($request['time_to_handle']) ? $request['time_to_handle'] : 50;
             $event->id_event_types = $request['id_event_types'];
             $event->id_users = $request["id_users"]; // temporary solution, id should be determined by the server
-            $event->createdAt = now();
+            $event->save();
         }
+        return response()->json($event, 200);
     }
 
 
@@ -170,46 +333,6 @@ class EventController extends Controller
         // uncomment to redirect
         //return redirect()->route('events.show');
     }
-
-    /**
-     * @OA\Get(
-     *      path="/events/detail/{id}",
-     *      operationId="showEvent",
-     *      tags={"Event"},
-     *      summary="Show event",
-     *      description="Returns 'event' with 'helps' associated with them",
-     *      @OA\Parameter(
-     *          name="id",
-     *          description="Event id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="successful operation"
-     *       ),
-     *     )
-     */
-    public function showEvent($event_id)
-    {
-        ///Thanks to ORM here you can easily get whole table of events
-        /// Ziskanie
-        $event = Event::find($event_id);
-
-        $helps = Help::where('id_events',$event_id)->get();
-
-//        if ($event !== null) {
-//            return view('events/showDetails', ['event' => $event, 'helps' => $helps]);
-//        }
-        return response()->json([
-            'event' => $event,
-            'helps' => $helps
-        ]);
-    }
-
 
     /**
      * Function for creating an event

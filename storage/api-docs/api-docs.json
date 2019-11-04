@@ -39,6 +39,162 @@
                 }
             }
         },
+        "/events/{id}": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Get event",
+                "description": "Returns 'event' by id",
+                "operationId": "getEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Event not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Update event",
+                "description": "Updates event",
+                "operationId": "putEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request body does not need to contain all event fields",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "message": {
+                                        "type": "string"
+                                    },
+                                    "time_to_explain": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Event not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/events": {
+            "put": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Update events",
+                "description": "Updates events",
+                "operationId": "putEvents",
+                "requestBody": {
+                    "description": "Array of JSON object with fields that are going to be updated.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Event not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/events/{id}/options": {
+            "get": {
+                "tags": [
+                    "EventOptions"
+                ],
+                "summary": "Get all options of event",
+                "description": "Returns 'options' by event id",
+                "operationId": "getEventOptions ",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Event not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
         "/events/detail/{id}": {
             "get": {
                 "tags": [
