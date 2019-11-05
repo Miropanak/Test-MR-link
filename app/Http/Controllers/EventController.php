@@ -57,7 +57,7 @@ class EventController extends Controller
      *      path="/api/events/{id}",
      *      operationId="getEvent",
      *      tags={"Event"},
-     *      summary="Get event",
+     *      summary="Gets event",
      *      description="Returns 'event' by id",
      *      @OA\Parameter(
      *          name="id",
@@ -101,7 +101,7 @@ class EventController extends Controller
      *      path="/api/events/{id}",
      *      operationId="putEvent",
      *      tags={"Event"},
-     *      summary="Update event",
+     *      summary="Updates event",
      *      description="Updates event",
      *      @OA\Parameter(
      *          name="id",
@@ -168,7 +168,7 @@ class EventController extends Controller
      *      path="/api/events/{id}",
      *      operationId="deleteEvent",
      *      tags={"Event"},
-     *      summary="Delete event",
+     *      summary="Deletes event",
      *      description="Deletes 'event' by id",
      *      @OA\Parameter(
      *          name="id",
@@ -211,7 +211,7 @@ class EventController extends Controller
      *      path="/api/events",
      *      operationId="putEvents",
      *      tags={"Event"},
-     *      summary="Update events",
+     *      summary="Updates events",
      *      description="Updates events",
      *      @OA\RequestBody(
      *          required=true,
@@ -284,7 +284,7 @@ class EventController extends Controller
      *      path="/api/events/{id}/options",
      *      operationId="getEventOptions ",
      *      tags={"EventOptions"},
-     *      summary="Get all options of event",
+     *      summary="Gets all options of event",
      *      description="Returns 'options' of event by event id",
      *      @OA\Parameter(
      *          name="id",
@@ -375,8 +375,8 @@ class EventController extends Controller
      *      path="/api/events",
      *      operationId="createEvent ",
      *      tags={"Event"},
-     *      summary="Create new event",
-     *      description="Create new event",
+     *      summary="Creates new event",
+     *      description="Creates new event",
      *     @OA\RequestBody(
      *         required=true,
      *         description="Request body has to contain message, header, id_event_types, id_users fields. Time_to_hadnle has value 50 set as default. Time_to_explain has value 100 set as default.",
@@ -435,7 +435,7 @@ class EventController extends Controller
      *      path="/api/options/{id}",
      *      operationId="putOption",
      *      tags={"Option"},
-     *      summary="Update option",
+     *      summary="Updates option",
      *      description="Updates option",
      *      @OA\Parameter(
      *          name="id",
@@ -487,7 +487,7 @@ class EventController extends Controller
                 $option->update($request->all());
                 return response()->json($option, 200);
             } else {
-                return response()->json($option, 404);
+                return response()->json(null, 404);
             }
         } catch (Exception $e){
             return response()->json(null, 400);
@@ -499,7 +499,7 @@ class EventController extends Controller
      *      path="/api/options",
      *      operationId="putOptions",
      *      tags={"Option"},
-     *      summary="Update options",
+     *      summary="Updates options",
      *      description="Updates options",
      *      @OA\RequestBody(
      *          required=true,
@@ -570,8 +570,8 @@ class EventController extends Controller
      *      path="/api/options",
      *      operationId="createOption",
      *      tags={"Option"},
-     *      summary="Create new option",
-     *      description="Create new option",
+     *      summary="Creates new option",
+     *      description="Creates new option",
      *     @OA\RequestBody(
      *         required=true,
      *         description="Request body has to contain correct_answer, answer_data, id_events",
@@ -620,7 +620,7 @@ class EventController extends Controller
      *      path="/api/options/{id}",
      *      operationId="deleteOption",
      *      tags={"Option"},
-     *      summary="Delete option",
+     *      summary="Deletes option",
      *      description="Deletes 'option' by id",
      *      @OA\Parameter(
      *          name="id",
