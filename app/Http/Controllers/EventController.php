@@ -229,7 +229,7 @@ class EventController extends Controller
                 }
             }catch (Exception $e){
                 DB::rollback();
-                return response()->json(null, 404);
+                return response()->json(null, 400);
             }
         }
         DB::commit();
@@ -294,6 +294,8 @@ class EventController extends Controller
      *          type="object",
      *          @OA\Property(property="message", type="string"),
      *          @OA\Property(property="header", type="string"),
+     *          @OA\Property(property="time_to_explain", type="integer"),
+     *          @OA\Property(property="time_to_handle", type="integer"),
      *          @OA\Property(property="id_event_types", type="integer"),
      *          @OA\Property(property="id_users", type="integer")
      *          )
