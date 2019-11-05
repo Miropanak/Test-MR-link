@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 use App\Help;
 use App\Option;
 use App\Unit;
+use Exception;
 use Illuminate\Http\Request;
 use App\Event;
 use App\UnitsEvent;
@@ -17,7 +18,8 @@ use App\EventType;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use function GuzzleHttp\Promise\all;
+use Illuminate\Support\Facades\Validator;
+
 
 /**
  * Class EventController
@@ -55,7 +57,7 @@ class EventController extends Controller
      *      path="/api/events/{id}",
      *      operationId="getEvent",
      *      tags={"Event"},
-     *      summary="Get event",
+     *      summary="Gets event",
      *      description="Returns 'event' by id",
      *      @OA\Parameter(
      *          name="id",
@@ -99,7 +101,7 @@ class EventController extends Controller
      *      path="/api/events/{id}",
      *      operationId="putEvent",
      *      tags={"Event"},
-     *      summary="Update event",
+     *      summary="Updates event",
      *      description="Updates event",
      *      @OA\Parameter(
      *          name="id",
@@ -135,6 +137,19 @@ class EventController extends Controller
      */
 
     public function updateEvent(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'message' => 'string',
+            'header' => 'string',
+            'time_to_explain' => 'integer',
+            'time_to_handle' => 'integer',
+            'id_event_types' => 'integer',
+            'id_users' => 'integer',
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(null, 400);
+        }
+
         try {
             $event = Event::find($id);
             if ($event){
@@ -146,7 +161,49 @@ class EventController extends Controller
         } catch (Exception $e){
             return response()->json(null, 400);
         }
+    }
 
+    /**
+     * @OA\Delete(
+     *      path="/api/events/{id}",
+     *      operationId="deleteEvent",
+     *      tags={"Event"},
+     *      summary="Deletes event",
+     *      description="Deletes 'event' by id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Event id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Event not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+    public function deleteEvent($id){
+        try{
+            $deleted = Event::where('id', $id)->delete();
+        }catch (Exception $e){
+            return response()->json(null, 400);
+        }
+        if ($deleted){
+            return response()->json(null, 200);
+        }else{
+            return response()->json(null, 404);
+        }
     }
 
     /**
@@ -154,11 +211,11 @@ class EventController extends Controller
      *      path="/api/events",
      *      operationId="putEvents",
      *      tags={"Event"},
-     *      summary="Update events",
+     *      summary="Updates events",
      *      description="Updates events",
      *      @OA\RequestBody(
      *          required=true,
-     *          description="Array of JSON object with fields that are going to be updated.",
+     *          description="Array of JSON objects with fields that are going to be updated. Id field is required.",
      *          @OA\MediaType(
      *              mediaType="application/json",
      *              @OA\Schema(
@@ -187,19 +244,33 @@ class EventController extends Controller
      */
 
     public function updateEvents(Request $request) {
+        $validator = Validator::make($request->all(), [
+            '*.id' => 'integer|required',
+            '*.message' => 'string',
+            '*.header' => 'string',
+            '*.time_to_explain' => 'integer',
+            '*.time_to_handle' => 'integer',
+            '*.id_event_types' => 'integer',
+            '*.id_users' => 'integer',
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(null, 400);
+        }
+
         $updatedEvents = [];
         DB::beginTransaction();
         foreach ($request->all() as $event) {
-            if (isset($event["id"])) {
-               $eventToUpdate = Event::find($event["id"]);
-               if ($eventToUpdate){
-                   $eventToUpdate->update($event);
-                   $updatedEvents[] = $eventToUpdate;
-               } else {
-                   DB::rollback();
-                   return response()->json(null, 404);
-               }
-            } else {
+            try {
+                $eventToUpdate = Event::find($event["id"]);
+                if ($eventToUpdate) {
+                    $eventToUpdate->update($event);
+                    $updatedEvents[] = $eventToUpdate;
+                } else {
+                    DB::rollback();
+                    return response()->json(null, 404);
+                }
+            }catch (Exception $e){
                 DB::rollback();
                 return response()->json(null, 400);
             }
@@ -213,8 +284,8 @@ class EventController extends Controller
      *      path="/api/events/{id}/options",
      *      operationId="getEventOptions ",
      *      tags={"EventOptions"},
-     *      summary="Get all options of event",
-     *      description="Returns 'options' by event id",
+     *      summary="Gets all options of event",
+     *      description="Returns 'options' of event by event id",
      *      @OA\Parameter(
      *          name="id",
      *          description="Event id",
@@ -230,7 +301,7 @@ class EventController extends Controller
      *       ),
      *      @OA\Response(
      *          response=404,
-     *          description="Event not found"
+     *          description="No options not found"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -239,14 +310,112 @@ class EventController extends Controller
      *     )
      */
 
-    public function getEventOptions (Request $request, $id) {
-        $options = Option::where("id_events", $id)->get();
-        return response()->json($options, 200);
+    public function getEventOptions($id) {
+        try {
+            $options = Option::where("id_events", $id)->get();
+            if (count($options) > 0){
+                return response()->json($options, 200);
+            }else{
+                return response()->json(null, 404);
+            }
+        }catch (Exception $e){
+            return response()->json(null, 400);
+        }
     }
 
+    /**
+     * @OA\Delete(
+     *      path="/api/events/{id}/options",
+     *      operationId="deleteEventOptions ",
+     *      tags={"EventOptions"},
+     *      summary="Deletes all options of event",
+     *      description="Deletes all 'options' of event",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Event id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="No options found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
+    public function deleteEventOptions($id) {
+        try {
+            $options = Option::where("id_events", $id)->get();
+            if (count($options) > 0){
+                foreach ($options as $option){
+                    $option->delete();
+                }
+                return response()->json(null, 200);
+            }else{
+                return response()->json(null, 404);
+            }
+        }catch (Exception $e){
+            return response()->json(null, 400);
+        }
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/api/events",
+     *      operationId="createEvent ",
+     *      tags={"Event"},
+     *      summary="Creates new event",
+     *      description="Creates new event",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Request body has to contain message, header, id_event_types, id_users fields. Time_to_hadnle has value 50 set as default. Time_to_explain has value 100 set as default.",
+     *       @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="message", type="string"),
+     *          @OA\Property(property="header", type="string"),
+     *          @OA\Property(property="time_to_explain", type="integer"),
+     *          @OA\Property(property="time_to_handle", type="integer"),
+     *          @OA\Property(property="id_event_types", type="integer"),
+     *          @OA\Property(property="id_users", type="integer")
+     *          )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid JSON body supplied",
+     *      ),
+     *     )
+     */
+
     public function createEvent (Request $request){
-        $event = new Event();
-        if (isset($request["message"]) && isset($request["header"]) && isset($request["id_event_types"])){
+        $validator = Validator::make($request->all(), [
+            'message' => 'string|required',
+            'header' => 'string|required',
+            'time_to_explain' => 'integer',
+            'time_to_handle' => 'integer',
+            'id_event_types' => 'integer|required',
+            'id_users' => 'integer|required'
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(null, 400);
+        }
+        try {
+            $event = new Event();
             $event->message = $request['message'];
             $event->header = $request['header'];
             $event->time_to_explain = isset($request['time_to_explain']) ? $request['time_to_explain'] : 100;
@@ -254,9 +423,242 @@ class EventController extends Controller
             $event->id_event_types = $request['id_event_types'];
             $event->id_users = $request["id_users"]; // temporary solution, id should be determined by the server
             $event->save();
+        }catch (Exception $e){
+            return response()->json(null, 400);
         }
         return response()->json($event, 200);
     }
+
+
+    /**
+     * @OA\Put(
+     *      path="/api/options/{id}",
+     *      operationId="putOption",
+     *      tags={"Option"},
+     *      summary="Updates option",
+     *      description="Updates option",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Option id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Request body does not need to contain all event fields",
+     *       @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="correct_answer", type="boolean"),
+     *          @OA\Property(property="answer_data", type="string")
+     *          )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Option operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Option not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
+    public function updateOption(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'correct_answer' => 'boolean',
+            'answer_data' => 'string',
+            'id_events' => 'integer',
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(null, 400);
+        }
+
+        try {
+            $option = Option::find($id);
+            if ($option){
+                $option->update($request->all());
+                return response()->json($option, 200);
+            } else {
+                return response()->json(null, 404);
+            }
+        } catch (Exception $e){
+            return response()->json(null, 400);
+        }
+    }
+
+    /**
+     * @OA\Put(
+     *      path="/api/options",
+     *      operationId="putOptions",
+     *      tags={"Option"},
+     *      summary="Updates options",
+     *      description="Updates options",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Array of JSON objects with fields that are going to be updated. Id field is required.",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema(
+     *                  type="array",
+     *                  @OA\Items(
+     *                      type="object",
+     *                      @OA\Property(property="id", type="integer"),
+     *                      @OA\Property(property="correct_answer", type="boolean"),
+     *                      @OA\Property(property="answer_data", type="string")
+     *                  )
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Option not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
+    public function updateOptions(Request $request) {
+        $validator = Validator::make($request->all(), [
+            '*.id' => 'integer|required',
+            '*.correct_answer' => 'boolean',
+            '*.answer_data' => 'string',
+            '*.id_events' => 'integer',
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(null, 400);
+        }
+
+        $updatedOptions = [];
+        DB::beginTransaction();
+        foreach ($request->all() as $option) {
+            try {
+                $optionToUpdate = Option::find($option["id"]);
+                if ($optionToUpdate) {
+                    $optionToUpdate->update($option);
+                    $updatedOptions[] = $optionToUpdate;
+                } else {
+                    DB::rollback();
+                    return response()->json(null, 404);
+                }
+            }catch (Exception $e){
+                DB::rollback();
+                return response()->json(null, 400);
+            }
+        }
+        DB::commit();
+        return response()->json($updatedOptions, 200);
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/api/options",
+     *      operationId="createOption",
+     *      tags={"Option"},
+     *      summary="Creates new option",
+     *      description="Creates new option",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Request body has to contain correct_answer, answer_data, id_events",
+     *       @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="correct_answer", type="boolean"),
+     *          @OA\Property(property="answer_data", type="string"),
+     *          @OA\Property(property="id_events", type="integer")
+     *          )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid JSON body supplied",
+     *      ),
+     *     )
+     */
+
+    public function createOption(Request $request){
+        $validator = Validator::make($request->all(), [
+            'correct_answer' => 'boolean|required',
+            'answer_data' => 'string|required',
+            'id_events' => 'integer|required',
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(null, 400);
+        }
+        try {
+            $option = new Option();
+            $option->correct_answer = $request['correct_answer'];
+            $option->answer_data = $request['answer_data'];
+            $option->id_events = $request['id_events'];
+            $option->save();
+        }catch (Exception $e){
+            return response()->json(null, 400);
+        }
+        return response()->json($option, 200);
+    }
+
+    /**
+     * @OA\Delete(
+     *      path="/api/options/{id}",
+     *      operationId="deleteOption",
+     *      tags={"Option"},
+     *      summary="Deletes option",
+     *      description="Deletes 'option' by id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Option id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Option not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+    public function deleteOption($id){
+        try{
+            $deleted = Option::where('id', $id)->delete();
+        }catch (Exception $e){
+            return response()->json(null, 400);
+        }
+        if ($deleted){
+            return response()->json(null, 200);
+        }else{
+            return response()->json(null, 404);
+        }
+    }
+
+
 
 
     /**
@@ -777,26 +1179,6 @@ public function eventUpdateEvent(Request $request, $event_id, $unit_id = null)
 
         return $this->eventGetAllEvents();
     }
-
-
-    /**
-     * Function for Updating an event
-     *
-     * Done, working - by Volko
-     *
-     * @param $id - id of Option to be deleted
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function deleteOption($id)
-    {
-
-        $option = Option::find($id);
-
-        $option->delete();
-
-        return redirect()->route('events/edit', [$option->id_events]);
-    }
-
 }
 
 

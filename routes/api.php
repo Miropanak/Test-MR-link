@@ -30,10 +30,17 @@ Route::group(['prefix' => 'password'], function () {
 
 Route::get('events/{id}', 'EventController@getEvent');
 Route::get('events/{id}/options', 'EventController@getEventOptions');
+Route::delete('events/{id}/options', 'EventController@deleteEventOptions');
 Route::put('events/{id}', 'EventController@updateEvent');
+Route::delete('events/{id}', 'EventController@deleteEvent');
 Route::put('events', 'EventController@updateEvents');
 Route::post('events', 'EventController@createEvent');
-Route::get('activities/detail/{id}', 'ActivityController@detail');
+Route::get('activities/detail/{id}', 'ActivityController@detail')->name('activities/detail');
+Route::put('options', 'EventController@updateOptions');
+Route::put('options/{id}', 'EventController@updateOption');
+Route::delete('options/{id}', 'EventController@deleteOption');
+Route::post('options', 'EventController@createOption');
+
 
 
 
