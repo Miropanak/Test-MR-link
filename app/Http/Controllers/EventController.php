@@ -202,13 +202,13 @@ class EventController extends Controller
 
     public function updateEvents(Request $request) {
         $validator = Validator::make($request->all(), [
-            '.id' => 'integer|required',
-            '.message' => 'string',
-            '.header' => 'string',
-            '.time_to_explain' => 'integer',
-            '.time_to_handle' => 'integer',
-            '.id_event_types' => 'integer',
-            '.id_users' => 'integer',
+            '*.id' => 'integer|required',
+            '*.message' => 'string',
+            '*.header' => 'string',
+            '*.time_to_explain' => 'integer',
+            '*.time_to_handle' => 'integer',
+            '*.id_event_types' => 'integer',
+            '*.id_users' => 'integer',
         ]);
 
         if ($validator->fails()){
@@ -218,15 +218,19 @@ class EventController extends Controller
         $updatedEvents = [];
         DB::beginTransaction();
         foreach ($request->all() as $event) {
-            $eventToUpdate = Event::find($event["id"]);
-            if ($eventToUpdate){
-                $eventToUpdate->update($event);
-                $updatedEvents[] = $eventToUpdate;
-            } else {
+            try {
+                $eventToUpdate = Event::find($event["id"]);
+                if ($eventToUpdate) {
+                    $eventToUpdate->update($event);
+                    $updatedEvents[] = $eventToUpdate;
+                } else {
+                    DB::rollback();
+                    return response()->json(null, 404);
+                }
+            }catch (Exception $e){
                 DB::rollback();
                 return response()->json(null, 404);
             }
-
         }
         DB::commit();
         return response()->json($updatedEvents, 200);
