@@ -20,14 +20,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/login', 'API\UserController@login');
 Route::post('/register', 'API\UserController@register');
-Route::post('/password/reset', 'API\UserController@password_reset');
+
+Route::group(['prefix' => 'password'], function () {
+    Route::post('change', 'API\UserController@password_change');
+    Route::post('create', 'API\PasswordResetController@create');
+    Route::get('find/{token}', 'API\PasswordResetController@find');
+    Route::post('reset', 'API\PasswordResetController@reset');
+});
 
 Route::get('events/{id}', 'EventController@getEvent');
 Route::get('events/{id}/options', 'EventController@getEventOptions');
 Route::put('events/{id}', 'EventController@updateEvent');
 Route::put('events', 'EventController@updateEvents');
 Route::post('events', 'EventController@createEvent');
-Route::get('activities/detail/{id}', 'ActivityController@detail')->name('activities/detail');
+Route::get('activities/detail/{id}', 'ActivityController@detail');
 
 
 
