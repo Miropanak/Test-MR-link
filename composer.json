@@ -15,7 +15,6 @@
         "laravel/passport": "^7.5",
         "laravel/tinker": "~1.0",
         "unisharp/laravel-ckeditor": "^4.7",
-      "ext-json": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
