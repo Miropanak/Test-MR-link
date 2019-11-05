@@ -17,7 +17,8 @@ use App\EventType;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use function GuzzleHttp\Promise\all;
+use Illuminate\Support\Facades\Validator;
+
 
 /**
  * Class EventController
@@ -135,6 +136,19 @@ class EventController extends Controller
      */
 
     public function updateEvent(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'message' => 'string',
+            'header' => 'string',
+            'time_to_explain' => 'integer',
+            'time_to_handle' => 'integer',
+            'id_event_types' => 'integer',
+            'id_users' => 'integer',
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(null, 400);
+        }
+
         try {
             $event = Event::find($id);
             if ($event){
@@ -187,19 +201,33 @@ class EventController extends Controller
      */
 
     public function updateEvents(Request $request) {
+        $validator = Validator::make($request->all(), [
+            '*.id' => 'integer|required',
+            '*.message' => 'string',
+            '*.header' => 'string',
+            '*.time_to_explain' => 'integer',
+            '*.time_to_handle' => 'integer',
+            '*.id_event_types' => 'integer',
+            '*.id_users' => 'integer',
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(null, 400);
+        }
+
         $updatedEvents = [];
         DB::beginTransaction();
         foreach ($request->all() as $event) {
-            if (isset($event["id"])) {
-               $eventToUpdate = Event::find($event["id"]);
-               if ($eventToUpdate){
-                   $eventToUpdate->update($event);
-                   $updatedEvents[] = $eventToUpdate;
-               } else {
-                   DB::rollback();
-                   return response()->json(null, 404);
-               }
-            } else {
+            try {
+                $eventToUpdate = Event::find($event["id"]);
+                if ($eventToUpdate) {
+                    $eventToUpdate->update($event);
+                    $updatedEvents[] = $eventToUpdate;
+                } else {
+                    DB::rollback();
+                    return response()->json(null, 404);
+                }
+            }catch (Exception $e){
                 DB::rollback();
                 return response()->json(null, 400);
             }
@@ -214,7 +242,7 @@ class EventController extends Controller
      *      operationId="getEventOptions ",
      *      tags={"EventOptions"},
      *      summary="Get all options of event",
-     *      description="Returns 'options' by event id",
+     *      description="Returns 'options' of event by event id",
      *      @OA\Parameter(
      *          name="id",
      *          description="Event id",
@@ -230,7 +258,7 @@ class EventController extends Controller
      *       ),
      *      @OA\Response(
      *          response=404,
-     *          description="Event not found"
+     *          description="Options not found"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -239,14 +267,65 @@ class EventController extends Controller
      *     )
      */
 
-    public function getEventOptions (Request $request, $id) {
-        $options = Option::where("id_events", $id)->get();
-        return response()->json($options, 200);
+    public function getEventOptions ($id) {
+        try {
+            $options = Option::where("id_events", $id)->get();
+            if ($options){
+                return response()->json($options, 200);
+            }else{
+                return response()->json(null, 404);
+            }
+        }catch (Exception $e){
+            return response()->json(null, 400);
+        }
     }
 
+    /**
+     * @OA\Post(
+     *      path="/api/events",
+     *      operationId="createEvent ",
+     *      tags={"Event"},
+     *      summary="Make new event",
+     *      description="Make new event",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Request body has to contain message, header, id_event_types, id_users fields. Time_to_hadnle has value 50 set as default. Time_to_explain has value 100 set as default.",
+     *       @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="message", type="string"),
+     *          @OA\Property(property="header", type="string"),
+     *          @OA\Property(property="time_to_explain", type="integer"),
+     *          @OA\Property(property="time_to_handle", type="integer"),
+     *          @OA\Property(property="id_event_types", type="integer"),
+     *          @OA\Property(property="id_users", type="integer")
+     *          )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid JSON body supplied",
+     *      ),
+     *     )
+     */
+
     public function createEvent (Request $request){
-        $event = new Event();
-        if (isset($request["message"]) && isset($request["header"]) && isset($request["id_event_types"])){
+        $validator = Validator::make($request->all(), [
+            'message' => 'string|required',
+            'header' => 'string|required',
+            'time_to_explain' => 'integer',
+            'time_to_handle' => 'integer',
+            'id_event_types' => 'integer|required',
+            'id_users' => 'integer|required'
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(null, 400);
+        }
+        try {
+            $event = new Event();
             $event->message = $request['message'];
             $event->header = $request['header'];
             $event->time_to_explain = isset($request['time_to_explain']) ? $request['time_to_explain'] : 100;
@@ -254,6 +333,8 @@ class EventController extends Controller
             $event->id_event_types = $request['id_event_types'];
             $event->id_users = $request["id_users"]; // temporary solution, id should be determined by the server
             $event->save();
+        }catch (Exception $e){
+            return response()->json(null, 400);
         }
         return response()->json($event, 200);
     }
