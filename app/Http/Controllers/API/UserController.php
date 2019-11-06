@@ -166,10 +166,10 @@ class UserController extends Controller
 
 
     /**
-     * @OA\Post(path="/api/password/reset",
-     *   operationId="password_reset",
+     * @OA\Post(path="/api/password/change",
+     *   operationId="password_change",
      *   tags={"User"},
-     *   summary="Reset the password of user",
+     *   summary="Change the password of user",
      *   description="",
      *   @OA\RequestBody(
      *       required=true,
@@ -205,7 +205,7 @@ class UserController extends Controller
      *   @OA\Response(response=400, description="--Validation problem--")
      * )
      */
-    public function password_reset(Request $request)
+    public function password_change(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|max:255',
@@ -221,7 +221,7 @@ class UserController extends Controller
 
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
             $user = Auth::user();
-            $user['password'] = bcrypt($request->get('password_new'));
+            $user['password'] = bcrypt($request->input('password_new'));
             $user->save();
 
             return response()->json(['success' => 'Heslo bolo zmenené'], $this-> successStatus);
