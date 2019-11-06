@@ -61,9 +61,13 @@ class UserController extends Controller
      * )
      */
     public function login(){
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+        if(Auth::attempt(['email' => strtolower(request('email')), 'password' => request('password')])){
             $user = Auth::user();
-            $success['token'] =  $user->createToken('MyApp')-> accessToken;
+            $success['token'] =  $user->createToken('MyApp')->accessToken;
+            $success['name'] =  $user->name;
+            $success['role_id'] = $user->id_user_types;
+            $success['role'] = $user->role->name;
+
             return response()->json(['success' => $success], $this-> successStatus);
         }
         else{
@@ -75,7 +79,7 @@ class UserController extends Controller
      *   operationId="register",
      *   tags={"User"},
      *   summary="Register user into the system",
-     *   description="",
+     *   description="The registred user's role is automatically set to 'student'",
      *   @OA\RequestBody(
      *       required=true,
      *       description="Regular registration form",
@@ -152,6 +156,7 @@ class UserController extends Controller
         }
 
         $input = $request->all();
+        $input['email'] = strtolower($input['email']);   // fur richard
         $input['password'] = bcrypt($input['password']);
         $input['name'] = $input['firstname'] . " " . $input['lastname'];
         $input['id_user_types'] = UserType::where('name', 'student')->first()->id;
@@ -160,6 +165,8 @@ class UserController extends Controller
 
         $success['token'] =  $user->createToken('MyApp')-> accessToken;
         $success['name'] =  $user->name;
+        $success['role'] = $user->id_user_types;
+        $success['role'] = $user->role->name;
 
         return response()->json(['success'=>$success], $this-> successStatus);
     }
