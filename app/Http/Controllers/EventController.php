@@ -487,7 +487,7 @@ class EventController extends Controller
         try{
             $event = Event::find($id);
             if($event) {
-                $event_type = EventType::where("id", $event->id_event_types)->get();
+                $event_type = EventType::where("id", $event->id_event_types)->first(); 
                 return response()->json($event_type[0], 200); // Event has always only one event_type
             } else {                                                 // event_types could have been defined as enum in event table
                 return response()->json(null, 404);
