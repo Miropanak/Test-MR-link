@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Help;
 use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -42,15 +43,19 @@ class HelpController
      */
 
     public function getHelp($id) {
-        try {
+        try{
             $help = Help::find($id);
-            if ($help) {
+            if($help) {
                 return response()->json($help, 200);
             } else {
                 return response()->json(null, 404);
             }
-        }catch (Exception $e){
-            return response()->json(null, 400);
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400); // bad id provided -> id too big for integer
+            } else {
+                return response()->json(null, 500);
+            }
         }
     }
 
@@ -102,20 +107,24 @@ class HelpController
             'id_events' => 'integer',
         ]);
 
-        if ($validator->fails()){
+        if($validator->fails()) {
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
-        try {
+        try{
             $help = Help::find($id);
-            if ($help){
+            if($help) {
                 $help->update($request->all());
                 return response()->json($help, 200);
             } else {
                 return response()->json(null, 404);
             }
-        } catch (Exception $e){
-            return response()->json(null, 400);
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
         }
     }
 
@@ -124,7 +133,7 @@ class HelpController
      * @OA\Post(
      *      path="/api/helps",
      *      operationId="createHelp",
-     *      tags={"Helps"},
+     *      tags={"Help"},
      *      summary="Creates new help",
      *      description="Creates new help",
      *     @OA\RequestBody(
@@ -148,24 +157,24 @@ class HelpController
      *     )
      */
 
-    public function createHelp(Request $request){
+    public function createHelp(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'string|required',
             'url' => 'string',
             'id_events' => 'integer|required',
         ]);
 
-        if ($validator->fails()){
+        if($validator->fails()) {
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
-        try {
+        try{
             $help = new Help();
             $help->name = $request['name'];
             $help->url = $request['url'];
             $help->id_events = $request['id_events'];
             $help->save();
-        }catch (Exception $e){
-            return response()->json(null, 400);
+        } catch(Exception $e) {
+            return response()->json(null, 500);
         }
         return response()->json($help, 200);
     }
@@ -201,15 +210,19 @@ class HelpController
      *      ),
      *     )
      */
-    public function deleteHelp($id){
+    public function deleteHelp($id) {
         try{
             $deleted = Help::where('id', $id)->delete();
-        }catch (Exception $e){
-            return response()->json(null, 400);
+        } catch(Exception $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
         }
-        if ($deleted){
+        if($deleted) {
             return response()->json(null, 200);
-        }else{
+        } else {
             return response()->json(null, 404);
         }
     }

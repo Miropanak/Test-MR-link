@@ -9,7 +9,7 @@ namespace App\Http\Controllers;
 use App\Help;
 use App\Option;
 use App\Unit;
-use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Event;
 use App\UnitsEvent;
@@ -17,7 +17,6 @@ use DB;
 use App\EventType;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -84,15 +83,19 @@ class EventController extends Controller
      */
 
     public function getEvent($id) {
-        try {
+        try{
             $event = Event::find($id);
-            if ($event) {
+            if($event) {
                 return response()->json($event, 200);
             } else {
                 return response()->json(null, 404);
             }
-        }catch (Exception $e){
-            return response()->json(null, 400);
+        }catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400); // bad id provided -> id too big for integer
+            } else {
+                return response()->json(null, 500);
+            }
         }
     }
 
@@ -146,20 +149,24 @@ class EventController extends Controller
             'id_users' => 'integer',
         ]);
 
-        if ($validator->fails()){
+        if($validator->fails()) {
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
-        try {
+        try{
             $event = Event::find($id);
-            if ($event){
+            if($event) {
                 $event->update($request->all());
                 return response()->json($event, 200);
             } else {
                 return response()->json(null, 404);
             }
-        } catch (Exception $e){
-            return response()->json(null, 400);
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
         }
     }
 
@@ -193,15 +200,19 @@ class EventController extends Controller
      *      ),
      *     )
      */
-    public function deleteEvent($id){
+    public function deleteEvent($id) {
         try{
             $deleted = Event::where('id', $id)->delete();
-        }catch (Exception $e){
-            return response()->json(null, 400);
+        } catch (QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
         }
-        if ($deleted){
+        if($deleted) {
             return response()->json(null, 200);
-        }else{
+        } else {
             return response()->json(null, 404);
         }
     }
@@ -254,25 +265,29 @@ class EventController extends Controller
             '*.id_users' => 'integer',
         ]);
 
-        if ($validator->fails()){
+        if($validator->fails()) {
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
         $updatedEvents = [];
         DB::beginTransaction();
-        foreach ($request->all() as $event) {
-            try {
+        foreach($request->all() as $event) {
+            try{
                 $eventToUpdate = Event::find($event["id"]);
-                if ($eventToUpdate) {
+                if($eventToUpdate) {
                     $eventToUpdate->update($event);
                     $updatedEvents[] = $eventToUpdate;
                 } else {
                     DB::rollback();
                     return response()->json(null, 404);
                 }
-            }catch (Exception $e){
+            } catch (QueryException $e) {
                 DB::rollback();
-                return response()->json(null, 400);
+                if($e->getCode() === '22003') {
+                    return response()->json(null, 400);
+                } else {
+                    return response()->json(null, 500);
+                }
             }
         }
         DB::commit();
@@ -311,15 +326,19 @@ class EventController extends Controller
      */
 
     public function getEventOptions($id) {
-        try {
+        try{
             $options = Option::where("id_events", $id)->get();
-            if (count($options) > 0){
+            if(count($options) > 0) {
                 return response()->json($options, 200);
-            }else{
+            } else {
                 return response()->json(null, 404);
             }
-        }catch (Exception $e){
-            return response()->json(null, 400);
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
         }
     }
 
@@ -355,18 +374,22 @@ class EventController extends Controller
      */
 
     public function deleteEventOptions($id) {
-        try {
+        try{
             $options = Option::where("id_events", $id)->get();
-            if (count($options) > 0){
-                foreach ($options as $option){
+            if(count($options) > 0) {
+                foreach($options as $option) {
                     $option->delete();
                 }
                 return response()->json(null, 200);
-            }else{
+            } else {
                 return response()->json(null, 404);
             }
-        }catch (Exception $e){
-            return response()->json(null, 400);
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
         }
     }
 
@@ -401,7 +424,7 @@ class EventController extends Controller
      *     )
      */
 
-    public function createEvent (Request $request){
+    public function createEvent (Request $request) {
         $validator = Validator::make($request->all(), [
             'message' => 'string|required',
             'header' => 'string|required',
@@ -411,10 +434,10 @@ class EventController extends Controller
             'id_users' => 'integer|required'
         ]);
 
-        if ($validator->fails()){
+        if($validator->fails()) {
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
-        try {
+        try{
             $event = new Event();
             $event->message = $request['message'];
             $event->header = $request['header'];
@@ -423,8 +446,8 @@ class EventController extends Controller
             $event->id_event_types = $request['id_event_types'];
             $event->id_users = $request["id_users"]; // temporary solution, id should be determined by the server
             $event->save();
-        }catch (Exception $e){
-            return response()->json(null, 400);
+        }catch (QueryException $e) {
+            return response()->json(null, 500); // f.e. postgres id counter is not set up properly
         }
         return response()->json($event, 200);
     }
@@ -461,16 +484,20 @@ class EventController extends Controller
      */
 
     public function getEventTypes($id) {
-        try {
+        try{
             $event = Event::find($id);
-            if ($event) {
+            if($event) {
                 $event_type = EventType::where("id", $event->id_event_types)->get();
                 return response()->json($event_type[0], 200); // Event has always only one event_type
             } else {                                                 // event_types could have been defined as enum in event table
                 return response()->json(null, 404);
             }
-        }catch (Exception $e){
-            return response()->json(null, 400);
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
         }
     }
 
@@ -506,15 +533,19 @@ class EventController extends Controller
      */
 
     public function getEventHelps($id) {
-        try {
+        try{
             $helps = Help::where("id_events", $id)->get();
-            if (count($helps) > 0) {
+            if(count($helps) > 0) {
                 return response()->json($helps, 200);
             } else {
                 return response()->json(null, 404);
             }
-        }catch (Exception $e){
-            return response()->json(null, 400);
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003'){
+                return response()->json(null, 400);
+            }else{
+                return response()->json(null, 500);
+            }
         }
     }
 
@@ -566,20 +597,24 @@ class EventController extends Controller
             'id_events' => 'integer',
         ]);
 
-        if ($validator->fails()){
+        if($validator->fails()) {
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
-        try {
+        try{
             $option = Option::find($id);
-            if ($option){
+            if($option) {
                 $option->update($request->all());
                 return response()->json($option, 200);
             } else {
                 return response()->json(null, 404);
             }
-        } catch (Exception $e){
-            return response()->json(null, 400);
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
         }
     }
 
@@ -629,25 +664,29 @@ class EventController extends Controller
             '*.id_events' => 'integer',
         ]);
 
-        if ($validator->fails()){
+        if($validator->fails()) {
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
         $updatedOptions = [];
         DB::beginTransaction();
-        foreach ($request->all() as $option) {
-            try {
+        foreach($request->all() as $option) {
+            try{
                 $optionToUpdate = Option::find($option["id"]);
-                if ($optionToUpdate) {
+                if($optionToUpdate) {
                     $optionToUpdate->update($option);
                     $updatedOptions[] = $optionToUpdate;
                 } else {
                     DB::rollback();
                     return response()->json(null, 404);
                 }
-            }catch (Exception $e){
+            } catch(QueryException $e){
                 DB::rollback();
-                return response()->json(null, 400);
+                if($e->getCode() === '22003') {
+                    return response()->json(null, 400);
+                } else {
+                    return response()->json(null, 500);
+                }
             }
         }
         DB::commit();
@@ -682,24 +721,24 @@ class EventController extends Controller
      *     )
      */
 
-    public function createOption(Request $request){
+    public function createOption(Request $request) {
         $validator = Validator::make($request->all(), [
             'correct_answer' => 'boolean|required',
             'answer_data' => 'string|required',
             'id_events' => 'integer|required',
         ]);
 
-        if ($validator->fails()){
+        if($validator->fails()) {
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
-        try {
+        try{
             $option = new Option();
             $option->correct_answer = $request['correct_answer'];
             $option->answer_data = $request['answer_data'];
             $option->id_events = $request['id_events'];
             $option->save();
-        }catch (Exception $e){
-            return response()->json(null, 400);
+        } catch(QueryException $e){
+            return response()->json(null, 500);
         }
         return response()->json($option, 200);
     }
@@ -734,15 +773,19 @@ class EventController extends Controller
      *      ),
      *     )
      */
-    public function deleteOption($id){
+    public function deleteOption($id) {
         try{
             $deleted = Option::where('id', $id)->delete();
-        }catch (Exception $e){
-            return response()->json(null, 400);
+        } catch(QueryException $e){
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
         }
-        if ($deleted){
+        if($deleted) {
             return response()->json(null, 200);
-        }else{
+        } else {
             return response()->json(null, 404);
         }
     }
