@@ -2,6 +2,9 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -34,8 +37,17 @@ class User extends Authenticatable
     ];
 
     /**
+     * Returns user role created by this user
+     * @return BelongsTo
+     */
+    public function role()
+    {
+        return $this->belongsTo('App\UserType', 'id_user_types');
+    }
+
+    /**
      * Returns activities created by this user
-     * @return $this
+     * @return BelongsToMany
      */
     public function activities()
     {
@@ -44,7 +56,7 @@ class User extends Authenticatable
 
     /**
      * returns events created by this user
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function events()
     {
@@ -53,7 +65,7 @@ class User extends Authenticatable
 
     /**
      * returns user tests created by this user
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return BelongsToMany
      */
     public function tests()
     {
