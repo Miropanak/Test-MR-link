@@ -20,6 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/login', 'API\UserController@login');
 Route::post('/register', 'API\UserController@register');
+Route::post('/email/check', 'API\UserController@email_check');
+
 
 Route::group(['prefix' => 'password'], function () {
     Route::post('change', 'API\UserController@password_change');
