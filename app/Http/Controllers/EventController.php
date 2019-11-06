@@ -114,7 +114,7 @@ class EventController extends Controller
      *      ),
      *     @OA\RequestBody(
      *         required=true,
-     *         description="Request body does not need to contain all event fields",
+     *         description="Request body does not need to contain all 'event' fields",
      *       @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="message", type="string"),
@@ -156,7 +156,7 @@ class EventController extends Controller
                 $event->update($request->all());
                 return response()->json($event, 200);
             } else {
-                return response()->json($event, 404);
+                return response()->json(null, 404);
             }
         } catch (Exception $e){
             return response()->json(null, 400);
@@ -283,7 +283,7 @@ class EventController extends Controller
      * @OA\Get(
      *      path="/api/events/{id}/options",
      *      operationId="getEventOptions ",
-     *      tags={"EventOptions"},
+     *      tags={"Event"},
      *      summary="Gets all options of event",
      *      description="Returns 'options' of event by event id",
      *      @OA\Parameter(
@@ -327,7 +327,7 @@ class EventController extends Controller
      * @OA\Delete(
      *      path="/api/events/{id}/options",
      *      operationId="deleteEventOptions ",
-     *      tags={"EventOptions"},
+     *      tags={"Event"},
      *      summary="Deletes all options of event",
      *      description="Deletes all 'options' of event",
      *      @OA\Parameter(
@@ -429,6 +429,95 @@ class EventController extends Controller
         return response()->json($event, 200);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/events/{id}/event_types",
+     *      operationId="getEventType",
+     *      tags={"Event"},
+     *      summary="Gets type of event",
+     *      description="Returns 'event_type' by event id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Event id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Event not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
+    public function getEventTypes($id) {
+        try {
+            $event = Event::find($id);
+            if ($event) {
+                $event_type = EventType::where("id", $event->id_event_types)->get();
+                return response()->json($event_type[0], 200); // Event has always only one event_type
+            } else {                                                 // event_types could have been defined as enum in event table
+                return response()->json(null, 404);
+            }
+        }catch (Exception $e){
+            return response()->json(null, 400);
+        }
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/events/{id}/event_helps",
+     *      operationId="getEventHelps",
+     *      tags={"Event"},
+     *      summary="Gets helps of event",
+     *      description="Returns 'event_helps' by event id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Event id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Event not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
+    public function getEventHelps($id) {
+        try {
+            $helps = Help::where("id_events", $id)->get();
+            if (count($helps) > 0) {
+                return response()->json($helps, 200);
+            } else {
+                return response()->json(null, 404);
+            }
+        }catch (Exception $e){
+            return response()->json(null, 400);
+        }
+    }
+
 
     /**
      * @OA\Put(
@@ -448,7 +537,7 @@ class EventController extends Controller
      *      ),
      *     @OA\RequestBody(
      *         required=true,
-     *         description="Request body does not need to contain all event fields",
+     *         description="Request body does not need to contain all 'option' fields",
      *       @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="correct_answer", type="boolean"),
