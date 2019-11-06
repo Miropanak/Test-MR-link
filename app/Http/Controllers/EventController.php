@@ -147,7 +147,7 @@ class EventController extends Controller
         ]);
 
         if ($validator->fails()){
-            return response()->json(null, 400);
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
         try {
@@ -255,7 +255,7 @@ class EventController extends Controller
         ]);
 
         if ($validator->fails()){
-            return response()->json(null, 400);
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
         $updatedEvents = [];
@@ -412,7 +412,7 @@ class EventController extends Controller
         ]);
 
         if ($validator->fails()){
-            return response()->json(null, 400);
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
         try {
             $event = new Event();
@@ -567,7 +567,7 @@ class EventController extends Controller
         ]);
 
         if ($validator->fails()){
-            return response()->json(null, 400);
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
         try {
@@ -630,7 +630,7 @@ class EventController extends Controller
         ]);
 
         if ($validator->fails()){
-            return response()->json(null, 400);
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
         $updatedOptions = [];
@@ -690,7 +690,7 @@ class EventController extends Controller
         ]);
 
         if ($validator->fails()){
-            return response()->json(null, 400);
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
         try {
             $option = new Option();

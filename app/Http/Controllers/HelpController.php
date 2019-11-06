@@ -3,72 +3,214 @@
 namespace App\Http\Controllers;
 
 use App\Help;
-use App\Event;
-use DB;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 
 class HelpController
 {
+    /**
+     * @OA\Get(
+     *      path="/api/helps/{id}",
+     *      operationId="getHelp",
+     *      tags={"Help"},
+     *      summary="Gets help",
+     *      description="Returns 'help' by id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Help id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Help not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
 
-    public function CreateHelp($event_id) {
-
-        return view('events.createHelp', compact('event_id'));
-    }
-
-    public function storeHelp(Request $request,$event_id) {
-
-        $help = new Help();
-
-        $help->name = $request['help'];
-        $help->url = $request['helpUrl'];
-        $help->id_events = $event_id;
-
-        $help->save();
-
-        return redirect()->action('EventController@showEvent', ['event_id' => $event_id]);
+    public function getHelp($id) {
+        try {
+            $help = Help::find($id);
+            if ($help) {
+                return response()->json($help, 200);
+            } else {
+                return response()->json(null, 404);
+            }
+        }catch (Exception $e){
+            return response()->json(null, 400);
+        }
     }
 
     /**
-     * Returns all helps for given id of an event
-     *
-     * @param event_id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @OA\Put(
+     *      path="/api/helps/{id}",
+     *      operationId="putHelp",
+     *      tags={"Help"},
+     *      summary="Updates help",
+     *      description="Updates help",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="help id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Request body does not need to contain all 'help' fields",
+     *       @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="name", type="string"),
+     *          @OA\Property(property="url", type="string"),
+     *          @OA\Property(property="id_events", type="integer")
+     *          )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Help not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
      */
-    public function getEventHelps($event_id)
-    {
-        return Help::where('id_events',$event_id)->get();
 
-    }
+    public function updateHelp(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'string',
+            'url' => 'string', // 'url' rule doesn't accept strings like 'wwww.google.sk'
+            'id_events' => 'integer',
+        ]);
 
-    /**
-     * Function for Deleting a help
-     *
-     *
-     *
-     * @param $id - id of a help
-     * @return other function of this Controller
-     */
-    public function delete($id){
-        /**
-         * Getting help of given id
-         */
-        $help =  Help::find($id);
-
-        $event_id = $help->id_events;
-
-        /**
-         * Checking rights
-         */
-        if(Auth::user()->id_user_types != 5 && Auth::user()->id_user_types != 6) {
-            abort(403);
+        if ($validator->fails()){
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
-        /**
-         * Deleting help and run other function (eventGetAllEvents)
-         */
-        $help->delete();
+        try {
+            $help = Help::find($id);
+            if ($help){
+                $help->update($request->all());
+                return response()->json($help, 200);
+            } else {
+                return response()->json(null, 404);
+            }
+        } catch (Exception $e){
+            return response()->json(null, 400);
+        }
+    }
 
-        return redirect()->route('events/detail', ['event' => $event_id]);
+
+    /**
+     * @OA\Post(
+     *      path="/api/helps",
+     *      operationId="createHelp",
+     *      tags={"Helps"},
+     *      summary="Creates new help",
+     *      description="Creates new help",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Request body has to contain name, url, id_events",
+     *       @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="name", type="string"),
+     *          @OA\Property(property="url", type="string"),
+     *          @OA\Property(property="id_events", type="integer")
+     *          )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid JSON body supplied",
+     *      ),
+     *     )
+     */
+
+    public function createHelp(Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'string|required',
+            'url' => 'string',
+            'id_events' => 'integer|required',
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
+        }
+        try {
+            $help = new Help();
+            $help->name = $request['name'];
+            $help->url = $request['url'];
+            $help->id_events = $request['id_events'];
+            $help->save();
+        }catch (Exception $e){
+            return response()->json(null, 400);
+        }
+        return response()->json($help, 200);
+    }
+
+
+    /**
+     * @OA\Delete(
+     *      path="/api/helps/{id}",
+     *      operationId="deleteHelp",
+     *      tags={"Help"},
+     *      summary="Deletes help",
+     *      description="Deletes 'help' by id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Help id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Help not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+    public function deleteHelp($id){
+        try{
+            $deleted = Help::where('id', $id)->delete();
+        }catch (Exception $e){
+            return response()->json(null, 400);
+        }
+        if ($deleted){
+            return response()->json(null, 200);
+        }else{
+            return response()->json(null, 404);
+        }
     }
 }

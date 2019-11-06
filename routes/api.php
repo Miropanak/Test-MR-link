@@ -32,16 +32,22 @@ Route::group(['prefix' => 'password'], function () {
 Route::get('events/{id}', 'EventController@getEvent');
 Route::get('events/{id}/options', 'EventController@getEventOptions');
 Route::delete('events/{id}/options', 'EventController@deleteEventOptions');
+Route::get('/events/{id}/event_types', 'EventController@getEventTypes');
+Route::get('/events/{id}/event_helps', 'EventController@getEventHelps');
 Route::put('events/{id}', 'EventController@updateEvent');
 Route::delete('events/{id}', 'EventController@deleteEvent');
 Route::put('events', 'EventController@updateEvents');
 Route::post('events', 'EventController@createEvent');
-
 // OPTIONS
 Route::put('options', 'EventController@updateOptions');
 Route::put('options/{id}', 'EventController@updateOption');
 Route::delete('options/{id}', 'EventController@deleteOption');
 Route::post('options', 'EventController@createOption');
+// HELPS
+Route::get('helps/{id}', 'HelpController@getHelp');
+Route::post('helps', 'HelpController@createHelp');
+Route::put('helps/{id}', 'HelpController@updateHelp');
+Route::delete('helps/{id}', 'HelpController@deleteHelp');
 
 // ACTIVITIES
 Route::get('activities/detail/{id}', 'ActivityController@detail');
