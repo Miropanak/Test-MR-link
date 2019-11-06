@@ -252,8 +252,8 @@ class UserController extends Controller
      *          ),
      *     ),
      *   ),
-     *   @OA\Response(response=200, description="--User is in DB--"),
-     *   @OA\Response(response=400, description="--User is not in DB--")
+     *   @OA\Response(response=200, description="--User is in not DB--"),
+     *   @OA\Response(response=400, description="--User is in DB--")
      * )
      */
     public function email_check(Request $request)
