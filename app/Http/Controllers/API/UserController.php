@@ -216,7 +216,7 @@ class UserController extends Controller
 
 
         if ($validator->fails()) {
-            return response()->json(['Data validation error'=>$validator->errors()], 400);
+            return response()->json(['error'=>$validator->errors()], 400);
         }
 
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
@@ -224,10 +224,48 @@ class UserController extends Controller
             $user['password'] = bcrypt($request->input('password_new'));
             $user->save();
 
-            return response()->json(['success' => 'Heslo bolo zmenené'], $this-> successStatus);
+            return response()->json(['success' => 'Password has been changed'], $this-> successStatus);
         }
         else {
             return response()->json(['error' => 'Unauthorised.'], 401);
+        }
+    }
+
+
+    /**
+     * @OA\Post(path="/api/email/check",
+     *   operationId="email_check",
+     *   tags={"User"},
+     *   summary="Check if the email is already used",
+     *   description="",
+     *   @OA\RequestBody(
+     *       required=true,
+     *       description="",
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               @OA\Property(
+     *                      property="email",
+     *                      type="string",
+     *                      format="email",
+     *                ),
+     *          ),
+     *     ),
+     *   ),
+     *   @OA\Response(response=200, description="--User is in DB--"),
+     *   @OA\Response(response=400, description="--User is not in DB--")
+     * )
+     */
+    public function email_check(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'unique:users,email'
+        ]);
+
+        if($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()],400);
+        } else {
+            return response()->json(['message'=>'The email is unique'],$this->successStatus);
         }
     }
 }
