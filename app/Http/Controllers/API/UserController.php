@@ -7,6 +7,7 @@ use App\UserType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+
 class UserController extends Controller
 {
     public $successStatus = 200;
@@ -165,7 +166,7 @@ class UserController extends Controller
 
         $success['token'] =  $user->createToken('MyApp')-> accessToken;
         $success['name'] =  $user->name;
-        $success['role'] = $user->id_user_types;
+        $success['role_id'] = $user->id_user_types;
         $success['role'] = $user->role->name;
 
         return response()->json(['success'=>$success], $this-> successStatus);
@@ -178,6 +179,7 @@ class UserController extends Controller
      *   tags={"User"},
      *   summary="Change the password of user",
      *   description="",
+     *   security={{"bearerAuth":{}}},
      *   @OA\RequestBody(
      *       required=true,
      *       description="",
