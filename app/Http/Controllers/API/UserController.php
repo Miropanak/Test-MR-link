@@ -226,7 +226,7 @@ class UserController extends Controller
             return response()->json(['error'=>$validator->errors()], 400);
         }
 
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+        if(Auth::attempt(['email' => strtolower(request('email')), 'password' => request('password')])){
             $user = Auth::user();
             $user['password'] = bcrypt($request->input('password_new'));
             $user->save();
@@ -265,7 +265,10 @@ class UserController extends Controller
      */
     public function email_check(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $input = $request->all();
+        $input['email'] = strtolower($input['email']);
+
+        $validator = Validator::make($input, [
             'email' => 'unique:users,email'
         ]);
 
