@@ -24,11 +24,17 @@ Route::post('/email/check', 'API\UserController@email_check');
 
 
 Route::group(['prefix' => 'password'], function () {
-    Route::post('change', 'API\UserController@password_change');
     Route::post('create', 'API\PasswordResetController@create');
     Route::get('find/{token}', 'API\PasswordResetController@find');
     Route::post('reset', 'API\PasswordResetController@reset');
 });
+
+Route::group(['prefix' => 'password', 'middleware' => 'auth:api'], function () {
+    Route::post('change', 'API\UserController@password_change');
+});
+
+
+
 
 // EVENTS
 Route::get('events/{id}', 'EventController@getEvent');
