@@ -22,6 +22,14 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
  * )
  */
 
+/**
+ *   @OA\SecurityScheme(
+ *       securityScheme="bearerAuth",
+ *       type="http",
+ *       in="header",
+ *       scheme="bearer"
+ *   )
+ */
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Notifications\PasswordResetRequest;
@@ -192,10 +193,21 @@ class PasswordResetController extends Controller
         if (!$user){
             return response()->json(['error' => 'We can not find a user with that e-mail address.'], 400);
         }
-        $user->password = bcrypt($request->input('password'));
-        $user->save();
-        $passwordReset->delete();
-        $user->notify(new PasswordResetSuccess($passwordReset));
-        return response()->json($user, $this->successStatus);
+
+        try{
+            $user->password = bcrypt($request->input('password'));
+            $user->save();
+            $passwordReset->delete();
+            $user->notify(new PasswordResetSuccess($passwordReset)); // Todo check this shit
+        }catch (QueryException $e) {
+            return response()->json(null, 500);
+        }
+
+        $success['token'] =  $user->createToken('MyApp')-> accessToken;
+        $success['name'] =  $user->name;
+        $success['role_id'] = $user->id_user_types;
+        $success['role'] = $user->role->name;
+
+        return response()->json(['success'=>$success], $this->successStatus);
     }
 }
