@@ -1,11 +1,14 @@
 <?php
 namespace App\Http\Controllers\API;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\UserType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Event;
+
 
 class UserController extends Controller
 {
@@ -276,6 +279,54 @@ class UserController extends Controller
             return response()->json(['error'=>$validator->errors()],400);
         } else {
             return response()->json(['message'=>'The email is unique'],$this->successStatus);
+        }
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/users/{id}/events",
+     *      operationId="getUserEvents",
+     *      tags={"User"},
+     *      summary="Gets events of user",
+     *      description="Returns 'events' by user_id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="User id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Events not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
+    public function getUserEvents($id) {
+        try{
+            $events = Event::where("id_users", $id)->get();
+            if(count($events) > 0) {
+                return response()->json($events, 200);
+            } else {
+                return response()->json(null, 404);
+            }
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003'){
+                return response()->json(null, 400);
+            }else{
+                return response()->json($e->errorInfo, 500);
+            }
         }
     }
 }

@@ -30,6 +30,9 @@ Route::group(['prefix' => 'password'], function () {
     Route::post('reset', 'API\PasswordResetController@reset');
 });
 
+// USERS
+Route::get('/users/{id}/events', 'API\UserController@getUserEvents');
+
 // EVENTS
 Route::get('events/{id}', 'EventController@getEvent');
 Route::get('events/{id}/options', 'EventController@getEventOptions');
