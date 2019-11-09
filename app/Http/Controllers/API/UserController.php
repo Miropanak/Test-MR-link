@@ -325,7 +325,7 @@ class UserController extends Controller
             if($e->getCode() === '22003'){
                 return response()->json(null, 400);
             }else{
-                return response()->json($e->errorInfo, 500);
+                return response()->json(null, 500);
             }
         }
     }
