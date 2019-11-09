@@ -33,8 +33,8 @@ Route::group(['prefix' => 'password', 'middleware' => 'auth:api'], function () {
     Route::post('change', 'API\UserController@password_change');
 });
 
-
-
+// USERS
+Route::get('/users/{id}/events', 'API\UserController@getUserEvents');
 
 // EVENTS
 Route::get('events/{id}', 'EventController@getEvent');
