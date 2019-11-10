@@ -8,6 +8,7 @@ use App\Activity;
 use App\ActivityUsers;
 use App\User;
 use App\Unit;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,11 +79,12 @@ class ActivityController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/activities/detail/{id}",
-     *      operationId="detail",
+     *      path="/api/activities/{id}",
+     *      operationId="getActivity",
      *      tags={"Activity"},
      *      summary="Show activity detail",
      *      description="Returns 'activity', 'users', 'registered' and title",
+     *      security={{"bearerAuth":{}}},
      *      @OA\Parameter(
      *          name="id",
      *          description="id",
@@ -96,29 +98,90 @@ class ActivityController extends Controller
      *          response=200,
      *          description="successful operation"
      *       ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Event not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
      *     )
      */
-    public function detail($id)
+    public function getActivity($id)
     {
-        $activity = Activity::find($id);
-        $users = $this->getUsersForSelect($activity->subscriber);
-//        $registered = $this->isRegistered($activity->subscriber, Auth::user()->id); TODO: nefunguje lebo nie som prihlaseny
-        $title = $activity->name;
-
-//        return view('activities.detail', ['activity' => $activity, 'registered' => $registered, 'users' => $users])->with(compact('title'));
-        return response()->json([
-            "activity" => $activity,
-            "registered" => "", //$registered, TODO: ked bude fungovat login
-            "users" => $users,
-            "title" => $title
-        ]);
+        try{
+            $activity = Activity::find($id);
+            $users = $this->getUsersForSelect($activity->subscriber);
+            $registered = $this->isRegistered($activity->subscriber, Auth::user()->id);
+            $title = $activity->title;
+            if($activity) {
+                return response()->json([
+                    "activity" => $activity,
+                    "registered" => $registered,
+                    "users" => $users,
+                    "title" => $title
+                ]);
+            } else {
+                return response()->json(null, 404);
+            }
+        }catch(QueryException $e) {
+            if ($e->getCode() === '22003') {
+                return response()->json(null, 400); // bad id provided -> id too big for integer
+            } else {
+                return response()->json(null, 500);
+            }
+        }
     }
 
     /**
-     * Creates new activity
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @OA\Post(
+     *      path="/api/activities",
+     *      operationId="createActivity ",
+     *      tags={"Activity"},
+     *      summary="Creates new activity",
+     *      description="Creates new activity",
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               @OA\Property(
+     *                      property="title",
+     *                      type="string",
+     *                      format="title",
+     *                ),
+     *                @OA\Property(
+     *                      property="password",
+     *                      type="string",
+     *                      format="password",
+     *               ),
+     *               @OA\Property(
+     *                      property="password_new",
+     *                      type="string",
+     *                      format="password",
+     *               ),
+     *               @OA\Property(
+     *                      property="c_password_new",
+     *                      type="string",
+     *                      format="password",
+     *               )
+     *           )
+     *       )
+     *   ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid JSON body supplied",
+     *      ),
+     *     )
      */
+
     public function create(Request $request)
     {
 

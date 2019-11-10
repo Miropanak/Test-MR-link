@@ -58,7 +58,9 @@ Route::put('helps/{id}', 'HelpController@updateHelp');
 Route::delete('helps/{id}', 'HelpController@deleteHelp');
 
 // ACTIVITIES
-Route::get('activities/detail/{id}', 'ActivityController@detail');
+Route::group(['prefix' => 'activities', 'middleware' => 'auth:api'], function () {
+    Route::get('{id}', 'ActivityController@getActivity');
+});
 
 
 
