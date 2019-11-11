@@ -231,7 +231,7 @@ class UserController extends Controller
             return response()->json(['error'=>$validator->errors()], 400);
         }
 
-        if(Auth::attempt(['email' => strtolower(request('email')), 'password' => request('password')])){
+        if(Auth::guard('web')->attempt(['email' => strtolower(request('email')), 'password' => request('password')])){
             $user = Auth::user();
             $user['password'] = bcrypt($request->input('password_new'));
             $user->save();
