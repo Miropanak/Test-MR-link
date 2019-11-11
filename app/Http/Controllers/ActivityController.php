@@ -99,10 +99,6 @@ class ActivityController extends Controller
      *          description="successful operation"
      *       ),
      *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation"
-     *       ),
-     *      @OA\Response(
      *          response=404,
      *          description="Event not found"
      *       ),
@@ -110,7 +106,7 @@ class ActivityController extends Controller
      *         response=400,
      *         description="Invalid ID supplied",
      *      ),
-     *     )
+     *  )
      */
     public function getActivity($id)
     {
@@ -151,26 +147,21 @@ class ActivityController extends Controller
      *               @OA\Property(
      *                      property="title",
      *                      type="string",
-     *                      format="title",
      *                ),
      *                @OA\Property(
-     *                      property="password",
+     *                      property="content",
      *                      type="string",
-     *                      format="password",
      *               ),
      *               @OA\Property(
-     *                      property="password_new",
+     *                      property="public",
      *                      type="string",
-     *                      format="password",
      *               ),
      *               @OA\Property(
-     *                      property="c_password_new",
+     *                      property="validated",
      *                      type="string",
-     *                      format="password",
      *               )
      *           )
-     *       )
-     *   ),
+     *       ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation"
