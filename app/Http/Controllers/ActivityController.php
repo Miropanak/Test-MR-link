@@ -8,6 +8,7 @@ use App\Activity;
 use App\ActivityUsers;
 use App\User;
 use App\Unit;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,40 +41,52 @@ class ActivityController extends Controller
     }
 
     /**
-     * Show form to create new activity.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *      path="/api/activities/{id}/units",
+     *      operationId="getActivityEvents",
+     *      tags={"Activity"},
+     *      summary="Gets all units of activity",
+     *      description="Returns 'units' of activity by activity id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Activity id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="No units not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
      */
-    public function newActivity()
-    {
-        return view('activities.new');
-    }
 
-
-
-    public function show()
-    {
-        $activities = Activity::all();
-        $title = "Zoznam vzdelávacích aktivít";
-        return view('activities.show', ['activities' => $activities])->with(compact('title'));
-    }
-
-    private function isRegistered($subscribers, $user_id){
-
-        foreach ($subscribers as $subscriber)
-            if($subscriber->id == $user_id)
-                return true;
-        return false;
-    }
-
-    private function getUsersForSelect($subscribers){
-
-        $sub = array();
-
-        foreach ($subscribers as $subscriber)
-            array_push($sub,  $subscriber->id);
-
-        return User::whereNotIn('id', $sub)->get();
+    public function getActivityUnits($id) {
+        try{
+            error_log("test");
+            $units = Activity::find($id)->units;
+            if(count($units) > 0) {
+                return response()->json($units, 200);
+            } else {
+                return response()->json(null, 404);
+            }
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
+        }
     }
 
     /**

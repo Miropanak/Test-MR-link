@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use function abort;
-use App\Activity;
-use App\ActivityUsers;
+use Exception;
+use Illuminate\Database\QueryException;
 use App\Unit;
-use App\UnitsEvent;
-use App\Event;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use DB;
+use Illuminate\Support\Facades\Validator;
 
 class UnitController extends Controller
 {
@@ -24,181 +20,218 @@ class UnitController extends Controller
 //        $this->middleware('auth');
     }
 
-
     /**
-     * Function for creating a new unit.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *      path="/api/units/{id}",
+     *      operationId="getUnit",
+     *      tags={"Unit"},
+     *      summary="Gets unit",
+     *      description="Returns 'unit' by id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Unit id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Unit not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
      */
-    public function createUnit(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:50',
-            'description' => 'required|string|max:200',
-            'activity_id' => 'required|exists:activities,id',
-            'event_id' => 'array|exists:events,id',
-        ]);
 
-        $unit = new Unit();
-
-        $unit->title = $request['title'];
-        $unit->description = $request['description'];
-        $unit->id_activities = $request['activity_id'];
-
-        $unit->save();
-
-        if (is_array($request->event_id) || is_object($request->event_id)) {
-            foreach ($request->event_id as $value) {
-                $unitEvent = new UnitsEvent();
-
-                $unitEvent->id_events = $value;
-                $unitEvent->id_units = $unit->id;
-
-                $unitEvent->save();
+    public function getUnit($id) {
+        try{
+            $unit = Unit::find($id);
+            if($unit) {
+                return response()->json($unit, 200);
+            } else {
+                return response()->json(null, 404);
+            }
+        }catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
             }
         }
-
-        return redirect('activities/detail/'.$unit->id_activities);
     }
 
     /**
-     * Function for finding all events and user's activities and returning view for creating new unit.
-     *
-     * @param null $activity_id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @OA\Get(
+     *      path="/api/units/{id}/events",
+     *      operationId="getUnitEvents ",
+     *      tags={"Unit"},
+     *      summary="Gets all events of unit",
+     *      description="Returns 'events' of unit by unit id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Unit id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="No events not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
      */
-    public function eventGetAll($activity_id = null)
-    {
-        $id = Auth::id();
-        ///Thanks to ORM here you can easily get whole table of events
-        $all_events = Event::all();
 
-        $users_activities = ActivityUsers::where('id_users', $id)->pluck('id_activities')->toArray();;
-        $all_activities = Activity::whereIn('id', $users_activities)->get();
-        $activity = Activity::find($activity_id);
-
-        //poslanie zoznamu do view
-        if (count($all_events) > 0) {
-
-            return view('units.new', ['all_events' => $all_events, 'all_activities' => $all_activities, 'activity' => $activity]);
-
-        } else {
-
-            return view('units.new', ['activity_id' => $activity_id]);
-
-        }
-    }
-
-
-    /**
-     * Function for updating selected unit.
-     *
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function updateUnit(Request $request, $id)
-    {
-
-        $unit = Unit::find($id);
-
-        // Only author can update unit
-        if(Auth::user()->id != $unit->activity->author->id) {
-            abort(403);
-        }
-
-        $request->validate([
-            'title' => 'required|string|max:50',
-            'description' => 'required|string|max:200',
-            'activity_id' => 'required|exists:activities,id',
-            'event_id' => 'array|exists:events,id',
-        ]);
-
-        $unit->title = $request['title'];
-        $unit->description = $request['description'];
-        $unit->id_activities = $request['activity_id'];
-
-        $unit->save();
-
-        if (is_array($request->event_id) || is_object($request->event_id)) {
-            foreach ($request->event_id as $value) {
-                $unitEvent = new UnitsEvent();
-
-                $unitEvent->id_events = $value;
-                $unitEvent->id_units = $unit->id;
-
-                $unitEvent->save();
+    public function getUnitEvents($id) {
+        try{
+            $events = Unit::find($id)->events;
+            if(count($events) > 0) {
+                return response()->json($events, 200);
+            } else {
+                return response()->json(null, 404);
+            }
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
             }
         }
-
-        return redirect('activities/detail/'.$unit->id_activities);
     }
 
     /**
-     * Function for deleting selected unit and all related UnitsEvent-s.
-     *
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @OA\Post(
+     *      path="/api/units",
+     *      operationId="createUnit",
+     *      tags={"Unit"},
+     *      summary="Creates new unit",
+     *      description="Creates new unit",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Request body has to contain title, description. id_activities is optional.",
+     *       @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="title", type="string"),
+     *          @OA\Property(property="description", type="string"),
+     *          @OA\Property(property="id_activities", type="integer")
+     *          )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid JSON body supplied",
+     *      ),
+     *     )
      */
-    public function delete($id)
-    {
-        $unit = Unit::find($id);
 
-        // Only author can delete unit
-        if(Auth::user()->id != $unit->activity->author->id) {
-            abort(403);
+    public function createUnit(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'title' => 'string|required',
+            'description' => 'string|required',
+            'id_activities' => 'integer',
+        ]);
+
+        if($validator->fails()) {
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
-        $id_activities = $unit->id_activities;
-
-        $units_events = UnitsEvent::where('id_units', $id)->get();
-        foreach($units_events as $units_event) {
-            $units_event->delete();
+        try{
+            $unit = new Unit();
+            $unit->title = $request['title'];
+            $unit->description = $request['description'];
+            $unit->save();
+        }catch (Exception $e) {
+            return response()->json($e, 500);
         }
-
-        $unit->delete();
-
-        return redirect('activities/detail/'.$id_activities);
+        return response()->json($unit, 200);
     }
 
     /**
-     * Function get all user's activities and unit's events and return view for editing selected unit.
-     *
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @OA\Put(
+     *      path="/api/units/{id}",
+     *      operationId="putUnit",
+     *      tags={"Unit"},
+     *      summary="Updates unit",
+     *      description="Updates unit",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Unit id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Request body does not need to contain all 'unit' fields",
+     *       @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="title", type="string"),
+     *          @OA\Property(property="description", type="string"),
+     *          @OA\Property(property="id_activities", type="integer")
+     *          )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Unit not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
      */
-    public function editUnit($id)
-    {
-        $unit = Unit::find($id);
 
-        // Only author can update unit
-        if(Auth::user()->id != $unit->activity->author->id) {
-            abort(403);
+    public function updateUnit(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'title' => 'string',
+            'description' => 'string',
+            'id_activities' => 'integer',
+        ]);
+
+        if($validator->fails()) {
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
-        $auth_id = Auth::id();
-        $all_activities = Activity::where('id_author', $auth_id)->get();
-
-        $added_events = UnitsEvent::where('id_units', $id)->pluck('id_events')->toArray();
-        $all_events = Event::where('id_users', $auth_id)->whereNotIn('id', $added_events)->get();
-
-        return view('units.edit', ['unit' => $unit, 'all_activities' => $all_activities, 'all_events' => $all_events]);
-    }
-
-    /**
-     * Function delete selected event from unit. It has to delete UnitsEvent instance.
-     *
-     * @param $id
-     * @param $event_id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function deleteUnitEvent($id, $event_id)
-    {
-        $unitEvent = UnitsEvent::where('id_units', $id)->where('id_events', $event_id);
-        $unitEvent->delete();
-
-        $unit = Unit::find($id);
-        return redirect('activities/detail/'.$unit->id_activities);
+        try{
+            $unit = Unit::find($id);
+            if($unit) {
+                $unit->update($request->all());
+                return response()->json($unit, 200);
+            } else {
+                return response()->json(null, 404);
+            }
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json($e, 400);
+            } else {
+                return response()->json($e, 500);
+            }
+        }
     }
 }
