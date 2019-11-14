@@ -30,6 +30,8 @@ class Event extends Model
         'time_to_explain','time_to_handle','message', 'id_event_types', 'id_users',
     ];
 
+    protected $hidden = ['pivot'];
+    
     /**
      *
      * Every event belongs only to one user
