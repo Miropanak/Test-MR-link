@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateTestTable2 extends Migration
+class AddAuthorIdToTestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,13 +15,13 @@ class UpdateTestTable2 extends Migration
     {
         Schema::table('tests', function(Blueprint $table)
         {
-            $table->integer('author_id')->unsigned()->nullable()->change();
+            $table->integer('author_id')->unsigned()->nullable();
             $table->foreign('author_id')->references('id')->on('users');
         });
 
         Schema::table('tests', function(Blueprint $table)
         {
-            $table->integer('unit_id')->unsigned()->nullable()->change();
+            $table->integer('unit_id')->unsigned()->nullable();
             $table->foreign('unit_id')->references('id')->on('units');
         });
 
