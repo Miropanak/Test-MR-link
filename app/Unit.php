@@ -33,6 +33,6 @@ class Unit extends Model
 
     public function test()
     {
-        return $this->hasMany('App\Test','units_id');
+        return $this->hasMany('App\Test','unit_id');
     }
 }
