@@ -60,8 +60,9 @@ Route::delete('helps/{id}', 'HelpController@deleteHelp');
 // ACTIVITIES
 Route::group(['prefix' => 'activities', 'middleware' => 'auth:api'], function () {
     Route::get('{id}', 'ActivityController@getActivity');
+    Route::post('', 'ActivityController@createActivity');
 });
-
-
-
+Route::group(['prefix' => 'activities'], function (){
+    Route::get('', 'ActivityController@getActivities');
+});
 
