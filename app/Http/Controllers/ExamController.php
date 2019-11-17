@@ -185,6 +185,9 @@ class ExamController extends Controller
         } catch (QueryException $e) {
             return response()->json(null, 500); // f.e. postgres id counter is not set up properly
         }
+
+        return response()->json($exam, 200);
+
     }
 
 
