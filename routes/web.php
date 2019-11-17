@@ -136,8 +136,6 @@ Route::get('exam/edit/{id}',"UserTestController@edit")->name('exam/edit');
 Route::post('exam/update',"UserTestController@update")->name('exam/update');
 
 Route::get('exam/run/{id}',"ExamController@run")->name('exams/run');
-Route::get('exam/show', 'ExamController@show')->name('exam/show');
-Route::get('exams/show', 'ExamController@show')->name('exams/show');
 Route::post('exams/search',"ExamController@examSearch")->name('exams/search');
 Route::get('exam/getTest/{id}',"ExamController@getExam")->name('exam/getExam');
 Route::get('exam/getEventList/{id}',"ExamController@getEventList")->name('exam/getEventList');
