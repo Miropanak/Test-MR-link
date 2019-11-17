@@ -72,7 +72,8 @@ Route::put('units/{id}', 'UnitController@updateUnit');
 Route::get('unit/{id}/exams', 'ExamController@getUnitExams');
 Route::get('exam/{id}', 'ExamController@getExam');
 Route::group(['prefix' => 'exam', 'middleware' => 'auth:api'], function () {
-    Route::post('create', 'ExamController@createExam');
+    Route::post('', 'ExamController@createExam');
+    Route::put('{id}', 'ExamController@updateExam');
 });
 
 

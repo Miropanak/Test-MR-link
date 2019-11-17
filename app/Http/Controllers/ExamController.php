@@ -17,6 +17,7 @@ use App\Test;
 use App\User;
 use App\UserTest;
 use DB;
+use http\Env\Response;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -127,8 +128,8 @@ class ExamController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/exam/create",
-     *      operationId="createExam ",
+     *      path="/api/exam",
+     *      operationId="createExam",
      *      tags={"Test"},
      *      summary="Creates new exam/test",
      *      description="Creates new exam/test",
@@ -160,6 +161,7 @@ class ExamController extends Controller
             'name' => 'string|required',
             'startDate' => 'date_format:Y-m-d H:i:s|required',
             'unit_id' => 'integer|required',
+            'event_ids' => 'required',
             'event_ids.*' => 'integer',
         ]);
 
@@ -187,6 +189,94 @@ class ExamController extends Controller
         }
 
         return response()->json($exam, 200);
+
+    }
+    /**
+     * @OA\Put(
+     *      path="/api/exam/{id}",
+     *      operationId="updateExam",
+     *      tags={"Test"},
+     *      summary="Updates test/exam",
+     *      description="Updates test/exam",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Test id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Request body does not need to contain all 'test' fields. Event_ids must contain at least one id",
+     *       @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="name", type="string"),
+     *          @OA\Property(property="unit_id", type="integer"),
+     *          @OA\Property(property="startDate", type="date string in format yyyy-MM-dd HH:mm:ss"),
+     *          @OA\Property(property="event_ids", type="array of integers"),
+     *          )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Test operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Test not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid body supplied",
+     *      ),
+     *      @OA\Response(
+     *         response=403,
+     *         description="Logged user not author of test",
+     *      ),
+     *     security={{"bearerAuth":{}}},
+     *     )
+     *     )
+     */
+    public function updateExam(Request $request, $test_id) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'string',
+            'startDate' => 'date_format:Y-m-d H:i:s',
+            'unit_id' => 'integer',
+            'event_ids.*' => 'integer',
+        ]);
+
+        if($validator->fails()) {
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
+        }
+        try {
+            $test = Test::find($test_id);
+            if($test) {
+                if($test->author_id != Auth::user()->id)
+                {
+                    return response()->json("Logged user not author of test", 403);
+                }
+                $test->update($request->all());
+                if($request->has('event_ids'))
+                {
+                    if(count($request['event_ids']) < 1) {
+                        return response()->json("Test must contain events", 400);
+                    }
+                    $test->events()->sync($request['event_ids']);
+                    $test->update(['questions' => count($test->events)]);
+                }
+
+
+
+                return response()->json($test, 200);
+
+            } else {
+                return response()->json("Test not found", 404);
+            }
+        } catch (QueryException $e) {
+            return response()->json(null, 500); // f.e. postgres id counter is not set up properly
+        }
+
 
     }
 
