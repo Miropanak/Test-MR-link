@@ -32,6 +32,24 @@ class ActivityController extends Controller
 //        $this->middleware('auth');
     }
 
+    private function isRegistered($subscribers, $user_id){
+
+        foreach ($subscribers as $subscriber)
+            if($subscriber->id == $user_id)
+                return true;
+        return false;
+    }
+
+    private function getUsersForSelect($subscribers){
+
+        $sub = array();
+
+        foreach ($subscribers as $subscriber)
+            array_push($sub,  $subscriber->id);
+
+        return User::whereNotIn('id', $sub)->get();
+    }
+
     /**
      * @OA\Get(
      *      path="/api/activities/{id}/units",
@@ -63,6 +81,25 @@ class ActivityController extends Controller
      *     )
      */
 
+    public function getActivityUnits($id) {
+        try{
+            error_log("test");
+            $units = Activity::find($id)->units;
+            if(count($units) > 0) {
+                return response()->json($units, 200);
+            } else {
+                return response()->json(null, 404);
+            }
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
+        }
+    }
+
+
 
     /**
      * @OA\Get(
@@ -89,40 +126,6 @@ class ActivityController extends Controller
     {
         $activities = Activity::all();
         return response()->json(['activities' => $activities]);
-    }
-
-    private function isRegistered($subscribers, $user_id){
-
-        foreach ($subscribers as $subscriber)
-            if($subscriber->id == $user_id)
-                return true;
-        return false;
-    }
-
-    private function getUsersForSelect($subscribers){
-
-        $sub = array();
-
-        foreach ($subscribers as $subscriber)
-            array_push($sub,  $subscriber->id);
-
-        return User::whereNotIn('id', $sub)->get();
-    public function getActivityUnits($id) {
-        try{
-            error_log("test");
-            $units = Activity::find($id)->units;
-            if(count($units) > 0) {
-                return response()->json($units, 200);
-            } else {
-                return response()->json(null, 404);
-            }
-        } catch(QueryException $e) {
-            if($e->getCode() === '22003') {
-                return response()->json(null, 400);
-            } else {
-                return response()->json(null, 500);
-            }
-        }
     }
 
     /**
