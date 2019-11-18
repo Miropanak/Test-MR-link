@@ -12,6 +12,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use function view;
 
 /**
@@ -22,15 +23,6 @@ class ActivityController extends Controller
 {
 
     /**
-     * Validation rules that activities must follow
-     * @var array
-     */
-    protected $validationRules = [
-                                'title' => 'required|string|max:50',
-                                'content' => 'required|string|max:1000',
-                                'id_study_field' => 'required|integer',
-                                ];
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -38,6 +30,14 @@ class ActivityController extends Controller
     public function __construct()
     {
 //        $this->middleware('auth');
+    }
+
+    private function isRegistered($subscribers, $user_id){
+
+        foreach ($subscribers as $subscriber)
+            if($subscriber->id == $user_id)
+                return true;
+        return false;
     }
 
     /**
@@ -89,13 +89,43 @@ class ActivityController extends Controller
         }
     }
 
+
+
     /**
      * @OA\Get(
-     *      path="/api/activities/detail/{id}",
-     *      operationId="detail",
+     *      path="/api/activities",
+     *      operationId="getActivities",
+     *      tags={"Activity"},
+     *      summary="get all activities",
+     *      description="Returns 'activities'",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Event not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *  )
+     */
+    public function getActivities()
+    {
+        $activities = Activity::all();
+        return response()->json(['activities' => $activities]);
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/activities/{id}",
+     *      operationId="getActivity",
      *      tags={"Activity"},
      *      summary="Show activity detail",
      *      description="Returns 'activity', 'users', 'registered' and title",
+     *      security={{"bearerAuth":{}}},
      *      @OA\Parameter(
      *          name="id",
      *          description="id",
@@ -109,51 +139,121 @@ class ActivityController extends Controller
      *          response=200,
      *          description="successful operation"
      *       ),
-     *     )
+     *      @OA\Response(
+     *          response=404,
+     *          description="Event not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *  )
      */
-    public function detail($id)
+    public function getActivity($id)
     {
-        $activity = Activity::find($id);
-        $users = $this->getUsersForSelect($activity->subscriber);
-//        $registered = $this->isRegistered($activity->subscriber, Auth::user()->id); TODO: nefunguje lebo nie som prihlaseny
-        $title = $activity->name;
+        try{
+            $activity = Activity::find($id);
+            $users = $activity->subscriber;
+            $registered = $this->isRegistered($activity->subscriber, Auth::user()->id);
+            $title = $activity->title;
 
-//        return view('activities.detail', ['activity' => $activity, 'registered' => $registered, 'users' => $users])->with(compact('title'));
-        return response()->json([
-            "activity" => $activity,
-            "registered" => "", //$registered, TODO: ked bude fungovat login
-            "users" => $users,
-            "title" => $title
-        ]);
+            if($activity) {
+                return response()->json([
+                    "activity" => $activity,
+                    "registered" => $registered,
+                    "users" => $users,
+                    "title" => $title
+                ]);
+            } else {
+                return response()->json(null, 404);
+            }
+        }catch(QueryException $e) {
+            if ($e->getCode() === '22003') {
+                return response()->json(null, 400); // bad id provided -> id too big for integer
+            } else {
+                return response()->json(null, 500);
+            }
+        }
     }
 
     /**
-     * Creates new activity
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @OA\Post(
+     *      path="/api/activities",
+     *      operationId="createActivity",
+     *      tags={"Activity"},
+     *      summary="Creates new activity",
+     *      description="Creates new activity",
+     *      security={{"bearerAuth":{}}},
+     *      @OA\RequestBody(
+     *       required=true,
+     *       description="",
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               @OA\Property(
+     *                      property="title",
+     *                      type="string",
+     *                ),
+     *                @OA\Property(
+     *                      property="content",
+     *                      type="string",
+     *               ),
+     *               @OA\Property(
+     *                      property="public",
+     *                      type="string",
+     *               ),
+     *               @OA\Property(
+     *                      property="id_study_field",
+     *                      type="integer",
+     *               )
+     *           )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid JSON body supplied",
+     *      ),
+     *     )
      */
-    public function create(Request $request)
+
+    public function createActivity(Request $request)
     {
-
-        $request->validate($this->validationRules);
-
-
         $data = $request->all();
-        Activity::create([
-            'title' => $data['title'],
-            'content' => $data['content'],
-            'public' => isset($data['public']),
-            'validated' => false,
-            'id_study_field' => $data['id_study_field'],
-            'id_author' => Auth::user()->id
+
+        $validator = Validator::make($data, [
+            'title' => 'required|string|max:50',
+            'content' => 'required|string|max:1000',
+            'id_study_field' => 'required|integer',
+            'public' => 'boolean'
         ]);
+
+        if($validator->fails()) {
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
+        }
+
+        try{
+            $activity = Activity::create([
+                'title' => $data['title'],
+                'content' => $data['content'],
+                'public' => $data['public'],
+                'validated' => false,
+                'id_study_field' => $data['id_study_field'],
+                'id_author' => Auth::user()->id
+            ]);
+        }catch (QueryException $e) {
+            return response()->json(null, 500);
+        }
 
         if(Auth::user()->id_user_types == 3){
             Auth::user()->id_user_types = 4;
             Auth::user()->save();
         }
 
-        return redirect()->route('activities/show');
+        return response()->json(['activity' => $activity]);
     }
 
 
@@ -232,7 +332,7 @@ class ActivityController extends Controller
 
 
         $activity = Activity::find($id);
-        $users = $this->getUsersForSelect($activity->subscriber);
+        $users = $activity->subscriber;
         $registered = $this->isRegistered($activity->subscriber, Auth::user()->id);
         $title = $activity->name;
 
