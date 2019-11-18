@@ -73,7 +73,7 @@ class UserController extends Controller
             $success['role_id'] = $user->id_user_types;
             $success['role'] = $user->role->name;
 
-            return response()->json(['success' => $success], $this-> successStatus);
+            return response()->json(['success' => $success,'user_id' => $user->id], $this-> successStatus);
         }
         else{
             return response()->json(['error'=>'Unauthorised.'], 401);
@@ -173,7 +173,7 @@ class UserController extends Controller
         $success['role_id'] = $user->id_user_types;
         $success['role'] = $user->role->name;
 
-        return response()->json(['success'=>$success], $this-> successStatus);
+        return response()->json(['success'=>$success, 'user_id' => $user->id], $this-> successStatus);
     }
 
 
