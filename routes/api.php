@@ -37,6 +37,9 @@ Route::group(['prefix' => 'password', 'middleware' => 'auth:api'], function () {
 Route::get('/users/{id}/events', 'API\UserController@getUserEvents');
 
 // EVENTS
+Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {
+    Route::post('', 'EventController@createEvent');
+});
 Route::get('events/{id}', 'EventController@getEvent');
 Route::get('events/{id}/options', 'EventController@getEventOptions');
 Route::delete('events/{id}/options', 'EventController@deleteEventOptions');
@@ -45,7 +48,6 @@ Route::get('events/{id}/event_helps', 'EventController@getEventHelps');
 Route::put('events/{id}', 'EventController@updateEvent');
 Route::delete('events/{id}', 'EventController@deleteEvent');
 Route::put('events', 'EventController@updateEvents');
-Route::post('events', 'EventController@createEvent');
 // OPTIONS
 Route::put('options', 'EventController@updateOptions');
 Route::put('options/{id}', 'EventController@updateOption');
