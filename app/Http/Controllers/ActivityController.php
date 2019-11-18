@@ -40,16 +40,6 @@ class ActivityController extends Controller
         return false;
     }
 
-    private function getUsersForSelect($subscribers){
-
-        $sub = array();
-
-        foreach ($subscribers as $subscriber)
-            array_push($sub,  $subscriber->id);
-
-        return User::whereNotIn('id', $sub)->get();
-    }
-
     /**
      * @OA\Get(
      *      path="/api/activities/{id}/units",
@@ -163,7 +153,7 @@ class ActivityController extends Controller
     {
         try{
             $activity = Activity::find($id);
-            $users = $this->getUsersForSelect($activity->subscriber);
+            $users = $activity->subscriber;
             $registered = $this->isRegistered($activity->subscriber, Auth::user()->id);
             $title = $activity->title;
 
@@ -237,7 +227,8 @@ class ActivityController extends Controller
         $validator = Validator::make($data, [
             'title' => 'required|string|max:50',
             'content' => 'required|string|max:1000',
-            'id_study_field' => 'required|integer'
+            'id_study_field' => 'required|integer',
+            'public' => 'boolean'
         ]);
 
         if($validator->fails()) {
@@ -248,7 +239,7 @@ class ActivityController extends Controller
             $activity = Activity::create([
                 'title' => $data['title'],
                 'content' => $data['content'],
-                'public' => isset($data['public']),
+                'public' => $data['public'],
                 'validated' => false,
                 'id_study_field' => $data['id_study_field'],
                 'id_author' => Auth::user()->id
@@ -341,7 +332,7 @@ class ActivityController extends Controller
 
 
         $activity = Activity::find($id);
-        $users = $this->getUsersForSelect($activity->subscriber);
+        $users = $activity->subscriber;
         $registered = $this->isRegistered($activity->subscriber, Auth::user()->id);
         $title = $activity->name;
 
