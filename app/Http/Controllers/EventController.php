@@ -409,8 +409,7 @@ class EventController extends Controller
      *          @OA\Property(property="header", type="string"),
      *          @OA\Property(property="time_to_explain", type="integer"),
      *          @OA\Property(property="time_to_handle", type="integer"),
-     *          @OA\Property(property="id_event_types", type="integer"),
-     *          @OA\Property(property="id_users", type="integer")
+     *          @OA\Property(property="id_event_types", type="integer")
      *          )
      *     ),
      *      @OA\Response(
@@ -421,6 +420,7 @@ class EventController extends Controller
      *         response=400,
      *         description="Invalid JSON body supplied",
      *      ),
+     *     security={{"bearerAuth":{}}},
      *     )
      */
 
@@ -431,7 +431,6 @@ class EventController extends Controller
             'time_to_explain' => 'integer',
             'time_to_handle' => 'integer',
             'id_event_types' => 'integer|required',
-            'id_users' => 'integer|required'
         ]);
 
         if($validator->fails()) {
@@ -444,7 +443,7 @@ class EventController extends Controller
             $event->time_to_explain = isset($request['time_to_explain']) ? $request['time_to_explain'] : 100;
             $event->time_to_handle = isset($request['time_to_handle']) ? $request['time_to_handle'] : 50;
             $event->id_event_types = $request['id_event_types'];
-            $event->id_users = $request["id_users"]; // temporary solution, id should be determined by the server
+            $event->id_users = Auth::user()->id;
             $event->save();
         }catch (QueryException $e) {
             return response()->json(null, 500); // f.e. postgres id counter is not set up properly
