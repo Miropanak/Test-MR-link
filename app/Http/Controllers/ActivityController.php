@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Activity;
 use App\ActivityUsers;
+use App\StudyField;
 use App\User;
 use App\Unit;
 use Illuminate\Database\QueryException;
@@ -42,8 +43,8 @@ class ActivityController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/activities/{id}/units",
-     *      operationId="getActivityEvents",
+     *      path="/api/activity/{id}/units",
+     *      operationId="getActivityUnits",
      *      tags={"Activity"},
      *      summary="Gets all units of activity",
      *      description="Returns 'units' of activity by activity id",
@@ -73,7 +74,6 @@ class ActivityController extends Controller
 
     public function getActivityUnits($id) {
         try{
-            error_log("test");
             $units = Activity::find($id)->units;
             if(count($units) > 0) {
                 return response()->json($units, 200);
@@ -89,11 +89,28 @@ class ActivityController extends Controller
         }
     }
 
-
+    /**
+     * @OA\Get(
+     *      path="/api/activity/study/fields",
+     *      operationId="getStudyFields",
+     *      tags={"Activity"},
+     *      summary="get all fields of study",
+     *      description="Returns 'fields of study'",
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       )
+     *  )
+     */
+    public function getStudyFields()
+    {
+        $fields = StudyField::all();
+        return response()->json($fields, 200);
+    }
 
     /**
      * @OA\Get(
-     *      path="/api/activities",
+     *      path="/api/activity/all",
      *      operationId="getActivities",
      *      tags={"Activity"},
      *      summary="get all activities",
@@ -102,25 +119,17 @@ class ActivityController extends Controller
      *          response=200,
      *          description="successful operation"
      *       ),
-     *      @OA\Response(
-     *          response=404,
-     *          description="Event not found"
-     *       ),
-     *      @OA\Response(
-     *         response=400,
-     *         description="Invalid ID supplied",
-     *      ),
      *  )
      */
     public function getActivities()
     {
         $activities = Activity::all();
-        return response()->json(['activities' => $activities]);
+        return response()->json($activities,200);
     }
 
     /**
      * @OA\Get(
-     *      path="/api/activities/{id}",
+     *      path="/api/activity/{id}",
      *      operationId="getActivity",
      *      tags={"Activity"},
      *      summary="Show activity detail",
@@ -141,7 +150,7 @@ class ActivityController extends Controller
      *       ),
      *      @OA\Response(
      *          response=404,
-     *          description="Event not found"
+     *          description="Activity not found"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -163,7 +172,7 @@ class ActivityController extends Controller
                     "registered" => $registered,
                     "users" => $users,
                     "title" => $title
-                ]);
+                ],200);
             } else {
                 return response()->json(null, 404);
             }
@@ -178,7 +187,7 @@ class ActivityController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/activities",
+     *      path="/api/activity",
      *      operationId="createActivity",
      *      tags={"Activity"},
      *      summary="Creates new activity",
@@ -200,7 +209,7 @@ class ActivityController extends Controller
      *               ),
      *               @OA\Property(
      *                      property="public",
-     *                      type="string",
+     *                      type="boolean",
      *               ),
      *               @OA\Property(
      *                      property="id_study_field",
@@ -253,79 +262,163 @@ class ActivityController extends Controller
             Auth::user()->save();
         }
 
-        return response()->json(['activity' => $activity]);
+        return response()->json($activity,200);
     }
 
 
     /**
-     * Returns view for editation of activity
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @OA\Put(
+     *      path="/api/activity/{id}",
+     *      operationId="updateActivity",
+     *      tags={"Activity"},
+     *      summary="Update new activity",
+     *      description="Update new activity",
+     *      security={{"bearerAuth":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *       required=true,
+     *       description="",
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               @OA\Property(
+     *                      property="title",
+     *                      type="string",
+     *                ),
+     *                @OA\Property(
+     *                      property="content",
+     *                      type="string",
+     *               ),
+     *               @OA\Property(
+     *                      property="public",
+     *                      type="boolean",
+     *               ),
+     *               @OA\Property(
+     *                      property="id_study_field",
+     *                      type="integer",
+     *               )
+     *           )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Activity not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied/validation error",
+     *      ),
+     *     )
      */
-    public function edit($id) {
 
-        $activity = Activity::find($id);
-
-        // Check, if authorized user is the author of activity
-        if(Auth::user()->id != $activity->author->id) {
-            abort(403);
-        }
-
-        return view('activities.edit', ['activity' => $activity]);
-    }
-
-    /**
-     * Updates information about activity after it was edited by user.
-     * Only author can edit their activity
-     * @param Request $request
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function update(Request $request, $id) {
-
-
-        $activity = Activity::find($id);
-
-        //Only author can edit activity
-        if(Auth::user()->id != $activity->author->id) {
-            abort(403);
-        }
-
-        $request->validate($this->validationRules);
-
+    public function updateActivity(Request $request, $id) {
 
         $data = $request->all();
 
-        $activity->title = $data['title'];
-        $activity->content = $data['content'];
-        $activity->public = isset($data['public']);
-        $activity->id_study_field = $data['id_study_field'];
-        //$activity->id_users = Auth::user()->id;
+        $validator = Validator::make($data, [
+            'title' => 'required|string|max:50',
+            'content' => 'required|string|max:1000',
+            'id_study_field' => 'required|integer',
+            'public' => 'boolean'
+        ]);
 
-        $activity->save();
+        if($validator->fails()) {
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
+        }
 
 
-        $activities = Activity::all();
-        return $this->detail($id);
+        try{
+            $activity = Activity::find($id);
+            if($activity) {
+
+                if(Auth::user()->id != $activity->author->id) {
+                    return response()->json('Only author can edit activity', 403);
+                }
+
+                $activity->update($data);
+                $activity->save();
+
+                return $this->getActivity($id);
+            } else {
+                return response()->json('Cant find that bitch', 404);
+            }
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json($e, 400);
+            } else {
+                return response()->json($e, 500);
+            }
+        }
     }
 
     /**
-     * Delete activity. Only author can delete their activity
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @OA\Delete(
+     *      path="/api/activity/{id}",
+     *      operationId="deleteActivity",
+     *      tags={"Activity"},
+     *      summary="Deletes Activity",
+     *      description="Deletes 'activity' by id, but only author can delete his activity",
+     *      security={{"bearerAuth":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Activity id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Activity not found"
+     *       ),
+     *       @OA\Response(
+     *          response=403,
+     *          description="Unauthorized"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *    )
      */
-    public function delete($id) {
+    public function deleteActivity($id) {
+        try{
+            $activity = Activity::find($id);
 
-        $activity = Activity::find($id);
+            if($activity) {
+                if(Auth::user()->id != $activity->author->id || $activity->validated == true) {
+                    return response()->json('Only author can edit activity', 403);
+                }
+                $activity->delete();
 
-        // Only author can delete his activity
-        if(Auth::user()->id != $activity->author->id || $activity->validated == true) {
-            abort(403);
+                return response()->json('Activity with id '.$id.' has been deleted', 200);
+            } else {
+                return response()->json('Cant find that bitch', 404);
+            }
+        } catch(QueryException $e){
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
         }
-
-        $activity->delete();
-
-        return redirect()->route('activities/show');
     }
 
     public function subscribe($id){
