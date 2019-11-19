@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\API;
+use App\Activity;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -322,6 +323,54 @@ class UserController extends Controller
                 return response()->json($events, 200);
             } else {
                 return response()->json(null, 404);
+            }
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003'){
+                return response()->json(null, 400);
+            }else{
+                return response()->json(null, 500);
+            }
+        }
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/users/{id}/activities",
+     *      operationId="getUserActivities",
+     *      tags={"User"},
+     *      summary="Gets activities of user",
+     *      description="Returns 'activities' by user_id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="User id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Activities not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
+    public function getUserActivities($user_id) {
+        try{
+            $activities = Activity::where("id_author", $user_id)->get();
+            if(count($activities) > 0) {
+                return response()->json($activities, 200);
+            } else {
+                return response()->json('User does not have any activities', 404);
             }
         } catch(QueryException $e) {
             if($e->getCode() === '22003'){
