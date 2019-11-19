@@ -76,7 +76,7 @@ class PasswordResetController extends Controller
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
-        $user = User::where('email', $request->input('email'))->first();
+        $user = User::where('email', $input['email'])->first();
         if(!$user) {
             return response()->json([
                 'message' => 'We can not find a user with that e-mail address.'], 404);
@@ -186,7 +186,7 @@ class PasswordResetController extends Controller
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
-        $passwordReset = PasswordReset::where([['token', $request->input('token')],['email', $request->input('email')]])->first();
+        $passwordReset = PasswordReset::where([['token', $request->input('token')],['email', $input['email']]])->first();
 
         if(!$passwordReset) {
             return response()->json(['error' => 'This password reset token is invalid.'], 404);
