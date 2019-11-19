@@ -66,7 +66,9 @@ class PasswordResetController extends Controller
      */
     public function create(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $input = $request->all();
+        $input['email'] = strtolower($input['email']);
+        $validator = Validator::make($input,[
             'email' => 'required|string|email',
         ]);
 
@@ -171,7 +173,9 @@ class PasswordResetController extends Controller
      */
     public function reset(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $input = $request->all();
+        $input['email'] = strtolower($input['email']);
+        $validator = Validator::make($input, [
             'email' => 'required|string|email',
             'password' => 'required|min:6',
             'c_password' => 'required|same:password',
