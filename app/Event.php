@@ -31,7 +31,7 @@ class Event extends Model
     ];
 
     protected $hidden = ['pivot'];
-    
+
     /**
      *
      * Every event belongs only to one user
@@ -67,6 +67,6 @@ class Event extends Model
 
     public function tests()
     {
-        return $this->belongsToMany('App\Test', 'event_tests', 'events_id', 'tests_id');
+        return $this->belongsToMany('App\Test', 'event_tests', 'event_id', 'test_id');
     }
 }

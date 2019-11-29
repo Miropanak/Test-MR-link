@@ -20,12 +20,12 @@ class Test extends Model
 
     public function events()
     {
-        return $this->belongsToMany('App\Event', 'event_tests', 'tests_id', 'events_id');
+        return $this->belongsToMany('App\Event', 'event_tests', 'test_id', 'event_id');
     }
 
     public function users()
     {
-        return $this->belongsToMany('App\User', 'user_tests', 'tests_id', 'users_id');
+        return $this->belongsToMany('App\User', 'user_tests', 'test_id', 'user_id');
     }
 
     public function units()

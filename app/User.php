@@ -69,6 +69,6 @@ class User extends Authenticatable
      */
     public function tests()
     {
-        return $this->belongsToMany('App\Event', 'user_tests', 'users_id', 'tests_id');
+        return $this->belongsToMany('App\Event', 'user_tests', 'student_id', 'test_id');
     }
 }
