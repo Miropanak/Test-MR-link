@@ -9,7 +9,7 @@ class UserTest extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['users_id', 'tests_id'];
+    protected $fillable = ['student_id', 'test_id'];
 
     function Users() {
         return $this->belongsTo('App\Users');
