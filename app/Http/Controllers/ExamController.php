@@ -323,19 +323,19 @@ class ExamController extends Controller
 
     public function run($id)
     {
-        $users_id = Auth::user()->id;
+        $student_id = Auth::user()->id;
         $testToRun = Test::find($id);
 
         $testToRun->taken = UserTest::where([
-            ['users_id', $users_id],
-            ['tests_id', $testToRun->id],
+            ['student_id', $student_id],
+            ['test_id', $testToRun->id],
         ])->first()['test_taken'];
 
         if ($testToRun && $testToRun->startDate <= date("Y-m-d h:i:s", time()) && !$testToRun->taken) {
             $ut = new UserTest();
 
-            $ut->users_id = Auth::user()->id;
-            $ut->tests_id = $id;
+            $ut->student_id = Auth::user()->id;
+            $ut->test_id = $id;
 
             $ut->startedAt = date("Y-m-d h:i:s", time());
             $ut->correct = 0;
@@ -343,8 +343,8 @@ class ExamController extends Controller
             $ut->save();
 
             $timeToHandle = DB::table('event_tests')
-                ->where('tests_id', $id)
-                ->join('events', 'events.id', '=', 'event_tests.events_id')
+                ->where('test_id', $id)
+                ->join('events', 'events.id', '=', 'event_tests.event_id')
                 ->sum('time_to_handle');
 
             $endTimestamp = time() * 1000 + $timeToHandle * 60000;
@@ -361,8 +361,8 @@ class ExamController extends Controller
         $userTest = new UserTest();
         $option = new Option();
 
-        $users_id = Auth::user()->id;
-        $tests_id = $request['testid'];
+        $student_id = Auth::user()->id;
+        $test_id = $request['testid'];
 
         $selectedOptions = $request['selectedOptions'];
         $correct_answers = 0;
@@ -375,8 +375,8 @@ class ExamController extends Controller
         }
 
         $userTest->where([
-            ['users_id', $users_id],
-            ['tests_id', $tests_id],
+            ['student_id', $student_id],
+            ['test_id', $test_id],
         ])->update(['correct' => $correct_answers]);
 
         return 0;
@@ -384,18 +384,18 @@ class ExamController extends Controller
 
     public function statistics($testId)
     {
-        $users_id = Auth::user()->id;
+        $student_id = Auth::user()->id;
         $test = new Test();
         $userTest = new UserTest();
         $result = [];
 
         $result['taken'] = $userTest->where([
-            ['users_id', $users_id],
-            ['tests_id', $testId],
+            ['student_id', $student_id],
+            ['test_id', $testId],
         ])->first()['test_taken'];
         $result['correctAnswers'] = $userTest->where([
-            ['users_id', $users_id],
-            ['tests_id', $testId],
+            ['student_id', $student_id],
+            ['test_id', $testId],
         ])->first()['correct'];
         $result['totalQuestions'] = $test->where('id', $testId)->value('questions');
 

@@ -69,8 +69,8 @@ class UserTestController extends Controller
         
         foreach ($selectedEvents as $event) {
             $eventTest = new EventTest();
-            $eventTest->events_id = $event['id'];
-            $eventTest->tests_id = $newTest->id;
+            $eventTest->event_id = $event['id'];
+            $eventTest->test_id = $newTest->id;
 
             $eventTest->save();
         }
