@@ -75,7 +75,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'id_user_types' => UserType::where('name', 'student')->first()->id
+            'user_type_id' => UserType::where('name', 'student')->first()->id
         ]);
     }
 

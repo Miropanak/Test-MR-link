@@ -22,7 +22,7 @@ class UnitsEvent extends Model
      * @var array
      */
     protected $fillable = [
-        'id_events','id_units'
+        'event_id','unit_id'
     ];
 
     /**
@@ -42,7 +42,7 @@ class UnitsEvent extends Model
      */
     public function unit()
     {
-        return $this->belongsTo('App\Unit','id_units');
+        return $this->belongsTo('App\Unit','unit_id');
     }
 
 }

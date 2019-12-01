@@ -26,7 +26,7 @@ class Help extends Model
      * @var array
      */
     protected $fillable = [
-        'name','url','id_events'
+        'name','url','event_id'
     ];
 
     /**
@@ -37,7 +37,7 @@ class Help extends Model
      */
     public function event()
     {
-        return $this->belongsTo('App\Event', 'id_events');
+        return $this->belongsTo('App\Event', 'event_id');
     }
 
 }

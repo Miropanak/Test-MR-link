@@ -22,8 +22,8 @@ class ActivitiesSeeder extends Seeder
             'content' => "Tento predmet sa zaoberá programovaním založeným na objektoch",
             'public' => true,
             'validated' => true,
-            'id_study_field' => 1,
-            'id_author' => 2,
+            'study_field_id' => 1,
+            'author_id' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

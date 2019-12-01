@@ -52,19 +52,19 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('id_study_field') ? ' has-error' : '' }}">
-                                <label for="id_study_field" class="col-md-4 control-label">Názov študijného odboru</label>
+                            <div class="form-group{{ $errors->has('study_field_id') ? ' has-error' : '' }}">
+                                <label for="study_field_id" class="col-md-4 control-label">Názov študijného odboru</label>
 
                                 <div class="col-md-6">
-                                    <select name="id_study_field" id="id_study_field" class="form-control">
+                                    <select name="study_field_id" id="study_field_id" class="form-control">
                                         @foreach(App\StudyField::all() as $sf)
                                             <option value="{{ $sf->id }}">{{ $sf->name }}</option>
                                         @endforeach
                                     </select>
 
-                                    @if ($errors->has('id_study_field'))
+                                    @if ($errors->has('study_field_id'))
                                         <span class="help-block">
-                                        <strong>{{ $errors->first('id_study_field') }}</strong>
+                                        <strong>{{ $errors->first('study_field_id') }}</strong>
                                     </span>
                                     @endif
                                 </div>

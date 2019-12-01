@@ -19,7 +19,7 @@ class ExampleTest extends DuskTestCase
 
         $user = factory(User::class)->create([
             'email' => 'tester@fiit.sk',
-            'id_user_types' => '6'
+            'user_type_id' => '6'
         ]);
 
         $this->browse(function ($browser) use ($user) {

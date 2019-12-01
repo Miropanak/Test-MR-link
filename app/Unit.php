@@ -24,11 +24,11 @@ class Unit extends Model
 
     public function unitEvent()
     {
-        return $this->hasMany('App\UnitsEvent','id_units');
+        return $this->hasMany('App\UnitsEvent','unit_id');
     }
 
     public function events(){
-        return $this->belongsToMany('App\Event','units_events','id_units','id_events')->whereNull('units_events.deleted_at');
+        return $this->belongsToMany('App\Event','units_events','unit_id','event_id')->whereNull('units_events.deleted_at');
     }
 
     public function test()

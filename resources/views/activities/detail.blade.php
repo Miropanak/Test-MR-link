@@ -185,7 +185,7 @@
 
                     </div>
                 </form>
-                @if($activity->validated == false && (Auth::user()->id_user_types == 5 || Auth::user()->id_user_types == 6))
+                @if($activity->validated == false && (Auth::user()->user_type_id == 5 || Auth::user()->user_type_id == 6))
                     <form class="form" method="post"
                           action="{{ route('activities.validate', $activity->id) }}">
 

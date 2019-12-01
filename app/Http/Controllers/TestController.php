@@ -55,8 +55,8 @@ class TestController extends Controller
         $eventArray = [];
 
         foreach ($events as $event) {
-            $options = $option::inRandomOrder()->where('id_events', $event->id)->get();
-            $helps = Help::where('id_events',$event->id)->get();
+            $options = $option::inRandomOrder()->where('event_id', $event->id)->get();
+            $helps = Help::where('event_id',$event->id)->get();
             $object = new \stdClass();
             $object->event = $event;
             $object->options = $options;

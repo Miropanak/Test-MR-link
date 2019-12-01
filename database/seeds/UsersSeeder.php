@@ -23,7 +23,7 @@ class UsersSeeder extends Seeder
             'remember_token' => "",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 6
+            'user_type_id' => 6
         ]);
 
         DB::table('users')->insert([
@@ -33,7 +33,7 @@ class UsersSeeder extends Seeder
             'remember_token' => "",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4
+            'user_type_id' => 4
         ]);
 
         DB::table('users')->insert([
@@ -43,7 +43,7 @@ class UsersSeeder extends Seeder
             'remember_token' => "",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5
+            'user_type_id' => 5
         ]);
 
         DB::table('users')->insert([
@@ -53,7 +53,7 @@ class UsersSeeder extends Seeder
             'remember_token' => "",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4
+            'user_type_id' => 4
         ]);
 
         DB::table('users')->insert([
@@ -63,7 +63,7 @@ class UsersSeeder extends Seeder
             'remember_token' => "",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3
+            'user_type_id' => 3
         ]);
 
         DB::table('users')->insert([
@@ -73,7 +73,7 @@ class UsersSeeder extends Seeder
             'remember_token' => "",
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 2
+            'user_type_id' => 2
         ]);
 
     }

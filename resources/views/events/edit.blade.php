@@ -57,7 +57,7 @@ use App\Event;
                 <?php $options = Event::find($event->id)->option; ?>
 
 
-                <?php $event_type = EventType::find($event->id_event_types); ?>
+                <?php $event_type = EventType::find($event->event_type_id); ?>
 
 
                 <div class="btn-group" name="radioboxes" data-toggle="buttons">
