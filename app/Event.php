@@ -27,7 +27,7 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'time_to_explain','time_to_handle','message', 'id_event_types', 'id_users',
+        'time_to_explain','time_to_handle','message', 'id_event_types', 'author_id',
     ];
 
     protected $hidden = ['pivot'];
@@ -40,7 +40,7 @@ class Event extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User', 'id_users');
+        return $this->belongsTo('App\User', 'author_id');
     }
 
     /**

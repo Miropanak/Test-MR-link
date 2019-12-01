@@ -23,7 +23,7 @@ class UserTestController extends Controller
 
     function create() {
         $userId = Auth::id();
-        $usersActivities = ActivityUsers::where('id_users', $userId)->pluck('id_activities')->toArray();
+        $usersActivities = ActivityUsers::where('author_id', $userId)->pluck('activity_id')->toArray();
         $allActivities = Activity::whereIn('id', $usersActivities)->with('author', 'units')->get();
         
         return view('exams/create', [

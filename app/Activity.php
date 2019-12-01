@@ -20,7 +20,7 @@ class Activity extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'content', 'public', 'validated', 'id_study_field', 'id_author'
+        'title', 'content', 'public', 'validated', 'study_field_id', 'id_author'
     ];
 
     /**
@@ -37,7 +37,7 @@ class Activity extends Model
      */
     public function studyField()
     {
-        return $this->belongsTo('App\StudyField', 'id_study_field');
+        return $this->belongsTo('App\StudyField', 'study_field_id');
     }
 
     /**
@@ -53,6 +53,6 @@ class Activity extends Model
      * @return $this
      */
     public function subscriber(){
-        return $this->belongsToMany('App\User', 'activity_users', 'id_activities', 'id_users')->whereNull('activity_users.deleted_at')->withPivot('user_type_id');
+        return $this->belongsToMany('App\User', 'activity_users', 'activity_id', 'author_id')->whereNull('activity_users.deleted_at')->withPivot('user_type_id');
     }
 }

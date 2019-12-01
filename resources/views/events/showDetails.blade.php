@@ -78,7 +78,7 @@ use App\Help;
 
         @endforeach
 
-        @if(Auth::user()->id == $event->id_users)
+        @if(Auth::user()->id == $event->author_id)
 
         <div class="row">
             <div class="col-md-12">

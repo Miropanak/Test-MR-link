@@ -26,7 +26,7 @@ class EventsSeeder extends Seeder
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -38,7 +38,7 @@ class EventsSeeder extends Seeder
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -50,7 +50,7 @@ class EventsSeeder extends Seeder
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -62,7 +62,7 @@ class EventsSeeder extends Seeder
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -74,7 +74,7 @@ class EventsSeeder extends Seeder
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -86,7 +86,7 @@ class EventsSeeder extends Seeder
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -98,7 +98,7 @@ class EventsSeeder extends Seeder
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -110,7 +110,7 @@ class EventsSeeder extends Seeder
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -122,7 +122,7 @@ class EventsSeeder extends Seeder
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -140,7 +140,7 @@ Daný je objekt o triedy A. Príkaz:
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -153,7 +153,7 @@ Daný je objekt o triedy A. Príkaz:
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -165,7 +165,7 @@ Daný je objekt o triedy A. Príkaz:
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -177,7 +177,7 @@ Daný je objekt o triedy A. Príkaz:
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -216,7 +216,7 @@ vypíše:",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -239,7 +239,7 @@ Výpis hlásenia „OK“ z inej triedy možno dosiahnuť",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -251,7 +251,7 @@ Výpis hlásenia „OK“ z inej triedy možno dosiahnuť",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -264,7 +264,7 @@ Výpis hlásenia „OK“ z inej triedy možno dosiahnuť",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -276,7 +276,7 @@ Výpis hlásenia „OK“ z inej triedy možno dosiahnuť",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -288,7 +288,7 @@ Výpis hlásenia „OK“ z inej triedy možno dosiahnuť",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -300,7 +300,7 @@ Výpis hlásenia „OK“ z inej triedy možno dosiahnuť",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -339,7 +339,7 @@ public class Y implements N {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -351,7 +351,7 @@ public class Y implements N {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -370,7 +370,7 @@ public class Y implements N {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -382,7 +382,7 @@ public class Y implements N {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -394,7 +394,7 @@ public class Y implements N {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -406,7 +406,7 @@ public class Y implements N {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -418,7 +418,7 @@ public class Y implements N {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -430,7 +430,7 @@ public class Y implements N {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -477,7 +477,7 @@ public class N implements L {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -490,7 +490,7 @@ public class N implements L {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -503,7 +503,7 @@ public class N implements L {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -516,7 +516,7 @@ public class N implements L {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -529,7 +529,7 @@ public class N implements L {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -542,7 +542,7 @@ public class N implements L {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -555,7 +555,7 @@ public class N implements L {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -568,7 +568,7 @@ public class N implements L {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -586,7 +586,7 @@ o.m();</pre>",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -599,7 +599,7 @@ o.m();</pre>",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -619,7 +619,7 @@ Serializovať tieto inštancie naraz (jedným zápisom do jedného súboru)",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -636,7 +636,7 @@ Aby sa tento kód mohol preložiť a vykonať",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -656,7 +656,7 @@ public class B extends A {
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -680,7 +680,7 @@ k.nakresli();</pre>",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -693,7 +693,7 @@ k.nakresli();</pre>",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -706,7 +706,7 @@ k.nakresli();</pre>",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -719,7 +719,7 @@ k.nakresli();</pre>",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -732,7 +732,7 @@ k.nakresli();</pre>",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -745,7 +745,7 @@ k.nakresli();</pre>",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -758,7 +758,7 @@ k.nakresli();</pre>",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -782,7 +782,7 @@ Metóda m() triedy B",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -795,7 +795,7 @@ Metóda m() triedy B",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -808,7 +808,7 @@ Metóda m() triedy B",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -830,7 +830,7 @@ Metóda b() triedy B",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -843,7 +843,7 @@ Metóda b() triedy B",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -869,7 +869,7 @@ Metóda b() triedy B",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -882,7 +882,7 @@ Metóda b() triedy B",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -899,7 +899,7 @@ Inštancia tejto triedy sa",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -912,7 +912,7 @@ Inštancia tejto triedy sa",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -925,7 +925,7 @@ Inštancia tejto triedy sa",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -938,7 +938,7 @@ Inštancia tejto triedy sa",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -955,7 +955,7 @@ Tento kód sa",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -976,7 +976,7 @@ Tento kód porušuje",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -989,7 +989,7 @@ Tento kód porušuje",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -1002,7 +1002,7 @@ Tento kód porušuje",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -1015,7 +1015,7 @@ Tento kód porušuje",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -1028,7 +1028,7 @@ Tento kód porušuje",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -1041,7 +1041,7 @@ Tento kód porušuje",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -1054,7 +1054,7 @@ Tento kód porušuje",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -1067,7 +1067,7 @@ Tento kód porušuje",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -1080,7 +1080,7 @@ Tento kód porušuje",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -1093,7 +1093,7 @@ Tento kód porušuje",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -1107,7 +1107,7 @@ zabezpečuje",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 
@@ -1123,7 +1123,7 @@ Aby sa tento kód mohol preložiť a vykonať",
             'time_to_handle' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_users' => 2,
+            'author_id' => 2,
             'id_event_types' => 1,
         ]);
 

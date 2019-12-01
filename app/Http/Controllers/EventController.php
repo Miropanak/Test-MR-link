@@ -146,7 +146,7 @@ class EventController extends Controller
             'time_to_explain' => 'integer',
             'time_to_handle' => 'integer',
             'id_event_types' => 'integer',
-            'id_users' => 'integer',
+            'author_id' => 'integer',
         ]);
 
         if($validator->fails()) {
@@ -262,7 +262,7 @@ class EventController extends Controller
             '*.time_to_explain' => 'integer',
             '*.time_to_handle' => 'integer',
             '*.id_event_types' => 'integer',
-            '*.id_users' => 'integer',
+            '*.author_id' => 'integer',
         ]);
 
         if($validator->fails()) {
@@ -402,7 +402,7 @@ class EventController extends Controller
      *      description="Creates new event",
      *     @OA\RequestBody(
      *         required=true,
-     *         description="Request body has to contain message, header, id_event_types, id_users fields. Time_to_hadnle has value 50 set as default. Time_to_explain has value 100 set as default.",
+     *         description="Request body has to contain message, header, id_event_types fields. Time_to_hadnle has value 50 set as default. Time_to_explain has value 100 set as default.",
      *       @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="message", type="string"),
@@ -443,7 +443,7 @@ class EventController extends Controller
             $event->time_to_explain = isset($request['time_to_explain']) ? $request['time_to_explain'] : 100;
             $event->time_to_handle = isset($request['time_to_handle']) ? $request['time_to_handle'] : 50;
             $event->id_event_types = $request['id_event_types'];
-            $event->id_users = Auth::user()->id;
+            $event->author_id = Auth::user()->id;
             $event->save();
         }catch (QueryException $e) {
             return response()->json(null, 500); // f.e. postgres id counter is not set up properly
