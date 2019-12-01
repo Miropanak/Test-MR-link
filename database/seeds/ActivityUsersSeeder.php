@@ -20,7 +20,7 @@ class ActivityUsersSeeder extends Seeder
 		DB::table('activity_users')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'author_id' => 1,
+            'subscriber_id' => 1,
             'activity_id' => 1,
             'user_type_id' => 5,
         ]);

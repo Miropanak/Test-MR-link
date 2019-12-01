@@ -248,7 +248,7 @@ class ActivityController extends Controller
                 'public' => $data['public'],
                 'validated' => false,
                 'study_field_id' => $data['study_field_id'],
-                'id_author' => Auth::user()->id
+                'author_id' => Auth::user()->id
             ]);
         }catch (QueryException $e) {
             return response()->json(null, 500);
@@ -563,12 +563,12 @@ class ActivityController extends Controller
         if(!$registered){
             ActivityUsers::create([
                 'activity_id' => $id,
-                'author_id' => Auth::user()->id
+                'subscriber_id' => Auth::user()->id
             ]);
             $registered = true;
         }
         else {
-            $activity_users = ActivityUsers::where('activity_id' , $id)->where('author_id', Auth::user()->id)->get();
+            $activity_users = ActivityUsers::where('activity_id' , $id)->where('subscriber_id', Auth::user()->id)->get();
             foreach ($activity_users as $au)
                 $au->delete();
             $registered = false;
@@ -591,7 +591,7 @@ class ActivityController extends Controller
                 if(!$registered){
                     ActivityUsers::create([
                         'activity_id' => $id,
-                        'author_id' => $value
+                        'subscriber_id' => $value
                     ]);
                 }
             }
@@ -602,7 +602,7 @@ class ActivityController extends Controller
 
     public function expel(Request $request, $id)
     {
-        $activity_users = ActivityUsers::where('activity_id' , $id)->where('author_id', $request->input('data-name'))->get();
+        $activity_users = ActivityUsers::where('activity_id' , $id)->where('subscriber_id', $request->input('data-name'))->get();
         foreach ($activity_users as $au)
             $au->delete();
 

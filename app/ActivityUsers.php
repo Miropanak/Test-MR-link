@@ -18,7 +18,7 @@ class ActivityUsers extends Model
      * @var array
      */
     protected $fillable = [
-        'activity_id','author_id'
+        'activity_id','subscriber_id'
     ];
 
     /**

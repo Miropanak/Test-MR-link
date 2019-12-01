@@ -23,7 +23,7 @@ class ActivitiesSeeder extends Seeder
             'public' => true,
             'validated' => true,
             'study_field_id' => 1,
-            'id_author' => 2,
+            'author_id' => 2,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

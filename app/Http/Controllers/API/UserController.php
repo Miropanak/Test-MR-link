@@ -366,7 +366,7 @@ class UserController extends Controller
 
     public function getUserActivities($user_id) {
         try{
-            $activities = Activity::where("id_author", $user_id)->get();
+            $activities = Activity::where("author_id", $user_id)->get();
             if(count($activities) > 0) {
                 return response()->json($activities, 200);
             } else {

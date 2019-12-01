@@ -20,7 +20,7 @@ class Activity extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'content', 'public', 'validated', 'study_field_id', 'id_author'
+        'title', 'content', 'public', 'validated', 'study_field_id', 'author_id'
     ];
 
     /**
@@ -45,7 +45,7 @@ class Activity extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function author() {
-        return $this->belongsTo('App\User', 'id_author');
+        return $this->belongsTo('App\User', 'author_id');
     }
 
     /**
@@ -53,6 +53,6 @@ class Activity extends Model
      * @return $this
      */
     public function subscriber(){
-        return $this->belongsToMany('App\User', 'activity_users', 'activity_id', 'author_id')->whereNull('activity_users.deleted_at')->withPivot('user_type_id');
+        return $this->belongsToMany('App\User', 'activity_users', 'activity_id', 'subscriber_id')->whereNull('activity_users.deleted_at')->withPivot('user_type_id');
     }
 }
