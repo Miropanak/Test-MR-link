@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'id_user_types', 'confirm_private_policy'
+        'name', 'email', 'password', 'user_type_id', 'confirm_private_policy'
     ];
 
     /**
@@ -42,7 +42,7 @@ class User extends Authenticatable
      */
     public function role()
     {
-        return $this->belongsTo('App\UserType', 'id_user_types');
+        return $this->belongsTo('App\UserType', 'user_type_id');
     }
 
     /**
@@ -51,7 +51,7 @@ class User extends Authenticatable
      */
     public function activities()
     {
-        return $this->belongsToMany('App\Activity', 'activity_users', 'id_users', 'id_activities')->whereNull('activity_users.deleted_at');
+        return $this->belongsToMany('App\Activity', 'activity_users', 'author_id', 'activity_id')->whereNull('activity_users.deleted_at');
     }
 
     /**
@@ -60,7 +60,7 @@ class User extends Authenticatable
      */
     public function events()
     {
-        return $this->hasMany('App\Event', 'id_users');
+        return $this->hasMany('App\Event', 'author_id');
     }
 
     /**

@@ -9,7 +9,7 @@ use App\Help;
 @extends('layouts.app')
 @section('title',$event->header)
 
-<?php $event_type = EventType::find($event->id_event_types); ?>
+<?php $event_type = EventType::find($event->event_type_id); ?>
 
 @section('content')
     <div class="container">
@@ -78,7 +78,7 @@ use App\Help;
 
         @endforeach
 
-        @if(Auth::user()->id == $event->id_users)
+        @if(Auth::user()->id == $event->author_id)
 
         <div class="row">
             <div class="col-md-12">
@@ -104,7 +104,7 @@ use App\Help;
 						</div>
 						<div class="col-md-4">
                             <button id="toggle-help-btn" type="button" style="margin-left: 10px" class="btn btn-primary pull-right"><i class="fas fa-eye-slash"></i></button>
-                            @if(Auth::user()->id_user_types == 5 || Auth::user()->id_user_types == 6)
+                            @if(Auth::user()->user_type_id == 5 || Auth::user()->user_type_id == 6)
                                 <a class="btn btn-danger pull-right" href="" id="btn-help"><i class="fa fa-trash-alt"></i>&nbsp Zmazať nápovedu</a>
 							@endif
 						</div>

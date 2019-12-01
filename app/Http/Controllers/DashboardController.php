@@ -33,9 +33,9 @@ class DashboardController extends Controller
      */
     public function newDashboard()
     {
-        $all_activities = Activity::where('id_author', Auth::user()->id)->get();
+        $all_activities = Activity::where('author_id', Auth::user()->id)->get();
         $reg_activities = User::find(Auth::user()->id)->activities;
-        $all_events = Event::where('id_users', Auth::user()->id)->get();
+        $all_events = Event::where('author_id', Auth::user()->id)->get();
         $non_validated_activities = Activity::where('validated', false)->get();
         $reg_title = "Zoznam registrovaných aktivít";
         $all_title = "Zoznam vytvorených aktivít";

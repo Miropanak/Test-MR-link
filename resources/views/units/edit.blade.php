@@ -39,7 +39,7 @@
                     <select name="activity_id" id="activities" class="form-control">
                         @foreach($all_activities as $activity)
                             <option value="{{ $activity->id }}"
-                                    @if ($activity->id == $unit->id_activities)
+                                    @if ($activity->id == $unit->activity_id)
                                         selected="selected"
                                     @endif>{{ $activity->title }}</option>
                         @endforeach

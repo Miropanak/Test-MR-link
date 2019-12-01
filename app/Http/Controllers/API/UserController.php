@@ -70,7 +70,7 @@ class UserController extends Controller
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             $success['name'] =  $user->name;
-            $success['role_id'] = $user->id_user_types;
+            $success['role_id'] = $user->user_type_id;
             $success['role'] = $user->role->name;
 
             return response()->json(['success' => $success,'user_id' => $user->id], $this-> successStatus);
@@ -164,13 +164,13 @@ class UserController extends Controller
         $input['email'] = strtolower($input['email']);   // fur richard
         $input['password'] = bcrypt($input['password']);
         $input['name'] = $input['firstname'] . " " . $input['lastname'];
-        $input['id_user_types'] = UserType::where('name', 'student')->first()->id;
+        $input['user_type_id'] = UserType::where('name', 'student')->first()->id;
 
         $user = User::create($input);
 
         $success['token'] =  $user->createToken('MyApp')-> accessToken;
         $success['name'] =  $user->name;
-        $success['role_id'] = $user->id_user_types;
+        $success['role_id'] = $user->user_type_id;
         $success['role'] = $user->role->name;
 
         return response()->json(['success'=>$success, 'user_id' => $user->id], $this-> successStatus);
@@ -318,7 +318,7 @@ class UserController extends Controller
 
     public function getUserEvents($id) {
         try{
-            $events = Event::where("id_users", $id)->get();
+            $events = Event::where("author_id", $id)->get();
             if(count($events) > 0) {
                 return response()->json($events, 200);
             } else {
@@ -366,7 +366,7 @@ class UserController extends Controller
 
     public function getUserActivities($user_id) {
         try{
-            $activities = Activity::where("id_author", $user_id)->get();
+            $activities = Activity::where("author_id", $user_id)->get();
             if(count($activities) > 0) {
                 return response()->json($activities, 200);
             } else {

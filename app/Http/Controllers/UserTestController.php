@@ -23,7 +23,7 @@ class UserTestController extends Controller
 
     function create() {
         $userId = Auth::id();
-        $usersActivities = ActivityUsers::where('id_users', $userId)->pluck('id_activities')->toArray();
+        $usersActivities = ActivityUsers::where('author_id', $userId)->pluck('activity_id')->toArray();
         $allActivities = Activity::whereIn('id', $usersActivities)->with('author', 'units')->get();
         
         return view('exams/create', [
@@ -69,8 +69,8 @@ class UserTestController extends Controller
         
         foreach ($selectedEvents as $event) {
             $eventTest = new EventTest();
-            $eventTest->events_id = $event['id'];
-            $eventTest->tests_id = $newTest->id;
+            $eventTest->event_id = $event['id'];
+            $eventTest->test_id = $newTest->id;
 
             $eventTest->save();
         }
