@@ -209,7 +209,7 @@ class PasswordResetController extends Controller
 
         $success['token'] =  $user->createToken('MyApp')-> accessToken;
         $success['name'] =  $user->name;
-        $success['role_id'] = $user->id_user_types;
+        $success['role_id'] = $user->user_type_id;
         $success['role'] = $user->role->name;
 
         return response()->json(['success'=>$success], $this->successStatus);

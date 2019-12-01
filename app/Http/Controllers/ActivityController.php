@@ -254,8 +254,8 @@ class ActivityController extends Controller
             return response()->json(null, 500);
         }
 
-        if(Auth::user()->id_user_types == 3){
-            Auth::user()->id_user_types = 4;
+        if(Auth::user()->user_type_id == 3){
+            Auth::user()->user_type_id = 4;
             Auth::user()->save();
         }
 

@@ -70,7 +70,7 @@ class UserController extends Controller
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             $success['name'] =  $user->name;
-            $success['role_id'] = $user->id_user_types;
+            $success['role_id'] = $user->user_type_id;
             $success['role'] = $user->role->name;
 
             return response()->json(['success' => $success,'user_id' => $user->id], $this-> successStatus);
@@ -164,13 +164,13 @@ class UserController extends Controller
         $input['email'] = strtolower($input['email']);   // fur richard
         $input['password'] = bcrypt($input['password']);
         $input['name'] = $input['firstname'] . " " . $input['lastname'];
-        $input['id_user_types'] = UserType::where('name', 'student')->first()->id;
+        $input['user_type_id'] = UserType::where('name', 'student')->first()->id;
 
         $user = User::create($input);
 
         $success['token'] =  $user->createToken('MyApp')-> accessToken;
         $success['name'] =  $user->name;
-        $success['role_id'] = $user->id_user_types;
+        $success['role_id'] = $user->user_type_id;
         $success['role'] = $user->role->name;
 
         return response()->json(['success'=>$success, 'user_id' => $user->id], $this-> successStatus);

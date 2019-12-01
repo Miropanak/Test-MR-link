@@ -22,434 +22,434 @@ class UserTypesPermissionsSeeder extends Seeder
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 1,
+            'user_type_id' => 1,
             'id_permissions' => 1,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 1,
+            'user_type_id' => 1,
             'id_permissions' => 2,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 2,
+            'user_type_id' => 2,
             'id_permissions' => 2,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 2,
+            'user_type_id' => 2,
             'id_permissions' => 3,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 2,
+            'user_type_id' => 2,
             'id_permissions' => 4,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 2,
+            'user_type_id' => 2,
             'id_permissions' => 5,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 2,
+            'user_type_id' => 2,
             'id_permissions' => 6,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 2,
+            'user_type_id' => 2,
             'id_permissions' => 7,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 2,
+            'user_type_id' => 2,
             'id_permissions' => 8,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 2,
+            'user_type_id' => 2,
             'id_permissions' => 9,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 2,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 3,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 4,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 5,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 6,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 7,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 8,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 9,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 10,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 11,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 12,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 13,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 14,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 15,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 3,
+            'user_type_id' => 3,
             'id_permissions' => 16,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 2,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 3,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 4,
         ]);
 		
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 5,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 6,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 7,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 8,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 9,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 10,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 11,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 12,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 13,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 14,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 15,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 16,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 17,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 18,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 19,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 4,
+            'user_type_id' => 4,
             'id_permissions' => 20,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 2,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 3,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 4,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 5,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 6,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 7,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 8,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 9,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 10,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 11,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 12,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 13,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 14,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 15,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 16,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 17,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 20,
         ]);
 
         DB::table('user_types_permissions')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_user_types' => 5,
+            'user_type_id' => 5,
             'id_permissions' => 21,
         ]);
     }

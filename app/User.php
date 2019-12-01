@@ -24,7 +24,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'id_user_types', 'confirm_private_policy'
+        'name', 'email', 'password', 'user_type_id', 'confirm_private_policy'
     ];
 
     /**
@@ -42,7 +42,7 @@ class User extends Authenticatable
      */
     public function role()
     {
-        return $this->belongsTo('App\UserType', 'id_user_types');
+        return $this->belongsTo('App\UserType', 'user_type_id');
     }
 
     /**

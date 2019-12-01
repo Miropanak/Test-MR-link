@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-	@if(Auth::user()->id_user_types === 5)
+	@if(Auth::user()->user_type_id === 5)
 	<div class="row">
 		<div class="col-md-12">
 			@include('activities.table', ['activities' => $non_validated_activities, 'agent' => $agent, 'title' => $non_validated_title])

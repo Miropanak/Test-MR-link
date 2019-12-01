@@ -71,7 +71,7 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        @if ((Auth::user()->id_user_types > 2))
+                                        @if ((Auth::user()->user_type_id > 2))
                                             <a href="{{ route('activities/new') }}">
                                                 Aktivitu
                                             </a>
@@ -82,7 +82,7 @@
                                          @endif
                                     </li>
                                     <li>
-                                        @if ((Auth::user()->id_user_types > 2))
+                                        @if ((Auth::user()->user_type_id > 2))
                                             <a href="{{ route('events/new') }}">
                                                 Udalosť
                                             </a>

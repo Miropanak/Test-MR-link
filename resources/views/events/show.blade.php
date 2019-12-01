@@ -11,7 +11,7 @@
 
         <div class="row">
         	<div class="col-md-12">
-                @if ((Auth::user()->id_user_types > 2))
+                @if ((Auth::user()->user_type_id > 2))
         		    <a href="{{ route('events/new') }}"><button type="button" class="btn btn-success">Pridať udalosť</button></a>
                 @else
                     <a href="" style="color:darkgray;cursor:not-allowed;opacity:0.5;text-decoration: none">

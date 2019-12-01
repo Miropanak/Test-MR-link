@@ -22,7 +22,7 @@ class ActivityUsersSeeder extends Seeder
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'id_users' => 1,
             'id_activities' => 1,
-            'id_user_types' => 5,
+            'user_type_id' => 5,
         ]);
 
     }
