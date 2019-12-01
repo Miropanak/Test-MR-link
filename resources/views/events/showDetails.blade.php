@@ -9,7 +9,7 @@ use App\Help;
 @extends('layouts.app')
 @section('title',$event->header)
 
-<?php $event_type = EventType::find($event->id_event_types); ?>
+<?php $event_type = EventType::find($event->event_type_id); ?>
 
 @section('content')
     <div class="container">

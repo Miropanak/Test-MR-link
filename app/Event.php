@@ -27,7 +27,7 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'time_to_explain','time_to_handle','message', 'id_event_types', 'author_id',
+        'time_to_explain','time_to_handle','message', 'event_type_id', 'author_id',
     ];
 
     protected $hidden = ['pivot'];
@@ -62,7 +62,7 @@ class Event extends Model
      */
     public function option()
     {
-        return $this->hasMany('App\Option', 'id_events');
+        return $this->hasMany('App\Option', 'event_id');
     }
 
     public function tests()

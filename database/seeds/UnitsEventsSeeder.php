@@ -19,505 +19,505 @@ class UnitsEventsSeeder extends Seeder
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 6,
-            'id_events' => 12,
+            'unit_id' => 6,
+            'event_id' => 12,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 6,
-            'id_events' => 13,
+            'unit_id' => 6,
+            'event_id' => 13,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 6,
-            'id_events' => 14,
+            'unit_id' => 6,
+            'event_id' => 14,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 6,
-            'id_events' => 15,
+            'unit_id' => 6,
+            'event_id' => 15,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 6,
-            'id_events' => 16,
+            'unit_id' => 6,
+            'event_id' => 16,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 6,
-            'id_events' => 17,
+            'unit_id' => 6,
+            'event_id' => 17,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 6,
-            'id_events' => 18,
+            'unit_id' => 6,
+            'event_id' => 18,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 6,
-            'id_events' => 19,
+            'unit_id' => 6,
+            'event_id' => 19,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 6,
-            'id_events' => 20,
+            'unit_id' => 6,
+            'event_id' => 20,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 6,
-            'id_events' => 21,
+            'unit_id' => 6,
+            'event_id' => 21,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 7,
-            'id_events' => 22,
+            'unit_id' => 7,
+            'event_id' => 22,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 7,
-            'id_events' => 23,
+            'unit_id' => 7,
+            'event_id' => 23,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 7,
-            'id_events' => 24,
+            'unit_id' => 7,
+            'event_id' => 24,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 7,
-            'id_events' => 25,
+            'unit_id' => 7,
+            'event_id' => 25,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 7,
-            'id_events' => 26,
+            'unit_id' => 7,
+            'event_id' => 26,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 7,
-            'id_events' => 27,
+            'unit_id' => 7,
+            'event_id' => 27,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 7,
-            'id_events' => 28,
+            'unit_id' => 7,
+            'event_id' => 28,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 7,
-            'id_events' => 29,
+            'unit_id' => 7,
+            'event_id' => 29,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 7,
-            'id_events' => 30,
+            'unit_id' => 7,
+            'event_id' => 30,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 7,
-            'id_events' => 31,
+            'unit_id' => 7,
+            'event_id' => 31,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 8,
-            'id_events' => 32,
+            'unit_id' => 8,
+            'event_id' => 32,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 8,
-            'id_events' => 33,
+            'unit_id' => 8,
+            'event_id' => 33,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 8,
-            'id_events' => 34,
+            'unit_id' => 8,
+            'event_id' => 34,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 8,
-            'id_events' => 35,
+            'unit_id' => 8,
+            'event_id' => 35,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 8,
-            'id_events' => 36,
+            'unit_id' => 8,
+            'event_id' => 36,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 8,
-            'id_events' => 37,
+            'unit_id' => 8,
+            'event_id' => 37,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 8,
-            'id_events' => 38,
+            'unit_id' => 8,
+            'event_id' => 38,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 8,
-            'id_events' => 39,
+            'unit_id' => 8,
+            'event_id' => 39,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 9,
-            'id_events' => 40,
+            'unit_id' => 9,
+            'event_id' => 40,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 9,
-            'id_events' => 41,
+            'unit_id' => 9,
+            'event_id' => 41,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 9,
-            'id_events' => 42,
+            'unit_id' => 9,
+            'event_id' => 42,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 9,
-            'id_events' => 43,
+            'unit_id' => 9,
+            'event_id' => 43,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 9,
-            'id_events' => 44,
+            'unit_id' => 9,
+            'event_id' => 44,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 9,
-            'id_events' => 45,
+            'unit_id' => 9,
+            'event_id' => 45,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 9,
-            'id_events' => 46,
+            'unit_id' => 9,
+            'event_id' => 46,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 9,
-            'id_events' => 47,
+            'unit_id' => 9,
+            'event_id' => 47,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 9,
-            'id_events' => 48,
+            'unit_id' => 9,
+            'event_id' => 48,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 9,
-            'id_events' => 49,
+            'unit_id' => 9,
+            'event_id' => 49,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 10,
-            'id_events' => 50,
+            'unit_id' => 10,
+            'event_id' => 50,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 10,
-            'id_events' => 51,
+            'unit_id' => 10,
+            'event_id' => 51,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 10,
-            'id_events' => 52,
+            'unit_id' => 10,
+            'event_id' => 52,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 10,
-            'id_events' => 53,
+            'unit_id' => 10,
+            'event_id' => 53,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 10,
-            'id_events' => 54,
+            'unit_id' => 10,
+            'event_id' => 54,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 10,
-            'id_events' => 55,
+            'unit_id' => 10,
+            'event_id' => 55,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 10,
-            'id_events' => 56,
+            'unit_id' => 10,
+            'event_id' => 56,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 10,
-            'id_events' => 57,
+            'unit_id' => 10,
+            'event_id' => 57,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 11,
-            'id_events' => 58,
+            'unit_id' => 11,
+            'event_id' => 58,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 11,
-            'id_events' => 59,
+            'unit_id' => 11,
+            'event_id' => 59,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 11,
-            'id_events' => 60,
+            'unit_id' => 11,
+            'event_id' => 60,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 11,
-            'id_events' => 61,
+            'unit_id' => 11,
+            'event_id' => 61,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 11,
-            'id_events' => 62,
+            'unit_id' => 11,
+            'event_id' => 62,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 11,
-            'id_events' => 63,
+            'unit_id' => 11,
+            'event_id' => 63,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 11,
-            'id_events' => 64,
+            'unit_id' => 11,
+            'event_id' => 64,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 11,
-            'id_events' => 65,
+            'unit_id' => 11,
+            'event_id' => 65,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 11,
-            'id_events' => 66,
+            'unit_id' => 11,
+            'event_id' => 66,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 11,
-            'id_events' => 67,
+            'unit_id' => 11,
+            'event_id' => 67,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 11,
-            'id_events' => 68,
+            'unit_id' => 11,
+            'event_id' => 68,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 11,
-            'id_events' => 69,
+            'unit_id' => 11,
+            'event_id' => 69,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 70,
+            'unit_id' => 12,
+            'event_id' => 70,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 71,
+            'unit_id' => 12,
+            'event_id' => 71,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 72,
+            'unit_id' => 12,
+            'event_id' => 72,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 73,
+            'unit_id' => 12,
+            'event_id' => 73,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 74,
+            'unit_id' => 12,
+            'event_id' => 74,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 75,
+            'unit_id' => 12,
+            'event_id' => 75,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 76,
+            'unit_id' => 12,
+            'event_id' => 76,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 77,
+            'unit_id' => 12,
+            'event_id' => 77,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 78,
+            'unit_id' => 12,
+            'event_id' => 78,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 79,
+            'unit_id' => 12,
+            'event_id' => 79,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 80,
+            'unit_id' => 12,
+            'event_id' => 80,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 81,
+            'unit_id' => 12,
+            'event_id' => 81,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 82,
+            'unit_id' => 12,
+            'event_id' => 82,
         ]);
 
         DB::table('units_events')->insert([
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'id_units' => 12,
-            'id_events' => 83,
+            'unit_id' => 12,
+            'event_id' => 83,
         ]);
     }
 }

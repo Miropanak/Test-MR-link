@@ -310,7 +310,7 @@ class ExamController extends Controller
         $eventArray = [];
 
         foreach ($events as $event) {
-            $options = $option->where('id_events', $event->id)->get();
+            $options = $option->where('event_id', $event->id)->get();
             $object = new \stdClass();
             $object->event = $event;
             $object->options = $options;

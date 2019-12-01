@@ -82,7 +82,7 @@ class HelpController
      *          type="object",
      *          @OA\Property(property="name", type="string"),
      *          @OA\Property(property="url", type="string"),
-     *          @OA\Property(property="id_events", type="integer")
+     *          @OA\Property(property="event_id", type="integer")
      *          )
      *     ),
      *      @OA\Response(
@@ -104,7 +104,7 @@ class HelpController
         $validator = Validator::make($request->all(), [
             'name' => 'string',
             'url' => 'string', // 'url' rule doesn't accept strings like 'wwww.google.sk'
-            'id_events' => 'integer',
+            'event_id' => 'integer',
         ]);
 
         if($validator->fails()) {
@@ -138,12 +138,12 @@ class HelpController
      *      description="Creates new help",
      *     @OA\RequestBody(
      *         required=true,
-     *         description="Request body has to contain name, url, id_events",
+     *         description="Request body has to contain name, url, event_id",
      *       @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="name", type="string"),
      *          @OA\Property(property="url", type="string"),
-     *          @OA\Property(property="id_events", type="integer")
+     *          @OA\Property(property="event_id", type="integer")
      *          )
      *     ),
      *      @OA\Response(
@@ -161,7 +161,7 @@ class HelpController
         $validator = Validator::make($request->all(), [
             'name' => 'string|required',
             'url' => 'string',
-            'id_events' => 'integer|required',
+            'event_id' => 'integer|required',
         ]);
 
         if($validator->fails()) {
@@ -171,7 +171,7 @@ class HelpController
             $help = new Help();
             $help->name = $request['name'];
             $help->url = $request['url'];
-            $help->id_events = $request['id_events'];
+            $help->event_id = $request['event_id'];
             $help->save();
         } catch(Exception $e) {
             return response()->json(null, 500);

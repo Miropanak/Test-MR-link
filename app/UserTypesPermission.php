@@ -22,7 +22,7 @@ class UserTypesPermission extends Model
     use RefreshDatabase;
 
     protected $fillable = [
-        'user_type_id', 'id_permissions'
+        'user_type_id', 'permission_id'
     ];
 
     public static function getNumberOfPermissions($query){

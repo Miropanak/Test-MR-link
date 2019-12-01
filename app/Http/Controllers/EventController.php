@@ -145,7 +145,7 @@ class EventController extends Controller
             'header' => 'string',
             'time_to_explain' => 'integer',
             'time_to_handle' => 'integer',
-            'id_event_types' => 'integer',
+            'event_type_id' => 'integer',
             'author_id' => 'integer',
         ]);
 
@@ -261,7 +261,7 @@ class EventController extends Controller
             '*.header' => 'string',
             '*.time_to_explain' => 'integer',
             '*.time_to_handle' => 'integer',
-            '*.id_event_types' => 'integer',
+            '*.event_type_id' => 'integer',
             '*.author_id' => 'integer',
         ]);
 
@@ -327,7 +327,7 @@ class EventController extends Controller
 
     public function getEventOptions($id) {
         try{
-            $options = Option::where("id_events", $id)->get();
+            $options = Option::where("event_id", $id)->get();
             if(count($options) > 0) {
                 return response()->json($options, 200);
             } else {
@@ -375,7 +375,7 @@ class EventController extends Controller
 
     public function deleteEventOptions($id) {
         try{
-            $options = Option::where("id_events", $id)->get();
+            $options = Option::where("event_id", $id)->get();
             if(count($options) > 0) {
                 foreach($options as $option) {
                     $option->delete();
@@ -402,14 +402,14 @@ class EventController extends Controller
      *      description="Creates new event",
      *     @OA\RequestBody(
      *         required=true,
-     *         description="Request body has to contain message, header, id_event_types fields. Time_to_hadnle has value 50 set as default. Time_to_explain has value 100 set as default.",
+     *         description="Request body has to contain message, header, event_type_id fields. Time_to_hadnle has value 50 set as default. Time_to_explain has value 100 set as default.",
      *       @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="message", type="string"),
      *          @OA\Property(property="header", type="string"),
      *          @OA\Property(property="time_to_explain", type="integer"),
      *          @OA\Property(property="time_to_handle", type="integer"),
-     *          @OA\Property(property="id_event_types", type="integer")
+     *          @OA\Property(property="event_type_id", type="integer")
      *          )
      *     ),
      *      @OA\Response(
@@ -430,7 +430,7 @@ class EventController extends Controller
             'header' => 'string|required',
             'time_to_explain' => 'integer',
             'time_to_handle' => 'integer',
-            'id_event_types' => 'integer|required',
+            'event_type_id' => 'integer|required',
         ]);
 
         if($validator->fails()) {
@@ -442,7 +442,7 @@ class EventController extends Controller
             $event->header = $request['header'];
             $event->time_to_explain = isset($request['time_to_explain']) ? $request['time_to_explain'] : 100;
             $event->time_to_handle = isset($request['time_to_handle']) ? $request['time_to_handle'] : 50;
-            $event->id_event_types = $request['id_event_types'];
+            $event->event_type_id = $request['event_type_id'];
             $event->author_id = Auth::user()->id;
             $event->save();
         }catch (QueryException $e) {
@@ -486,7 +486,7 @@ class EventController extends Controller
         try{
             $event = Event::find($id);
             if($event) {
-                $event_type = EventType::where("id", $event->id_event_types)->first(); 
+                $event_type = EventType::where("id", $event->event_type_id)->first();
                 return response()->json($event_type, 200);
             } else {
                 return response()->json(null, 404);
@@ -533,7 +533,7 @@ class EventController extends Controller
 
     public function getEventHelps($id) {
         try{
-            $helps = Help::where("id_events", $id)->get();
+            $helps = Help::where("event_id", $id)->get();
             if(count($helps) > 0) {
                 return response()->json($helps, 200);
             } else {
@@ -593,7 +593,7 @@ class EventController extends Controller
         $validator = Validator::make($request->all(), [
             'correct_answer' => 'boolean',
             'answer_data' => 'string',
-            'id_events' => 'integer',
+            'event_id' => 'integer',
         ]);
 
         if($validator->fails()) {
@@ -660,7 +660,7 @@ class EventController extends Controller
             '*.id' => 'integer|required',
             '*.correct_answer' => 'boolean',
             '*.answer_data' => 'string',
-            '*.id_events' => 'integer',
+            '*.event_id' => 'integer',
         ]);
 
         if($validator->fails()) {
@@ -701,12 +701,12 @@ class EventController extends Controller
      *      description="Creates new option",
      *     @OA\RequestBody(
      *         required=true,
-     *         description="Request body has to contain correct_answer, answer_data, id_events",
+     *         description="Request body has to contain correct_answer, answer_data, event_id",
      *       @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="correct_answer", type="boolean"),
      *          @OA\Property(property="answer_data", type="string"),
-     *          @OA\Property(property="id_events", type="integer")
+     *          @OA\Property(property="event_id", type="integer")
      *          )
      *     ),
      *      @OA\Response(
@@ -724,7 +724,7 @@ class EventController extends Controller
         $validator = Validator::make($request->all(), [
             'correct_answer' => 'boolean|required',
             'answer_data' => 'string|required',
-            'id_events' => 'integer|required',
+            'event_id' => 'integer|required',
         ]);
 
         if($validator->fails()) {
@@ -734,7 +734,7 @@ class EventController extends Controller
             $option = new Option();
             $option->correct_answer = $request['correct_answer'];
             $option->answer_data = $request['answer_data'];
-            $option->id_events = $request['id_events'];
+            $option->event_id = $request['event_id'];
             $option->save();
         } catch(QueryException $e){
             return response()->json(null, 500);

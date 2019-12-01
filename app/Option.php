@@ -26,7 +26,7 @@ class Option extends Model
      * @var array
      */
     protected $fillable = [
-        'answer_data','correct_answer','id_events'
+        'answer_data','correct_answer','event_id'
     ];
 
     /**
@@ -37,7 +37,7 @@ class Option extends Model
      */
     public function event()
     {
-        return $this->belongsTo('App\Event', 'id_events');
+        return $this->belongsTo('App\Event', 'event_id');
     }
 
 }
