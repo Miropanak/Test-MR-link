@@ -25,10 +25,10 @@ class Activity extends Model
 
     /**
      * Return units belonging to this activity
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function units(){
-        return $this->hasMany('App\Unit','id_activities');
+        return $this->belongsToMany('App\Unit','activity_unit', 'activity_id', 'unit_id');
     }
 
     /**

@@ -67,6 +67,8 @@ Route::group(['prefix' => 'activity', 'middleware' => 'auth:api'], function () {
     Route::post('', 'ActivityController@createActivity');
     Route::put('{id}', 'ActivityController@updateActivity');
     Route::delete('{id}', 'ActivityController@deleteActivity');
+    Route::put('{id}/unit', 'ActivityController@addUnitToActivity');
+    Route::put('{id}/units', 'ActivityController@updateUnitArrayInActivity');
 });
 Route::group(['prefix' => 'activity'], function (){
     Route::get('all', 'ActivityController@getActivities');

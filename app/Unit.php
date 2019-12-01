@@ -14,12 +14,12 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'title','description','id_activities'
+        'title','description'
     ];
 
-    public function activity()
+    public function activities()
     {
-        return $this->belongsTo('App\Activity', 'id_activities');
+        return $this->belongsToMany('App\ActivityUnit', 'activity_unit', 'unit_id', 'activity_id');
     }
 
     public function unitEvent()

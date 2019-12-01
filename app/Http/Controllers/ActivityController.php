@@ -75,11 +75,8 @@ class ActivityController extends Controller
     public function getActivityUnits($id) {
         try{
             $units = Activity::find($id)->units;
-            if(count($units) > 0) {
-                return response()->json($units, 200);
-            } else {
-                return response()->json(null, 404);
-            }
+            return response()->json($units, 200);
+
         } catch(QueryException $e) {
             if($e->getCode() === '22003') {
                 return response()->json(null, 400);
@@ -419,6 +416,140 @@ class ActivityController extends Controller
                 return response()->json(null, 500);
             }
         }
+    }
+
+    /**
+     * @OA\Put(
+     *      path="/api/activity/{id}/unit",
+     *      operationId="addUnitToActivity",
+     *      tags={"Activity"},
+     *      summary="Adds Unit to Activity",
+     *      description="Adds Unit to Activity",
+     *      security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="Activity id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *       required=true,
+     *       description="",
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               @OA\Property(
+     *                      property="unit_id",
+     *                      type="integer",
+     *                )
+     *           )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid JSON body supplied",
+     *      ),
+     *     )
+     */
+    public function addUnitToActivity(Request $request, $id) {
+
+        $validator = Validator::make($request->all(), [
+            'unit_id' => 'required|integer',
+        ]);
+
+        if($validator->fails()) {
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
+        }
+
+
+        try {
+            $activity = Activity::find($id);
+            if ($activity) {
+                $activity->units()->syncWithoutDetaching($request['unit_id']);
+                return response()->json($activity, 200);
+            }
+        } catch (QueryException $e){
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
+        }
+
+    }
+
+    /**
+     * @OA\Put(
+     *      path="/api/activity/{id}/units",
+     *      operationId="updateUnitArrayInActivity",
+     *      tags={"Activity"},
+     *      summary="Replaces Units in Activity with specified Units",
+     *      description="Replaces Units in Activity with specified Units. Unit_ids array may be empty",
+     *      security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="Activity id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *       required=true,
+     *       description="",
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               @OA\Property(
+     *                      property="unit_ids",
+     *                      type="integer",
+     *                )
+     *           )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid JSON body supplied",
+     *      ),
+     *     )
+     */
+    public function updateUnitArrayInActivity(Request $request, $id) {
+
+        $validator = Validator::make($request->all(), [
+            'unit_ids.*' => 'integer',
+        ]);
+
+        if($validator->fails()) {
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
+        }
+
+
+        try {
+            $activity = Activity::find($id);
+            if ($activity) {
+                $activity->units()->sync($request['unit_ids']);
+                return response()->json($activity, 200);
+            }
+        } catch (QueryException $e){
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
+        }
+
     }
 
     public function subscribe($id){

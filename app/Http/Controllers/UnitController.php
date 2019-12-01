@@ -7,6 +7,7 @@ use Illuminate\Database\QueryException;
 use App\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class UnitController extends Controller
 {
@@ -125,12 +126,12 @@ class UnitController extends Controller
      *      description="Creates new unit",
      *     @OA\RequestBody(
      *         required=true,
-     *         description="Request body has to contain title, description. id_activities is optional.",
+     *         description="Request body has to contain title, description. activity_ids must contain at least one valid activity id",
      *       @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="title", type="string"),
      *          @OA\Property(property="description", type="string"),
-     *          @OA\Property(property="id_activities", type="integer")
+     *          @OA\Property(property="activity_ids", type="integer")
      *          )
      *     ),
      *      @OA\Response(
@@ -148,7 +149,8 @@ class UnitController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'string|required',
             'description' => 'string|required',
-            'id_activities' => 'integer',
+            'activity_ids' => 'required',
+            'activity_ids.*' => 'integer',
         ]);
 
         if($validator->fails()) {
@@ -159,6 +161,10 @@ class UnitController extends Controller
             $unit = new Unit();
             $unit->title = $request['title'];
             $unit->description = $request['description'];
+            if(count($request['activity_ids']) < 1) {
+                return response()->json("Unit must belong to an activity", 400);
+            }
+            $unit->activities()->sync($request['activity_id']);
             $unit->save();
         }catch (Exception $e) {
             return response()->json($e, 500);
@@ -184,12 +190,12 @@ class UnitController extends Controller
      *      ),
      *     @OA\RequestBody(
      *         required=true,
-     *         description="Request body does not need to contain all 'unit' fields",
+     *         description="Request body does not need to contain all 'unit' fields. Field activity_ids is array of activities to which unit belongs to. After update unit will belong to only activities specified in activity_ids array.",
      *       @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="title", type="string"),
      *          @OA\Property(property="description", type="string"),
-     *          @OA\Property(property="id_activities", type="integer")
+     *          @OA\Property(property="activity_ids", type="integer")
      *          )
      *     ),
      *      @OA\Response(
@@ -211,7 +217,7 @@ class UnitController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'string',
             'description' => 'string',
-            'id_activities' => 'integer',
+            'activity_ids.*' => 'integer',
         ]);
 
         if($validator->fails()) {
@@ -222,6 +228,14 @@ class UnitController extends Controller
             $unit = Unit::find($id);
             if($unit) {
                 $unit->update($request->all());
+                Log::debug($request['activity_ids']);
+                if($request->has('activity_ids'))
+                {
+                    if(count($request['activity_ids']) < 1) {
+                        return response()->json("Unit must belong to an activity", 400);
+                    }
+                    $unit->activities()->sync($request['activity_ids']);
+                }
                 return response()->json($unit, 200);
             } else {
                 return response()->json(null, 404);
@@ -230,6 +244,7 @@ class UnitController extends Controller
             if($e->getCode() === '22003') {
                 return response()->json($e, 400);
             } else {
+                Log::debug($e);
                 return response()->json($e, 500);
             }
         }
