@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Database\QueryException;
 use App\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 
@@ -123,7 +124,8 @@ class UnitController extends Controller
      *      operationId="createUnit",
      *      tags={"Unit"},
      *      summary="Creates new unit",
-     *      description="Creates new unit",
+     *      description="Creates new unit, format: "activity_ids": [1]",
+     *      security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
      *         description="Request body has to contain title, description. activity_ids must contain at least one valid activity id",
@@ -156,11 +158,12 @@ class UnitController extends Controller
         if($validator->fails()) {
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
-
         try{
             $unit = new Unit();
             $unit->title = $request['title'];
             $unit->description = $request['description'];
+            $unit->author_id = Auth::user()->id;
+
             if(count($request['activity_ids']) < 1) {
                 return response()->json("Unit must belong to an activity", 400);
             }
