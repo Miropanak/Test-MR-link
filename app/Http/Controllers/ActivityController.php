@@ -299,6 +299,7 @@ class ActivityController extends Controller
         try{
             $old_activity = Activity::find($id);
             $new_activity = $old_activity->replicate();
+            $new_activity->author_id = Auth::user()->id;
             $new_activity->push();
 
             //re-sync everything
