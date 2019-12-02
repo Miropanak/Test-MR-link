@@ -521,10 +521,6 @@ class EventController extends Controller
      *          description="Successful operation"
      *       ),
      *      @OA\Response(
-     *          response=404,
-     *          description="Event not found"
-     *       ),
-     *      @OA\Response(
      *         response=400,
      *         description="Invalid ID supplied",
      *      ),
@@ -534,11 +530,9 @@ class EventController extends Controller
     public function getEventHelps($id) {
         try{
             $helps = Help::where("event_id", $id)->get();
-            if(count($helps) > 0) {
-                return response()->json($helps, 200);
-            } else {
-                return response()->json(null, 404);
-            }
+
+            return response()->json($helps, 200);
+
         } catch(QueryException $e) {
             if($e->getCode() === '22003'){
                 return response()->json(null, 400);
