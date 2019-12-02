@@ -85,6 +85,8 @@ Route::group(['prefix' => 'units'], function (){
     Route::get('{id}', 'UnitController@getUnit');
     Route::get('{id}/events', 'UnitController@getUnitEvents');
     Route::put('{id}', 'UnitController@updateUnit');
+    Route::put('{id}/events', 'UnitController@updateEventArrayInUnit');
+
 });
 
 
