@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Database\QueryException;
 use App\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 
@@ -124,9 +125,10 @@ class UnitController extends Controller
      *      tags={"Unit"},
      *      summary="Creates new unit",
      *      description="Creates new unit",
+     *      security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
-     *         description="Request body has to contain title, description. activity_ids must contain at least one valid activity id",
+     *         description="Request body has to contain title, description. activity_ids must contain at least one valid activity id - format: 'activity_ids': [1]",
      *       @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="title", type="string"),
@@ -156,11 +158,12 @@ class UnitController extends Controller
         if($validator->fails()) {
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
-
         try{
             $unit = new Unit();
             $unit->title = $request['title'];
             $unit->description = $request['description'];
+            $unit->author_id = Auth::user()->id;
+
             if(count($request['activity_ids']) < 1) {
                 return response()->json("Unit must belong to an activity", 400);
             }
@@ -248,5 +251,77 @@ class UnitController extends Controller
                 return response()->json($e, 500);
             }
         }
+    }
+
+    /**
+     * @OA\Put(
+     *      path="/api/units/{id}/events",
+     *      operationId="updateEventArrayInUnit",
+     *      tags={"Unit"},
+     *      summary="Replaces Events in Units with specified Events",
+     *      description="Replaces Events in Units with specified Events. Event_ids array may be empty",
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="Unit id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *       required=true,
+     *       description="",
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               @OA\Property(
+     *                      property="event_ids",
+     *                      type="integer",
+     *                )
+     *           )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid JSON body supplied",
+     *      ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Invalid unit ID supplied",
+     *      ),
+     *    )
+     */
+    public function updateEventArrayInUnit(Request $request, $id) {
+
+        $validator = Validator::make($request->all(), [
+            'event_ids.*' => 'integer',
+        ]);
+
+        if($validator->fails()) {
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
+        }
+
+
+        try {
+            $unit = Unit::find($id);
+            if ($unit) {
+                $unit->events()->sync($request['event_ids']);
+                return response()->json($unit, 200);
+            } else {
+                return response()->json('Cant find unit with specified id', 404);
+            }
+        } catch (QueryException $e){
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
+        }
+
     }
 }

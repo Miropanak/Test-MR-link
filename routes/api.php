@@ -78,10 +78,17 @@ Route::group(['prefix' => 'activity'], function (){
 });
 
 // UNITS
-Route::get('units/{id}', 'UnitController@getUnit');
-Route::get('units/{id}/events', 'UnitController@getUnitEvents');
-Route::post('units', 'UnitController@createUnit');
-Route::put('units/{id}', 'UnitController@updateUnit');
+Route::group(['prefix' => 'units', 'middleware' => 'auth:api'], function () {
+    Route::post('', 'UnitController@createUnit');
+});
+Route::group(['prefix' => 'units'], function (){
+    Route::get('{id}', 'UnitController@getUnit');
+    Route::get('{id}/events', 'UnitController@getUnitEvents');
+    Route::put('{id}', 'UnitController@updateUnit');
+    Route::put('{id}/events', 'UnitController@updateEventArrayInUnit');
+
+});
+
 
 // EXAMS
 

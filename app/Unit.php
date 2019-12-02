@@ -14,8 +14,19 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'title','description'
+        'title','description', 'author_id'
     ];
+
+    /**
+     *
+     * Every event belongs only to one user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author()
+    {
+        return $this->belongsTo('App\User', 'author_id');
+    }
 
     public function activities()
     {
