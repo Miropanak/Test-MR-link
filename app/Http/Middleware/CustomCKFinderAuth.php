@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class CustomCKFinderAuth
 {
@@ -18,6 +19,7 @@ class CustomCKFinderAuth
         config(['ckfinder.authentication' => function() {
             return true;
         }]);
-        return response()->json('hovno');
+        return $next($request);
     }
+
 }
