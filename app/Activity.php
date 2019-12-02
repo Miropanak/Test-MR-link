@@ -28,7 +28,7 @@ class Activity extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function units(){
-        return $this->belongsToMany('App\Unit','activity_unit', 'activity_id', 'unit_id');
+        return $this->belongsToMany('App\Unit','activity_unit', 'activity_id', 'unit_id')->withTimestamps();
     }
 
     /**

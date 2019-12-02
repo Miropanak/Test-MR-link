@@ -262,6 +262,61 @@ class ActivityController extends Controller
         return response()->json($activity,200);
     }
 
+    /**
+     * @OA\Post(
+     *      path="/api/activity/{id}/clone",
+     *      operationId="cloneActivity",
+     *      tags={"Activity"},
+     *      summary="Clone activity",
+     *      description="Cloned activity",
+     *      security={{"bearerAuth":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Activity not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *  )
+     */
+
+    public function cloneActivity($id)
+    {
+        try{
+            $old_activity = Activity::find($id);
+            $new_activity = $old_activity->replicate();
+            $new_activity->push();
+
+            //re-sync everything
+            $new_activity->units()->sync($old_activity->units);
+
+            return response()->json([
+                'activity'=>$new_activity,
+                'subscribers'=>$new_activity->subscriber,
+                'title'=>$new_activity->title,]);
+        }catch(QueryException $e) {
+            if ($e->getCode() === '22003') {
+                return response()->json(null, 400); // bad id provided -> id too big for integer
+            } else {
+                return response()->json(null, 500);
+            }
+        }
+    }
+
 
     /**
      * @OA\Put(
