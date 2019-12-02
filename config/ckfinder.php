@@ -22,7 +22,7 @@
 
 $config = array();
 
-$config['authentication'] = '\App\Http\Middleware\CustomCKFinderAuth';
+$config['authentication'] = function () { return false; };
 /*============================ License Key ============================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
