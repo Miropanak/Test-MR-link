@@ -167,8 +167,8 @@ class UnitController extends Controller
             if(count($request['activity_ids']) < 1) {
                 return response()->json("Unit must belong to an activity", 400);
             }
-            $unit->activities()->sync($request['activity_id']);
             $unit->save();
+            $unit->activities()->sync($request['activity_ids']);
         }catch (Exception $e) {
             return response()->json($e, 500);
         }
