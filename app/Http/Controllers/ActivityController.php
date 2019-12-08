@@ -126,26 +126,6 @@ class ActivityController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/activity/author",
-     *      operationId="getAuthorActivities",
-     *      tags={"Activity"},
-     *      summary="get all activities of logged user",
-     *      description="Returns 'activities'",
-     *      security={{"bearerAuth":{}}},
-     *      @OA\Response(
-     *          response=200,
-     *          description="successful operation"
-     *       ),
-     *  )
-     */
-    public function getAuthorActivities()
-    {
-        $activities = Activity::where('author_id', Auth::user()->id)->get();
-        return response()->json($activities,200);
-    }
-
-    /**
-     * @OA\Get(
      *      path="/api/activity/{id}",
      *      operationId="getActivity",
      *      tags={"Activity"},
