@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ActivityUnit extends Model
 {
     use SoftDeletes;
+    protected $table = 'activity_unit';
     /**
      * The attributes that are mass assignable.
      *

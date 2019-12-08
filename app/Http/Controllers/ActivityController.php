@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Activity;
+use App\ActivityUnit;
 use App\ActivityUsers;
 use App\StudyField;
 use App\User;
@@ -74,7 +75,7 @@ class ActivityController extends Controller
 
     public function getActivityUnits($id) {
         try{
-            $units = Activity::find($id)->units;
+            $units = Activity::find($id)->units()->orderBy('unit_order_number')->get();
             return response()->json($units, 200);
 
         } catch(QueryException $e) {
@@ -524,12 +525,86 @@ class ActivityController extends Controller
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
 
+        $order_number = ActivityUnit::where('activity_id',$id)->latest('unit_order_number')->first()->unit_order_number;
 
         try {
             $activity = Activity::find($id);
             if ($activity) {
                 $activity->units()->syncWithoutDetaching($request['unit_id']);
+                $junction = ActivityUnit::where('unit_id',$request['unit_id'])->first();
+                $junction->unit_order_number = $order_number + 1; // vo vazobnej tabulke zvys poradie novej unity
+                $junction->save();
                 return response()->json($activity, 200);
+            }
+        } catch (QueryException $e){
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
+        }
+
+    }
+
+    /**
+     * @OA\Put(
+     *      path="/api/activity/{id}/order/units",
+     *      operationId="changeUnitOrder",
+     *      tags={"Activity"},
+     *      summary="Change order of units of activity",
+     *      description="In junction table change order of units for specified activity, by sending unit ids(as array) in wanted order",
+     *      security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="Activity id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *       required=true,
+     *       description="",
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               @OA\Property(
+     *                      property="unit_ids",
+     *                      type="integer",
+     *                )
+     *           )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid JSON body supplied",
+     *      ),
+     *     )
+     */
+    public function changeUnitOrder(Request $request, $id) {
+
+        $validator = Validator::make($request->all(), [
+            'unit_ids*' => 'required|integer',
+        ]);
+
+        if($validator->fails()) {
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
+        }
+
+        try {
+            $activity = Activity::find($id);
+            if ($activity) {
+                foreach ($request['unit_ids'] as $key => $unit_id){
+                    $junction_update = ActivityUnit::where('unit_id',$unit_id)->first();
+                    $junction_update->unit_order_number = $key;
+                    $junction_update->save();
+                }
+                return $this->getActivityUnits($id);
             }
         } catch (QueryException $e){
             if($e->getCode() === '22003') {
