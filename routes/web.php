@@ -92,17 +92,17 @@ Route::delete("units/edit/{id}", 'UnitController@delete')->name('units.delete');
 /**
  * Activity-related routes
  **/
-Route::get('activities/new', 'ActivityController@newActivity')->name('activities/new');
-Route::post('activities/new', 'ActivityController@create')->name('activity/create');
-Route::get('activities/show', 'ActivityController@show')->name('activities/show');
-Route::get('activities/detail/{id}', 'ActivityController@detail')->name('activities/detail');
-Route::post('activities/subscribe/{id}','ActivityController@subscribe')->name('activities.subscribe');
-Route::post('activities/invite/{id}', 'ActivityController@invite')->name('activities.invite');
-Route::post('activities/expel/{id}', 'ActivityController@expel')->name('activities.expel');
-Route::get("activities/edit/{id}", 'ActivityController@edit');
-Route::put("activities/edit/{id}", 'ActivityController@update')->name('activities.update');
-Route::delete("activities/edit/{id}", 'ActivityController@delete')->name('activities.delete');
-Route::post('activities/validate/{id}', 'ActivityController@validateActivity')->name('activities.validate');
+//Route::get('activities/new', 'ActivityController@newActivity')->name('activities/new');
+//Route::post('activities/new', 'ActivityController@create')->name('activity/create');
+//Route::get('activities/show', 'ActivityController@show')->name('activities/show');
+//Route::get('activities/detail/{id}', 'ActivityController@detail')->name('activities/detail');
+//Route::post('activities/subscribe/{id}','ActivityController@subscribe')->name('activities.subscribe');
+//Route::post('activities/invite/{id}', 'ActivityController@invite')->name('activities.invite');
+//Route::post('activities/expel/{id}', 'ActivityController@expel')->name('activities.expel');
+//Route::get("activities/edit/{id}", 'ActivityController@edit');
+//Route::put("activities/edit/{id}", 'ActivityController@update')->name('activities.update');
+//Route::delete("activities/edit/{id}", 'ActivityController@delete')->name('activities.delete');
+//Route::post('activities/validate/{id}', 'ActivityController@validateActivity')->name('activities.validate');
 
 /**
  * Dashboard-related routes

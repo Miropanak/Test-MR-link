@@ -64,18 +64,18 @@ Route::delete('helps/{id}', 'HelpController@deleteHelp');
 // ACTIVITIES
 Route::group(['prefix' => 'activity', 'middleware' => 'auth:api'], function () {
     Route::get('{id}', 'ActivityController@getActivity');
-    Route::post('', 'ActivityController@createActivity');
-    Route::put('{id}', 'ActivityController@updateActivity');
+    Route::get('author', 'ActivityController@getAuthorActivities');
     Route::delete('{id}', 'ActivityController@deleteActivity');
+    Route::put('{id}', 'ActivityController@updateActivity');
     Route::put('{id}/unit', 'ActivityController@addUnitToActivity');
     Route::put('{id}/units', 'ActivityController@updateUnitArrayInActivity');
+    Route::post('', 'ActivityController@createActivity');
     Route::post('{id}/clone', 'ActivityController@cloneActivity');
 });
 Route::group(['prefix' => 'activity'], function (){
     Route::get('all', 'ActivityController@getActivities');
     Route::get('study/fields', 'ActivityController@getStudyFields');
     Route::get('{id}/units', 'ActivityController@getActivityUnits');
-
 });
 
 // UNITS
