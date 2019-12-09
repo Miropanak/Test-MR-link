@@ -319,11 +319,8 @@ class UserController extends Controller
     public function getUserEvents($id) {
         try{
             $events = Event::where("author_id", $id)->get();
-            if(count($events) > 0) {
-                return response()->json($events, 200);
-            } else {
-                return response()->json(null, 404);
-            }
+            return response()->json($events, 200);
+
         } catch(QueryException $e) {
             if($e->getCode() === '22003'){
                 return response()->json(null, 400);
