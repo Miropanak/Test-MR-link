@@ -10,10 +10,12 @@ use App\ActivityUsers;
 use App\StudyField;
 use App\User;
 use App\Unit;
+use http\Env\Response;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use function view;
 
@@ -299,12 +301,18 @@ class ActivityController extends Controller
     {
         try{
             $old_activity = Activity::find($id);
+
             $new_activity = $old_activity->replicate();
             $new_activity->author_id = Auth::user()->id;
             $new_activity->push();
 
-            //re-sync everything
-            $new_activity->units()->sync($old_activity->units);
+            //re-sync everything, and change unit order number
+            $extra = array_map(function($order_num){
+                return ['unit_order_number' => $order_num];
+            }, $old_activity->units()->pluck('unit_order_number')->toArray());
+            $data = array_combine($old_activity->units()->pluck('unit_id')->toArray(), $extra);
+
+            $new_activity->units()->sync($data);
 
             return response()->json([
                 'activity'=>$new_activity,
