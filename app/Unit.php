@@ -30,7 +30,7 @@ class Unit extends Model
 
     public function activities()
     {
-        return $this->belongsToMany('App\ActivityUnit', 'activity_unit', 'unit_id', 'activity_id')->withTimestamps();
+        return $this->belongsToMany('App\Activity', 'activity_unit', 'unit_id', 'activity_id')->withPivot('unit_order_number')->withTimestamps();
     }
 
     public function unitEvent()

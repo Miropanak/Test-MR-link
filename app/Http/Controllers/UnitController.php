@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
+use App\ActivityUnit;
 use Exception;
 use Illuminate\Database\QueryException;
 use App\Unit;
@@ -104,11 +106,7 @@ class UnitController extends Controller
     public function getUnitEvents($id) {
         try{
             $events = Unit::find($id)->events;
-            if(count($events) > 0) {
-                return response()->json($events, 200);
-            } else {
-                return response()->json(null, 404);
-            }
+            return response()->json($events, 200);
         } catch(QueryException $e) {
             if($e->getCode() === '22003') {
                 return response()->json(null, 400);
@@ -231,7 +229,7 @@ class UnitController extends Controller
             $unit = Unit::find($id);
             if($unit) {
                 $unit->update($request->all());
-                Log::debug($request['activity_ids']);
+
                 if($request->has('activity_ids'))
                 {
                     if(count($request['activity_ids']) < 1) {
@@ -259,7 +257,8 @@ class UnitController extends Controller
      *      operationId="updateEventArrayInUnit",
      *      tags={"Unit"},
      *      summary="Replaces Events in Units with specified Events",
-     *      description="Replaces Events in Units with specified Events. Event_ids array may be empty",
+     *      description="Replaces Events in Units with specified Events. Activity id must be specified, so we dont update clones. Event_ids array may be empty",
+     *      security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *          name="id",
      *          description="Unit id",
@@ -275,6 +274,10 @@ class UnitController extends Controller
      *       @OA\MediaType(
      *           mediaType="application/json",
      *           @OA\Schema(
+     *               @OA\Property(
+     *                      property="activity_id",
+     *                      type="integer",
+     *                ),
      *               @OA\Property(
      *                      property="event_ids",
      *                      type="integer",
@@ -300,18 +303,17 @@ class UnitController extends Controller
 
         $validator = Validator::make($request->all(), [
             'event_ids.*' => 'integer',
+            'activity_id' => 'integer|required',
         ]);
 
         if($validator->fails()) {
             return response()->json(['Data validation error'=>$validator->errors()], 400);
         }
-
-
         try {
             $unit = Unit::find($id);
             if ($unit) {
-                $unit->events()->sync($request['event_ids']);
-                return response()->json($unit, 200);
+                $new_unit = $this->graceful_unit_update($unit, $request['event_ids'], $request['activity_id']);
+                return response()->json($new_unit->events, 200);
             } else {
                 return response()->json('Cant find unit with specified id', 404);
             }
@@ -320,6 +322,37 @@ class UnitController extends Controller
                 return response()->json(null, 400);
             } else {
                 return response()->json(null, 500);
+            }
+        }
+
+    }
+    public function graceful_unit_update($unit, $new_events, $activity_id){
+        $old_events = $unit->events()->get()->pluck('id');
+
+        if($old_events === $new_events) {
+            return $unit;
+        } else {
+            // check if unit is assigned to more activities
+            if (count(ActivityUnit::where('unit_id',$unit->id)->get())>1){
+                //clone unit so we can put changes into new one, and old one will stay linked to activity clones
+                $new_unit = $unit->replicate();
+                $new_unit->author_id = Auth::user()->id;
+                $new_unit->push();
+                $new_unit->events()->sync($new_events);
+
+                // update junction table and order number
+                $new_unit->activities()->attach($activity_id);
+                $new_order_num = ActivityUnit::where('activity_id',$activity_id)->where('unit_id',$new_unit->id)->first();
+                $old_order_num = ActivityUnit::where('activity_id',$activity_id)->where('unit_id',$unit->id)->first();
+                $new_order_num->unit_order_number = $old_order_num->unit_order_number; // set order like old unit
+                $new_unit->save();
+
+                // delete relationship with old unit of specified activity
+                $unit->activities()->detach($activity_id);
+                return $new_unit;
+            } else {
+                $unit->events()->sync($new_events); // if not, we can just asign new events to unit
+                return $unit;
             }
         }
 
