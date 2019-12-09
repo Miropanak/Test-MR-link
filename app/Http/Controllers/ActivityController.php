@@ -310,7 +310,7 @@ class ActivityController extends Controller
             $extra = array_map(function($order_num){
                 return ['unit_order_number' => $order_num];
             }, $old_activity->units()->pluck('unit_order_number')->toArray());
-            $data = array_combine($old_activity->units->pluck('pivot.id')->toArray(), $extra);
+            $data = array_combine($old_activity->units()->pluck('unit_id')->toArray(), $extra);
 
             $new_activity->units()->sync($data);
 
