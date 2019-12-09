@@ -67,20 +67,17 @@ $config['backends']['laravel_cache'] = array(
     'adapter'      => 'local',
     'root'         => storage_path('framework/cache')
 );
-
 $config['backends']['laravel_logs'] = array(
     'name'         => 'laravel_logs',
     'adapter'      => 'local',
     'root'         => storage_path('logs')
 );
-
 // Backends
-
 $config['backends']['default'] = array(
     'name'         => 'default',
     'adapter'      => 'local',
-    'baseUrl'      => env('APP_URL').'/ckfinder/userfiles/',
-    'root'         => public_path('/ckfinder/userfiles/'),
+    'baseUrl'      => env('APP_URL').'/userfiles/',
+    'root'         => public_path('/userfiles/'),
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
     'filesystemEncoding' => 'UTF-8'
