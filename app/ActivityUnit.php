@@ -34,7 +34,7 @@ class ActivityUnit extends Model
      */
     public function unit()
     {
-        return $this->belongsTo('App\Unit');
+        return $this->belongsTo('App\Unit','unit_id');
     }
 
 }
