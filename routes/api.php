@@ -43,6 +43,7 @@ Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {
     Route::post('', 'EventController@createEvent');
 });
 Route::get('events/{id}', 'EventController@getEvent');
+Route::get('events/', 'EventController@getEvents');
 Route::get('events/{id}/options', 'EventController@getEventOptions');
 Route::delete('events/{id}/options', 'EventController@deleteEventOptions');
 Route::get('events/{id}/event_types', 'EventController@getEventTypes');

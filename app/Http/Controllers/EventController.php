@@ -98,6 +98,36 @@ class EventController extends Controller
             }
         }
     }
+    /**
+     * @OA\Get(
+     *      path="/api/events/",
+     *      operationId="getEvents",
+     *      tags={"Event"},
+     *      summary="Get events",
+     *      description="Returns all events",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
+    public function getEvents() {
+        try{
+            $events = Event::all();
+            return response()->json($events, 200);
+        }catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400); // bad id provided -> id too big for integer
+            } else {
+                return response()->json(null, 500);
+            }
+        }
+    }
 
     /**
      * @OA\Put(
