@@ -474,6 +474,11 @@ class EventController extends Controller
             $event->time_to_handle = isset($request['time_to_handle']) ? $request['time_to_handle'] : 50;
             $event->event_type_id = $request['event_type_id'];
             $event->author_id = Auth::user()->id;
+
+            // change user type to author
+            $user = User::find(Auth::user()->id);
+            $user->user_type_id = 3;
+            $user->save();
             $event->save();
         }catch (QueryException $e) {
             return response()->json(null, 500); // f.e. postgres id counter is not set up properly
