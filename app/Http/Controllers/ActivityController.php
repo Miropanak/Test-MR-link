@@ -524,7 +524,6 @@ class ActivityController extends Controller
      *     )
      */
     public function addUnitToActivity(Request $request, $id) {
-
         $validator = Validator::make($request->all(), [
             'unit_id' => 'required|integer',
         ]);
@@ -537,6 +536,10 @@ class ActivityController extends Controller
 
         try {
             $activity = Activity::find($id);
+            if(Auth::user()->id != $activity->author->id) {
+                return response()->json('Only author can add unit to activity', 403);
+            }
+
             if ($activity) {
                 $activity->units()->syncWithoutDetaching($request['unit_id']);
                 $junction = ActivityUnit::where('unit_id',$request['unit_id'])->first();
@@ -552,6 +555,71 @@ class ActivityController extends Controller
             }
         }
 
+    }
+
+    /**
+     * @OA\Put(
+     *      path="/api/activity/{id}/student",
+     *      operationId="addStudentToActivity",
+     *      tags={"Activity"},
+     *      summary="Adds Student to Activity",
+     *      description="Adds Student to Activity",
+     *      security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="Activity id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *       required=true,
+     *       description="",
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               @OA\Property(
+     *                      property="student_id",
+     *                      type="integer",
+     *                )
+     *           )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid JSON body supplied",
+     *      ),
+     *     )
+     */
+
+    public function addStudent(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'student_id' => 'required|integer',
+        ]);
+
+        if($validator->fails()) {
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
+        }
+
+        try {
+            $activity = Activity::find($id);
+            if ($activity) {
+                $activity->subscriber()->syncWithoutDetaching($request['student_id']);
+                return response()->json($activity, 200);
+            }
+        } catch (QueryException $e){
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
+        }
     }
 
     /**
@@ -677,6 +745,9 @@ class ActivityController extends Controller
 
         try {
             $activity = Activity::find($id);
+            if(Auth::user()->id != $activity->author->id) {
+                return response()->json('Only author can update units in activity', 403);
+            }
             if ($activity) {
                 $activity->units()->sync($request['unit_ids']);
                 return response()->json($activity, 200);
