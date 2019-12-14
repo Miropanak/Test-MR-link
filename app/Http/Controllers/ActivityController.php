@@ -126,6 +126,46 @@ class ActivityController extends Controller
         $activities = Activity::all();
         return response()->json($activities,200);
     }
+    /**
+     * @OA\Get(
+     *      path="/api/activity/{id}/subscribers",
+     *      operationId="getSubscribers",
+     *      tags={"Activity"},
+     *      summary="get all subscribers of activity",
+     *      description="Returns 'subscribers'",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Activity id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *   )
+     */
+    public function getSubscribers($id)
+    {
+        try{
+            $subs = Activity::find($id)->subscriber()->orderBy('name')->get();
+            return response()->json($subs, 200);
+
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
+        }
+    }
 
     /**
      * @OA\Get(
@@ -560,7 +600,7 @@ class ActivityController extends Controller
     /**
      * @OA\Put(
      *      path="/api/activity/{id}/student",
-     *      operationId="addStudentToActivity",
+     *      operationId="addStudentsToActivity",
      *      tags={"Activity"},
      *      summary="Adds Student to Activity",
      *      description="Adds Student to Activity",
@@ -581,7 +621,7 @@ class ActivityController extends Controller
      *           mediaType="application/json",
      *           @OA\Schema(
      *               @OA\Property(
-     *                      property="student_id",
+     *                      property="student_ids",
      *                      type="integer",
      *                )
      *           )
@@ -600,7 +640,7 @@ class ActivityController extends Controller
 
     public function addStudent(Request $request, $id) {
         $validator = Validator::make($request->all(), [
-            'student_id' => 'required|integer',
+            'student_ids*' => 'required|integer',
         ]);
 
         if($validator->fails()) {
@@ -610,7 +650,7 @@ class ActivityController extends Controller
         try {
             $activity = Activity::find($id);
             if ($activity) {
-                $activity->subscriber()->syncWithoutDetaching($request['student_id']);
+                $activity->subscriber()->syncWithoutDetaching($request['student_ids']);
                 return response()->json($activity, 200);
             }
         } catch (QueryException $e){
