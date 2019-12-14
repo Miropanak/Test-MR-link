@@ -68,6 +68,7 @@ Route::group(['prefix' => 'activity'], function (){
     Route::get('all', 'ActivityController@getActivities');
     Route::get('study/fields', 'ActivityController@getStudyFields');
     Route::get('{id}/units', 'ActivityController@getActivityUnits');
+    Route::get('{id}/subscribers', 'ActivityController@getSubscribers');
 });
 
 Route::group(['prefix' => 'activity', 'middleware' => 'auth:api'], function () {
