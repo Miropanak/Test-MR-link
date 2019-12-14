@@ -37,6 +37,7 @@ Route::group(['prefix' => 'password', 'middleware' => 'auth:api'], function () {
 Route::group(['prefix' => 'users'], function () {
     Route::get('{id}/events', 'API\UserController@getUserEvents');
     Route::get('{id}/activities', 'API\UserController@getUserActivities');
+    Route::get('', 'API\UserController@getUsers');
 });
 // EVENTS
 Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {
