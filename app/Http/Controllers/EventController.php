@@ -98,6 +98,36 @@ class EventController extends Controller
             }
         }
     }
+    /**
+     * @OA\Get(
+     *      path="/api/events/",
+     *      operationId="getEvents",
+     *      tags={"Event"},
+     *      summary="Get events",
+     *      description="Returns all events",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
+    public function getEvents() {
+        try{
+            $events = Event::all();
+            return response()->json($events, 200);
+        }catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400); // bad id provided -> id too big for integer
+            } else {
+                return response()->json(null, 500);
+            }
+        }
+    }
 
     /**
      * @OA\Put(
@@ -444,6 +474,11 @@ class EventController extends Controller
             $event->time_to_handle = isset($request['time_to_handle']) ? $request['time_to_handle'] : 50;
             $event->event_type_id = $request['event_type_id'];
             $event->author_id = Auth::user()->id;
+
+            // change user type to author
+            $user = User::find(Auth::user()->id);
+            $user->user_type_id = 3;
+            $user->save();
             $event->save();
         }catch (QueryException $e) {
             return response()->json(null, 500); // f.e. postgres id counter is not set up properly

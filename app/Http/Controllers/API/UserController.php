@@ -377,4 +377,27 @@ class UserController extends Controller
             }
         }
     }
+
+    /**
+     * @OA\Get(
+     *      path="/api/users/",
+     *      operationId="getUsers",
+     *      tags={"User"},
+     *      summary="Gets all users",
+     *      description="Returns 'users'",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *     )
+     */
+
+    public function getUsers() {
+        try{
+            $users = User::all();
+            return response()->json($users, 200);
+        } catch(QueryException $e) {
+            return response()->json(null, 500);
+        }
+    }
 }

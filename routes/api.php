@@ -37,12 +37,14 @@ Route::group(['prefix' => 'password', 'middleware' => 'auth:api'], function () {
 Route::group(['prefix' => 'users'], function () {
     Route::get('{id}/events', 'API\UserController@getUserEvents');
     Route::get('{id}/activities', 'API\UserController@getUserActivities');
+    Route::get('', 'API\UserController@getUsers');
 });
 // EVENTS
 Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {
     Route::post('', 'EventController@createEvent');
 });
 Route::get('events/{id}', 'EventController@getEvent');
+Route::get('events/', 'EventController@getEvents');
 Route::get('events/{id}/options', 'EventController@getEventOptions');
 Route::delete('events/{id}/options', 'EventController@deleteEventOptions');
 Route::get('events/{id}/event_types', 'EventController@getEventTypes');
@@ -77,6 +79,7 @@ Route::group(['prefix' => 'activity', 'middleware' => 'auth:api'], function () {
     Route::put('{id}/order/units', 'ActivityController@changeUnitOrder');
     Route::post('', 'ActivityController@createActivity');
     Route::post('{id}/clone', 'ActivityController@cloneActivity');
+    Route::put('{id}/student', 'ActivityController@addStudent');
 });
 
 
