@@ -79,6 +79,7 @@ Route::group(['prefix' => 'activity', 'middleware' => 'auth:api'], function () {
     Route::put('{id}/order/units', 'ActivityController@changeUnitOrder');
     Route::post('', 'ActivityController@createActivity');
     Route::post('{id}/clone', 'ActivityController@cloneActivity');
+    Route::put('{id}/student', 'ActivityController@addStudent');
 });
 
 
