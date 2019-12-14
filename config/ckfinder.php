@@ -67,20 +67,17 @@ $config['backends']['laravel_cache'] = array(
     'adapter'      => 'local',
     'root'         => storage_path('framework/cache')
 );
-
 $config['backends']['laravel_logs'] = array(
     'name'         => 'laravel_logs',
     'adapter'      => 'local',
     'root'         => storage_path('logs')
 );
-
 // Backends
-
 $config['backends']['default'] = array(
     'name'         => 'default',
     'adapter'      => 'local',
-    'baseUrl'      => env('APP_URL').'/ckfinder/userfiles/',
-    'root'         => public_path('/ckfinder/userfiles/'),
+    'baseUrl'      => env('APP_URL').'/userfiles/',
+    'root'         => public_path('/userfiles/'),
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
     'filesystemEncoding' => 'UTF-8'
@@ -178,7 +175,12 @@ $config['sessionWriteClose'] = true;
 /*================================= CSRF protection ===================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_csrfProtection
 
-$config['csrfProtection'] = true;
+$config['csrfProtection'] = false;
+$config['headers'] = array(
+    'Access-Control-Allow-Origin' => '*',
+    'Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, X-Token-Auth, X-CSRF-Token, Authorization'
+);
 
 /*============================== End of Configuration =================================*/
 

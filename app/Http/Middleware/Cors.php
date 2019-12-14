@@ -1,5 +1,8 @@
 <?php
-namespace App\Http\Middleware;use Closure;class Cors
+namespace App\Http\Middleware;use Closure;
+use Illuminate\Support\Facades\Log;
+
+class Cors
 {
     public function handle($request, Closure $next)
     {
