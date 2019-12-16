@@ -650,7 +650,7 @@ class ActivityController extends Controller
         try {
             $activity = Activity::find($id);
             if ($activity) {
-                $activity->subscriber()->syncWithoutDetaching($request['student_ids']);
+                $activity->subscriber()->sync($request['student_ids']);
                 return response()->json($activity, 200);
             }
         } catch (QueryException $e){
