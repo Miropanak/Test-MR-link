@@ -277,7 +277,7 @@ class ActivityController extends Controller
             'title' => 'required|string|max:50',
             'content' => 'required|string|max:1000',
             'study_field_id' => 'required|integer',
-            'public' => 'boolean'
+            'public' => 'required|boolean'
         ]);
 
         if($validator->fails()) {
@@ -505,7 +505,7 @@ class ActivityController extends Controller
             $activity = Activity::find($id);
 
             if($activity) {
-                if(Auth::user()->id != $activity->author->id || $activity->validated == true) {
+                if(Auth::user()->id != $activity->author->id) {
                     return response()->json('Only author can edit activity', 403);
                 }
                 $activity->delete();
