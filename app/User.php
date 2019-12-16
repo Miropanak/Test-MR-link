@@ -62,6 +62,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Event', 'author_id');
     }
+    /**
+     * returns subscriber Activity
+     * @return BelongsToMany
+     */
+    public function subscriberActivities()
+    {
+        return $this->belongsToMany('App\Activity', 'activity_users', 'subscriber_id','activity_id');
+    }
 
     /**
      * returns user tests created by this user

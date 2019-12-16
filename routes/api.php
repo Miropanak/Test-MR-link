@@ -38,6 +38,8 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('{id}/events', 'API\UserController@getUserEvents');
     Route::get('{id}/activities', 'API\UserController@getUserActivities');
     Route::get('', 'API\UserController@getUsers');
+    Route::get('{id}/subscribed/activities', 'API\UserController@subscribedActivity');
+
 });
 // EVENTS
 Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {

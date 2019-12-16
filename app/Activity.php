@@ -50,7 +50,7 @@ class Activity extends Model
 
     /**
      * Return subscribers of this activity
-     * @return $this
+     * @return $belongsToMany
      */
     public function subscriber(){
         return $this->belongsToMany('App\User', 'activity_users', 'activity_id', 'subscriber_id')->whereNull('activity_users.deleted_at')->withPivot('user_type_id');
