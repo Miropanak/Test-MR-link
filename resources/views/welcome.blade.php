@@ -11,6 +11,6 @@
     <body>
     <h1>Welcome to Databanka udalostí</h1>
     <p>Back end part of the project</p>
-    <p>To access API documentation go to: <a href="{{url('api/documentation')}}">Databanka's API</a></p>
+    <p>To access API documentation go to <a href="{{url('api/documentation')}}">Databanka's API</a></p>
     </body>
 </html>
