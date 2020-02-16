@@ -1,5 +1,5 @@
 image:
-  name: alpine/git:latest
+  name: alpine/git
   entrypoint: [""]
 
 before_script:
