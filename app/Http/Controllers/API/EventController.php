@@ -4,20 +4,20 @@
  * Created by Bernad on 11/6/2017.
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Help;
 use App\Option;
-use App\Unit;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Event;
-use App\UnitsEvent;
-use DB;
 use App\EventType;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
+
 
 
 /**
@@ -38,17 +38,6 @@ class EventController extends Controller
     public function __construct()
     {
 //        $this->middleware('auth');
-    }
-
-
-    /**
-     * Return events frontend view
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function events() {
-
-        return view('events.show');
     }
 
     /**

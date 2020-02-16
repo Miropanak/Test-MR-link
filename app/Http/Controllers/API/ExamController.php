@@ -6,25 +6,21 @@
  * Time: 17:08
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 
-use App\EventTest;
-use App\Help;
+use App\Http\Controllers\Controller;
 use App\Option;
 use App\Unit;
 use App\Test;
-use App\User;
 use App\UserTest;
 use DB;
-use http\Env\Response;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Jenssegers\Agent\Agent;
-use Carbon\Carbon;
 
 
 class ExamController extends Controller

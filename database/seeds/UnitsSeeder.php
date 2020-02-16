@@ -21,7 +21,6 @@ class UnitsSeeder extends Seeder
             'id' => 6,
             'title' => "Prednáška 1: Vhľad do objektovo-orientovaného programovania",
             'description' => "",
-            'activity_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -31,7 +30,6 @@ class UnitsSeeder extends Seeder
             'id' => 7,
             'title' => "Prednáška 2: Polymorfizmus a objektovo-orientovaná modularizácia",
             'description' => "",
-            'activity_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -41,7 +39,6 @@ class UnitsSeeder extends Seeder
             'id' => 8,
             'title' => "Prednáška 3: Návrhové vzory",
             'description' => "",
-            'activity_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -51,7 +48,6 @@ class UnitsSeeder extends Seeder
             'id' => 9,
             'title' => "Prednáška 4: Grafické používateľské rozhranie a jeho oddelenie od aplikačnej logiky",
             'description' => "",
-            'activity_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -61,7 +57,6 @@ class UnitsSeeder extends Seeder
             'id' => 10,
             'title' => "Prednáška 5: Štruktúrované typy údajov, generickosť a perzistencia",
             'description' => "",
-            'activity_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -71,7 +66,6 @@ class UnitsSeeder extends Seeder
             'id' => 11,
             'title' => "Prednáška 6: Paralelné spracovanie, robustnosť programu a reflexia",
             'description' => "",
-            'activity_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);
@@ -81,7 +75,6 @@ class UnitsSeeder extends Seeder
             'id' => 12,
             'title' => "Prednáška 7: Kvalitný objektovo-orientovaný návrh",
             'description' => "",
-            'activity_id' => 1,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

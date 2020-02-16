@@ -1,23 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 
 
 use App\Activity;
 use App\ActivityUnit;
 use App\ActivityUsers;
+use App\Http\Controllers\Controller;
 use App\StudyField;
-use App\User;
-use App\Unit;
-use http\Env\Response;
 use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use function view;
 
 /**
  * Class ActivityController that handles activities
@@ -800,74 +795,6 @@ class ActivityController extends Controller
             }
         }
 
-    }
-
-    public function subscribe($id){
-
-
-        $activity = Activity::find($id);
-        $users = $activity->subscriber;
-        $registered = $this->isRegistered($activity->subscriber, Auth::user()->id);
-        $title = $activity->name;
-
-        if(!$registered){
-            ActivityUsers::create([
-                'activity_id' => $id,
-                'subscriber_id' => Auth::user()->id
-            ]);
-            $registered = true;
-        }
-        else {
-            $activity_users = ActivityUsers::where('activity_id' , $id)->where('subscriber_id', Auth::user()->id)->get();
-            foreach ($activity_users as $au)
-                $au->delete();
-            $registered = false;
-        }
-
-        return redirect('activities/detail/'.$id);
-
-    }
-
-
-    public function invite(Request $request, $id)
-    {
-
-        $activity = Activity::find($id);
-
-        if (is_array($request->select_users) || is_object($request->select_users)) {
-            foreach ($request->select_users as $value) {
-                $registered = $this->isRegistered($activity->subscriber, $value);
-
-                if(!$registered){
-                    ActivityUsers::create([
-                        'activity_id' => $id,
-                        'subscriber_id' => $value
-                    ]);
-                }
-            }
-        }
-
-        return redirect('activities/detail/'.$id);
-    }
-
-    public function expel(Request $request, $id)
-    {
-        $activity_users = ActivityUsers::where('activity_id' , $id)->where('subscriber_id', $request->input('data-name'))->get();
-        foreach ($activity_users as $au)
-            $au->delete();
-
-        return redirect('activities/detail/'.$id);
-    }
-
-    public function validateActivity($id)
-    {
-
-        $activity = Activity::find($id);
-
-        $activity->validated = true;
-        $activity->save();
-
-        return redirect('activities/detail/'.$id);
     }
 
 }

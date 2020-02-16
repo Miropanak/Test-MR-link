@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Activity;
 use App\ActivityUnit;
 use Exception;
 use Illuminate\Database\QueryException;
@@ -11,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+
 
 class UnitController extends Controller
 {
@@ -326,6 +327,7 @@ class UnitController extends Controller
         }
 
     }
+
     public function graceful_unit_update($unit, $new_events, $activity_id){
         $old_events = $unit->events()->get()->pluck('id');
 

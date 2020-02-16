@@ -1,10 +1,7 @@
 /node_modules
 /teampage
 /public/hot
-#/public/.htaccess
 /public/storage
-#/public/js/*
-#/public/css/*
 /storage/*.key
 /storage/debugbar
 /storage/api-docs
