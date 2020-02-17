@@ -42,7 +42,11 @@
         }
     },
     "extra": {
-
+        "laravel": {
+            "dont-discover": [
+                "laravel/dusk"
+            ]
+        }
     },
     "scripts": {
         "post-root-package-install": [
