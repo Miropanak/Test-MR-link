@@ -27,7 +27,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/debug-sentry-develop', function () {
-    throw new Exception('My Sentry error develop!');
-});
