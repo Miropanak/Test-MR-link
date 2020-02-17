@@ -16,6 +16,7 @@
         "laravel/installer": "~1.1",
         "laravel/passport": "^7.5",
         "laravel/tinker": "~1.0",
+        "sentry/sentry-laravel": "1.6.1",
         "unisharp/laravel-ckeditor": "^4.7"
     },
     "require-dev": {

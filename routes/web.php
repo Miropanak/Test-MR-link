@@ -29,5 +29,5 @@ Route::get('/', function () {
 });
 
 Route::get('/debug-sentry-develop', function () {
-    throw new Exception('My Sentry error!');
+    throw new Exception('My Sentry error develop!');
 });
