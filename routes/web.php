@@ -28,6 +28,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/debug-sentry', function () {
-    throw new Exception('My second Sentry error!');
+Route::get('/debug-sentry-develop', function () {
+    throw new Exception('My Sentry error!');
 });
