@@ -1,13 +1,14 @@
 <?php
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Notifications\PasswordResetRequest;
 use App\Notifications\PasswordResetSuccess;
-use App\User;
-use App\PasswordReset;
+use App\Models\User;
+use App\Models\PasswordReset;
 use Illuminate\Support\Facades\Validator;
 
 class PasswordResetController extends Controller

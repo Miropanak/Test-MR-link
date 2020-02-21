@@ -1,14 +1,15 @@
 <?php
-namespace App\Http\Controllers\API;
-use App\Activity;
+namespace App\Http\Controllers\Api;
+
+use App\Models\Activity;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\UserType;
+use App\Models\User;
+use App\Models\UserType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use App\Event;
+use App\Models\Event;
 
 
 

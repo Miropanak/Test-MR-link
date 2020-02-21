@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 
 
-use App\Activity;
-use App\ActivityUnit;
-use App\ActivityUsers;
+use App\Models\Activity;
+use App\Models\ActivityUnit;
+use App\Models\ActivityUsers;
 use App\Http\Controllers\Controller;
-use App\StudyField;
+use App\Models\StudyField;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,47 +41,21 @@ class ActivityController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/activity/{id}/units",
-     *      operationId="getActivityUnits",
+     *      path="/api/activity/all",
+     *      operationId="getActivities",
      *      tags={"Activity"},
-     *      summary="Gets all units of activity",
-     *      description="Returns 'units' of activity by activity id",
-     *      @OA\Parameter(
-     *          name="id",
-     *          description="Activity id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
+     *      summary="get all activities",
+     *      description="Returns 'activities'",
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="successful operation"
      *       ),
-     *      @OA\Response(
-     *          response=404,
-     *          description="No units not found"
-     *       ),
-     *      @OA\Response(
-     *         response=400,
-     *         description="Invalid ID supplied",
-     *      ),
-     *     )
+     *  )
      */
-
-    public function getActivityUnits($id) {
-        try{
-            $units = Activity::find($id)->units()->orderBy('unit_order_number')->get();
-            return response()->json($units, 200);
-
-        } catch(QueryException $e) {
-            if($e->getCode() === '22003') {
-                return response()->json(null, 400);
-            } else {
-                return response()->json(null, 500);
-            }
-        }
+    public function getActivities()
+    {
+        $activities = Activity::all();
+        return response()->json($activities,200);
     }
 
     /**
@@ -101,65 +75,6 @@ class ActivityController extends Controller
     {
         $fields = StudyField::all();
         return response()->json($fields, 200);
-    }
-
-    /**
-     * @OA\Get(
-     *      path="/api/activity/all",
-     *      operationId="getActivities",
-     *      tags={"Activity"},
-     *      summary="get all activities",
-     *      description="Returns 'activities'",
-     *      @OA\Response(
-     *          response=200,
-     *          description="successful operation"
-     *       ),
-     *  )
-     */
-    public function getActivities()
-    {
-        $activities = Activity::all();
-        return response()->json($activities,200);
-    }
-    /**
-     * @OA\Get(
-     *      path="/api/activity/{id}/subscribers",
-     *      operationId="getSubscribers",
-     *      tags={"Activity"},
-     *      summary="get all subscribers of activity",
-     *      description="Returns 'subscribers'",
-     *      @OA\Parameter(
-     *          name="id",
-     *          description="Activity id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation"
-     *       ),
-     *      @OA\Response(
-     *         response=400,
-     *         description="Invalid ID supplied",
-     *      ),
-     *   )
-     */
-    public function getSubscribers($id)
-    {
-        try{
-            $subs = Activity::find($id)->subscriber()->orderBy('name')->get();
-            return response()->json($subs, 200);
-
-        } catch(QueryException $e) {
-            if($e->getCode() === '22003') {
-                return response()->json(null, 400);
-            } else {
-                return response()->json(null, 500);
-            }
-        }
     }
 
     /**
@@ -214,6 +129,92 @@ class ActivityController extends Controller
         }catch(QueryException $e) {
             if ($e->getCode() === '22003') {
                 return response()->json(null, 400); // bad id provided -> id too big for integer
+            } else {
+                return response()->json(null, 500);
+            }
+        }
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/activity/{id}/units",
+     *      operationId="getActivityUnits",
+     *      tags={"Activity"},
+     *      summary="Gets all units of activity",
+     *      description="Returns 'units' of activity by activity id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Activity id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="No units not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
+    public function getActivityUnits($id) {
+        try{
+            $units = Activity::find($id)->units()->orderBy('unit_order_number')->get();
+            return response()->json($units, 200);
+
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json(null, 500);
+            }
+        }
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/activity/{id}/subscribers",
+     *      operationId="getSubscribers",
+     *      tags={"Activity"},
+     *      summary="get all subscribers of activity",
+     *      description="Returns 'subscribers'",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Activity id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *   )
+     */
+    public function getSubscribers($id)
+    {
+        try{
+            $subs = Activity::find($id)->subscriber()->orderBy('name')->get();
+            return response()->json($subs, 200);
+
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003') {
+                return response()->json(null, 400);
             } else {
                 return response()->json(null, 500);
             }

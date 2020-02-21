@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
-use App\Help;
+use App\Models\Help;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;

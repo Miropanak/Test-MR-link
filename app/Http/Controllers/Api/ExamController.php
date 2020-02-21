@@ -6,14 +6,14 @@
  * Time: 17:08
  */
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
-use App\Option;
-use App\Unit;
-use App\Test;
-use App\UserTest;
+use App\Models\Option;
+use App\Models\Unit;
+use App\Models\Test;
+use App\Models\UserTest;
 use DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;

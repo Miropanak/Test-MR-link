@@ -1,35 +1,43 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
-class ActivityUnit extends Model
+/**
+ * Class UnitsEvent
+ *
+ * This class provides ORM part of model for associative table between unit and event (one unit has many events
+ * and one event belongs to many units).
+ *
+ * @package App
+ */
+class UnitsEvent extends Model
 {
     use SoftDeletes;
-    protected $table = 'activity_unit';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'activity_id','unit_id'
+        'event_id','unit_id'
     ];
 
     /**
-     * Activities belonging to users
+     * Every UnitsEvent belongs to only one Event.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function activity()
+    public function event()
     {
-        return $this->belongsTo('App\Activity');
+        return $this->belongsTo('App\Event');
     }
 
     /**
-     * Users belonging to activity
+     * Every UnitsEvent can has only one Unit.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function unit()

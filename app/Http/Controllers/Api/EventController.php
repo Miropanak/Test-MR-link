@@ -4,15 +4,15 @@
  * Created by Bernad on 11/6/2017.
  */
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
-use App\Help;
-use App\Option;
+use App\Models\Help;
+use App\Models\Option;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use App\Event;
-use App\EventType;
-use App\User;
+use App\Models\Event;
+use App\Models\EventType;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;

@@ -4,7 +4,7 @@
  * Created by Bernad on 11/6/2017.
  */
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

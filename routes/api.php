@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,83 +19,91 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 });
 
-Route::post('/login', 'API\UserController@login');
-Route::post('/register', 'API\UserController@register');
-Route::post('/email/check', 'API\UserController@email_check');
+Route::post('/login', 'Api\UserController@login');
+Route::post('/register', 'Api\UserController@register');
+Route::post('/email/check', 'Api\UserController@email_check');
 
 
 Route::group(['prefix' => 'password'], function () {
-    Route::post('create', 'API\PasswordResetController@create');
-    Route::get('find/{token}', 'API\PasswordResetController@find');
-    Route::post('reset', 'API\PasswordResetController@reset');
+    Route::post('create', 'Api\PasswordResetController@create');
+    Route::get('find/{token}', 'Api\PasswordResetController@find');
+    Route::post('reset', 'Api\PasswordResetController@reset');
 });
 
 Route::group(['prefix' => 'password', 'middleware' => 'auth:api'], function () {
-    Route::post('change', 'API\UserController@password_change');
+    Route::post('change', 'Api\UserController@password_change');
 });
 
 // USERS
 Route::group(['prefix' => 'users'], function () {
-    Route::get('{id}/events', 'API\UserController@getUserEvents');
-    Route::get('{id}/activities', 'API\UserController@getUserActivities');
-    Route::get('', 'API\UserController@getUsers');
-    Route::get('{id}/subscribed/activities', 'API\UserController@subscribedActivity');
+    Route::get('{id}/events', 'Api\UserController@getUserEvents');
+    Route::get('{id}/activities', 'Api\UserController@getUserActivities');
+    Route::get('', 'Api\UserController@getUsers');
+    Route::get('{id}/subscribed/activities', 'Api\UserController@subscribedActivity');
 
 });
 // EVENTS
 Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {
-    Route::post('', 'API\EventController@createEvent');
+    Route::post('', 'Api\EventController@createEvent');
 });
-Route::get('events/{id}', 'API\EventController@getEvent');
-Route::get('events/', 'API\EventController@getEvents');
-Route::get('events/{id}/options', 'API\EventController@getEventOptions');
-Route::delete('events/{id}/options', 'API\EventController@deleteEventOptions');
-Route::get('events/{id}/event_types', 'API\EventController@getEventTypes');
-Route::get('events/{id}/event_helps', 'API\EventController@getEventHelps');
-Route::put('events/{id}', 'API\EventController@updateEvent');
-Route::delete('events/{id}', 'API\EventController@deleteEvent');
-Route::put('events', 'API\EventController@updateEvents');
+
+Route::group(['prefix' => 'events'], function (){
+    Route::get('{id}', 'Api\EventController@getEvent');
+    Route::get('', 'Api\EventController@getEvents');
+    Route::get('{id}/options', 'Api\EventController@getEventOptions');
+    Route::delete('{id}/options', 'Api\EventController@deleteEventOptions');
+    Route::get('{id}/event_types', 'Api\EventController@getEventTypes');
+    Route::get('{id}/event_helps', 'Api\EventController@getEventHelps');
+    Route::put('{id}', 'Api\EventController@updateEvent');
+    Route::delete('{id}', 'Api\EventController@deleteEvent');
+    Route::put('', 'Api\EventController@updateEvents');
+});
+
 // OPTIONS
-Route::put('options', 'API\EventController@updateOptions');
-Route::put('options/{id}', 'API\EventController@updateOption');
-Route::delete('options/{id}', 'API\EventController@deleteOption');
-Route::post('options', 'API\EventController@createOption');
+Route::group(['prefix' => 'options'], function (){
+    Route::put('', 'Api\EventController@updateOptions');
+    Route::put('{id}', 'Api\EventController@updateOption');
+    Route::delete('{id}', 'Api\EventController@deleteOption');
+    Route::post('', 'Api\EventController@createOption');
+});
 // HELPS
-Route::get('helps/{id}', 'API\HelpController@getHelp');
-Route::post('helps', 'API\HelpController@createHelp');
-Route::put('helps/{id}', 'API\HelpController@updateHelp');
-Route::delete('helps/{id}', 'API\HelpController@deleteHelp');
+Route::group(['prefix' => 'helps'], function (){
+    Route::get('{id}', 'Api\HelpController@getHelp');
+    Route::post('', 'Api\HelpController@createHelp');
+    Route::put('{id}', 'Api\HelpController@updateHelp');
+    Route::delete('{id}', 'Api\HelpController@deleteHelp');
+});
 
 // ACTIVITIES
 Route::group(['prefix' => 'activity'], function (){
-    Route::get('all', 'API\ActivityController@getActivities');
-    Route::get('study/fields', 'API\ActivityController@getStudyFields');
-    Route::get('{id}/units', 'API\ActivityController@getActivityUnits');
-    Route::get('{id}/subscribers', 'API\ActivityController@getSubscribers');
+    Route::get('all', 'Api\ActivityController@getActivities');
+    Route::get('study/fields', 'Api\ActivityController@getStudyFields');
+    Route::get('{id}/units', 'Api\ActivityController@getActivityUnits');
+    Route::get('{id}/subscribers', 'Api\ActivityController@getSubscribers');
 });
 
 Route::group(['prefix' => 'activity', 'middleware' => 'auth:api'], function () {
-    Route::get('{id}', 'API\ActivityController@getActivity');
-    Route::delete('{id}', 'API\ActivityController@deleteActivity');
-    Route::put('{id}', 'API\ActivityController@updateActivity');
-    Route::put('{id}/unit', 'API\ActivityController@addUnitToActivity');
-    Route::put('{id}/units', 'API\ActivityController@updateUnitArrayInActivity');
-    Route::put('{id}/order/units', 'API\ActivityController@changeUnitOrder');
-    Route::post('', 'API\ActivityController@createActivity');
-    Route::post('{id}/clone', 'API\ActivityController@cloneActivity');
-    Route::put('{id}/student', 'API\ActivityController@addStudent');
+    Route::get('{id}', 'Api\ActivityController@getActivity');
+    Route::delete('{id}', 'Api\ActivityController@deleteActivity');
+    Route::put('{id}', 'Api\ActivityController@updateActivity');
+    Route::put('{id}/unit', 'Api\ActivityController@addUnitToActivity');
+    Route::put('{id}/units', 'Api\ActivityController@updateUnitArrayInActivity');
+    Route::put('{id}/order/units', 'Api\ActivityController@changeUnitOrder');
+    Route::post('', 'Api\ActivityController@createActivity');
+    Route::post('{id}/clone', 'Api\ActivityController@cloneActivity');
+    Route::put('{id}/student', 'Api\ActivityController@addStudent');
 });
 
 
 // UNITS
 Route::group(['prefix' => 'units', 'middleware' => 'auth:api'], function () {
-    Route::post('', 'API\UnitController@createUnit');
-    Route::put('{id}/events', 'API\UnitController@updateEventArrayInUnit');
+    Route::post('', 'UnitController@createUnit');
+    Route::put('{id}/events', 'UnitController@updateEventArrayInUnit');
 });
 Route::group(['prefix' => 'units'], function (){
-    Route::get('{id}', 'API\UnitController@getUnit');
-    Route::get('{id}/events', 'API\UnitController@getUnitEvents');
-    Route::put('{id}', 'API\UnitController@updateUnit');
+    Route::get('{id}', 'UnitController@getUnit');
+    Route::get('{id}/events', 'UnitController@getUnitEvents');
+    Route::put('{id}', 'UnitController@updateUnit');
 
 });
 
