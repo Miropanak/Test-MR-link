@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
 		 $this->call(UserTestsSeeder::class);
 		 $this->call(EventTestsSeeder::class);
          $this->call(HelpSeeder::class);
+         $this->call(ActivityUnitSeeder::class);
 		 //$this->call(AnonymPermissions::class);
          //$this->call(StudentPermissions::class);
          //$this->call(AuthorPermissions::class);
