@@ -97,13 +97,13 @@ Route::group(['prefix' => 'activity', 'middleware' => 'auth:api'], function () {
 
 // UNITS
 Route::group(['prefix' => 'units', 'middleware' => 'auth:api'], function () {
-    Route::post('', 'UnitController@createUnit');
-    Route::put('{id}/events', 'UnitController@updateEventArrayInUnit');
+    Route::post('', 'Api\UnitController@createUnit');
+    Route::put('{id}/events', 'Api\UnitController@updateEventArrayInUnit');
 });
 Route::group(['prefix' => 'units'], function (){
-    Route::get('{id}', 'UnitController@getUnit');
-    Route::get('{id}/events', 'UnitController@getUnitEvents');
-    Route::put('{id}', 'UnitController@updateUnit');
+    Route::get('{id}', 'Api\UnitController@getUnit');
+    Route::get('{id}/events', 'Api\UnitController@getUnitEvents');
+    Route::put('{id}', 'Api\UnitController@updateUnit');
 
 });
 
