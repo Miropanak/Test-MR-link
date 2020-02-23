@@ -25,25 +25,25 @@ class Unit extends Model
      */
     public function author()
     {
-        return $this->belongsTo('App\User', 'author_id');
+        return $this->belongsTo('App\Models\User', 'author_id');
     }
 
     public function activities()
     {
-        return $this->belongsToMany('App\Activity', 'activity_unit', 'unit_id', 'activity_id')->withPivot('unit_order_number')->withTimestamps();
+        return $this->belongsToMany('App\Models\Activity', 'activity_unit', 'unit_id', 'activity_id')->withPivot('unit_order_number')->withTimestamps();
     }
 
     public function unitEvent()
     {
-        return $this->hasMany('App\UnitsEvent','unit_id');
+        return $this->hasMany('App\Models\UnitsEvent','unit_id');
     }
 
     public function events(){
-        return $this->belongsToMany('App\Event','units_events','unit_id','event_id')->whereNull('units_events.deleted_at');
+        return $this->belongsToMany('App\Models\Event','units_events','unit_id','event_id')->whereNull('units_events.deleted_at');
     }
 
     public function test()
     {
-        return $this->hasMany('App\Test','unit_id');
+        return $this->hasMany('App\Models\Test','unit_id');
     }
 }

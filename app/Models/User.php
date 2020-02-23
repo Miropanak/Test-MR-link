@@ -42,7 +42,7 @@ class User extends Authenticatable
      */
     public function role()
     {
-        return $this->belongsTo('App\UserType', 'user_type_id');
+        return $this->belongsTo('App\Models\UserType', 'user_type_id');
     }
 
     /**
@@ -51,7 +51,7 @@ class User extends Authenticatable
      */
     public function activities()
     {
-        return $this->belongsToMany('App\Activity', 'activity_users', 'author_id', 'activity_id')->whereNull('activity_users.deleted_at');
+        return $this->belongsToMany('App\Models\Activity', 'activity_users', 'author_id', 'activity_id')->whereNull('activity_users.deleted_at');
     }
 
     /**
@@ -60,7 +60,7 @@ class User extends Authenticatable
      */
     public function events()
     {
-        return $this->hasMany('App\Event', 'author_id');
+        return $this->hasMany('App\Models\Event', 'author_id');
     }
     /**
      * returns subscriber Activity
@@ -68,7 +68,7 @@ class User extends Authenticatable
      */
     public function subscriberActivities()
     {
-        return $this->belongsToMany('App\Activity', 'activity_users', 'subscriber_id','activity_id');
+        return $this->belongsToMany('App\Models\Activity', 'activity_users', 'subscriber_id','activity_id');
     }
 
     /**
@@ -77,6 +77,6 @@ class User extends Authenticatable
      */
     public function tests()
     {
-        return $this->belongsToMany('App\Event', 'user_tests', 'student_id', 'test_id');
+        return $this->belongsToMany('App\Models\Event', 'user_tests', 'student_id', 'test_id');
     }
 }

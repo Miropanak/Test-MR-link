@@ -40,7 +40,7 @@ class Event extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User', 'author_id');
+        return $this->belongsTo('App\Models\User', 'author_id');
     }
 
     /**
@@ -51,7 +51,7 @@ class Event extends Model
      */
     public function eventType()
     {
-        return $this->belongsTo('App\EventType');
+        return $this->belongsTo('App\Models\EventType');
     }
 
     /**
@@ -62,11 +62,11 @@ class Event extends Model
      */
     public function option()
     {
-        return $this->hasMany('App\Option', 'event_id');
+        return $this->hasMany('App\Models\Option', 'event_id');
     }
 
     public function tests()
     {
-        return $this->belongsToMany('App\Test', 'event_tests', 'event_id', 'test_id');
+        return $this->belongsToMany('App\Models\Test', 'event_tests', 'event_id', 'test_id');
     }
 }

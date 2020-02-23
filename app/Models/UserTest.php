@@ -12,6 +12,6 @@ class UserTest extends Model
     protected $fillable = ['student_id', 'test_id'];
 
     function Users() {
-        return $this->belongsTo('App\Users');
+        return $this->belongsTo('App\Models\Users');
     }
 }

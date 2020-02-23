@@ -37,7 +37,7 @@ class Help extends Model
      */
     public function event()
     {
-        return $this->belongsTo('App\Event', 'event_id');
+        return $this->belongsTo('App\Models\Event', 'event_id');
     }
 
 }

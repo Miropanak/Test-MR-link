@@ -28,7 +28,7 @@ class Activity extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function units(){
-        return $this->belongsToMany('App\Unit','activity_unit', 'activity_id', 'unit_id')->withTimestamps()->withPivot('id','unit_order_number');
+        return $this->belongsToMany('App\Models\Unit','activity_unit', 'activity_id', 'unit_id')->withTimestamps()->withPivot('id','unit_order_number');
     }
 
     /**
@@ -37,7 +37,7 @@ class Activity extends Model
      */
     public function studyField()
     {
-        return $this->belongsTo('App\StudyField', 'study_field_id');
+        return $this->belongsTo('App\Models\StudyField', 'study_field_id');
     }
 
     /**
@@ -45,7 +45,7 @@ class Activity extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function author() {
-        return $this->belongsTo('App\User', 'author_id');
+        return $this->belongsTo('App\Models\User', 'author_id');
     }
 
     /**
@@ -53,6 +53,6 @@ class Activity extends Model
      * @return $belongsToMany
      */
     public function subscriber(){
-        return $this->belongsToMany('App\User', 'activity_users', 'activity_id', 'subscriber_id')->whereNull('activity_users.deleted_at')->withPivot('user_type_id');
+        return $this->belongsToMany('App\Models\User', 'activity_users', 'activity_id', 'subscriber_id')->whereNull('activity_users.deleted_at')->withPivot('user_type_id');
     }
 }

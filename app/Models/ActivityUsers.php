@@ -27,7 +27,7 @@ class ActivityUsers extends Model
      */
     public function activity()
     {
-        return $this->belongsTo('App\Activity');
+        return $this->belongsTo('App\Models\Activity');
     }
 
     /**
@@ -36,7 +36,7 @@ class ActivityUsers extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
 }

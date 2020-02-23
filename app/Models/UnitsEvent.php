@@ -32,7 +32,7 @@ class UnitsEvent extends Model
      */
     public function event()
     {
-        return $this->belongsTo('App\Event');
+        return $this->belongsTo('App\Models\Event');
     }
 
     /**
@@ -42,7 +42,7 @@ class UnitsEvent extends Model
      */
     public function unit()
     {
-        return $this->belongsTo('App\Unit','unit_id');
+        return $this->belongsTo('App\Models\Unit','unit_id');
     }
 
 }
