@@ -340,8 +340,8 @@ class ActivityController extends Controller
             $old_activity = Activity::find($id);
 
             $new_activity = $old_activity->replicate();
-            $new_activity->save();
             $new_activity->author_id = Auth::user()->id;
+            $new_activity->save();
 
             //re-sync everything, and change unit order number
             $extra = array_map(function($order_num){
