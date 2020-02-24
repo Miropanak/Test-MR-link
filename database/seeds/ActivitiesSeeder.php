@@ -17,7 +17,7 @@ class ActivitiesSeeder extends Seeder
     public function run()
     {
 		DB::table('activities')->insert([
-		    'id' => 1,
+//		    'id' => 1,
             'title' => "Objektovo orientované programovanie",
             'content' => "Tento predmet sa zaoberá programovaním založeným na objektoch",
             'public' => true,

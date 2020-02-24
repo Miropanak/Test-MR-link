@@ -13,6 +13,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use function Clue\StreamFilter\fun;
 
 /**
  * Class ActivityController that handles activities
@@ -339,8 +340,8 @@ class ActivityController extends Controller
             $old_activity = Activity::find($id);
 
             $new_activity = $old_activity->replicate();
+            $new_activity->save();
             $new_activity->author_id = Auth::user()->id;
-            $new_activity->push();
 
             //re-sync everything, and change unit order number
             $extra = array_map(function($order_num){
