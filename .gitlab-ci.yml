@@ -17,7 +17,7 @@ deploy_stage:
     - ssh ubuntu@team09-19.studenti.fiit.stuba.sk "cd /var/www/team-project && git checkout develop && git pull origin develop && exit"
   environment:
     name: staging
-    url: http://databanka.tp
+    url: https://api.databanka.site
   only:
     - develop
 
@@ -27,7 +27,7 @@ deploy_prod:
     - ssh questionhive@147.175.150.202 "cd /var/www/team-project && git checkout master && git pull origin master && exit"
   environment:
     name: production
-    url: http://databanka.tp
+    url: https://api.testuj.sk
   when: manual
   only:
     - master
