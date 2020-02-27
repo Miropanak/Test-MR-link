@@ -59,9 +59,9 @@ class ExamController extends Controller
      */
     public function getUnitExams($unit_id)
     {
-        try{
+        try {
             $unit = Unit::find($unit_id);
-            if($unit) {
+            if ($unit) {
                 $tests = $unit->test;
                 return response()->json($tests, 200);
             } else {
@@ -69,10 +69,9 @@ class ExamController extends Controller
             }
 
 
-        } catch (QueryException $e)
-        {
+        } catch (QueryException $e) {
             Log::error($e);
-            return response()->json("Niečo sa pokazilo " . $e , 500);
+            return response()->json("Niečo sa pokazilo " . $e, 500);
         }
 
     }
@@ -105,9 +104,9 @@ class ExamController extends Controller
      */
     public function getExam($exam_id)
     {
-        try{
+        try {
             $exam = Test::find($exam_id);
-            if($exam) {
+            if ($exam) {
                 $events = $exam->events;
                 return response()->json($exam, 200);
             } else {
@@ -115,10 +114,9 @@ class ExamController extends Controller
             }
 
 
-        } catch (QueryException $e)
-        {
+        } catch (QueryException $e) {
             Log::error($e);
-            return response()->json("Niečo sa pokazilo " . $e , 500);
+            return response()->json("Niečo sa pokazilo " . $e, 500);
         }
     }
 
@@ -161,8 +159,8 @@ class ExamController extends Controller
             'event_ids.*' => 'integer',
         ]);
 
-        if($validator->fails()) {
-            return response()->json(['Data validation error'=>$validator->errors()], 400);
+        if ($validator->fails()) {
+            return response()->json(['Data validation error' => $validator->errors()], 400);
         }
 
         try {
@@ -174,8 +172,7 @@ class ExamController extends Controller
             $exam->questions = count($request['event_ids']);
             $exam->author_id = Auth::user()->id;
             $exam->save();
-            foreach($request['event_ids'] as $event_id)
-            {
+            foreach ($request['event_ids'] as $event_id) {
                 $exam->events()->attach($event_id);
             }
             $exam->save();
@@ -187,6 +184,7 @@ class ExamController extends Controller
         return response()->json($exam, 200);
 
     }
+
     /**
      * @OA\Put(
      *      path="/api/exam/{id}",
@@ -234,7 +232,8 @@ class ExamController extends Controller
      *     )
      *     )
      */
-    public function updateExam(Request $request, $test_id) {
+    public function updateExam(Request $request, $test_id)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'string',
             'startDate' => 'date_format:Y-m-d H:i:s',
@@ -242,26 +241,23 @@ class ExamController extends Controller
             'event_ids.*' => 'integer',
         ]);
 
-        if($validator->fails()) {
-            return response()->json(['Data validation error'=>$validator->errors()], 400);
+        if ($validator->fails()) {
+            return response()->json(['Data validation error' => $validator->errors()], 400);
         }
         try {
             $test = Test::find($test_id);
-            if($test) {
-                if($test->author_id != Auth::user()->id)
-                {
+            if ($test) {
+                if ($test->author_id != Auth::user()->id) {
                     return response()->json("Logged user not author of test", 403);
                 }
                 $test->update($request->all());
-                if($request->has('event_ids'))
-                {
-                    if(count($request['event_ids']) < 1) {
+                if ($request->has('event_ids')) {
+                    if (count($request['event_ids']) < 1) {
                         return response()->json("Test must contain events", 400);
                     }
                     $test->events()->sync($request['event_ids']);
                     $test->update(['questions' => count($test->events)]);
                 }
-
 
 
                 return response()->json($test, 200);
@@ -274,127 +270,5 @@ class ExamController extends Controller
         }
 
 
-    }
-
-
-    public function examSearch(Request $request)
-    {
-        $title = 'Nájdené testy';
-        $searchTerm = $request->input('searchTerm');
-
-        if ($searchTerm === null)
-        {
-            $exams = Test::all();
-            return view('exams/show', ['exams' => $exams])->with(compact('title'));
-        }
-
-        $exams = Test::where('name',  'LIKE', '%'.$searchTerm.'%')->get();
-        $agent = new Agent();
-        return view('exams/show', ['exams' => $exams, 'agent' => $agent])->with(compact('title'));
-    }
-
-    public function new()
-    {
-        return null;
-    }
-
-    public function getEventList($id)
-    {
-        $events = Test::find($id)->events()->get();
-        $option = new Option();
-
-        $eventArray = [];
-
-        foreach ($events as $event) {
-            $options = $option->where('event_id', $event->id)->get();
-            $object = new \stdClass();
-            $object->event = $event;
-            $object->options = $options;
-
-            array_push($eventArray, $object);
-        }
-
-        return $eventArray;
-    }
-
-    public function run($id)
-    {
-        $student_id = Auth::user()->id;
-        $testToRun = Test::find($id);
-
-        $testToRun->taken = UserTest::where([
-            ['student_id', $student_id],
-            ['test_id', $testToRun->id],
-        ])->first()['test_taken'];
-
-        if ($testToRun && $testToRun->startDate <= date("Y-m-d h:i:s", time()) && !$testToRun->taken) {
-            $ut = new UserTest();
-
-            $ut->student_id = Auth::user()->id;
-            $ut->test_id = $id;
-
-            $ut->startedAt = date("Y-m-d h:i:s", time());
-            $ut->correct = 0;
-            $ut->test_taken = True;
-            $ut->save();
-
-            $timeToHandle = DB::table('event_tests')
-                ->where('test_id', $id)
-                ->join('events', 'events.id', '=', 'event_tests.event_id')
-                ->sum('time_to_handle');
-
-            $endTimestamp = time() * 1000 + $timeToHandle * 60000;
-
-            return view('exams/detail', ['fetchUrl' => route('exam/getEventList', ['id' => $id]), 'testId' => $id, 'endTimestamp' => $endTimestamp, 'returnUrl' => route('exams/show'), 'submitUrl' => route('exams/submit'), 'resultUrl' => route('exams/statistics', ['id' => $id])]);
-        }else
-            return view('errors.404');
-    }
-
-
-
-    public function submit(Request $request)
-    {
-        $userTest = new UserTest();
-        $option = new Option();
-
-        $student_id = Auth::user()->id;
-        $test_id = $request['testid'];
-
-        $selectedOptions = $request['selectedOptions'];
-        $correct_answers = 0;
-
-        foreach ($selectedOptions as $optionId) {
-            $optionToEvaluate = $option->where('id', $optionId)->first();
-            if ($optionToEvaluate['correct_answer']) {
-                $correct_answers++;
-            }
-        }
-
-        $userTest->where([
-            ['student_id', $student_id],
-            ['test_id', $test_id],
-        ])->update(['correct' => $correct_answers]);
-
-        return 0;
-    }
-
-    public function statistics($testId)
-    {
-        $student_id = Auth::user()->id;
-        $test = new Test();
-        $userTest = new UserTest();
-        $result = [];
-
-        $result['taken'] = $userTest->where([
-            ['student_id', $student_id],
-            ['test_id', $testId],
-        ])->first()['test_taken'];
-        $result['correctAnswers'] = $userTest->where([
-            ['student_id', $student_id],
-            ['test_id', $testId],
-        ])->first()['correct'];
-        $result['totalQuestions'] = $test->where('id', $testId)->value('questions');
-
-        return view('exams/statistics', ['result' => $result, 'returnUrl' => route('exams/show')]);
     }
 }
