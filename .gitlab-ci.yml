@@ -24,7 +24,7 @@ deploy_stage:
 deploy_prod:
   stage: deploy
   script:
-    - ssh questionhive@147.175.150.202 "cd /var/www/team-project && git checkout master && git pull origin master && exit"
+    - ssh questionhive@147.175.150.202 "cd /var/www/api.testuj.sk && git checkout master && git pull origin master && exit"
   environment:
     name: production
     url: https://api.testuj.sk
