@@ -10,7 +10,6 @@ class CloudflareToken
 {
     public function handle($request, Closure $next)
     {
-
         $request->headers->set('CF-Access-Client-Id', env('CLOUDFLARE_ID'));
         $request->headers->set('CF-Access-Client-Secret', env('CLOUDFLARE_TOKEN'));
 

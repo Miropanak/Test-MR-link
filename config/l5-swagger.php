@@ -198,7 +198,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'operations_sort' => env('L5_SWAGGER_OPERATIONS_SORT', null),
+    'operations_sort' => env('L5_SWAGGER_OPERATIONS_SORT', 'method'),
 
     /*
     |--------------------------------------------------------------------------
