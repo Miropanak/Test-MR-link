@@ -21,15 +21,15 @@ class CreateEventTestUserTable extends Migration
             $table->integer('time_spent');
             $table->integer('obtained_points');
             $table->timestamps();
-            $table->integer('id_tests')->unsigned()->nullable(); // FK
-            $table->integer('id_users')->unsigned()->nullable(); // FK
-            $table->integer('id_events')->unsigned()->nullable(); // FK
+            $table->integer('test_id')->unsigned()->nullable(); // FK
+            $table->integer('user_id')->unsigned()->nullable(); // FK
+            $table->integer('event_id')->unsigned()->nullable(); // FK
         });
 
         Schema::table('event_test_user', function (Blueprint $table) {
-            $table->foreign('id_tests')->references('id')->on('tests');
-            $table->foreign('id_users')->references('id')->on('users');
-            $table->foreign('id_events')->references('id')->on('events');
+            $table->foreign('test_id')->references('id')->on('tests');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('event_id')->references('id')->on('events');
         });
     }
 
