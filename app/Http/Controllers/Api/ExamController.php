@@ -275,7 +275,7 @@ class ExamController extends Controller
     /**
      * @OA\Get(
      *      path="/api/exam/{exam_id}/user/{user_id}",
-     *      operationId="getTestAnswer",
+     *      operationId="getExamAnswers",
      *      tags={"Test"},
      *      summary="Gets users answers",
      *      description="Returns 'event_test_user' by 'user' and 'exam' id",
