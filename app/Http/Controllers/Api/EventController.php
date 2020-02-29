@@ -8,6 +8,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Help;
 use App\Models\Option;
+use App\Models\UserEventTestAnswer;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Models\Event;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
-
+use function GuzzleHttp\Psr7\str;
 
 
 /**
@@ -805,6 +806,76 @@ class EventController extends Controller
         } else {
             return response()->json(null, 404);
         }
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/api/events/createEventAnswer",
+     *      operationId="createEventAnswer",
+     *      tags={"Event"},
+     *      summary="Creates event answer",
+     *      description="Creates event answer",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Request body has to contain 'answer' in json format f.e. ""answer: ""\\{""key"" : ""value""\\}"",'start_time', 'end_time' in Y-m-d H:i:s format, time_spent, test_id and 'event_id'",
+     *       @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="answer", type="string"),
+     *          @OA\Property(property="start_time", type="date string in format yyyy-MM-dd HH:mm:ss"),
+     *          @OA\Property(property="end_time", type="date string in format yyyy-MM-dd HH:mm:ss"),
+     *          @OA\Property(property="time_spent", type="integer"),
+     *          @OA\Property(property="obtained_points", type="integer"),
+     *          @OA\Property(property="test_id", type="integer"),
+     *          @OA\Property(property="event_id", type="integer")
+     *          )
+     *     ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Option not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *      security={{"bearerAuth":{}}},
+     *     )
+     */
+    public function createEventAnswer(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'answer' => 'json|required',
+            'start_time' => 'date_format:Y-m-d H:i:s|required',
+            'end_time' => 'date_format:Y-m-d H:i:s|required',
+            'time_spent' => 'integer|required',
+            'obtained_points' => 'integer',
+            'test_id' => 'integer|required',
+            'event_id' => 'integer|required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['Data validation error' => $validator->errors()], 400);
+        }
+
+        try {
+            $event_test_user = new UserEventTestAnswer();
+            $event_test_user->answers = $request['answer'];
+            $event_test_user->start_time = $request['start_time'];
+            $event_test_user->end_time = $request['end_time'];
+            $event_test_user->time_spent = $request['time_spent'];
+            $event_test_user->obtained_points = $request['obtained_points'];
+            $event_test_user->test_id = $request['test_id'];
+            $event_test_user->event_id = $request['event_id'];
+            $event_test_user->user_id = Auth::user()->id;
+            $event_test_user->save();
+
+        } catch (QueryException $e) {
+            return response()->json($e, 500); // f.e. postgres id counter is not set up properly
+        }
+        return response()->json($event_test_user, 200);
     }
 }
 
