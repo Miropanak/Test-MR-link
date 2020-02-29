@@ -45,7 +45,10 @@ Route::group(['prefix' => 'users'], function () {
 // EVENTS
 Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {
     Route::post('', 'Api\EventController@createEvent');
+    Route::post('createEventAnswer', 'Api\EventController@createEventAnswer');
 });
+
+
 
 Route::group(['prefix' => 'events'], function (){
     Route::get('{id}', 'Api\EventController@getEvent');
@@ -110,12 +113,14 @@ Route::group(['prefix' => 'units'], function (){
 
 // EXAMS
 
-Route::get('unit/{id}/exams', 'API\ExamController@getUnitExams');
-Route::get('exam/{id}', 'API\ExamController@getExam');
+Route::get('unit/{id}/exams', 'Api\ExamController@getUnitExams');
+Route::get('exam/{id}', 'Api\ExamController@getExam');
 Route::group(['prefix' => 'exam', 'middleware' => 'auth:api'], function () {
-    Route::post('', 'API\ExamController@createExam');
-    Route::put('{id}', 'API\ExamController@updateExam');
+    Route::put('{id}', 'Api\ExamController@updateExam');
 });
+
+Route::get('exam/{exam_id}/user/{user_id}', 'Api\ExamController@getExamAnswers');
+Route::post('exam', 'Api\ExamController@createExam');
 
 
 
