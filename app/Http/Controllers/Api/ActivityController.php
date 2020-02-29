@@ -713,7 +713,7 @@ class ActivityController extends Controller
             $activity = Activity::find($id);
             if ($activity) {
                 foreach ($request['unit_ids'] as $key => $unit_id){
-                    $junction_update = ActivityUnit::where('unit_id',$unit_id)->first();
+                    $junction_update = ActivityUnit::where('activity_id',$activity->id)->where('unit_id',$unit_id)->first();
                     $junction_update->unit_order_number = $key;
                     $junction_update->save();
                 }

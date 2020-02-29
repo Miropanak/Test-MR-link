@@ -19,7 +19,6 @@ class EventsSeeder extends Seeder
         //OOP
         //Prednaska 1
         DB::table('events')->insert([
-//            'id' => 1,
             'message' => "",
             'header' => "Zahrnutie objektu jednej triedy v objekte inej triedy sa v objektovo-orientovanom programovaní označuje ako",
             'time_to_explain' => 5,
@@ -31,7 +30,6 @@ class EventsSeeder extends Seeder
         ]);
 
         DB::table('events')->insert([
-//            'id' => 2,
             'message' => "",
             'header' => "V objektovo-orientovanom programe hlavná funkcionalitatypicky",
             'time_to_explain' => 5,
@@ -43,7 +41,6 @@ class EventsSeeder extends Seeder
         ]);
 
         DB::table('events')->insert([
-//            'id' => 3,
             'message' => "",
             'header' => "Konštruktor v Jave",
             'time_to_explain' => 5,
@@ -55,7 +52,6 @@ class EventsSeeder extends Seeder
         ]);
 
         DB::table('events')->insert([
-//            'id' => 4,
             'message' => "",
             'header' => "Objekt v objektovo-orientovanom programovaní predstavuje",
             'time_to_explain' => 5,
@@ -67,7 +63,6 @@ class EventsSeeder extends Seeder
         ]);
 
         DB::table('events')->insert([
-//            'id' => 5,
             'message' => "<pre>package abc.xyz;</pre>",
             'header' => "V programe v Jave príkaz",
             'time_to_explain' => 5,
@@ -79,7 +74,6 @@ class EventsSeeder extends Seeder
         ]);
 
         DB::table('events')->insert([
-//            'id' => 6,
             'message' => "",
             'header' => "Tok údajov (stream) v Java API sa obaľuje, aby",
             'time_to_explain' => 5,
@@ -91,7 +85,6 @@ class EventsSeeder extends Seeder
         ]);
 
         DB::table('events')->insert([
-//            'id' => 7,
             'message' => "<pre>import java.util.∗;</pre>",
             'header' => "Príkaz",
             'time_to_explain' => 5,
@@ -103,7 +96,6 @@ class EventsSeeder extends Seeder
         ]);
 
         DB::table('events')->insert([
-//            'id' => 8,
             'message' => "",
             'header' => "Tok údajov (stream) v Java API sa otvára",
             'time_to_explain' => 5,
@@ -115,7 +107,6 @@ class EventsSeeder extends Seeder
         ]);
 
         DB::table('events')->insert([
-//            'id' => 9,
             'message' => "",
             'header' => "Explicitne vytvorený konštruktor triedy v konštruktore odvodenej triedy v Jave",
             'time_to_explain' => 5,
@@ -127,7 +118,6 @@ class EventsSeeder extends Seeder
         ]);
 
         DB::table('events')->insert([
-//            'id' => 10,
             'message' => "<pre>public class A {
     private int i;
     public void m(int i) {this.i = i;}
@@ -146,7 +136,6 @@ Daný je objekt o triedy A. Príkaz:
 
         //Prednaska 2
         DB::table('events')->insert([
-//            'id' => 11,
             'message' => "",
             'header' => "Agregácia v objektovo-orientovanom programovaní",
             'time_to_explain' => 5,
@@ -158,7 +147,6 @@ Daný je objekt o triedy A. Príkaz:
         ]);
 
         DB::table('events')->insert([
-//            'id' => 12,
             'message' => "",
             'header' => "Abstraktná trieda v Jave",
             'time_to_explain' => 5,
@@ -170,7 +158,6 @@ Daný je objekt o triedy A. Príkaz:
         ]);
 
         DB::table('events')->insert([
-//            'id' => 13,
             'message' => "",
             'header' => "V objektovo-orientovanom programe hlavná funkcionalita typicky",
             'time_to_explain' => 5,
@@ -182,7 +169,6 @@ Daný je objekt o triedy A. Príkaz:
         ]);
 
         DB::table('events')->insert([
-//            'id' => 14,
             'message' => "<pre>public class A {
     public void f() {
         System.out.print(\"A\");
@@ -221,7 +207,6 @@ vypíše:",
         ]);
 
         DB::table('events')->insert([
-//            'id' => 15,
             'message' => "<pre>public class A {
     private A() {}
     private static A a = new A();
@@ -244,7 +229,6 @@ Výpis hlásenia „OK“ z inej triedy možno dosiahnuť",
         ]);
 
         DB::table('events')->insert([
-//            'id' => 16,
             'message' => "",
             'header' => "Je dobré z hľadiska objektovo-orientovaného prístupu rozsiahle používanie statických metód?",
             'time_to_explain' => 5,
@@ -256,7 +240,6 @@ Výpis hlásenia „OK“ z inej triedy možno dosiahnuť",
         ]);
 
         DB::table('events')->insert([
-//            'id' => 17,
             'message' => "<pre>List a = new ArrayList();</pre>
  predstavuje:",
             'header' => "Daný je kód v Jave:",
@@ -269,7 +252,6 @@ Výpis hlásenia „OK“ z inej triedy možno dosiahnuť",
         ]);
 
         DB::table('events')->insert([
-//            'id' => 18,
             'message' => "",
             'header' => "Uplatnenie objektu namiesto objektu typu, od ktorého je odvodený, je možné vďaka",
             'time_to_explain' => 5,
@@ -281,7 +263,6 @@ Výpis hlásenia „OK“ z inej triedy možno dosiahnuť",
         ]);
 
         DB::table('events')->insert([
-//            'id' => 19,
             'message' => "",
             'header' => "Zmeniť stav objektu znamená",
             'time_to_explain' => 5,
@@ -293,7 +274,6 @@ Výpis hlásenia „OK“ z inej triedy možno dosiahnuť",
         ]);
 
         DB::table('events')->insert([
-//            'id' => 20,
             'message' => "<pre>import java.io.∗;</pre>",
             'header' => "Ak potrebujeme pracovať s V/V systémom Javy, príkaz",
             'time_to_explain' => 5,
@@ -306,7 +286,6 @@ Výpis hlásenia „OK“ z inej triedy možno dosiahnuť",
 
         //Prednaska 3
         DB::table('events')->insert([
-//            'id' => 21,
             'message' => "<pre>public interface P {
     void m(N d);
 }
@@ -344,7 +323,6 @@ public class Y implements N {
         ]);
 
         DB::table('events')->insert([
-//            'id' => 22,
             'message' => "",
             'header' => "Zachytenú výnimku v Jave je možné",
             'time_to_explain' => 5,
@@ -356,7 +334,6 @@ public class Y implements N {
         ]);
 
         DB::table('events')->insert([
-//            'id' => 23,
             'message' => "<pre>public class A {
     public static int f(int i) {
         return 2 ∗ i;
@@ -375,7 +352,6 @@ public class Y implements N {
         ]);
 
         DB::table('events')->insert([
-//            'id' => 24,
             'message' => "",
             'header' => "Návrhový vzor Strategy je vhodné použiť na",
             'time_to_explain' => 5,
@@ -387,7 +363,6 @@ public class Y implements N {
         ]);
 
         DB::table('events')->insert([
-//            'id' => 25,
             'message' => "",
             'header' => "Prístup protected je vhodné použiť pri takých prvkoch triedy, ku ktorým chceme pristupovať len",
             'time_to_explain' => 5,
@@ -399,7 +374,6 @@ public class Y implements N {
         ]);
 
         DB::table('events')->insert([
-//            'id' => 26,
             'message' => "",
             'header' => "Balíky v Jave sa definujú",
             'time_to_explain' => 5,
@@ -411,7 +385,6 @@ public class Y implements N {
         ]);
 
         DB::table('events')->insert([
-//            'id' => 27,
             'message' => "",
             'header' => "Prúd údajov (stream) v Java API sa otvára",
             'time_to_explain' => 5,
@@ -423,7 +396,6 @@ public class Y implements N {
         ]);
 
         DB::table('events')->insert([
-//            'id' => 28,
             'message' => "X[] a = new X [new C().m()];",
             'header' => "To, že sa v Jave veľkosť poľa dá zadať aj takto (ak metóda m() vracia int)",
             'time_to_explain' => 5,
@@ -436,7 +408,6 @@ public class Y implements N {
 
         //Prednaska 4
         DB::table('events')->insert([
-//            'id' => 29,
             'message' => "<pre>public interface K {
     void m(L o);
 }
@@ -483,7 +454,6 @@ public class N implements L {
 
 
         DB::table('events')->insert([
-//            'id' => 30,
             'message' => " Používateľ tento výpočet nakoniec spúšťa kliknutím na tlačidlo v používateľskom rozhraní realizovanom v rámci Swing. Samotný výpočet by z hľadiska objekovoorientovaného návrhu bolo najlepšie realizovať",
             'header' => "Okrem iného, program zabezpečuje výpočet podľa určitého vzorca.",
             'time_to_explain' => 5,
@@ -496,7 +466,6 @@ public class N implements L {
 
 
         DB::table('events')->insert([
-//            'id' => 31,
             'message' => "",
             'header' => "Dá sa v Jave urobiť inštancia rozhrania?",
             'time_to_explain' => 5,
@@ -509,7 +478,6 @@ public class N implements L {
 
 
         DB::table('events')->insert([
-//            'id' => 32,
             'message' => "",
             'header' => "V rámci Swing sa kliknutie na tlačidlo v okne sleduje",
             'time_to_explain' => 5,
@@ -522,7 +490,6 @@ public class N implements L {
 
 
         DB::table('events')->insert([
-//            'id' => 33,
             'message' => "",
             'header' => "Synchronizácia nestatickej metódy",
             'time_to_explain' => 5,
@@ -535,7 +502,6 @@ public class N implements L {
 
 
         DB::table('events')->insert([
-//            'id' => 34,
             'message' => "",
             'header' => "Inštancia rozhrania v Jave",
             'time_to_explain' => 5,
@@ -548,7 +514,6 @@ public class N implements L {
 
 
         DB::table('events')->insert([
-//            'id' => 35,
             'message' => "",
             'header' => "Rozhranie v Jave definuje",
             'time_to_explain' => 5,
@@ -561,7 +526,6 @@ public class N implements L {
 
 
         DB::table('events')->insert([
-//            'id' => 36,
             'message' => "",
             'header' => "V triede, ktorá dedí od rozhrania je možné zadefinovať",
             'time_to_explain' => 5,
@@ -574,7 +538,6 @@ public class N implements L {
 
 
         DB::table('events')->insert([
-//            'id' => 37,
             'message' => "<pre>interface Abc {
     void m();
 }</pre>Z pohľadu prekladu v nasledujúcom kóde
@@ -592,7 +555,6 @@ o.m();</pre>",
 
 
         DB::table('events')->insert([
-//            'id' => 38,
             'message' => "",
             'header' => "V triede, ktorá implementuje rozhranie, je možné zadefinovať",
             'time_to_explain' => 5,
@@ -605,7 +567,6 @@ o.m();</pre>",
 
         //Prednaska 5
         DB::table('events')->insert([
-//            'id' => 39,
             'message' => "<pre>class C implements Serializable {
     String[] s = new String[9999];
 }</pre>
@@ -625,7 +586,6 @@ Serializovať tieto inštancie naraz (jedným zápisom do jedného súboru)",
 
 
         DB::table('events')->insert([
-//            'id' => 40,
             'message' => "<pre>List<Z> z = new LinkedList<>();
 z.add(new X());
 z.add(new Y());
@@ -642,7 +602,6 @@ Aby sa tento kód mohol preložiť a vykonať",
 
 
         DB::table('events')->insert([
-//            'id' => 41,
             'message' => "<pre>public class A {
     void m(int i) { }
     void m(int i, int j) { }
@@ -662,7 +621,6 @@ public class B extends A {
 
 
         DB::table('events')->insert([
-//            'id' => 42,
             'message' => "<pre>class Utvar {
     int farba = 12;
     void nakresli() { }
@@ -686,7 +644,6 @@ k.nakresli();</pre>",
 
 
         DB::table('events')->insert([
-//            'id' => 43,
             'message' => "",
             'header' => "Pomocou kľúčového slova super sa v Jave dá zavolať",
             'time_to_explain' => 5,
@@ -699,7 +656,6 @@ k.nakresli();</pre>",
 
 
         DB::table('events')->insert([
-//            'id' => 44,
             'message' => "",
             'header' => "Zavedenie (import) viacerých balíkov v Jave môže spôsobiť",
             'time_to_explain' => 5,
@@ -712,7 +668,6 @@ k.nakresli();</pre>",
 
 
         DB::table('events')->insert([
-//            'id' => 45,
             'message' => "",
             'header' => "Atribút triedy, ktorému predchádza kľúčové slovo private",
             'time_to_explain' => 5,
@@ -725,7 +680,6 @@ k.nakresli();</pre>",
 
 
         DB::table('events')->insert([
-//            'id' => 46,
             'message' => "",
             'header' => "Import balíka do programu v Jave",
             'time_to_explain' => 5,
@@ -738,7 +692,6 @@ k.nakresli();</pre>",
 
         //Prednaska 6
         DB::table('events')->insert([
-//            'id' => 47,
             'message' => "",
             'header' => "Niť v Jave vzniká",
             'time_to_explain' => 5,
@@ -751,7 +704,6 @@ k.nakresli();</pre>",
 
 
         DB::table('events')->insert([
-//            'id' => 48,
             'message' => "",
             'header' => "Vyhodenie výnimky v Jave",
             'time_to_explain' => 5,
@@ -764,7 +716,6 @@ k.nakresli();</pre>",
 
 
         DB::table('events')->insert([
-//            'id' => 49,
             'message' => "<pre>class MyException extends Exception {}
 class A {
     void m() throws MyException {
@@ -788,7 +739,6 @@ Metóda m() triedy B",
 
 
         DB::table('events')->insert([
-//            'id' => 50,
             'message' => "",
             'header' => "Spracovanie výnimky v Jave sa realizuje",
             'time_to_explain' => 5,
@@ -801,7 +751,6 @@ Metóda m() triedy B",
 
 
         DB::table('events')->insert([
-//            'id' => 51,
             'message' => "",
             'header' => "Anonymné triedy, odkazy na metódy a lambda výrazy sa v Jave používajú na",
             'time_to_explain' => 5,
@@ -814,7 +763,6 @@ Metóda m() triedy B",
 
 
         DB::table('events')->insert([
-//            'id' => 52,
             'message' => "<pre>class A {
     void a() throws XException {
         if(...) {...}
@@ -836,7 +784,6 @@ Metóda b() triedy B",
 
 
         DB::table('events')->insert([
-//            'id' => 53,
             'message' => "",
             'header' => "Synchronizované metódy v Jave",
             'time_to_explain' => 5,
@@ -849,7 +796,6 @@ Metóda b() triedy B",
 
 
         DB::table('events')->insert([
-//            'id' => 54,
             'message' => "<pre>class MyException extends Exception {}
 class A {
     void a(int i) throws MyException {
@@ -875,7 +821,6 @@ Metóda b() triedy B",
 
 
         DB::table('events')->insert([
-//            'id' => 55,
             'message' => "",
             'header' => "Iterátory v Java API uľahčujú",
             'time_to_explain' => 5,
@@ -888,7 +833,6 @@ Metóda b() triedy B",
 
 
         DB::table('events')->insert([
-//            'id' => 56,
             'message' => "<pre>public abstract class T {
     abstract void a();
     void b() {...};
@@ -905,7 +849,6 @@ Inštancia tejto triedy sa",
 
 
         DB::table('events')->insert([
-//            'id' => 57,
             'message' => "",
             'header' => "Rozšírená slučka for v Jave pri aplikácii na zoskupenie",
             'time_to_explain' => 5,
@@ -918,7 +861,6 @@ Inštancia tejto triedy sa",
 
 
         DB::table('events')->insert([
-//            'id' => 58,
             'message' => "",
             'header' => "Porušenie Liskovej princípu substitúcie spôsobí",
             'time_to_explain' => 5,
@@ -931,7 +873,6 @@ Inštancia tejto triedy sa",
 
         //Prednaska 7
         DB::table('events')->insert([
-//            'id' => 59,
             'message' => "",
             'header' => "Dá sa urobiť inštancia abstraktnej triedy?",
             'time_to_explain' => 5,
@@ -944,7 +885,6 @@ Inštancia tejto triedy sa",
 
 
         DB::table('events')->insert([
-//            'id' => 60,
             'message' => "<pre>1 abstract class A { }
 2 interface I { }
 3 A[] a = new A[5];
@@ -961,7 +901,6 @@ Tento kód sa",
 
 
         DB::table('events')->insert([
-//            'id' => 61,
             'message' => "<pre>for (Object o : l) {
     if (o.class == Frog.class)
         ((Frog)o).jump();
@@ -982,7 +921,6 @@ Tento kód porušuje",
 
 
         DB::table('events')->insert([
-//            'id' => 62,
             'message' => "",
             'header' => "Na dodržanie Liskovej princípu substitúcie v prekonávajúcich metódach treba dbať na",
             'time_to_explain' => 5,
@@ -995,7 +933,6 @@ Tento kód porušuje",
 
 
         DB::table('events')->insert([
-//            'id' => 63,
             'message' => "",
             'header' => "Princíp otvorenosti a uzavretosti hovorí, že",
             'time_to_explain' => 5,
@@ -1008,7 +945,6 @@ Tento kód porušuje",
 
 
         DB::table('events')->insert([
-//            'id' => 64,
             'message' => "",
             'header' => "Zapuzdrenie v objektovo-orientovanom programovaní",
             'time_to_explain' => 5,
@@ -1021,7 +957,6 @@ Tento kód porušuje",
 
 
         DB::table('events')->insert([
-//            'id' => 65,
             'message' => "",
             'header' => "Videnia v jazyku AspectJ",
             'time_to_explain' => 5,
@@ -1034,7 +969,6 @@ Tento kód porušuje",
 
 
         DB::table('events')->insert([
-//            'id' => 66,
             'message' => "",
             'header' => "V diagrame sekvencií v jazyku UML obdĺžník na zvislej prerušovanej čiare, do ktorého vstupuje orientovaná hrana, označuje",
             'time_to_explain' => 5,
@@ -1047,7 +981,6 @@ Tento kód porušuje",
 
 
         DB::table('events')->insert([
-//            'id' => 67,
             'message' => "",
             'header' => "Vyhodená výnimka v Jave je",
             'time_to_explain' => 5,
@@ -1060,7 +993,6 @@ Tento kód porušuje",
 
 
         DB::table('events')->insert([
-//            'id' => 68,
             'message' => "",
             'header' => "Idióm Javy, v ktorom výber metódy závisí od dvoch príjemcov sa volá",
             'time_to_explain' => 5,
@@ -1073,7 +1005,6 @@ Tento kód porušuje",
 
 
         DB::table('events')->insert([
-//            'id' => 69,
             'message' => "",
             'header' => "Prístup Design by Contract je založený na",
             'time_to_explain' => 5,
@@ -1086,7 +1017,6 @@ Tento kód porušuje",
 
 
         DB::table('events')->insert([
-//            'id' => 70,
             'message' => "",
             'header' => "Liskovej princíp substitúcie stanovuje podmienky",
             'time_to_explain' => 5,
@@ -1099,7 +1029,6 @@ Tento kód porušuje",
 
 
         DB::table('events')->insert([
-//            'id' => 71,
             'message' => "<pre>BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));</pre>
 zabezpečuje",
             'header' => "Kód",
@@ -1113,7 +1042,6 @@ zabezpečuje",
 
 
         DB::table('events')->insert([
-//            'id' => 72,
             'message' => "<pre>List<Z> z = new LinkedList<>();
 z.add(new X());
 z.add(new Y());</pre>

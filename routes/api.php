@@ -116,6 +116,7 @@ Route::group(['prefix' => 'units'], function (){
 Route::get('unit/{id}/exams', 'Api\ExamController@getUnitExams');
 Route::get('exam/{id}', 'Api\ExamController@getExam');
 Route::group(['prefix' => 'exam', 'middleware' => 'auth:api'], function () {
+    Route::post('', 'Api\ExamController@createExam');
     Route::put('{id}', 'Api\ExamController@updateExam');
 });
 

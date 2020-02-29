@@ -428,7 +428,7 @@ class UserController extends Controller
 
     public function getUsers() {
         try{
-            $users = User::all();
+            $users = User::all('id','name','email');
             return response()->json($users, 200);
         } catch(QueryException $e) {
             return response()->json(null, 500);
