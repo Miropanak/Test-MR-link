@@ -10,9 +10,11 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Help;
 use App\Models\Option;
 use App\Models\Unit;
 use App\Models\Test;
+use App\Models\UserEventTestAnswer;
 use App\Models\UserTest;
 use DB;
 use Illuminate\Database\QueryException;
@@ -268,7 +270,57 @@ class ExamController extends Controller
         } catch (QueryException $e) {
             return response()->json(null, 500); // f.e. postgres id counter is not set up properly
         }
-
-
     }
+
+    /**
+     * @OA\Get(
+     *      path="/api/exam/{exam_id}/user/{user_id}",
+     *      operationId="getTestAnswer",
+     *      tags={"Test"},
+     *      summary="Gets users answers",
+     *      description="Returns 'event_test_user' by 'user' and 'exam' id",
+     *      @OA\Parameter(
+     *          name="exam_id",
+     *          description="exam id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="user_id",
+     *          description="user id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *     )
+     */
+
+    public function getExamAnswers($test_id, $user_id)
+    {
+        try {
+            $answers = UserEventTestAnswer::where("user_id", $user_id)->where("test_id", $test_id)->get();
+            return response()->json($answers, 200);
+
+        } catch (QueryException $e) {
+            if ($e->getCode() === '22003') {
+                return response()->json(null, 400);
+            } else {
+                return response()->json($e, 500);
+            }
+        }
+    }
+
 }
