@@ -637,7 +637,7 @@ class ActivityController extends Controller
 
     public function addStudent(Request $request, $id) {
         $validator = Validator::make($request->all(), [
-            'student_ids*' => 'required|integer',
+            'student_ids*' => 'present|array',
         ]);
 
         if($validator->fails()) {
