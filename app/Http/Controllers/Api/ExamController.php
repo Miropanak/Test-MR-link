@@ -16,13 +16,14 @@ use App\Models\Unit;
 use App\Models\Test;
 use App\Models\UserEventTestAnswer;
 use App\Models\UserTest;
-use DB;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Jenssegers\Agent\Agent;
+
+use Illuminate\Support\Facades\DB;
 
 
 class ExamController extends Controller
@@ -321,6 +322,95 @@ class ExamController extends Controller
                 return response()->json($e, 500);
             }
         }
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/api/exam/{id}/createEventAnswer",
+     *      operationId="createEventAnswers",
+     *      tags={"Test"},
+     *      summary="Creates event answers",
+     *      description="Creates event answers",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="exam id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Array of JSON objects with fields that are going to be inserted.",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema(
+     *                  type="array",
+     *                  @OA\Items(
+     *                      type="object",
+     *                      @OA\Property(property="answer", type="string"),
+     *                      @OA\Property(property="start_time", type="date string in format yyyy-MM-dd HH:mm:ss"),
+     *                      @OA\Property(property="end_time", type="date string in format yyyy-MM-dd HH:mm:ss"),
+     *                      @OA\Property(property="time_spent", type="integer"),
+     *                      @OA\Property(property="obtained_points", type="integer"),
+     *                      @OA\Property(property="event_id", type="integer")
+     *                  )
+     *              )
+     *          )
+     *      ),
+
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Option not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *      security={{"bearerAuth":{}}},
+     *     )
+     */
+    public function createEventTestAnswers(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            '*.answer' => 'json|required',
+            '*.start_time' => 'date_format:Y-m-d H:i:s|required',
+            '*.end_time' => 'date_format:Y-m-d H:i:s|required',
+            '*.time_spent' => 'integer|required',
+            '*.obtained_points' => 'integer',
+            '*.event_id' => 'integer|required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['Data validation error' => $validator->errors()], 400);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            foreach ($request->all() as $eventTestAnswer){
+                $newUserEventTestAnswer= new UserEventTestAnswer();
+                $newUserEventTestAnswer->answers = $eventTestAnswer['answer'];
+                $newUserEventTestAnswer->start_time = $eventTestAnswer['start_time'];
+                $newUserEventTestAnswer->end_time = $eventTestAnswer['end_time'];
+                $newUserEventTestAnswer->time_spent = $eventTestAnswer['time_spent'];
+                $newUserEventTestAnswer->obtained_points = $eventTestAnswer['obtained_points'];
+                $newUserEventTestAnswer->test_id = $id;
+                $newUserEventTestAnswer->event_id = $eventTestAnswer['event_id'];
+                $newUserEventTestAnswer->user_id = Auth::user()->id;
+                $newUserEventTestAnswer->save();
+        }
+        } catch (QueryException $e) {
+            DB::rollback();
+            return response()->json($e, 500); // f.e. postgres id counter is not set up properly
+        }
+        DB::commit();
+        return response()->json( 200);
     }
 
 }

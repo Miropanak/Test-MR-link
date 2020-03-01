@@ -118,6 +118,7 @@ Route::get('exam/{id}', 'Api\ExamController@getExam');
 Route::group(['prefix' => 'exam', 'middleware' => 'auth:api'], function () {
     Route::post('', 'Api\ExamController@createExam');
     Route::put('{id}', 'Api\ExamController@updateExam');
+    Route::post('exam/{id}/createEventAnswer', 'Api\ExamController@createEventTestAnswers');
 });
 
 Route::get('exam/{exam_id}/user/{user_id}', 'Api\ExamController@getExamAnswers');
