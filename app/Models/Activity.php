@@ -53,6 +53,6 @@ class Activity extends Model
      * @return $belongsToMany
      */
     public function subscriber(){
-        return $this->belongsToMany('App\Models\User', 'activity_users', 'activity_id', 'subscriber_id')->whereNull('activity_users.deleted_at')->withPivot('user_type_id');
+        return $this->belongsToMany('App\Models\User', 'activity_users', 'activity_id', 'subscriber_id')->withTimestamps();
     }
 }
