@@ -320,14 +320,14 @@ class ExamController extends Controller
                 return response()->json(null, 400);
             } else {
                 return response()->json($e, 500);
-            }
+               }
         }
     }
 
     /**
      * @OA\Post(
-     *      path="/api/exam/{id}/createEventAnswer",
-     *      operationId="createEventAnswers",
+     *      path="/api/exam/{id}/createEventTestAnswers",
+     *      operationId="createEventTestAnswers",
      *      tags={"Test"},
      *      summary="Creates event answers",
      *      description="Creates event answers",
@@ -359,7 +359,7 @@ class ExamController extends Controller
      *              )
      *          )
      *      ),
-
+     *
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation"
@@ -369,16 +369,16 @@ class ExamController extends Controller
      *          description="Option not found"
      *       ),
      *      @OA\Response(
-     *         response=400,
+     *         response=400,    
      *         description="Invalid ID supplied",
      *      ),
-     *      security={{"bearerAuth":{}}},
+     *     security={{"bearerAuth":{}}},
      *     )
      */
     public function createEventTestAnswers(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            '*.answer' => 'json|required',
+            '*.answer' => 'required',
             '*.start_time' => 'date_format:Y-m-d H:i:s|required',
             '*.end_time' => 'date_format:Y-m-d H:i:s|required',
             '*.time_spent' => 'integer|required',
@@ -391,11 +391,10 @@ class ExamController extends Controller
         }
 
         DB::beginTransaction();
-
         try {
             foreach ($request->all() as $eventTestAnswer){
                 $newUserEventTestAnswer= new UserEventTestAnswer();
-                $newUserEventTestAnswer->answers = $eventTestAnswer['answer'];
+                $newUserEventTestAnswer->answers = json_encode($eventTestAnswer['answer']);
                 $newUserEventTestAnswer->start_time = $eventTestAnswer['start_time'];
                 $newUserEventTestAnswer->end_time = $eventTestAnswer['end_time'];
                 $newUserEventTestAnswer->time_spent = $eventTestAnswer['time_spent'];
