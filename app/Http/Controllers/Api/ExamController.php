@@ -369,9 +369,10 @@ class ExamController extends Controller
      *          description="Option not found"
      *       ),
      *      @OA\Response(
-     *         response=400,
+     *         response=400,    
      *         description="Invalid ID supplied",
      *      ),
+     *     security={{"bearerAuth":{}}},
      *     )
      */
     public function createEventTestAnswers(Request $request, $id)
