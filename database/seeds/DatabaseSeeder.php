@@ -23,27 +23,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(EventTypesSeeder::class);
-         $this->call(UserTypesSeeder::class);
-         $this->call(UsersSeeder::class);
-         $this->call(EventsSeeder::class);
-         $this->call(OptionsSeeder::class);
-         $this->call(StudyFieldsSeeder::class);
-         $this->call(ActivitiesSeeder::class);
-         $this->call(UnitsSeeder::class);
-         $this->call(UnitsEventsSeeder::class);
-         $this->call(ActivityUsersSeeder::class);
-         $this->call(PermissionsSeeder::class);
-         $this->call(UserTypesPermissionsSeeder::class);
-		 $this->call(TestsTableSeeder::class);
-		 $this->call(UserTestsSeeder::class);
-		 $this->call(EventTestsSeeder::class);
-         $this->call(HelpSeeder::class);
-         $this->call(ActivityUnitSeeder::class);
-		 //$this->call(AnonymPermissions::class);
-         //$this->call(StudentPermissions::class);
-         //$this->call(AuthorPermissions::class);
-         //$this->call(TeacherPermissions::class);
-         //$this->call(CommissionerPermissions::class);
+        $this->call(EventTypesTableSeeder::class);
+        $this->call(UserTypesTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        $this->call(EventsTableSeeder::class);
+        $this->call(OptionsTableSeeder::class);
+        $this->call(StudyFieldsTableSeeder::class);
+        $this->call(ActivitiesTableSeeder::class);
+        $this->call(UnitsTableSeeder::class);
+        $this->call(UnitsEventsTableSeeder::class);
+        $this->call(ActivityUsersTableSeeder::class);
+        $this->call(PermissionsTableSeeder::class);
+        $this->call(UserTypesPermissionsTableSeeder::class);
+        $this->call(EventTestUserTableSeeder::class);
+        $this->call(HelpsTableSeeder::class);
+        $this->call(TestsTableSeeder::class);
+        $this->call(ActivityUnitTableSeeder::class);
     }
 }

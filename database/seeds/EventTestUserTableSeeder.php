@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TestsTableSeeder extends Seeder
+class EventTestUserTableSeeder extends Seeder
 {
 
     /**
@@ -14,7 +14,7 @@ class TestsTableSeeder extends Seeder
     {
         
 
-        \DB::table('tests')->delete();
+        \DB::table('event_test_user')->delete();
         
         
         

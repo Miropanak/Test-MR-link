@@ -175,7 +175,7 @@ class HelpController extends Controller
             $help->event_id = $request['event_id'];
             $help->save();
         } catch(Exception $e) {
-            return response()->json(null, 500);
+            return response()->json($e, 500);
         }
         return response()->json($help, 200);
     }
