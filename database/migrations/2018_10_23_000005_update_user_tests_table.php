@@ -33,7 +33,7 @@ class UpdateUserTestsTable extends Migration
     public function down()
     {
         Schema::table('user_tests', function (Blueprint $table) {
-            $table->dropSoftDeletes();
+//            $table->dropSoftDeletes();
         });
     }
 }

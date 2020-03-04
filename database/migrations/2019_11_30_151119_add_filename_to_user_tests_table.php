@@ -28,7 +28,7 @@ class AddFilenameToUserTestsTable extends Migration
     {
         Schema::table('user_tests', function(Blueprint $table)
         {
-            $table->dropColumn('filename');
+//            $table->dropColumn('filename');
 
         });
     }

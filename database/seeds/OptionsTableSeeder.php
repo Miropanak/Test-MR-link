@@ -7,15 +7,17 @@
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
-class OptionsSeeder extends Seeder
+class OptionsTableSeeder extends Seeder
 {
+
     /**
-     * Run the database seeds.
+     * Auto generated seed file
      *
      * @return void
      */
     public function run()
     {
+        
 
         DB::table('options')->insert([
             'correct_answer' => false,
@@ -2904,6 +2906,334 @@ class OptionsSeeder extends Seeder
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'event_id' => 72,
         ]);
-
+        DB::table('options')->insert([
+            'correct_answer' => false,
+            'answer_data' => 'i = 2;',
+            'event_id' => 73,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+            'correct_answer' => true,
+            'answer_data' => 'i = 2',
+            'event_id' => 73,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+            'correct_answer' => false,
+            'answer_data' => 'printf(“%d”, i);',
+            'event_id' => 73,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+            'correct_answer' => false,
+            'answer_data' => 'scanf(“%d”, &amp;i);',
+            'event_id' => 73,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+            'correct_answer' => false,
+            'answer_data' => 'i = 2',
+            'event_id' => 74,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+            'correct_answer' => true,
+            'answer_data' => 'i = 2;',
+            'event_id' => 74,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+            'correct_answer' => false,
+            'answer_data' => 'i == 2',
+            'event_id' => 74,
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => '%',
+                'event_id' => 75,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => '&amp;',
+                'event_id' => 75,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => '*',
+                'event_id' => 75,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => '||',
+                'event_id' => 75,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => true,
+                'answer_data' => '++',
+                'event_id' => 75,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => '!=',
+                'event_id' => 75,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => true,
+                'answer_data' => 'Áno',
+                'event_id' => 76,
+                'created_at' => '2020-03-04 19:36:56',
+                'updated_at' => '2020-03-04 19:36:56',
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'Nie',
+                'event_id' => 76,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => '1',
+                'event_id' => 77,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => '3',
+                'event_id' => 77,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => true,
+                'answer_data' => '2',
+                'event_id' => 77,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => '0',
+                'event_id' => 77,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => true,
+                'answer_data' => 'hlavičkový súbor',
+                'event_id' => 78,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'adresár knižnice',
+                'event_id' => 78,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'zdrojový súbor zamýšľanej aplikácie',
+                'event_id' => 78,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'pomocný súbor',
+                'event_id' => 78,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => true,
+                'answer_data' => '#include &lt;stdio.h&gt;',
+                'event_id' => 79,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => '#include ”stdio.h”;',
+                'event_id' => 79,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => '#include &lt;stdio.h&gt;;',
+                'event_id' => 79,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'stdio.h',
+                'event_id' => 79,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'bezprostredne po spracovaní preprocesorom',
+                'event_id' => 80,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'bezprostredne po editovaní',
+                'event_id' => 80,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'bezprostredne po debugovaní',
+                'event_id' => 80,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'bezprostredne po kompilácii',
+                'event_id' => 80,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => true,
+                'answer_data' => 'bezprostredne po linkovaní',
+                'event_id' => 80,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'while()',
+                'event_id' => 81,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => true,
+                'answer_data' => 'putchar()',
+                'event_id' => 81,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'for()',
+                'event_id' => 81,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'if()',
+                'event_id' => 81,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'getchar()',
+                'event_id' => 81,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'scanf()',
+                'event_id' => 81,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'definuje premennú, prečíta znak z&nbsp;klávesnice, a vypíše ho na konzolu v&nbsp;jazyku',
+                'event_id' => 82,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'prečíta znak z&nbsp;klávesnice a vypíše ho na konzolu v&nbsp;jazyku C.',
+                'event_id' => 82,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => true,
+                'answer_data' => 'prečíta znak z&nbsp;klávesnice, vypíše ho na konzolu a&nbsp;odriadkuje v&nbsp;jazyku C',
+                'event_id' => 82,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'definuje premennú, vypíše znak na konzolu a&nbsp;odriadkuje v&nbsp;jazyku C.',
+                'event_id' => 82,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'nevykoná nič nakoľko prekladač zahlási chybu.',
+                'event_id' => 82,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'typu znakových konštánt',
+                'event_id' => 83,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => true,
+                'answer_data' => 'typu operandov',
+                'event_id' => 83,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'typu priraďovacieho operátora',
+                'event_id' => 83,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+        DB::table('options')->insert([
+                'correct_answer' => false,
+                'answer_data' => 'typu operátorov',
+                'event_id' => 83,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
     }
 }
