@@ -87,7 +87,7 @@ class UnitsTableSeeder extends Seeder
                 'created_at' => '2020-03-04 19:54:41',
                 'updated_at' => '2020-03-04 19:54:41',
                 'deleted_at' => NULL,
-                'author_id' => 4,
+                'author_id' => 6,
             ),
             8 => 
             array (
@@ -96,7 +96,7 @@ class UnitsTableSeeder extends Seeder
                 'created_at' => '2020-03-04 20:00:54',
                 'updated_at' => '2020-03-04 20:00:54',
                 'deleted_at' => NULL,
-                'author_id' => 4,
+                'author_id' => 6,
             ),
         ));
         
