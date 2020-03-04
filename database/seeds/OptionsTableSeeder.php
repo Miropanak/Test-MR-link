@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Created by Bernad on 11/6/2017.
+ */
+
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class OptionsTableSeeder extends Seeder

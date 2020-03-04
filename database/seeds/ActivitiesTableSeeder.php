@@ -39,7 +39,7 @@ class ActivitiesTableSeeder extends Seeder
                 'created_at' => '2020-03-04 19:52:52',
                 'updated_at' => '2020-03-04 19:52:52',
                 'deleted_at' => NULL,
-                'author_id' => 4,
+                'author_id' => 6,
             ),
         ));
         

@@ -26,6 +26,15 @@ class ActivityUsersTableSeeder extends Seeder
                 'updated_at' => '2020-03-01 15:36:39',
                 'deleted_at' => NULL,
             ),
+            1 =>
+                array (
+                    'activity_id' => 2,
+                    'subscriber_id' => 6,
+                    'user_type_id' => 4,
+                    'created_at' => '2020-03-01 15:36:39',
+                    'updated_at' => '2020-03-01 15:36:39',
+                    'deleted_at' => NULL,
+                ),
         ));
         
         
