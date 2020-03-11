@@ -353,7 +353,7 @@ class ExamController extends Controller
      *                      @OA\Property(property="start_time", type="date string in format yyyy-MM-dd HH:mm:ss"),
      *                      @OA\Property(property="end_time", type="date string in format yyyy-MM-dd HH:mm:ss"),
      *                      @OA\Property(property="time_spent", type="integer"),
-     *                      @OA\Property(property="obtained_points", type="integer"),
+     *                      @OA\Property(property="obtained_points", type="number"),
      *                      @OA\Property(property="event_id", type="integer")
      *                  )
      *              )
@@ -382,7 +382,7 @@ class ExamController extends Controller
             '*.start_time' => 'date_format:Y-m-d H:i:s|required',
             '*.end_time' => 'date_format:Y-m-d H:i:s|required',
             '*.time_spent' => 'integer|required',
-            '*.obtained_points' => 'integer',
+            '*.obtained_points' => 'numeric',
             '*.event_id' => 'integer|required',
         ]);
 
