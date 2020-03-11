@@ -382,7 +382,7 @@ class ExamController extends Controller
             '*.start_time' => 'date_format:Y-m-d H:i:s|required',
             '*.end_time' => 'date_format:Y-m-d H:i:s|required',
             '*.time_spent' => 'integer|required',
-            '*.obtained_points' => 'float',
+            '*.obtained_points' => 'numeric',
             '*.event_id' => 'integer|required',
         ]);
 
