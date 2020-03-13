@@ -137,8 +137,10 @@ class ExamController extends Controller
      *          type="object",
      *          @OA\Property(property="name", type="string"),
      *          @OA\Property(property="unit_id", type="integer"),
+     *          @OA\Property(property="activity_id", type="integer"),
      *          @OA\Property(property="startDate", type="date string in format yyyy-MM-dd HH:mm:ss"),
      *          @OA\Property(property="event_ids", type="array of integers"),
+     *          @OA\Property(property="active", type="boolean"),
      *          )
      *     ),
      *      @OA\Response(
@@ -158,8 +160,10 @@ class ExamController extends Controller
             'name' => 'string|required',
             'startDate' => 'date_format:Y-m-d H:i:s|required',
             'unit_id' => 'integer|required',
+            'activity_id' => 'integer|required',
             'event_ids' => 'required',
             'event_ids.*' => 'integer',
+            'active' => 'boolean|required'
         ]);
 
         if ($validator->fails()) {
@@ -172,8 +176,10 @@ class ExamController extends Controller
             $exam->name = $request['name'];
             $exam->startDate = $request['startDate'];
             $exam->unit_id = $request['unit_id'];
+            $exam->activity_id = $request['activity_id'];
             $exam->questions = count($request['event_ids']);
             $exam->author_id = Auth::user()->id;
+            $exam->active = $request['active'];
             $exam->save();
             foreach ($request['event_ids'] as $event_id) {
                 $exam->events()->attach($event_id);
@@ -206,13 +212,15 @@ class ExamController extends Controller
      *      ),
      *     @OA\RequestBody(
      *         required=true,
-     *         description="Request body does not need to contain all 'test' fields. Event_ids must contain at least one id",
+     *         description="Request body does not need to contain all 'test' fields, but dont forget to delete last comma. Event_ids must contain at least one id",
      *       @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="name", type="string"),
      *          @OA\Property(property="unit_id", type="integer"),
+     *          @OA\Property(property="activity_id", type="integer"),
      *          @OA\Property(property="startDate", type="date string in format yyyy-MM-dd HH:mm:ss"),
      *          @OA\Property(property="event_ids", type="array of integers"),
+     *          @OA\Property(property="active", type="boolean"),
      *          )
      *     ),
      *      @OA\Response(
@@ -241,7 +249,9 @@ class ExamController extends Controller
             'name' => 'string',
             'startDate' => 'date_format:Y-m-d H:i:s',
             'unit_id' => 'integer',
+            'activity_id' => 'integer',
             'event_ids.*' => 'integer',
+            'active' => 'boolean'
         ]);
 
         if ($validator->fails()) {
@@ -353,7 +363,7 @@ class ExamController extends Controller
      *                      @OA\Property(property="start_time", type="date string in format yyyy-MM-dd HH:mm:ss"),
      *                      @OA\Property(property="end_time", type="date string in format yyyy-MM-dd HH:mm:ss"),
      *                      @OA\Property(property="time_spent", type="integer"),
-     *                      @OA\Property(property="obtained_points", type="integer"),
+     *                      @OA\Property(property="obtained_points", type="number"),
      *                      @OA\Property(property="event_id", type="integer")
      *                  )
      *              )
@@ -382,7 +392,7 @@ class ExamController extends Controller
             '*.start_time' => 'date_format:Y-m-d H:i:s|required',
             '*.end_time' => 'date_format:Y-m-d H:i:s|required',
             '*.time_spent' => 'integer|required',
-            '*.obtained_points' => 'integer',
+            '*.obtained_points' => 'numeric',
             '*.event_id' => 'integer|required',
         ]);
 
