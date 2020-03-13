@@ -213,6 +213,6 @@ class PasswordResetController extends Controller
         $success['role_id'] = $user->user_type_id;
         $success['role'] = $user->role->name;
 
-        return response()->json(['success'=>$success], $this->successStatus);
+        return response()->json(['success'=>$success, 'user_id' => $user->id], $this->successStatus);
     }
 }
