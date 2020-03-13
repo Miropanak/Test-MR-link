@@ -32,4 +32,8 @@ class Test extends Model
     {
         return $this->belongsTo('App\Models\Unit');
     }
+
+    public function activity(){
+        return $this->belongsTo('App\Models\Activity');
+    }
 }

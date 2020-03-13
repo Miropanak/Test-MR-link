@@ -38,7 +38,13 @@ class PasswordResetRequest extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $url = url('/password/find/'.$this->token);
+        if(app()->environment()=='production'){
+            $baseURL = 'https://testuj.sk';
+        } else {
+            $baseURL = 'https://databanka.site';
+        }
+
+        $url = $baseURL . '/password/find/'.$this->token;
         return (new MailMessage)
         ->line('You are receiving this email because we received a password reset request for your account.')
         ->action('Reset Password', url($url))
