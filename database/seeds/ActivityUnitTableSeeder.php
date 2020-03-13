@@ -95,7 +95,7 @@ class ActivityUnitTableSeeder extends Seeder
                 'updated_at' => '2020-03-04 20:00:54',
                 'activity_id' => 2,
                 'unit_id' => 9,
-                'unit_order_number' => 0,
+                'unit_order_number' => 1,
                 'deleted_at' => NULL,
             ),
         ));

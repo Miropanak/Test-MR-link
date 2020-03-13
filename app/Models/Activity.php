@@ -55,4 +55,12 @@ class Activity extends Model
     public function subscriber(){
         return $this->belongsToMany('App\Models\User', 'activity_users', 'activity_id', 'subscriber_id')->withTimestamps();
     }
+
+    /**
+     * Return tests of this activity
+     * @return $belongsToMany
+     */
+    public function tests(){
+        return $this->hasMany('App\Models\Test','activity_id','id');
+    }
 }

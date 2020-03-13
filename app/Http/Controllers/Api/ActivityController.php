@@ -341,7 +341,13 @@ class ActivityController extends Controller
 
             $new_activity = $old_activity->replicate();
             $new_activity->author_id = Auth::user()->id;
-            $new_activity->save();
+            $new_activity->push();
+            // copy tests
+            foreach($old_activity->tests as $test){
+                $test->activity_id = $new_activity->id;
+                $new_activity->tests = $test->replicate();
+                $new_activity->tests->push();
+            }
 
             //re-sync everything, and change unit order number
             $extra = array_map(function($order_num){
@@ -350,6 +356,8 @@ class ActivityController extends Controller
             $data = array_combine($old_activity->units()->pluck('unit_id')->toArray(), $extra);
 
             $new_activity->units()->sync($data);
+
+
 
             return response()->json([
                 'activity'=>$new_activity,
