@@ -73,7 +73,7 @@ class ExamController extends Controller
     {
         try {
             $tests = Test::where('activity_id',$activity_id)->where('unit_id',$unit_id)->get();
-            if (count($tests) > 0) {
+            if ($tests) {
                 return response()->json($tests, 200);
             } else {
                 return response()->json("Test not found", 400);
