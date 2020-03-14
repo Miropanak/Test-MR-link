@@ -347,6 +347,7 @@ class ActivityController extends Controller
                 $test->activity_id = $new_activity->id;
                 $new_activity->tests = $test->replicate();
                 $new_activity->tests->push();
+                $new_activity->tests->events()->sync($test->events);
             }
 
             //re-sync everything, and change unit order number
