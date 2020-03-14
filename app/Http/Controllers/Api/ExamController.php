@@ -36,14 +36,23 @@ class ExamController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/unit/{id}/exams",
-     *      operationId="getUnitExams",
-     *      tags={"Unit", "Test"},
-     *      summary="Gets all tests of unit with id",
-     *      description="Returns 'tests' by belonging to unit",
+     *      path="/api/unit/{unit_id}/activity/{activity_id}/exams",
+     *      operationId="getUnitActivityExams",
+     *      tags={"Unit","Activity", "Test"},
+     *      summary="Gets all tests of unit and activity with id",
+     *      description="Returns 'tests' by belonging to unit and activity",
      *      @OA\Parameter(
-     *          name="id",
+     *          name="unit_id",
      *          description="Unit id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="activity_id",
+     *          description="Activity id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -60,15 +69,14 @@ class ExamController extends Controller
      *       )
      *     )
      */
-    public function getUnitExams($unit_id)
+    public function getUnitActivityExams($unit_id, $activity_id)
     {
         try {
-            $unit = Unit::find($unit_id);
-            if ($unit) {
-                $tests = $unit->test;
+            $tests = Test::where('activity_id',$activity_id)->where('unit_id',$unit_id)->get();
+            if (count($tests) > 0) {
                 return response()->json($tests, 200);
             } else {
-                return response()->json("Unit not found", 404);
+                return response()->json("Test not found", 400);
             }
 
 

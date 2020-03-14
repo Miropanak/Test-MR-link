@@ -112,7 +112,7 @@ Route::group(['prefix' => 'units'], function (){
 
 // EXAMS
 
-Route::get('unit/{id}/exams', 'Api\ExamController@getUnitExams');
+Route::get('unit/{unit_id}/activity/{activity_id}/exams', 'Api\ExamController@getUnitActivityExams');
 Route::get('exam/{id}', 'Api\ExamController@getExam');
 Route::group(['prefix' => 'exam', 'middleware' => 'auth:api'], function () {
     Route::post('', 'Api\ExamController@createExam');
