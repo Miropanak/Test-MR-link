@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use App\Models\Help;
 use App\Models\Option;
 use App\Models\Unit;
@@ -72,13 +73,16 @@ class ExamController extends Controller
     public function getUnitActivityExams($unit_id, $activity_id)
     {
         try {
-            $tests = Test::where('activity_id',$activity_id)->where('unit_id',$unit_id)->get();
-            if ($tests) {
-                return response()->json($tests, 200);
-            } else {
-                return response()->json("Test not found", 400);
+            if (!Unit::find($unit_id)){
+                return response()->json("Unit not found", 400);
             }
 
+            if (!Activity::find($activity_id)){
+                return response()->json("Activity not found", 400);
+            }
+
+            $tests = Test::where('activity_id',$activity_id)->where('unit_id',$unit_id)->get();
+            return response()->json($tests, 200);
 
         } catch (QueryException $e) {
             Log::error($e);
