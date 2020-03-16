@@ -10,7 +10,7 @@ class Test extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'questions', 'startDate'
+        'name', 'questions', 'startDate', 'active', 'activity_id', 'unit_id'
     ];
 
     public function findTestByName(String $searchTerm)
