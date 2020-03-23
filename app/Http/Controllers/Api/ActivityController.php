@@ -340,6 +340,11 @@ class ActivityController extends Controller
             $old_activity = Activity::find($id);
 
             $new_activity = $old_activity->replicate();
+            if (strlen($old_activity->title) > 240){  // fuck users
+                $new_activity->title = substr($old_activity->title, 0, 240) . '[klon]';
+            } else {
+                $new_activity->title = $old_activity->title .'[klon]';
+            }
             $new_activity->author_id = Auth::user()->id;
             $new_activity->push();
             // copy tests
