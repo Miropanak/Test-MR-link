@@ -35,7 +35,7 @@ Route::group(['prefix' => 'password', 'middleware' => 'auth:api'], function () {
 });
 
 // USERS
-Route::group(['prefix' => 'users'], function () {
+Route::group(['prefix' => 'users', 'middleware' => 'auth:api'], function () {
     Route::get('{id}/events', 'Api\UserController@getUserEvents');
     Route::get('{id}/activities', 'Api\UserController@getUserActivities');
     Route::get('', 'Api\UserController@getUsers');
@@ -44,12 +44,6 @@ Route::group(['prefix' => 'users'], function () {
 });
 // EVENTS
 Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {
-    Route::post('', 'Api\EventController@createEvent');
-});
-
-
-
-Route::group(['prefix' => 'events'], function (){
     Route::get('{id}', 'Api\EventController@getEvent');
     Route::get('', 'Api\EventController@getEvents');
     Route::get('{id}/options', 'Api\EventController@getEventOptions');
@@ -59,17 +53,18 @@ Route::group(['prefix' => 'events'], function (){
     Route::put('{id}', 'Api\EventController@updateEvent');
     Route::delete('{id}', 'Api\EventController@deleteEvent');
     Route::put('', 'Api\EventController@updateEvents');
+    Route::post('', 'Api\EventController@createEvent');
 });
 
 // OPTIONS
-Route::group(['prefix' => 'options'], function (){
+Route::group(['prefix' => 'options', 'middleware' => 'auth:api'], function (){
     Route::put('', 'Api\EventController@updateOptions');
     Route::put('{id}', 'Api\EventController@updateOption');
     Route::delete('{id}', 'Api\EventController@deleteOption');
     Route::post('', 'Api\EventController@createOption');
 });
 // HELPS
-Route::group(['prefix' => 'helps'], function (){
+Route::group(['prefix' => 'helps','middleware' => 'auth:api' ], function (){
     Route::get('{id}', 'Api\HelpController@getHelp');
     Route::post('', 'Api\HelpController@createHelp');
     Route::put('{id}', 'Api\HelpController@updateHelp');
@@ -77,7 +72,7 @@ Route::group(['prefix' => 'helps'], function (){
 });
 
 // ACTIVITIES
-Route::group(['prefix' => 'activity'], function (){
+Route::group(['prefix' => 'activity', 'middleware' => 'auth:api'], function (){
     Route::get('all', 'Api\ActivityController@getActivities');
     Route::get('study/fields', 'Api\ActivityController@getStudyFields');
     Route::get('{id}/units', 'Api\ActivityController@getActivityUnits');
@@ -100,26 +95,25 @@ Route::group(['prefix' => 'activity', 'middleware' => 'auth:api'], function () {
 // UNITS
 Route::group(['prefix' => 'units', 'middleware' => 'auth:api'], function () {
     Route::post('', 'Api\UnitController@createUnit');
-    Route::put('{id}/events', 'Api\UnitController@updateEventArrayInUnit');
-});
-Route::group(['prefix' => 'units'], function (){
     Route::get('{id}', 'Api\UnitController@getUnit');
     Route::get('{id}/events', 'Api\UnitController@getUnitEvents');
     Route::put('{id}', 'Api\UnitController@updateUnit');
-
+    Route::put('{id}/events', 'Api\UnitController@updateEventArrayInUnit');
 });
 
+Route::group(['prefix' => 'unit', 'middleware' => 'auth:api'], function (){
+    Route::get('{unit_id}/activity/{activity_id}/exams', 'Api\ExamController@getUnitActivityExams');
+});
 
 // EXAMS
 
-Route::get('unit/{unit_id}/activity/{activity_id}/exams', 'Api\ExamController@getUnitActivityExams');
-Route::get('exam/{id}', 'Api\ExamController@getExam');
 Route::group(['prefix' => 'exam', 'middleware' => 'auth:api'], function () {
     Route::post('', 'Api\ExamController@createExam');
     Route::put('{id}', 'Api\ExamController@updateExam');
     Route::post('{id}/createEventTestAnswers', 'Api\ExamController@createEventTestAnswers');
+    Route::get('{exam_id}/user/{user_id}', 'Api\ExamController@getExamAnswers');
+    Route::get('{id}', 'Api\ExamController@getExam');
 });
-Route::get('exam/{exam_id}/user/{user_id}', 'Api\ExamController@getExamAnswers');
 
 
 
