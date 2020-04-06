@@ -293,6 +293,7 @@ class UserController extends Controller
      *      tags={"User"},
      *      summary="Gets events of user",
      *      description="Returns 'events' by user_id",
+     *      security={{"bearerAuth":{}}},
      *      @OA\Parameter(
      *          name="id",
      *          description="User id",
@@ -338,6 +339,7 @@ class UserController extends Controller
      *      tags={"User"},
      *      summary="Gets activities of user",
      *      description="Returns 'activities' by user_id",
+     *      security={{"bearerAuth":{}}},
      *      @OA\Parameter(
      *          name="id",
      *          description="User id",
@@ -379,6 +381,7 @@ class UserController extends Controller
      *      tags={"User"},
      *      summary="Gets subscribed activities of user",
      *      description="Returns 'activities' by user_id",
+     *      security={{"bearerAuth":{}}},
      *      @OA\Parameter(
      *          name="id",
      *          description="User id",
@@ -419,6 +422,7 @@ class UserController extends Controller
      *      tags={"User"},
      *      summary="Gets all users",
      *      description="Returns 'users'",
+     *      security={{"bearerAuth":{}}},
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation"
