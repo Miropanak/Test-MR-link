@@ -1,5 +1,6 @@
 <?php
-namespace App\Notifications;use Illuminate\Bus\Queueable;
+namespace App\Notifications;
+use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -46,9 +47,9 @@ class PasswordResetRequest extends Notification implements ShouldQueue
 
         $url = $baseURL . '/password/find/'.$this->token;
         return (new MailMessage)
-        ->line('You are receiving this email because we received a password reset request for your account.')
-        ->action('Reset Password', url($url))
-        ->line('If you did not request a password reset, no further action is required.');
+        ->line('Tento email ste dostali z dôvodu žiadosti o zmenu hesla.')
+        ->action('Zmena hesla', url($url))
+        ->line('Ak ste nežiadali o zmenu hesla, žiadna ďalšia akcia nie je potrebná.');
     }
 
     /**
