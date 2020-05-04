@@ -38,9 +38,9 @@ class PasswordResetSuccess extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('Zmena hesla prebehla úspešne.')
-            ->line('Ak ste zmenili heslo vy, žiadna ďalšia akcia nie je potrebna.')
-            ->line('Ak ste heslo nemenili vy, chránte si účet.');
+            ->line('Your password change was successful.')
+            ->line('If you did change password, no further action is required.')
+            ->line('If you did not change password, protect your account.');
     }
 
     /**
