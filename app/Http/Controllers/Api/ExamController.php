@@ -170,7 +170,7 @@ class ExamController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'string|required',
-            'startDate' => 'date_format:Y-m-d H:i:s',
+            'startDate' => 'date_format:Y-m-d H:i:s|required',
             'unit_id' => 'integer|required',
             'activity_id' => 'integer|required',
             'event_ids' => 'required',
