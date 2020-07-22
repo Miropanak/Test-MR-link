@@ -640,7 +640,7 @@ class ActivityController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="Successful operation, returns all subscrubers"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -662,7 +662,7 @@ class ActivityController extends Controller
             $activity = Activity::find($id);
             if ($activity) {
                 $activity->subscriber()->sync($request['student_ids']);
-                return response()->json($activity, 200);
+                return response()->json($activity->subscriber, 200);
             }
         } catch (QueryException $e){
             if($e->getCode() === '22003') {
