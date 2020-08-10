@@ -81,7 +81,7 @@ class ExamController extends Controller
                 return response()->json("Activity not found", 400);
             }
 
-            $tests = Test::where('activity_id',$activity_id)->where('unit_id',$unit_id)->get();
+            $tests = Test::where('activity_id',$activity_id)->where('unit_id',$unit_id)->with('events')->get();
             return response()->json($tests, 200);
 
         } catch (QueryException $e) {
