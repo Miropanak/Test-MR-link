@@ -15,19 +15,19 @@ return [
     |
     */
 
-    'paths' => ['api/*'],
+    'paths' => ['*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['http://branova-armada.eu'],
 
     'allowed_origins_patterns' => [],
 
     'allowed_headers' => ['*'],
 
-    'exposed_headers' => [],
-
-    'max_age' => 0,
+    'exposed_headers' => false,
+//0
+    'max_age' => false,
 
     'supports_credentials' => false,
 

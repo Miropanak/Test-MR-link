@@ -33,7 +33,7 @@ return [
 
     'lifetime' => env('SESSION_LIFETIME', 120),
 
-    'expire_on_close' => false,
+    'expire_on_close' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -72,8 +72,8 @@ return [
     |
     */
 
-    'connection' => env('SESSION_CONNECTION', null),
-
+    //'connection' => env('SESSION_CONNECTION', null),
+    'connection' => null,
     /*
     |--------------------------------------------------------------------------
     | Session Database Table
@@ -100,8 +100,8 @@ return [
     |
     */
 
-    'store' => env('SESSION_STORE', null),
-
+//    'store' => env('SESSION_STORE', null),
+    'store' => null,
     /*
     |--------------------------------------------------------------------------
     | Session Sweeping Lottery
@@ -168,7 +168,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE'),
+    'secure' => env('SESSION_SECURE_COOKIE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -196,6 +196,7 @@ return [
     |
     */
 
-    'same_site' => 'lax',
+//    'same_site' => 'lax',
+    'same_site' => null,
 
 ];

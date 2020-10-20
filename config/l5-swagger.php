@@ -12,7 +12,7 @@ return [
                 /*
                  * Route for accessing api documentation interface
                 */
-                'api' => 'api/documentation',
+                'api' => '/',
             ],
             'paths' => [
                 /*
@@ -51,7 +51,9 @@ return [
              * Middleware allows to prevent unexpected access to API documentation
             */
             'middleware' => [
-                'api' => [],
+		    'api' => [
+			    //\App\Middleware\Cloudflare::class,
+		    ],
                 'asset' => [],
                 'docs' => [],
                 'oauth2_callback' => [],
@@ -180,7 +182,8 @@ return [
          * 'method' (sort by HTTP method).
          * Default is the order returned by the server unchanged.
         */
-        'operations_sort' => env('L5_SWAGGER_OPERATIONS_SORT', null),
+        'operations_sort' => env('L5_SWAGGER_OPERATIONS_SORT', 'method'),
+        //'operations_sort' => env('L5_SWAGGER_OPERATIONS_SORT', null),
 
         /*
          * Pass the validatorUrl parameter to SwaggerUi init on the JS side.

@@ -1,5 +1,5 @@
 <?php
-
+namespace Database\Seeders;
 /**
  * Created by Bernad on 11/6/2017.
  */
