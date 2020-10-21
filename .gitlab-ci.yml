@@ -1,0 +1,32 @@
+image:
+  name: alpine/git
+  entrypoint: [""]
+
+before_script:
+  - 'which ssh-agent || ( apk add openssh-client )'
+  - eval $(ssh-agent -s)
+  - echo "$USER_PASS" | ssh-add -
+  - echo "$USER_PASS_PROD" | ssh-add -
+  - mkdir -p ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+deploy_stage:
+  stage: deploy
+  script:
+    - ssh ubuntu@team06-20.studenti.fiit.stuba.sk "cd /var/www/team-project && git checkout develop && git pull origin develop && exit"
+  environment:
+    name: staging
+    url: http://api.branova-armada.eu
+  only:
+    - develop
+
+deploy_prod:
+  stage: deploy
+  script:
+    - ssh questionhive@147.175.150.202 "cd /var/www/api.testuj.sk && git checkout master && git pull origin master && exit"
+  environment:
+    name: production
+    url: https://api.testuj.sk
+  when: manual
+  only:
+    - master
