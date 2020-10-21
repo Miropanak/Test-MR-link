@@ -1,0 +1,2152 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Databanka API Documentation",
+        "description": "API documentation for project databanka",
+        "contact": {
+            "email": "fiit.tim09@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/activity/all": {
+            "get": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "get all activities",
+                "description": "Returns 'activities'",
+                "operationId": "getActivities",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/activity/study/fields": {
+            "get": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "get all fields of study",
+                "description": "Returns 'fields of study'",
+                "operationId": "getStudyFields",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/activity/{id}": {
+            "get": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Show activity detail",
+                "description": "Returns 'activity', 'users', 'registered' and title",
+                "operationId": "getActivity",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "404": {
+                        "description": "Activity not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Update new activity",
+                "description": "Update new activity",
+                "operationId": "updateActivity",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    },
+                                    "public": {
+                                        "type": "boolean"
+                                    },
+                                    "study_field_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Activity not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied/validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Deletes Activity",
+                "description": "Deletes 'activity' by id, but only author can delete his activity",
+                "operationId": "deleteActivity",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Activity id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Activity not found"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/activity/{id}/units": {
+            "get": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Gets all units of activity",
+                "description": "Returns 'units' of activity by activity id",
+                "operationId": "getActivityUnits",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Activity id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "No units not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Replaces Units in Activity with specified Units",
+                "description": "Replaces Units in Activity with specified Units. Unit_ids array may be empty",
+                "operationId": "updateUnitArrayInActivity",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Activity id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "unit_ids": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid JSON body supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/activity/{id}/subscribers": {
+            "get": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "get all subscribers of activity",
+                "description": "Returns 'subscribers'",
+                "operationId": "getSubscribers",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Activity id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/api/activity": {
+            "post": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Creates new activity",
+                "description": "Creates new activity",
+                "operationId": "createActivity",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    },
+                                    "public": {
+                                        "type": "boolean"
+                                    },
+                                    "study_field_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid JSON body supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/activity/{id}/clone": {
+            "post": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Clone activity",
+                "description": "Cloned activity",
+                "operationId": "cloneActivity",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "404": {
+                        "description": "Activity not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/activity/{id}/unit": {
+            "put": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Adds Unit to Activity",
+                "description": "Adds Unit to Activity",
+                "operationId": "addUnitToActivity",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Activity id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "unit_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid JSON body supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/activity/{id}/student": {
+            "put": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Adds Student to Activity",
+                "description": "Adds Student to Activity",
+                "operationId": "addStudentsToActivity",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Activity id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "student_ids": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation, returns all subscrubers"
+                    },
+                    "400": {
+                        "description": "Invalid JSON body supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/activity/{id}/order/units": {
+            "put": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Change order of units of activity",
+                "description": "In junction table change order of units for specified activity, by sending unit ids(as array) in wanted order",
+                "operationId": "changeUnitOrder",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Activity id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "unit_ids": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid JSON body supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/events/{id}": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Gets event",
+                "description": "Returns 'event' by id",
+                "operationId": "getEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Event not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Updates event",
+                "description": "Updates event",
+                "operationId": "putEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request body does not need to contain all 'event' fields",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "message": {
+                                        "type": "string"
+                                    },
+                                    "time_to_explain": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Event not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Deletes event",
+                "description": "Deletes 'event' by id",
+                "operationId": "deleteEvent",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Event not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/api/events/": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Get events",
+                "description": "Returns all events",
+                "operationId": "getEvents",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/api/events": {
+            "put": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Updates events",
+                "description": "Updates events",
+                "operationId": "putEvents",
+                "requestBody": {
+                    "description": "Array of JSON objects with fields that are going to be updated. Id field is required.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Event not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Creates new event",
+                "description": "Creates new event",
+                "operationId": "createEvent ",
+                "requestBody": {
+                    "description": "Request body has to contain message, header, event_type_id fields. Time_to_hadnle has value 50 set as default. Time_to_explain has value 100 set as default.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "message": {
+                                        "type": "string"
+                                    },
+                                    "header": {
+                                        "type": "string"
+                                    },
+                                    "time_to_explain": {
+                                        "type": "integer"
+                                    },
+                                    "time_to_handle": {
+                                        "type": "integer"
+                                    },
+                                    "event_type_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid JSON body supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/events/{id}/options": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Gets all options of event",
+                "description": "Returns 'options' of event by event id",
+                "operationId": "getEventOptions ",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "No options not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Deletes all options of event",
+                "description": "Deletes all 'options' of event",
+                "operationId": "deleteEventOptions ",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "No options found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/api/events/{id}/event_types": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Gets type of event",
+                "description": "Returns 'event_type' by event id",
+                "operationId": "getEventType",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Event not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/api/events/{id}/event_helps": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "summary": "Gets helps of event",
+                "description": "Returns 'event_helps' by event id",
+                "operationId": "getEventHelps",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Event id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/api/options/{id}": {
+            "put": {
+                "tags": [
+                    "Option"
+                ],
+                "summary": "Updates option",
+                "description": "Updates option",
+                "operationId": "putOption",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Option id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request body does not need to contain all 'option' fields",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "correct_answer": {
+                                        "type": "boolean"
+                                    },
+                                    "answer_data": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Option operation"
+                    },
+                    "404": {
+                        "description": "Option not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Option"
+                ],
+                "summary": "Deletes option",
+                "description": "Deletes 'option' by id",
+                "operationId": "deleteOption",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Option id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Option not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/api/options": {
+            "put": {
+                "tags": [
+                    "Option"
+                ],
+                "summary": "Updates options",
+                "description": "Updates options",
+                "operationId": "putOptions",
+                "requestBody": {
+                    "description": "Array of JSON objects with fields that are going to be updated. Id field is required.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "correct_answer": {
+                                            "type": "boolean"
+                                        },
+                                        "answer_data": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Option not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Option"
+                ],
+                "summary": "Creates new option",
+                "description": "Creates new option",
+                "operationId": "createOption",
+                "requestBody": {
+                    "description": "Request body has to contain correct_answer, answer_data, event_id",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "correct_answer": {
+                                        "type": "boolean"
+                                    },
+                                    "answer_data": {
+                                        "type": "string"
+                                    },
+                                    "event_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid JSON body supplied"
+                    }
+                }
+            }
+        },
+        "/api/unit/{unit_id}/activity/{activity_id}/exams": {
+            "get": {
+                "tags": [
+                    "Unit",
+                    "Activity",
+                    "Test"
+                ],
+                "summary": "Gets all tests of unit and activity with id",
+                "description": "Returns 'tests' by belonging to unit and activity",
+                "operationId": "getUnitActivityExams",
+                "parameters": [
+                    {
+                        "name": "unit_id",
+                        "in": "path",
+                        "description": "Unit id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "activity_id",
+                        "in": "path",
+                        "description": "Activity id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Unit with id doesn't exist"
+                    }
+                }
+            }
+        },
+        "/api/exam/{id}": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Gets test with id",
+                "description": "Returns 'test' with id",
+                "operationId": "getExam",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Test id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Test with id doesn't exist"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Updates test/exam",
+                "description": "Updates test/exam",
+                "operationId": "updateExam",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Test id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request body does not need to contain all 'test' fields, but dont forget to delete last comma. Event_ids must contain at least one id",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "unit_id": {
+                                        "type": "integer"
+                                    },
+                                    "activity_id": {
+                                        "type": "integer"
+                                    },
+                                    "startDate": {
+                                        "type": "date string in format yyyy-MM-dd HH:mm:ss"
+                                    },
+                                    "event_ids": {
+                                        "type": "array of integers"
+                                    },
+                                    "active": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Test operation"
+                    },
+                    "404": {
+                        "description": "Test not found"
+                    },
+                    "400": {
+                        "description": "Invalid body supplied"
+                    },
+                    "403": {
+                        "description": "Logged user not author of test"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/exam": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Creates new exam/test",
+                "description": "Creates new exam/test",
+                "operationId": "createExam",
+                "requestBody": {
+                    "description": "Request body has to contain array of event ids named 'event_ids', 'name' of test, date when test activates 'startDate':yyyy-MM-dd HH-mm-ss and id of unit where it belongs as 'unit_id'",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "unit_id": {
+                                        "type": "integer"
+                                    },
+                                    "activity_id": {
+                                        "type": "integer"
+                                    },
+                                    "startDate": {
+                                        "type": "date string in format yyyy-MM-dd HH:mm:ss"
+                                    },
+                                    "event_ids": {
+                                        "type": "array of integers"
+                                    },
+                                    "active": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid JSON body supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/exam/{exam_id}/user/{user_id}": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Gets users answers",
+                "description": "Returns 'event_test_user' by 'user' and 'exam' id",
+                "operationId": "getExamAnswers",
+                "parameters": [
+                    {
+                        "name": "exam_id",
+                        "in": "path",
+                        "description": "exam id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/api/exam/{id}/createEventTestAnswers": {
+            "post": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Creates event answers",
+                "description": "Creates event answers",
+                "operationId": "createEventTestAnswers",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "exam id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Array of JSON objects with fields that are going to be inserted.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "answer": {
+                                            "type": "string"
+                                        },
+                                        "start_time": {
+                                            "type": "date string in format yyyy-MM-dd HH:mm:ss"
+                                        },
+                                        "end_time": {
+                                            "type": "date string in format yyyy-MM-dd HH:mm:ss"
+                                        },
+                                        "time_spent": {
+                                            "type": "integer"
+                                        },
+                                        "obtained_points": {
+                                            "type": "number"
+                                        },
+                                        "event_id": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Option not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/helps/{id}": {
+            "get": {
+                "tags": [
+                    "Help"
+                ],
+                "summary": "Gets help",
+                "description": "Returns 'help' by id",
+                "operationId": "getHelp",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Help id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Help not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Help"
+                ],
+                "summary": "Updates help",
+                "description": "Updates help",
+                "operationId": "putHelp",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "help id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request body does not need to contain all 'help' fields",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "url": {
+                                        "type": "string"
+                                    },
+                                    "event_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Help not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Help"
+                ],
+                "summary": "Deletes help",
+                "description": "Deletes 'help' by id",
+                "operationId": "deleteHelp",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Help id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Help not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/api/helps": {
+            "post": {
+                "tags": [
+                    "Help"
+                ],
+                "summary": "Creates new help",
+                "description": "Creates new help",
+                "operationId": "createHelp",
+                "requestBody": {
+                    "description": "Request body has to contain name, url, event_id",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "url": {
+                                        "type": "string"
+                                    },
+                                    "event_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid JSON body supplied"
+                    }
+                }
+            }
+        },
+        "/api/password/create": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "This is the 1. request when reseting password",
+                "description": "Request Password Reset, create reset token and send email",
+                "operationId": "create",
+                "requestBody": {
+                    "description": "Email",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "--Successful operation--"
+                    },
+                    "400": {
+                        "description": "--Validation problem--"
+                    },
+                    "404": {
+                        "description": "--No user with that email ad--"
+                    }
+                }
+            }
+        },
+        "/api/password/find/{token}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "This is the 2. request when reseting password, this is where the user will be sent after he clicks on link in email",
+                "description": "This has to return some react thingy TODO. If the token is active response with token data",
+                "operationId": "find",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "path",
+                        "description": "Token for password reset",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "--Successful operation--"
+                    },
+                    "404": {
+                        "description": "--Invalid token--"
+                    }
+                }
+            }
+        },
+        "/api/password/reset": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "This is the 3. request when reseting password, this is request with new password",
+                "description": "If the token is active response with User data",
+                "operationId": "reset",
+                "requestBody": {
+                    "description": "Email",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "c_password": {
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "token": {
+                                        "type": "string",
+                                        "format": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "--Successful operation--"
+                    },
+                    "404": {
+                        "description": "--Invalid token--"
+                    },
+                    "400": {
+                        "description": "--No user with that email ad or validation error--"
+                    }
+                }
+            }
+        },
+        "/api/units/{id}": {
+            "get": {
+                "tags": [
+                    "Unit"
+                ],
+                "summary": "Gets unit",
+                "description": "Returns 'unit' by id",
+                "operationId": "getUnit",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Unit id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Unit not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Unit"
+                ],
+                "summary": "Updates unit",
+                "description": "Updates unit",
+                "operationId": "putUnit",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Unit id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request body does not need to contain all 'unit' fields. Field activity_ids is array of activities to which unit belongs to. After update unit will belong to only activities specified in activity_ids array.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "activity_ids": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Unit not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/api/units/{id}/events": {
+            "get": {
+                "tags": [
+                    "Unit"
+                ],
+                "summary": "Gets all events of unit",
+                "description": "Returns 'events' of unit by unit id",
+                "operationId": "getUnitEvents ",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Unit id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "No events not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Unit"
+                ],
+                "summary": "Replaces Events in Units with specified Events",
+                "description": "Replaces Events in Units with specified Events. Activity id must be specified, so we dont update clones. Event_ids array may be empty",
+                "operationId": "updateEventArrayInUnit",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Unit id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "activity_id": {
+                                        "type": "integer"
+                                    },
+                                    "event_ids": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid JSON body supplied"
+                    },
+                    "404": {
+                        "description": "Invalid unit ID supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/units": {
+            "post": {
+                "tags": [
+                    "Unit"
+                ],
+                "summary": "Creates new unit",
+                "description": "Creates new unit",
+                "operationId": "createUnit",
+                "requestBody": {
+                    "description": "Request body has to contain title, description. activity_ids must contain at least one valid activity id - format: 'activity_ids': [1]",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "activity_ids": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid JSON body supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Login user into the system",
+                "description": "",
+                "operationId": "login",
+                "requestBody": {
+                    "description": "Email / Password",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "--Successful operation--",
+                        "headers": {
+                            "x-ratelimit-limit": {
+                                "description": "Request limit per hour",
+                                "schema": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            },
+                            "x-ratelimit-remaining": {
+                                "description": "The number of requests left for the time window",
+                                "schema": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "--Invalid username/password supplied--"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Register user into the system",
+                "description": "The registred user's role is automatically set to 'student'",
+                "operationId": "register",
+                "requestBody": {
+                    "description": "Regular registration form",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "firstname": {
+                                        "type": "string"
+                                    },
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "confirm_private_policy": {
+                                        "type": "boolean"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "c_password": {
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "--Successful operation--",
+                        "headers": {
+                            "x-ratelimit-limit": {
+                                "description": "Request limit per hour",
+                                "schema": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                }
+                            },
+                            "x-ratelimit-remaining": {
+                                "description": "The number of requests left for the time window",
+                                "schema": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "--Validation problem--"
+                    }
+                }
+            }
+        },
+        "/api/password/change": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Change the password of user",
+                "description": "",
+                "operationId": "password_change",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "password_new": {
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "c_password_new": {
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "--Successful operation--"
+                    },
+                    "401": {
+                        "description": "--Invalid username/password supplied--"
+                    },
+                    "400": {
+                        "description": "--Validation problem--"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/email/check": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Check if the email is already used",
+                "description": "",
+                "operationId": "email_check",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "--User is in not DB--"
+                    },
+                    "400": {
+                        "description": "--User is in DB--"
+                    }
+                }
+            }
+        },
+        "/api/users/{id}/events": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Gets events of user",
+                "description": "Returns 'events' by user_id",
+                "operationId": "getUserEvents",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "Events not found"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/api/users/{id}/activities": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Gets activities of user",
+                "description": "Returns 'activities' by user_id",
+                "operationId": "getUserActivities",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/api/users/{id}/subscribed/activities": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Gets subscribed activities of user",
+                "description": "Returns 'activities' by user_id",
+                "operationId": "subscribedActivity",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    }
+                }
+            }
+        },
+        "/api/users/": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Gets all users",
+                "description": "Returns 'users'",
+                "operationId": "getUsers",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "in": "header",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

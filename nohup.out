@@ -1,0 +1,180 @@
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+Starting Laravel development server: http://127.0.0.1:8000
+[Tue Oct 13 17:35:56 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+[Tue Oct 13 17:35:56 2020] PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+[Tue Oct 13 17:35:56 2020] PHP 7.4.11 Development Server (http://127.0.0.1:8000) started
+Starting Laravel development server: http://127.0.0.1:8001
+[Tue Oct 13 17:36:33 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+[Tue Oct 13 17:36:33 2020] PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+[Tue Oct 13 17:36:33 2020] PHP 7.4.11 Development Server (http://127.0.0.1:8001) started
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+Starting Laravel development server: http://147.175.150.82:80
+[Tue Oct 13 17:37:23 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+[Tue Oct 13 17:37:23 2020] PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+[Tue Oct 13 17:37:23 2020] Failed to listen on 147.175.150.82:80 (reason: Permission denied)
+Starting Laravel development server: http://127.0.0.1:8002
+[Tue Oct 13 17:38:47 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+[Tue Oct 13 17:38:47 2020] PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+[Tue Oct 13 17:38:47 2020] PHP 7.4.11 Development Server (http://127.0.0.1:8002) started
+PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+Starting Laravel development server: http://147.175.150.82:80
+[Tue Oct 13 17:39:06 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+[Tue Oct 13 17:39:06 2020] PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+[Tue Oct 13 17:39:06 2020] PHP 7.4.11 Development Server (http://147.175.150.82:80) started
+[Tue Oct 13 17:39:11 2020] 195.146.139.212:60984 Accepted
+[Tue Oct 13 17:39:11 2020] 195.146.139.212:60984 Closing
+[Tue Oct 13 17:39:11 2020] 195.146.139.212:60985 Accepted
+[Tue Oct 13 17:39:11 2020] 195.146.139.212:60985 Closing
+[Tue Oct 13 17:39:11 2020] 195.146.139.212:60986 Accepted
+[Tue Oct 13 17:39:11 2020] 195.146.139.212:60987 Accepted
+[Tue Oct 13 17:39:12 2020] 195.146.139.212:60986 Closing
+[Tue Oct 13 17:39:12 2020] 195.146.139.212:60987 Closing
+[Tue Oct 13 17:39:12 2020] 195.146.139.212:60988 Accepted
+[Tue Oct 13 17:39:12 2020] 195.146.139.212:60988 Closing
+[Tue Oct 13 17:39:12 2020] 195.146.139.212:60990 Accepted
+[Tue Oct 13 17:39:12 2020] 195.146.139.212:60990 Closing
+[Tue Oct 13 17:39:12 2020] 195.146.139.212:60991 Accepted
+[Tue Oct 13 17:39:12 2020] 195.146.139.212:60992 Accepted
+[Tue Oct 13 17:39:12 2020] 195.146.139.212:60991 Closing
+[Tue Oct 13 17:39:12 2020] 195.146.139.212:60993 Accepted
+[Tue Oct 13 17:39:12 2020] 195.146.139.212:60992 Closing
+[Tue Oct 13 17:39:13 2020] 195.146.139.212:60993 Closing
+[Tue Oct 13 17:39:17 2020] 195.146.139.212:60997 Accepted
+[Tue Oct 13 17:39:17 2020] 195.146.139.212:60997 Closing
+[Tue Oct 13 17:39:21 2020] 78.99.202.26:7717 Accepted
+[Tue Oct 13 17:39:21 2020] 78.99.202.26:7718 Accepted
+[Tue Oct 13 17:39:27 2020] 195.146.139.212:61002 Accepted
+[Tue Oct 13 17:39:27 2020] 195.146.139.212:61002 Closing
+[Tue Oct 13 17:39:27 2020] 78.99.202.26:7717 Closing
+[Tue Oct 13 17:39:27 2020] 78.99.202.26:7718 Closing
+[Tue Oct 13 17:39:27 2020] 78.99.202.26:7719 Accepted
+[Tue Oct 13 17:39:27 2020] 78.99.202.26:7720 Accepted
+[Tue Oct 13 17:39:27 2020] 78.99.202.26:7719 Closing
+[Tue Oct 13 17:39:27 2020] 78.99.202.26:7720 Closing
+[Tue Oct 13 17:39:28 2020] 78.99.202.26:7721 Accepted
+[Tue Oct 13 17:39:28 2020] 78.99.202.26:7721 Closing
+[Tue Oct 13 17:39:28 2020] 78.99.202.26:7722 Accepted
+[Tue Oct 13 17:39:28 2020] 78.99.202.26:7722 Closing
+[Tue Oct 13 17:39:37 2020] 78.99.202.26:7723 Accepted
+[Tue Oct 13 17:39:37 2020] 78.99.202.26:7723 Closing
+Starting Laravel development server: http://127.0.0.1:8003
+[Tue Oct 13 17:39:50 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+[Tue Oct 13 17:39:50 2020] PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+[Tue Oct 13 17:39:50 2020] PHP 7.4.11 Development Server (http://127.0.0.1:8003) started
+[Tue Oct 13 17:39:52 2020] 195.146.139.212:61017 Accepted
+[Tue Oct 13 17:39:52 2020] 195.146.139.212:61017 Closing
+[Tue Oct 13 17:39:53 2020] 195.146.139.212:61018 Accepted
+[Tue Oct 13 17:39:53 2020] 195.146.139.212:61018 Closing
+[Tue Oct 13 17:39:53 2020] 195.146.139.212:61019 Accepted
+[Tue Oct 13 17:39:53 2020] 195.146.139.212:61020 Accepted
+[Tue Oct 13 17:39:53 2020] 195.146.139.212:61020 Closing
+[Tue Oct 13 17:39:53 2020] 195.146.139.212:61019 Closing
+[Tue Oct 13 17:39:54 2020] 78.99.202.26:7724 Accepted
+[Tue Oct 13 17:39:54 2020] 78.99.202.26:7725 Accepted
+[Tue Oct 13 17:39:54 2020] 78.99.202.26:7725 Closing
+[Tue Oct 13 17:39:55 2020] 78.99.202.26:7724 Closing
+[Tue Oct 13 17:41:34 2020] 78.99.202.26:7727 Accepted
+[Tue Oct 13 17:41:34 2020] 78.99.202.26:7728 Accepted
+[Tue Oct 13 17:42:39 2020] 78.98.81.218:40619 Accepted
+[Tue Oct 13 17:42:39 2020] 78.98.81.218:40619 Closing
+[Tue Oct 13 17:42:40 2020] 78.98.81.218:40620 Accepted
+[Tue Oct 13 17:42:40 2020] 78.98.81.218:40620 [200]: GET /favicon.ico
+[Tue Oct 13 17:42:40 2020] 78.98.81.218:40620 Closing
+[Tue Oct 13 17:42:41 2020] 78.98.81.218:40621 Accepted
+[Tue Oct 13 17:42:41 2020] 78.98.81.218:40621 Closing
+[Tue Oct 13 17:42:41 2020] 78.98.81.218:40622 Accepted
+[Tue Oct 13 17:42:41 2020] 78.98.81.218:40622 [200]: GET /favicon.ico
+[Tue Oct 13 17:42:41 2020] 78.98.81.218:40622 Closing
+[Tue Oct 13 17:43:11 2020] 78.99.202.26:7728 Closed without sending a request; it was probably just an unused speculative preconnection
+[Tue Oct 13 17:43:11 2020] 78.99.202.26:7728 Closing
+[Tue Oct 13 17:43:11 2020] 78.99.202.26:7727 Closed without sending a request; it was probably just an unused speculative preconnection
+[Tue Oct 13 17:43:11 2020] 78.99.202.26:7727 Closing
+[Tue Oct 13 17:49:22 2020] 78.98.81.218:40635 Accepted
+[Tue Oct 13 17:49:23 2020] 78.98.81.218:40635 Closing
+[Tue Oct 13 17:49:23 2020] 78.98.81.218:40636 Accepted
+[Tue Oct 13 17:49:23 2020] 78.98.81.218:40636 [200]: GET /favicon.ico
+[Tue Oct 13 17:49:23 2020] 78.98.81.218:40636 Closing
+[Tue Oct 13 17:50:29 2020] 195.146.139.212:61233 Accepted
+[Tue Oct 13 17:50:29 2020] 195.146.139.212:61233 Closing
+[Tue Oct 13 17:50:29 2020] 195.146.139.212:61234 Accepted
+[Tue Oct 13 17:50:29 2020] 195.146.139.212:61234 Closing
+[Tue Oct 13 17:50:37 2020] 195.146.139.212:61236 Accepted
+[Tue Oct 13 17:50:37 2020] 195.146.139.212:61236 Closing
+[Tue Oct 13 17:50:46 2020] 195.146.139.212:61239 Accepted
+[Tue Oct 13 17:50:46 2020] 195.146.139.212:61239 Closing
+[Tue Oct 13 17:52:45 2020] 78.98.81.218:40647 Accepted
+[Tue Oct 13 17:52:45 2020] 78.98.81.218:40647 Closing
+[Tue Oct 13 17:57:52 2020] 78.98.81.218:40655 Accepted
+[Tue Oct 13 17:57:52 2020] 78.98.81.218:40655 Closing
+[Tue Oct 13 17:57:52 2020] 78.98.81.218:40656 Accepted
+[Tue Oct 13 17:57:52 2020] 78.98.81.218:40656 Closing
+[Tue Oct 13 17:57:52 2020] 78.98.81.218:40657 Accepted
+[Tue Oct 13 17:57:52 2020] 78.98.81.218:40658 Accepted
+[Tue Oct 13 17:57:55 2020] 78.98.81.218:40657 Closing
+[Tue Oct 13 17:57:55 2020] 78.98.81.218:40658 Closing
+[Tue Oct 13 17:57:56 2020] 78.98.81.218:40659 Accepted
+[Tue Oct 13 17:57:56 2020] 78.98.81.218:40659 Closing
+[Tue Oct 13 17:57:56 2020] 78.98.81.218:40660 Accepted
+[Tue Oct 13 17:57:56 2020] 78.98.81.218:40660 Closing
+[Tue Oct 13 18:35:42 2020] 61.161.86.194:7225 Accepted
+[Tue Oct 13 18:35:44 2020] 61.161.86.194:7225 Closed without sending a request; it was probably just an unused speculative preconnection
+[Tue Oct 13 18:35:44 2020] 61.161.86.194:7225 Closing
+[Tue Oct 13 18:35:44 2020] 61.161.86.194:7226 Accepted
+[Tue Oct 13 18:35:45 2020] 61.161.86.194:7226 Closing
+[Tue Oct 13 18:35:46 2020] 61.161.86.194:7227 Accepted
+[Tue Oct 13 18:35:46 2020] 61.161.86.194:7227 Closing
+[Tue Oct 13 18:35:47 2020] 61.161.86.194:7228 Accepted
+[Tue Oct 13 18:35:47 2020] 61.161.86.194:7228 Closing
+[Tue Oct 13 18:35:47 2020] 61.161.86.194:7229 Accepted
+[Tue Oct 13 18:35:47 2020] 61.161.86.194:7229 Closing
+[Tue Oct 13 18:35:48 2020] 61.161.86.194:7230 Accepted
+[Tue Oct 13 18:35:48 2020] 61.161.86.194:7230 Closing
+[Tue Oct 13 18:35:48 2020] 61.161.86.194:7231 Accepted
+[Tue Oct 13 18:35:48 2020] 61.161.86.194:7231 Closing
+[Tue Oct 13 18:35:49 2020] 61.161.86.194:7232 Accepted
+[Tue Oct 13 18:35:49 2020] 61.161.86.194:7232 Closing
+[Tue Oct 13 18:35:49 2020] 61.161.86.194:7233 Accepted
+[Tue Oct 13 18:35:49 2020] 61.161.86.194:7233 [404]: GET /index.php
+[Tue Oct 13 18:35:49 2020] 61.161.86.194:7233 Closing
+[Tue Oct 13 18:35:51 2020] 61.161.86.194:7235 Accepted
+[Tue Oct 13 18:35:51 2020] 61.161.86.194:7235 Closing
+[Tue Oct 13 19:33:24 2020] 195.146.139.212:62086 Accepted
+[Tue Oct 13 19:33:24 2020] 195.146.139.212:62086 Closing
+[Tue Oct 13 19:33:25 2020] 195.146.139.212:62087 Accepted
+[Tue Oct 13 19:33:25 2020] 195.146.139.212:62088 Accepted
+[Tue Oct 13 19:33:25 2020] 195.146.139.212:62088 Closing
+[Tue Oct 13 19:33:25 2020] 195.146.139.212:62087 Closing
+Starting Laravel development server: http://127.0.0.1:8004
+[Tue Oct 13 19:34:29 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+[Tue Oct 13 19:34:29 2020] PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+[Tue Oct 13 19:34:29 2020] PHP 7.4.11 Development Server (http://127.0.0.1:8004) started
+Environment modified. Restarting server...
+[Tue Oct 13 19:55:25 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+[Tue Oct 13 19:55:25 2020] PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+[Tue Oct 13 19:55:25 2020] PHP 7.4.11 Development Server (http://127.0.0.1:8004) started
+Environment modified. Restarting server...
+[Tue Oct 13 20:19:50 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+[Tue Oct 13 20:19:50 2020] PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+[Tue Oct 13 20:19:50 2020] PHP 7.4.11 Development Server (http://127.0.0.1:8004) started
+Environment modified. Restarting server...
+[Tue Oct 13 20:24:49 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+[Tue Oct 13 20:24:49 2020] PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+[Tue Oct 13 20:24:49 2020] PHP 7.4.11 Development Server (http://127.0.0.1:8004) started
+Environment modified. Restarting server...
+[Tue Oct 13 20:44:20 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql' (tried: /usr/lib/php/20190902/pdo_pgsql (/usr/lib/php/20190902/pdo_pgsql: cannot open shared object file: No such file or directory), /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params)) in Unknown on line 0
+[Tue Oct 13 20:44:20 2020] PHP Warning:  Module 'shmop' already loaded in Unknown on line 0
+[Tue Oct 13 20:44:20 2020] PHP 7.4.11 Development Server (http://127.0.0.1:8004) started
+Environment modified. Restarting server...
+[Tue Oct 13 21:18:28 2020] PHP 7.4.11 Development Server (http://127.0.0.1:8004) started
+Environment modified. Restarting server...
+[Wed Oct 14 10:15:19 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql.so' (tried: /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params), /usr/lib/php/20190902/pdo_pgsql.so.so (/usr/lib/php/20190902/pdo_pgsql.so.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[Wed Oct 14 10:15:20 2020] PHP 7.4.11 Development Server (http://127.0.0.1:8004) started
+Environment modified. Restarting server...
+[Wed Oct 14 15:18:18 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql.so' (tried: /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params), /usr/lib/php/20190902/pdo_pgsql.so.so (/usr/lib/php/20190902/pdo_pgsql.so.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[Wed Oct 14 15:18:18 2020] PHP 7.4.11 Development Server (http://127.0.0.1:8004) started
+Environment modified. Restarting server...
+[Sat Oct 17 15:44:54 2020] PHP Warning:  PHP Startup: Unable to load dynamic library 'pdo_pgsql.so' (tried: /usr/lib/php/20190902/pdo_pgsql.so (/usr/lib/php/20190902/pdo_pgsql.so: undefined symbol: pdo_parse_params), /usr/lib/php/20190902/pdo_pgsql.so.so (/usr/lib/php/20190902/pdo_pgsql.so.so: cannot open shared object file: No such file or directory)) in Unknown on line 0
+[Sat Oct 17 15:44:54 2020] PHP 7.4.11 Development Server (http://127.0.0.1:8004) started
