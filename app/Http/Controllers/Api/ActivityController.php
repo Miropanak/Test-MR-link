@@ -49,7 +49,7 @@ class ActivityController extends Controller
      *      description="Returns 'activities'",
      *      @OA\Response(
      *          response=200,
-     *          description="successful operation"
+     *          description="OK"
      *       ),
      *  )
      */
@@ -68,7 +68,7 @@ class ActivityController extends Controller
      *      description="Returns 'fields of study'",
      *      @OA\Response(
      *          response=200,
-     *          description="successful operation"
+     *          description="OK"
      *       )
      *  )
      */
@@ -97,7 +97,7 @@ class ActivityController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -113,6 +113,9 @@ class ActivityController extends Controller
     {
         try{
             $activity = Activity::find($id);
+			if(!$activity){
+				return response()->json("Activity not found", 404);
+			}
             $users = $activity->subscriber;
             $registered = $this->isRegistered($activity->subscriber, Auth::user()->id);
             $title = $activity->title;
@@ -125,11 +128,11 @@ class ActivityController extends Controller
                     "title" => $title
                 ],200);
             } else {
-                return response()->json(null, 404);
+                return response()->json("Activity not found", 404);
             }
         }catch(QueryException $e) {
             if ($e->getCode() === '22003') {
-                return response()->json(null, 400); // bad id provided -> id too big for integer
+                return response()->json("ID is too long", 400); // bad id provided -> id too big for integer
             } else {
                 return response()->json(null, 500);
             }
@@ -154,11 +157,11 @@ class ActivityController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
-     *          description="No units not found"
+     *          description="Activity not found"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -169,12 +172,16 @@ class ActivityController extends Controller
 
     public function getActivityUnits($id) {
         try{
-            $units = Activity::find($id)->units()->orderBy('unit_order_number')->get();
-            return response()->json($units, 200);
-
+			$activity = Activity::find($id);
+			if($activity){
+				$units = Activity::find($id)->units()->orderBy('unit_order_number')->get();
+				return response()->json($units, 200);
+			}else{
+				return response()->json("Activity not found", 404);
+			}
         } catch(QueryException $e) {
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }
@@ -199,23 +206,31 @@ class ActivityController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
      *         description="Invalid ID supplied",
      *      ),
+	 *		@OA\Response(
+     *          response=404,
+     *          description="Activity not found"
+     *       ),
      *   )
      */
     public function getSubscribers($id)
     {
         try{
-            $subs = Activity::find($id)->subscriber()->orderBy('name')->get();
-            return response()->json($subs, 200);
-
+			$activity = Activity::find($id);
+			if($activity){
+				$subs = Activity::find($id)->subscriber()->orderBy('name')->get();
+				return response()->json($subs, 200);
+			}else{
+				return response()->json("Activity not found", 404);
+			} 
         } catch(QueryException $e) {
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }
@@ -257,7 +272,7 @@ class ActivityController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -321,7 +336,7 @@ class ActivityController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -338,40 +353,41 @@ class ActivityController extends Controller
     {
         try{
             $old_activity = Activity::find($id);
+			if ($old_activity){
+				$new_activity = $old_activity->replicate();
+				if (strlen($old_activity->title) > 240){  // fuck users
+					$new_activity->title = substr($old_activity->title, 0, 240) . '[klon]';
+				} else {
+					$new_activity->title = $old_activity->title .'[klon]';
+				}
+				$new_activity->author_id = Auth::user()->id;
+				$new_activity->push();
+				// copy tests
+				foreach($old_activity->tests as $test){
+					$test->activity_id = $new_activity->id;
+					$new_activity->tests = $test->replicate();
+					$new_activity->tests->push();
+					$new_activity->tests->events()->sync($test->events);
+				}
 
-            $new_activity = $old_activity->replicate();
-            if (strlen($old_activity->title) > 240){  // fuck users
-                $new_activity->title = substr($old_activity->title, 0, 240) . '[klon]';
-            } else {
-                $new_activity->title = $old_activity->title .'[klon]';
-            }
-            $new_activity->author_id = Auth::user()->id;
-            $new_activity->push();
-            // copy tests
-            foreach($old_activity->tests as $test){
-                $test->activity_id = $new_activity->id;
-                $new_activity->tests = $test->replicate();
-                $new_activity->tests->push();
-                $new_activity->tests->events()->sync($test->events);
-            }
+				//re-sync everything, and change unit order number
+				$extra = array_map(function($order_num){
+					return ['unit_order_number' => $order_num];
+				}, $old_activity->units()->pluck('unit_order_number')->toArray());
+				$data = array_combine($old_activity->units()->pluck('unit_id')->toArray(), $extra);
 
-            //re-sync everything, and change unit order number
-            $extra = array_map(function($order_num){
-                return ['unit_order_number' => $order_num];
-            }, $old_activity->units()->pluck('unit_order_number')->toArray());
-            $data = array_combine($old_activity->units()->pluck('unit_id')->toArray(), $extra);
+				$new_activity->units()->sync($data);
 
-            $new_activity->units()->sync($data);
-
-
-
-            return response()->json([
-                'activity'=>$new_activity,
-                'subscribers'=>$new_activity->subscriber,
-                'title'=>$new_activity->title,]);
+				return response()->json([
+					'activity'=>$new_activity,
+					'subscribers'=>$new_activity->subscriber,
+					'title'=>$new_activity->title,], 200);
+			}else{
+				return response()->json("Activity not found", 404);
+			} 
         }catch(QueryException $e) {
             if ($e->getCode() === '22003') {
-                return response()->json(null, 400); // bad id provided -> id too big for integer
+                return response()->json("ID is too long", 400); // bad id provided -> id too big for integer
             } else {
                 return response()->json(null, 500);
             }
@@ -423,7 +439,7 @@ class ActivityController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -431,7 +447,11 @@ class ActivityController extends Controller
      *       ),
      *      @OA\Response(
      *         response=400,
-     *         description="Invalid ID supplied/validation error",
+     *         description="Invalid ID supplied/Invalid JSON supplied",
+     *      ),
+	 *      @OA\Response(
+     *         response=403,
+     *         description="Access forbidden",
      *      ),
      *     )
      */
@@ -463,13 +483,14 @@ class ActivityController extends Controller
                 $activity->update($data);
                 $activity->save();
 
-                return $this->getActivity($id);
+                //return $this->getActivity($id);
+				return response()->json($this->getActivity($id), 200);
             } else {
-                return response()->json('Cant find that bitch', 404);
+                return response()->json('Activity not found', 404);
             }
         } catch(QueryException $e) {
             if($e->getCode() === '22003') {
-                return response()->json($e, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json($e, 500);
             }
@@ -495,7 +516,7 @@ class ActivityController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -503,7 +524,7 @@ class ActivityController extends Controller
      *       ),
      *       @OA\Response(
      *          response=403,
-     *          description="Unauthorized"
+     *          description="Access forbidden"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -523,11 +544,11 @@ class ActivityController extends Controller
 
                 return response()->json('Activity with id '.$id.' has been deleted', 200);
             } else {
-                return response()->json('Cant find that bitch', 404);
+                return response()->json('Activity not found', 404);
             }
         } catch(QueryException $e){
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }
@@ -566,16 +587,29 @@ class ActivityController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
      *         description="Invalid JSON body supplied",
      *      ),
+	 *      @OA\Response(
+     *         response=404,
+     *         description="Activity not found",
+     *      ),
+	 *      @OA\Response(
+     *         response=403,
+     *         description="Access forbidden",
+     *      ),
      *     )
      */
     public function addUnitToActivity(Request $request, $id) {
-        $validator = Validator::make($request->all(), [
+        $activity = Activity::find($id);
+		if(!$activity){
+			return response()->json("Activity not found", 404);
+		}
+		
+		$validator = Validator::make($request->all(), [
             'unit_id' => 'required|integer',
         ]);
 
@@ -597,15 +631,16 @@ class ActivityController extends Controller
                 $junction->unit_order_number = $order_number + 1; // vo vazobnej tabulke zvys poradie novej unity
                 $junction->save();
                 return response()->json($activity, 200);
-            }
+            }else{
+				return response()->json("Activity not found", 404);
+			}
         } catch (QueryException $e){
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }
         }
-
     }
 
     /**
@@ -640,11 +675,15 @@ class ActivityController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation, returns all subscrubers"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
-     *         description="Invalid JSON body supplied",
+     *         description="Invalid JSON body/ID supplied",
+     *      ),
+	 *      @OA\Response(
+     *         response=404,
+     *         description="Activity not found",
      *      ),
      *     )
      */
@@ -663,10 +702,12 @@ class ActivityController extends Controller
             if ($activity) {
                 $activity->subscriber()->sync($request['student_ids']);
                 return response()->json($activity->subscriber, 200);
-            }
+            }else{
+				return response()->json("Activity not found", 404);
+			}
         } catch (QueryException $e){
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }
@@ -705,16 +746,23 @@ class ActivityController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
-     *         description="Invalid JSON body supplied",
+     *         description="Invalid JSON body/ID supplied",
+     *      ),
+	 *      @OA\Response(
+     *         response=404,
+     *         description="Activity not found",
      *      ),
      *     )
      */
     public function changeUnitOrder(Request $request, $id) {
-
+		$activity = Activity::find($id);
+		if(!$activity){
+			return response()->json("Activity not found", 404);
+		}
         $validator = Validator::make($request->all(), [
             'unit_ids*' => 'required|integer',
         ]);
@@ -732,10 +780,12 @@ class ActivityController extends Controller
                     $junction_update->save();
                 }
                 return $this->getActivityUnits($id);
-            }
+            }else{
+				return response()->json("Activity not found", 404);
+			}
         } catch (QueryException $e){
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }
@@ -775,16 +825,27 @@ class ActivityController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
-     *         description="Invalid JSON body supplied",
+     *         description="Invalid JSON body/ID supplied",
+     *      ),
+	 *      @OA\Response(
+     *         response=403,
+     *         description="Access forbidden",
+     *      ),
+	 *      @OA\Response(
+     *         response=404,
+     *         description="Activity not found",
      *      ),
      *     )
      */
     public function updateUnitArrayInActivity(Request $request, $id) {
-
+		$activity = Activity::find($id);
+		if(!$activity){
+			return response()->json("Activity not found", 404);
+		}
         $validator = Validator::make($request->all(), [
             'unit_ids.*' => 'integer',
         ]);
@@ -802,10 +863,12 @@ class ActivityController extends Controller
             if ($activity) {
                 $activity->units()->sync($request['unit_ids']);
                 return response()->json($activity, 200);
-            }
+            }else{
+				return response()->json("Activity not found", 404);
+			}
         } catch (QueryException $e){
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }

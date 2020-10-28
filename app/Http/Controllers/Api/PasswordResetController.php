@@ -60,9 +60,9 @@ class PasswordResetController extends Controller
      *           )
      *       )
      *   ),
-     *   @OA\Response(response=200, description="--Successful operation--"),
-     *   @OA\Response(response=400, description="--Validation problem--"),
-     *   @OA\Response(response=404, description="--No user with that email ad--")
+     *   @OA\Response(response=200, description="OK"),
+     *   @OA\Response(response=400, description="Invalid JSON body supplied"),
+     *   @OA\Response(response=404, description="User not found")
      * )
      */
     public function create(Request $request)
@@ -90,11 +90,11 @@ class PasswordResetController extends Controller
 
         if($user && $passwordReset) {
             $user->notify(new PasswordResetRequest($passwordReset->token));
-        }
+			return response()->json(['message' => 'We have e-mailed your password reset link!'], 200);
+        }else{
+			return response()->json(null, 500);
+		}
 
-        return response()->json([
-            'message' => 'We have e-mailed your password reset link!'
-        ], $this->successStatus);
     }
 
     /**
@@ -112,8 +112,8 @@ class PasswordResetController extends Controller
      *              type="string"
      *          )
      *   ),
-     *   @OA\Response(response=200, description="--Successful operation--"),
-     *   @OA\Response(response=404, description="--Invalid token--")
+     *   @OA\Response(response=200, description="OK"),
+     *   @OA\Response(response=404, description="User not found")
      * )
      */
     public function find($token)
@@ -129,7 +129,7 @@ class PasswordResetController extends Controller
             return response()->json(['message' => 'This password reset token is invalid.'], 404);
         }
 
-        return response()->json($passwordReset, $this->successStatus); //TODO: needs to send react thingy
+        return response()->json($passwordReset, $this->200); //TODO: needs to send react thingy
     }
 
     /**
@@ -167,9 +167,9 @@ class PasswordResetController extends Controller
      *           )
      *       )
      *   ),
-     *   @OA\Response(response=200, description="--Successful operation--"),
-     *   @OA\Response(response=404, description="--Invalid token--"),
-     *   @OA\Response(response=400, description="--No user with that email ad or validation error--")
+     *   @OA\Response(response=200, description="OK"),
+     *   @OA\Response(response=404, description="User not found"),
+     *   @OA\Response(response=400, description="Invalid JSON body supplied")
      * )
      */
     public function reset(Request $request)
@@ -196,7 +196,7 @@ class PasswordResetController extends Controller
         $user = User::where('email', $passwordReset->email)->first();
 
         if (!$user){
-            return response()->json(['error' => 'We can not find a user with that e-mail address.'], 400);
+            return response()->json(['error' => 'We can not find a user with that e-mail address.'], 404);
         }
 
         try{
@@ -213,6 +213,6 @@ class PasswordResetController extends Controller
         $success['role_id'] = $user->user_type_id;
         $success['role'] = $user->role->name;
 
-        return response()->json(['success'=>$success, 'user_id' => $user->id], $this->successStatus);
+        return response()->json(['success'=>$success, 'user_id' => $user->id], 200);
     }
 }

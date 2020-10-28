@@ -62,11 +62,11 @@ class ExamController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *     @OA\Response(
      *          response=404,
-     *          description="Unit with id doesn't exist"
+     *          description="Unit/ Activity not found"
      *       )
      *     )
      */
@@ -78,7 +78,7 @@ class ExamController extends Controller
             }
 
             if (!Activity::find($activity_id)){
-                return response()->json("Activity not found", 400);
+                return response()->json("Activity not found", 404);
             }
 
             $tests = Test::where('activity_id',$activity_id)->where('unit_id',$unit_id)->with('events')->get();
@@ -109,11 +109,11 @@ class ExamController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
-     *          description="Test with id doesn't exist"
+     *          description="Test not found"
      *       )
      *     )
      */
@@ -157,7 +157,7 @@ class ExamController extends Controller
      *     ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -197,12 +197,11 @@ class ExamController extends Controller
                 $exam->events()->attach($event_id);
             }
             $exam->save();
+			return response()->json($exam, 200);
 
         } catch (QueryException $e) {
             return response()->json(null, 500); // f.e. postgres id counter is not set up properly
         }
-
-        return response()->json($exam, 200);
 
     }
 
@@ -237,7 +236,7 @@ class ExamController extends Controller
      *     ),
      *      @OA\Response(
      *          response=200,
-     *          description="Test operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -249,7 +248,7 @@ class ExamController extends Controller
      *      ),
      *      @OA\Response(
      *         response=403,
-     *         description="Logged user not author of test",
+     *         description="Access forbidden",
      *      ),
      *     security={{"bearerAuth":{}}},
      *     )
@@ -322,7 +321,7 @@ class ExamController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -333,13 +332,13 @@ class ExamController extends Controller
 
     public function getExamAnswers($test_id, $user_id)
     {
-        try {
+        try {	
             $answers = UserEventTestAnswer::where("user_id", $user_id)->where("test_id", $test_id)->get();
             return response()->json($answers, 200);
 
         } catch (QueryException $e) {
             if ($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json($e, 500);
                }
@@ -384,15 +383,15 @@ class ExamController extends Controller
      *
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
-     *          description="Option not found"
+     *          description="Test not found"
      *       ),
      *      @OA\Response(
      *         response=400,    
-     *         description="Invalid ID supplied",
+     *         description="Invalid JSON body supplied",
      *      ),
      *     security={{"bearerAuth":{}}},
      *     )
@@ -414,6 +413,10 @@ class ExamController extends Controller
 
         DB::beginTransaction();
         try {
+			$test = Test::find($id);
+			if (!$test){ //might not work (not tested yet)
+				return response()->json(null, 404);
+			}
             foreach ($request->all() as $eventTestAnswer){
                 $newUserEventTestAnswer= new UserEventTestAnswer();
                 $newUserEventTestAnswer->answers = json_encode($eventTestAnswer['answer']);

@@ -59,7 +59,7 @@ class EventController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -78,11 +78,11 @@ class EventController extends Controller
             if($event) {
                 return response()->json($event, 200);
             } else {
-                return response()->json(null, 404);
+                return response()->json("Event not found", 404);
             }
         }catch(QueryException $e) {
             if($e->getCode() === '22003') {
-                return response()->json(null, 400); // bad id provided -> id too big for integer
+                return response()->json("ID is too long", 400); // bad id provided -> id too big for integer
             } else {
                 return response()->json(null, 500);
             }
@@ -97,12 +97,8 @@ class EventController extends Controller
      *      description="Returns all events",
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
-     *      @OA\Response(
-     *         response=400,
-     *         description="Invalid ID supplied",
-     *      ),
      *     )
      */
 
@@ -111,11 +107,7 @@ class EventController extends Controller
             $events = Event::all();
             return response()->json($events, 200);
         }catch(QueryException $e) {
-            if($e->getCode() === '22003') {
-                return response()->json(null, 400); // bad id provided -> id too big for integer
-            } else {
-                return response()->json(null, 500);
-            }
+            return response()->json(null, 500);
         }
     }
 
@@ -146,7 +138,7 @@ class EventController extends Controller
      *     ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -154,7 +146,7 @@ class EventController extends Controller
      *       ),
      *      @OA\Response(
      *         response=400,
-     *         description="Invalid ID supplied",
+     *         description="Invalid JSON body/ID supplied",
      *      ),
      *     )
      */
@@ -179,11 +171,11 @@ class EventController extends Controller
                 $event->update($request->all());
                 return response()->json($event, 200);
             } else {
-                return response()->json(null, 404);
+                return response()->json("Event not found", 404);
             }
         } catch(QueryException $e) {
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }
@@ -208,7 +200,7 @@ class EventController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -225,15 +217,15 @@ class EventController extends Controller
             $deleted = Event::where('id', $id)->delete();
         } catch (QueryException $e) {
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }
         }
         if($deleted) {
-            return response()->json(null, 200);
+            return response()->json("deleted", 200);
         } else {
-            return response()->json(null, 404);
+            return response()->json("Event not found", 404);
         }
     }
 
@@ -261,7 +253,7 @@ class EventController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -269,7 +261,7 @@ class EventController extends Controller
      *       ),
      *      @OA\Response(
      *         response=400,
-     *         description="Invalid ID supplied",
+     *         description="Invalid JSON body supplied",
      *      ),
      *     )
      */
@@ -332,7 +324,7 @@ class EventController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -355,7 +347,7 @@ class EventController extends Controller
             }
         } catch(QueryException $e) {
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }
@@ -380,7 +372,7 @@ class EventController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -406,7 +398,7 @@ class EventController extends Controller
             }
         } catch(QueryException $e) {
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }
@@ -434,7 +426,7 @@ class EventController extends Controller
      *     ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -494,7 +486,7 @@ class EventController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -518,7 +510,7 @@ class EventController extends Controller
             }
         } catch(QueryException $e) {
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }
@@ -543,7 +535,7 @@ class EventController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -560,7 +552,7 @@ class EventController extends Controller
 
         } catch(QueryException $e) {
             if($e->getCode() === '22003'){
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             }else{
                 return response()->json(null, 500);
             }
@@ -595,7 +587,7 @@ class EventController extends Controller
      *     ),
      *      @OA\Response(
      *          response=200,
-     *          description="Option operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -603,7 +595,7 @@ class EventController extends Controller
      *       ),
      *      @OA\Response(
      *         response=400,
-     *         description="Invalid ID supplied",
+     *         description="Invalid JSON body/ID supplied",
      *      ),
      *     )
      */
@@ -629,7 +621,7 @@ class EventController extends Controller
             }
         } catch(QueryException $e) {
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }
@@ -661,7 +653,7 @@ class EventController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -669,7 +661,7 @@ class EventController extends Controller
      *       ),
      *      @OA\Response(
      *         response=400,
-     *         description="Invalid ID supplied",
+     *         description="Invalid JSON body supplied",
      *      ),
      *     )
      */
@@ -730,7 +722,7 @@ class EventController extends Controller
      *     ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -779,7 +771,7 @@ class EventController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -796,13 +788,13 @@ class EventController extends Controller
             $deleted = Option::where('id', $id)->delete();
         } catch(QueryException $e){
             if($e->getCode() === '22003') {
-                return response()->json(null, 400);
+                return response()->json("ID is too long", 400);
             } else {
                 return response()->json(null, 500);
             }
         }
         if($deleted) {
-            return response()->json(null, 200);
+            return response()->json("Deleted", 200);
         } else {
             return response()->json(null, 404);
         }

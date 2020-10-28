@@ -43,7 +43,7 @@ class UnitController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -91,11 +91,11 @@ class UnitController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
-     *          description="No events not found"
+     *          description="Unit not found"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -106,8 +106,13 @@ class UnitController extends Controller
 
     public function getUnitEvents($id) {
         try{
-            $events = Unit::find($id)->events;
-            return response()->json($events, 200);
+			$unit = Unit::find($id);
+            if($unit) {
+				$events = Unit::find($id)->events;
+				return response()->json($events, 200);
+			}else{
+				return response()->json(null, 404);
+			}    
         } catch(QueryException $e) {
             if($e->getCode() === '22003') {
                 return response()->json(null, 400);
@@ -137,7 +142,7 @@ class UnitController extends Controller
      *     ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -202,7 +207,7 @@ class UnitController extends Controller
      *     ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -210,7 +215,7 @@ class UnitController extends Controller
      *       ),
      *      @OA\Response(
      *         response=400,
-     *         description="Invalid ID supplied",
+     *         description="Invalid JSON body/ID supplied",
      *      ),
      *     )
      */
@@ -288,15 +293,15 @@ class UnitController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
-     *         description="Invalid JSON body supplied",
+     *         description="Invalid JSON body/ID supplied",
      *      ),
      *     @OA\Response(
      *         response=404,
-     *         description="Invalid unit ID supplied",
+     *         description="Unit not found",
      *      ),
      *    )
      */
