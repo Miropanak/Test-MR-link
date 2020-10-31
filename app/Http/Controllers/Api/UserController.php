@@ -44,7 +44,7 @@ class UserController extends Controller
      *   ),
      *   @OA\Response(
      *     response=200,
-     *     description="--Successful operation--",
+     *     description="OK",
      *     @OA\Schema(type="string"),
      *     @OA\Header(
      *       header="x-ratelimit-limit",
@@ -63,7 +63,7 @@ class UserController extends Controller
      *       description="The number of requests left for the time window"
      *     )
      *   ),
-     *   @OA\Response(response=401, description="--Invalid username/password supplied--")
+     *   @OA\Response(response=403, description="Wrong credentials")
      * )
      */
     public function login(){
@@ -74,10 +74,10 @@ class UserController extends Controller
             $success['role_id'] = $user->user_type_id;
             $success['role'] = $user->role->name;
 
-            return response()->json(['success' => $success,'user_id' => $user->id], $this-> successStatus);
+            return response()->json(['success' => $success,'user_id' => $user->id], 200);
         }
         else{
-            return response()->json(['error'=>'Unauthorised.'], 401);
+            return response()->json(['error'=>'Unauthorised.'], 403);
         }
     }
     /**
@@ -124,7 +124,7 @@ class UserController extends Controller
      *   ),
      *   @OA\Response(
      *     response=200,
-     *     description="--Successful operation--",
+     *     description="OK",
      *     @OA\Schema(type="string"),
      *     @OA\Header(
      *       header="x-ratelimit-limit",
@@ -143,7 +143,7 @@ class UserController extends Controller
      *       description="The number of requests left for the time window"
      *     )
      *   ),
-     *   @OA\Response(response=400, description="--Validation problem--")
+     *   @OA\Response(response=400, description="Invalid JSON body supplied")
      * )
      */
     public function register(Request $request)
@@ -174,7 +174,7 @@ class UserController extends Controller
         $success['role_id'] = $user->user_type_id;
         $success['role'] = $user->role->name;
 
-        return response()->json(['success'=>$success, 'user_id' => $user->id], $this-> successStatus);
+        return response()->json(['success'=>$success, 'user_id' => $user->id], 200);
     }
 
 
@@ -214,9 +214,9 @@ class UserController extends Controller
      *           )
      *       )
      *   ),
-     *   @OA\Response(response=200, description="--Successful operation--"),
-     *   @OA\Response(response=401, description="--Invalid username/password supplied--"),
-     *   @OA\Response(response=400, description="--Validation problem--")
+     *   @OA\Response(response=200, description="OK"),
+     *   @OA\Response(response=403, description="Wrong credentials"),
+     *   @OA\Response(response=400, description="Invalid JSON body supplied")
      * )
      */
     public function password_change(Request $request)
@@ -241,7 +241,7 @@ class UserController extends Controller
             return response()->json(['success' => 'Password has been changed'], $this-> successStatus);
         }
         else {
-            return response()->json(['error' => 'Unauthorised.'], 401);
+            return response()->json(['error' => 'Unauthorised.'], 403);
         }
     }
 
@@ -266,8 +266,8 @@ class UserController extends Controller
      *          ),
      *     ),
      *   ),
-     *   @OA\Response(response=200, description="--User is in not DB--"),
-     *   @OA\Response(response=400, description="--User is in DB--")
+     *   @OA\Response(response=200, description="OK"),
+     *   @OA\Response(response=400, description="Email already used")
      * )
      */
     public function email_check(Request $request)
@@ -282,7 +282,7 @@ class UserController extends Controller
         if($validator->fails()) {
             return response()->json(['error'=>$validator->errors()],400);
         } else {
-            return response()->json(['message'=>'The email is unique'],$this->successStatus);
+            return response()->json(['message'=>'The email is unique'],200);
         }
     }
 
@@ -304,11 +304,11 @@ class UserController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *          response=404,
-     *          description="Events not found"
+     *          description="User not found"
      *       ),
      *      @OA\Response(
      *         response=400,
@@ -319,9 +319,13 @@ class UserController extends Controller
 
     public function getUserEvents($id) {
         try{
-            $events = Event::where("author_id", $id)->get();
-            return response()->json($events, 200);
-
+            $user = User::find($id); 
+            if ($user){
+                $events = Event::where("author_id", $id)->get();
+                return response()->json($events, 200);
+            }else{
+                return response()->json(null, 404);
+            }  
         } catch(QueryException $e) {
             if($e->getCode() === '22003'){
                 return response()->json(null, 400);
@@ -349,20 +353,28 @@ class UserController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
      *         description="Invalid ID supplied",
+     *      ),
+     *      @OA\Response(
+     *         response=404,
+     *         description="User not found",
      *      ),
      *     )
      */
 
     public function getUserActivities($user_id) {
         try{
-            $activities = Activity::where("author_id", $user_id)->get();
-
-            return response()->json($activities, 200);
+            $user = User::find($id); //not sure if this works
+            if ($user){
+                $activities = Activity::where("author_id", $user_id)->get();
+                return response()->json($activities, 200);
+            }else{
+                return response()->json(null, 404);
+            }
         } catch(QueryException $e) {
             if($e->getCode() === '22003'){
                 return response()->json(null, 400);
@@ -390,19 +402,27 @@ class UserController extends Controller
      *      ),
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *      @OA\Response(
      *         response=400,
      *         description="Invalid ID supplied",
      *      ),
+     *      @OA\Response(
+     *         response=404,
+     *         description="User not found",
+     *      ),
      *     )
      */
     public function subscribedActivity($id){
         try{
-            $activities = User::find($id)->subscriberActivities()->get();
-            return response()->json($activities, 200);
-
+            $user = User::find($id); //not sure if this works
+            if ($user){
+                $activities = User::find($id)->subscriberActivities()->get();
+                return response()->json($activities, 200);
+            }else{
+                return response()->json(null, 404);
+            }
         } catch(QueryException $e) {
             if($e->getCode() === '22003'){
                 return response()->json(null, 400);
@@ -421,7 +441,7 @@ class UserController extends Controller
      *      description="Returns 'users'",
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation"
+     *          description="OK"
      *       ),
      *     )
      */
