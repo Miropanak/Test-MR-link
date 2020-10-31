@@ -38,6 +38,8 @@ class DatabaseSeeder extends Seeder
         $this->call(EventTestUserTableSeeder::class);
         $this->call(HelpsTableSeeder::class);
         $this->call(TestsTableSeeder::class);
-        $this->call(ActivityUnitTableSeeder::class);
+	$this->call(ActivityUnitTableSeeder::class);
+	$this->call(CategoriesTableSeeder::class);
+	$this->call(EventCategoriesTableSeeder::class);
     }
 }
