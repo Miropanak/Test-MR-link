@@ -197,7 +197,7 @@ class ExamController extends Controller
                 $exam->events()->attach($event_id);
             }
             $exam->save();
-			return response()->json($exam, 200);
+            return response()->json($exam, 200);
 
         } catch (QueryException $e) {
             return response()->json(null, 500); // f.e. postgres id counter is not set up properly
@@ -332,7 +332,7 @@ class ExamController extends Controller
 
     public function getExamAnswers($test_id, $user_id)
     {
-        try {	
+        try {    
             $answers = UserEventTestAnswer::where("user_id", $user_id)->where("test_id", $test_id)->get();
             return response()->json($answers, 200);
 
@@ -413,10 +413,10 @@ class ExamController extends Controller
 
         DB::beginTransaction();
         try {
-			$test = Test::find($id);
-			if (!$test){ //might not work (not tested yet)
-				return response()->json(null, 404);
-			}
+            $test = Test::find($id);
+            if (!$test){ //might not work (not tested yet)
+                return response()->json(null, 404);
+            }
             foreach ($request->all() as $eventTestAnswer){
                 $newUserEventTestAnswer= new UserEventTestAnswer();
                 $newUserEventTestAnswer->answers = json_encode($eventTestAnswer['answer']);

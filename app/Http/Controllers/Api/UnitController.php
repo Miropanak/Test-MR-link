@@ -106,13 +106,13 @@ class UnitController extends Controller
 
     public function getUnitEvents($id) {
         try{
-			$unit = Unit::find($id);
+            $unit = Unit::find($id);
             if($unit) {
-				$events = Unit::find($id)->events;
-				return response()->json($events, 200);
-			}else{
-				return response()->json(null, 404);
-			}    
+                $events = Unit::find($id)->events;
+                return response()->json($events, 200);
+            }else{
+                return response()->json(null, 404);
+            }    
         } catch(QueryException $e) {
             if($e->getCode() === '22003') {
                 return response()->json(null, 400);

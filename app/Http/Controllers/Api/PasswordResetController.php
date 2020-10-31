@@ -90,10 +90,10 @@ class PasswordResetController extends Controller
 
         if($user && $passwordReset) {
             $user->notify(new PasswordResetRequest($passwordReset->token));
-			return response()->json(['message' => 'We have e-mailed your password reset link!'], 200);
+            return response()->json(['message' => 'We have e-mailed your password reset link!'], 200);
         }else{
-			return response()->json(null, 500);
-		}
+            return response()->json(null, 500);
+        }
 
     }
 

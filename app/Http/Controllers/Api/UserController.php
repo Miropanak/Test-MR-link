@@ -319,13 +319,13 @@ class UserController extends Controller
 
     public function getUserEvents($id) {
         try{
-			$user = User::find($id); //not sure if this works
-			if ($user){
-				$events = Event::where("author_id", $id)->get();
-				return response()->json($events, 200);
-			}else{
-				return response()->json(null, 404);
-			}  
+            $user = User::find($id); 
+            if ($user){
+                $events = Event::where("author_id", $id)->get();
+                return response()->json($events, 200);
+            }else{
+                return response()->json(null, 404);
+            }  
         } catch(QueryException $e) {
             if($e->getCode() === '22003'){
                 return response()->json(null, 400);
@@ -359,7 +359,7 @@ class UserController extends Controller
      *         response=400,
      *         description="Invalid ID supplied",
      *      ),
-	 *      @OA\Response(
+     *      @OA\Response(
      *         response=404,
      *         description="User not found",
      *      ),
@@ -368,13 +368,13 @@ class UserController extends Controller
 
     public function getUserActivities($user_id) {
         try{
-			$user = User::find($id); //not sure if this works
-			if ($user){
-				$activities = Activity::where("author_id", $user_id)->get();
-				return response()->json($activities, 200);
-			}else{
-				return response()->json(null, 404);
-			}
+            $user = User::find($id); //not sure if this works
+            if ($user){
+                $activities = Activity::where("author_id", $user_id)->get();
+                return response()->json($activities, 200);
+            }else{
+                return response()->json(null, 404);
+            }
         } catch(QueryException $e) {
             if($e->getCode() === '22003'){
                 return response()->json(null, 400);
@@ -408,7 +408,7 @@ class UserController extends Controller
      *         response=400,
      *         description="Invalid ID supplied",
      *      ),
-	 *      @OA\Response(
+     *      @OA\Response(
      *         response=404,
      *         description="User not found",
      *      ),
@@ -416,13 +416,13 @@ class UserController extends Controller
      */
     public function subscribedActivity($id){
         try{
-			$user = User::find($id); //not sure if this works
-			if ($user){
-				$activities = User::find($id)->subscriberActivities()->get();
-				return response()->json($activities, 200);
-			}else{
-				return response()->json(null, 404);
-			}
+            $user = User::find($id); //not sure if this works
+            if ($user){
+                $activities = User::find($id)->subscriberActivities()->get();
+                return response()->json($activities, 200);
+            }else{
+                return response()->json(null, 404);
+            }
         } catch(QueryException $e) {
             if($e->getCode() === '22003'){
                 return response()->json(null, 400);
