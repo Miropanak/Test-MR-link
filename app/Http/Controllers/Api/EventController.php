@@ -429,7 +429,7 @@ class EventController extends Controller
      *          @OA\Property(property="header", type="string"),
      *          @OA\Property(property="time_to_explain", type="integer"),
      *          @OA\Property(property="time_to_handle", type="integer"),
-     *          @OA\Property(property="event_type_id", type="integer")
+     *          @OA\Property(property="event_type_id", type="integer"),
      *          @OA\Property(property="category_ids", type="array", @OA\Items(type="integer") )
      *          )
      *     ),
@@ -821,7 +821,7 @@ class EventController extends Controller
      *      security={{"bearerAuth":{}}},
      *      @OA\RequestBody(
      *       required=true,
-     *       description="JSON should hold 5 arrays, if no filtering is needed use another API that fits your needs",
+     *       description="JSON should hold 5 arrays, if no filtering is needed send empty arrays, function will return all events",
      *       @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="theme", type="array", @OA\Items(type="string")),
