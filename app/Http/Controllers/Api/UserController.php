@@ -368,7 +368,7 @@ class UserController extends Controller
 
     public function getUserActivities($user_id) {
         try{
-            $user = User::find($id); //not sure if this works
+            $user = User::find($user_id); //not sure if this works
             if ($user){
                 $activities = Activity::where("author_id", $user_id)->get();
                 return response()->json($activities, 200);
