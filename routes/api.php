@@ -47,8 +47,6 @@ Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {
     Route::post('', 'Api\EventController@createEvent');
 });
 
-
-
 Route::group(['prefix' => 'events'], function (){
     Route::get('{id}', 'Api\EventController@getEvent');
     Route::get('', 'Api\EventController@getEvents');
@@ -59,6 +57,7 @@ Route::group(['prefix' => 'events'], function (){
     Route::put('{id}', 'Api\EventController@updateEvent');
     Route::delete('{id}', 'Api\EventController@deleteEvent');
     Route::put('', 'Api\EventController@updateEvents');
+    Route::post('filter', 'Api\EventController@filterEvents');
 });
 
 // OPTIONS
@@ -106,7 +105,6 @@ Route::group(['prefix' => 'units'], function (){
     Route::get('{id}', 'Api\UnitController@getUnit');
     Route::get('{id}/events', 'Api\UnitController@getUnitEvents');
     Route::put('{id}', 'Api\UnitController@updateUnit');
-
 });
 
 
@@ -121,7 +119,11 @@ Route::group(['prefix' => 'exam', 'middleware' => 'auth:api'], function () {
 });
 Route::get('exam/{exam_id}/user/{user_id}', 'Api\ExamController@getExamAnswers');
 
+// CATEGORIES
 
+Route::group(['prefix' => 'categories'], function(){
+    Route::get('{type}', 'Api\CategoriesController@getCategoriesType');
+});
 
 
 
