@@ -12,3 +12,43 @@
 [Wed Oct 14 11:55:31.178011 2020] [php7:error] [pid 8848] [client 195.146.139.212:58854] PHP Parse error:  syntax error, unexpected ':' in /var/www/team-project/public/index.php on line 2, referer: http://branova-armada.eu/
 [Wed Oct 14 12:03:58.456593 2020] [php7:error] [pid 9062] [client 195.146.139.212:59112] PHP Parse error:  syntax error, unexpected ':' in /var/www/team-project/public/index.php on line 2, referer: http://branova-armada.eu/
 [Wed Oct 14 12:03:58.456591 2020] [php7:error] [pid 9094] [client 195.146.139.212:59113] PHP Parse error:  syntax error, unexpected ':' in /var/www/team-project/public/index.php on line 2, referer: http://branova-armada.eu/
+[Wed Nov 04 14:11:18.608492 2020] [wsgi:error] [pid 18343] [remote ::1:63265] 2020-11-04 14:11:18,608: ERROR\tpgadmin:\tCould not connect to server(#1) - 'root'.
+[Wed Nov 04 14:11:18.608600 2020] [wsgi:error] [pid 18343] [remote ::1:63265] Error: could not connect to server: Connection refused
+[Wed Nov 04 14:11:18.608614 2020] [wsgi:error] [pid 18343] [remote ::1:63265] \tIs the server running on host "127.0.0.1" and accepting
+[Wed Nov 04 14:11:18.608623 2020] [wsgi:error] [pid 18343] [remote ::1:63265] \tTCP/IP connections on port 5433?
+[Wed Nov 04 14:11:18.608632 2020] [wsgi:error] [pid 18343] [remote ::1:63265] 
+[Wed Nov 04 14:11:22.180820 2020] [wsgi:error] [pid 18343] [remote ::1:63265] 2020-11-04 14:11:22,180: ERROR\tpgadmin:\tCould not connect to server(#1) - 'root'.
+[Wed Nov 04 14:11:22.180902 2020] [wsgi:error] [pid 18343] [remote ::1:63265] Error: could not connect to server: Connection refused
+[Wed Nov 04 14:11:22.180915 2020] [wsgi:error] [pid 18343] [remote ::1:63265] \tIs the server running on host "127.0.0.1" and accepting
+[Wed Nov 04 14:11:22.180925 2020] [wsgi:error] [pid 18343] [remote ::1:63265] \tTCP/IP connections on port 5433?
+[Wed Nov 04 14:11:22.180934 2020] [wsgi:error] [pid 18343] [remote ::1:63265] 
+[Wed Nov 04 14:11:29.237266 2020] [wsgi:error] [pid 18343] [remote ::1:63276] 2020-11-04 14:11:29,230: ERROR\tpgadmin:\tCould not connect to server(#1) - 'root'.
+[Wed Nov 04 14:11:29.237303 2020] [wsgi:error] [pid 18343] [remote ::1:63276] Error: could not connect to server: Connection refused
+[Wed Nov 04 14:11:29.237314 2020] [wsgi:error] [pid 18343] [remote ::1:63276] \tIs the server running on host "127.0.0.1" and accepting
+[Wed Nov 04 14:11:29.237324 2020] [wsgi:error] [pid 18343] [remote ::1:63276] \tTCP/IP connections on port 5433?
+[Wed Nov 04 14:11:29.237352 2020] [wsgi:error] [pid 18343] [remote ::1:63276] 
+[Wed Nov 04 14:11:34.185866 2020] [wsgi:error] [pid 18343] [remote ::1:63276] 2020-11-04 14:11:34,185: ERROR\tpgadmin:\tCould not connect to server(#1) - 'root'.
+[Wed Nov 04 14:11:34.185892 2020] [wsgi:error] [pid 18343] [remote ::1:63276] Error: could not connect to server: Connection refused
+[Wed Nov 04 14:11:34.185903 2020] [wsgi:error] [pid 18343] [remote ::1:63276] \tIs the server running on host "127.0.0.1" and accepting
+[Wed Nov 04 14:11:34.185912 2020] [wsgi:error] [pid 18343] [remote ::1:63276] \tTCP/IP connections on port 5433?
+[Wed Nov 04 14:11:34.185921 2020] [wsgi:error] [pid 18343] [remote ::1:63276] 
+[Wed Nov 04 14:11:40.597916 2020] [wsgi:error] [pid 18343] [remote ::1:63280] 2020-11-04 14:11:40,597: ERROR\tpgadmin:\tCould not connect to server(#1) - 'root'.
+[Wed Nov 04 14:11:40.597943 2020] [wsgi:error] [pid 18343] [remote ::1:63280] Error: could not connect to server: Connection refused
+[Wed Nov 04 14:11:40.597954 2020] [wsgi:error] [pid 18343] [remote ::1:63280] \tIs the server running on host "127.0.0.1" and accepting
+[Wed Nov 04 14:11:40.597970 2020] [wsgi:error] [pid 18343] [remote ::1:63280] \tTCP/IP connections on port 5433?
+[Wed Nov 04 14:11:40.597993 2020] [wsgi:error] [pid 18343] [remote ::1:63280] 
+[Wed Nov 04 14:11:42.979947 2020] [wsgi:error] [pid 18343] [remote ::1:63280] 2020-11-04 14:11:42,979: ERROR\tpgadmin:\tCould not connect to server(#1) - 'root'.
+[Wed Nov 04 14:11:42.979972 2020] [wsgi:error] [pid 18343] [remote ::1:63280] Error: could not connect to server: Connection refused
+[Wed Nov 04 14:11:42.979982 2020] [wsgi:error] [pid 18343] [remote ::1:63280] \tIs the server running on host "127.0.0.1" and accepting
+[Wed Nov 04 14:11:42.979992 2020] [wsgi:error] [pid 18343] [remote ::1:63280] \tTCP/IP connections on port 5433?
+[Wed Nov 04 14:11:42.980001 2020] [wsgi:error] [pid 18343] [remote ::1:63280] 
+[Wed Nov 04 14:11:47.936708 2020] [wsgi:error] [pid 18343] [remote ::1:63280] 2020-11-04 14:11:47,936: ERROR\tpgadmin:\tCould not connect to server(#1) - 'root'.
+[Wed Nov 04 14:11:47.936756 2020] [wsgi:error] [pid 18343] [remote ::1:63280] Error: could not connect to server: Connection refused
+[Wed Nov 04 14:11:47.936767 2020] [wsgi:error] [pid 18343] [remote ::1:63280] \tIs the server running on host "127.0.0.1" and accepting
+[Wed Nov 04 14:11:47.936793 2020] [wsgi:error] [pid 18343] [remote ::1:63280] \tTCP/IP connections on port 5433?
+[Wed Nov 04 14:11:47.936822 2020] [wsgi:error] [pid 18343] [remote ::1:63280] 
+[Wed Nov 04 14:12:12.646880 2020] [wsgi:error] [pid 18343] [remote ::1:63289] 2020-11-04 14:12:12,646: ERROR\tpgadmin:\tCould not connect to server(#1) - 'root'.
+[Wed Nov 04 14:12:12.646917 2020] [wsgi:error] [pid 18343] [remote ::1:63289] Error: could not connect to server: Connection refused
+[Wed Nov 04 14:12:12.646934 2020] [wsgi:error] [pid 18343] [remote ::1:63289] \tIs the server running on host "127.0.0.1" and accepting
+[Wed Nov 04 14:12:12.646949 2020] [wsgi:error] [pid 18343] [remote ::1:63289] \tTCP/IP connections on port 5433?
+[Wed Nov 04 14:12:12.647049 2020] [wsgi:error] [pid 18343] [remote ::1:63289] 

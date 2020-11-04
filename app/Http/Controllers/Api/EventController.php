@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventType;
 use App\Models\User;
+use App\Models\EventCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -465,9 +466,17 @@ class EventController extends Controller
             $user->user_type_id = 3;
             $user->save();
             $event->save();
+
+            foreach($request['category_ids'] as $categories) {
+                $event_categories = new EventCategory;
+                $event_categories->category_id = $categories;
+                $event_categories->event_id = $event['id'];
+                $event_categories->save();
+            }
         }catch (QueryException $e) {
             return response()->json($e, 500); // f.e. postgres id counter is not set up properly
         }
+        
         return response()->json($event, 200);
     }
 
