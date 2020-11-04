@@ -23,7 +23,7 @@
                 "operationId": "getActivities",
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "successful operation"
                     }
                 }
             }
@@ -38,7 +38,7 @@
                 "operationId": "getStudyFields",
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "successful operation"
                     }
                 }
             }
@@ -64,7 +64,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "successful operation"
                     },
                     "404": {
                         "description": "Activity not found"
@@ -124,16 +124,13 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Activity not found"
                     },
                     "400": {
-                        "description": "Invalid ID supplied/Invalid JSON supplied"
-                    },
-                    "403": {
-                        "description": "Access forbidden"
+                        "description": "Invalid ID supplied/validation error"
                     }
                 },
                 "security": [
@@ -162,13 +159,13 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Activity not found"
                     },
                     "403": {
-                        "description": "Access forbidden"
+                        "description": "Unauthorized"
                     },
                     "400": {
                         "description": "Invalid ID supplied"
@@ -202,10 +199,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
-                        "description": "Activity not found"
+                        "description": "No units not found"
                     },
                     "400": {
                         "description": "Invalid ID supplied"
@@ -248,16 +245,10 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
-                        "description": "Invalid JSON body/ID supplied"
-                    },
-                    "403": {
-                        "description": "Access forbidden"
-                    },
-                    "404": {
-                        "description": "Activity not found"
+                        "description": "Invalid JSON body supplied"
                     }
                 },
                 "security": [
@@ -288,13 +279,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
                         "description": "Invalid ID supplied"
-                    },
-                    "404": {
-                        "description": "Activity not found"
                     }
                 }
             }
@@ -334,7 +322,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
                         "description": "Invalid JSON body supplied"
@@ -368,7 +356,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "successful operation"
                     },
                     "404": {
                         "description": "Activity not found"
@@ -421,16 +409,10 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
                         "description": "Invalid JSON body supplied"
-                    },
-                    "404": {
-                        "description": "Activity not found"
-                    },
-                    "403": {
-                        "description": "Access forbidden"
                     }
                 },
                 "security": [
@@ -477,13 +459,10 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation, returns all subscrubers"
                     },
                     "400": {
-                        "description": "Invalid JSON body/ID supplied"
-                    },
-                    "404": {
-                        "description": "Activity not found"
+                        "description": "Invalid JSON body supplied"
                     }
                 },
                 "security": [
@@ -530,13 +509,10 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
-                        "description": "Invalid JSON body/ID supplied"
-                    },
-                    "404": {
-                        "description": "Activity not found"
+                        "description": "Invalid JSON body supplied"
                     }
                 },
                 "security": [
@@ -544,38 +520,6 @@
                         "bearerAuth": []
                     }
                 ]
-            }
-        },
-        "/api/categories/{type}": {
-            "get": {
-                "tags": [
-                    "Categories"
-                ],
-                "summary": "Gets categories dependent on the selected type",
-                "description": "Returns every category that fits requested type - type 1 returns all categories of type 'theme' etc.",
-                "operationId": "getCategoriesType",
-                "parameters": [
-                    {
-                        "name": "type",
-                        "in": "path",
-                        "description": "Category type",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "404": {
-                        "description": "Event not found"
-                    },
-                    "400": {
-                        "description": "Invalid ID supplied"
-                    }
-                }
             }
         },
         "/api/events/{id}": {
@@ -599,7 +543,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Event not found"
@@ -648,13 +592,13 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Event not found"
                     },
                     "400": {
-                        "description": "Invalid JSON body/ID supplied"
+                        "description": "Invalid ID supplied"
                     }
                 }
             },
@@ -678,7 +622,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Event not found"
@@ -699,7 +643,10 @@
                 "operationId": "getEvents",
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
                     }
                 }
             }
@@ -736,13 +683,13 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Event not found"
                     },
                     "400": {
-                        "description": "Invalid JSON body supplied"
+                        "description": "Invalid ID supplied"
                     }
                 }
             },
@@ -774,12 +721,6 @@
                                     },
                                     "event_type_id": {
                                         "type": "integer"
-                                    },
-                                    "category_ids": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "integer"
-                                        }
                                     }
                                 },
                                 "type": "object"
@@ -789,7 +730,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
                         "description": "Invalid JSON body supplied"
@@ -823,7 +764,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "No options not found"
@@ -853,7 +794,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "No options found"
@@ -885,7 +826,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Event not found"
@@ -917,7 +858,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
                         "description": "Invalid ID supplied"
@@ -965,13 +906,13 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Option operation"
                     },
                     "404": {
                         "description": "Option not found"
                     },
                     "400": {
-                        "description": "Invalid JSON body/ID supplied"
+                        "description": "Invalid ID supplied"
                     }
                 }
             },
@@ -995,7 +936,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Option not found"
@@ -1041,13 +982,13 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Option not found"
                     },
                     "400": {
-                        "description": "Invalid JSON body supplied"
+                        "description": "Invalid ID supplied"
                     }
                 }
             },
@@ -1082,81 +1023,12 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
                         "description": "Invalid JSON body supplied"
                     }
                 }
-            }
-        },
-        "/api/events/filter": {
-            "post": {
-                "tags": [
-                    "Event"
-                ],
-                "summary": "Filters existing events based on selected categories",
-                "description": "User can choose what categories he wants to filter by. Categories should be sent in arrays of strings",
-                "operationId": "filterEvents",
-                "requestBody": {
-                    "description": "JSON should hold 5 arrays, if no filtering is needed send empty arrays, function will return all events",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "theme": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "thematic_unit": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "grade": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "class": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "tags": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    },
-                    "204": {
-                        "description": "No content"
-                    },
-                    "400": {
-                        "description": "Data validation error - Invalid JSON body supplied"
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
             }
         },
         "/api/unit/{unit_id}/activity/{activity_id}/exams": {
@@ -1191,10 +1063,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
-                        "description": "Unit/ Activity not found"
+                        "description": "Unit with id doesn't exist"
                     }
                 }
             }
@@ -1220,10 +1092,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
-                        "description": "Test not found"
+                        "description": "Test with id doesn't exist"
                     }
                 }
             },
@@ -1278,7 +1150,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Test operation"
                     },
                     "404": {
                         "description": "Test not found"
@@ -1287,7 +1159,7 @@
                         "description": "Invalid body supplied"
                     },
                     "403": {
-                        "description": "Access forbidden"
+                        "description": "Logged user not author of test"
                     }
                 },
                 "security": [
@@ -1338,7 +1210,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
                         "description": "Invalid JSON body supplied"
@@ -1381,7 +1253,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
                         "description": "Invalid ID supplied"
@@ -1444,13 +1316,13 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
-                        "description": "Test not found"
+                        "description": "Option not found"
                     },
                     "400": {
-                        "description": "Invalid JSON body supplied"
+                        "description": "Invalid ID supplied"
                     }
                 },
                 "security": [
@@ -1481,7 +1353,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Help not found"
@@ -1533,13 +1405,13 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Help not found"
                     },
                     "400": {
-                        "description": "Invalid JSON body/ID supplied"
+                        "description": "Invalid ID supplied"
                     }
                 }
             },
@@ -1563,7 +1435,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Help not found"
@@ -1606,7 +1478,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
                         "description": "Invalid JSON body supplied"
@@ -1641,13 +1513,13 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "--Successful operation--"
                     },
                     "400": {
-                        "description": "Invalid JSON body supplied"
+                        "description": "--Validation problem--"
                     },
                     "404": {
-                        "description": "User not found"
+                        "description": "--No user with that email ad--"
                     }
                 }
             }
@@ -1673,10 +1545,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "--Successful operation--"
                     },
                     "404": {
-                        "description": "User not found"
+                        "description": "--Invalid token--"
                     }
                 }
             }
@@ -1720,13 +1592,13 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "--Successful operation--"
                     },
                     "404": {
-                        "description": "User not found"
+                        "description": "--Invalid token--"
                     },
                     "400": {
-                        "description": "Invalid JSON body supplied"
+                        "description": "--No user with that email ad or validation error--"
                     }
                 }
             }
@@ -1752,7 +1624,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Unit not found"
@@ -1804,13 +1676,13 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
                         "description": "Unit not found"
                     },
                     "400": {
-                        "description": "Invalid JSON body/ID supplied"
+                        "description": "Invalid ID supplied"
                     }
                 }
             }
@@ -1836,10 +1708,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
-                        "description": "Unit not found"
+                        "description": "No events not found"
                     },
                     "400": {
                         "description": "Invalid ID supplied"
@@ -1885,13 +1757,13 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
-                        "description": "Invalid JSON body/ID supplied"
+                        "description": "Invalid JSON body supplied"
                     },
                     "404": {
-                        "description": "Unit not found"
+                        "description": "Invalid unit ID supplied"
                     }
                 },
                 "security": [
@@ -1933,7 +1805,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
                         "description": "Invalid JSON body supplied"
@@ -1977,7 +1849,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK",
+                        "description": "--Successful operation--",
                         "headers": {
                             "x-ratelimit-limit": {
                                 "description": "Request limit per hour",
@@ -1995,8 +1867,8 @@
                             }
                         }
                     },
-                    "403": {
-                        "description": "Wrong credentials"
+                    "401": {
+                        "description": "--Invalid username/password supplied--"
                     }
                 }
             }
@@ -2045,7 +1917,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK",
+                        "description": "--Successful operation--",
                         "headers": {
                             "x-ratelimit-limit": {
                                 "description": "Request limit per hour",
@@ -2064,7 +1936,7 @@
                         }
                     },
                     "400": {
-                        "description": "Invalid JSON body supplied"
+                        "description": "--Validation problem--"
                     }
                 }
             }
@@ -2108,13 +1980,13 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "--Successful operation--"
                     },
-                    "403": {
-                        "description": "Wrong credentials"
+                    "401": {
+                        "description": "--Invalid username/password supplied--"
                     },
                     "400": {
-                        "description": "Invalid JSON body supplied"
+                        "description": "--Validation problem--"
                     }
                 },
                 "security": [
@@ -2151,10 +2023,10 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "--User is in not DB--"
                     },
                     "400": {
-                        "description": "Email already used"
+                        "description": "--User is in DB--"
                     }
                 }
             }
@@ -2180,10 +2052,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "404": {
-                        "description": "User not found"
+                        "description": "Events not found"
                     },
                     "400": {
                         "description": "Invalid ID supplied"
@@ -2212,13 +2084,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
                         "description": "Invalid ID supplied"
-                    },
-                    "404": {
-                        "description": "User not found"
                     }
                 }
             }
@@ -2244,13 +2113,10 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     },
                     "400": {
                         "description": "Invalid ID supplied"
-                    },
-                    "404": {
-                        "description": "User not found"
                     }
                 }
             }
@@ -2265,7 +2131,7 @@
                 "operationId": "getUsers",
                 "responses": {
                     "200": {
-                        "description": "OK"
+                        "description": "Successful operation"
                     }
                 }
             }
