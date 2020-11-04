@@ -816,19 +816,15 @@ class EventController extends Controller
      *      operationId="filterEvents",
      *      tags={"Event"},
      *      summary="Filters existing events based on selected categories",
-     *      description="User can choose what categories he wants to filter by. Categories should be sent in arrays of strings",
+     *      description="User can choose what categories he wants to filter by. Categories should be sent in an array with their ID's",
      *      security={{"bearerAuth":{}}},
      *      @OA\RequestBody(
      *       required=true,
-     *       description="JSON should hold 5 arrays, if no filtering is needed send empty arrays, function will return all events",
+     *       description="JSON should hold 1 array, if no filtering is needed send empty array, function will return all events",
      *       @OA\JsonContent(
      *          type="object",
-     *          @OA\Property(property="theme", type="array", @OA\Items(type="string")),
-     *          @OA\Property(property="thematic_unit", type="array", @OA\Items(type="string")),
-     *          @OA\Property(property="grade", type="array", @OA\Items(type="string")),
-     *          @OA\Property(property="class", type="array", @OA\Items(type="string")),
-     *          @OA\Property(property="tags", type="array", @OA\Items(type="string"))
-     *        )
+     *          @OA\Property(property="category_ids", type="array", @OA\Items(type="integer")),
+     *          )
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -845,68 +841,33 @@ class EventController extends Controller
      *     )
      */
     public function filterEvents(Request $request){
-        //Validator args - elements of arrays have to be strings
         $validator = Validator::make($request->all(), [
-            'theme.*' => 'string',
-            'thematic_unit.*' => 'string',
-            'grade.*' => 'string',
-            'class.*' => 'string',
-            'tags.*' => 'string',
+            'category_ids.*' => 'integer',
         ]);
         if($validator->fails()) {
             return response()->json(['Data validation error - Invalid JSON body supplied'=>$validator->errors()], 400);
         }
         try{
-    //category type:     1            2            3        4        5
-            $keys = [ 'theme', 'thematic_unit', 'grade', 'class', 'tags'];
-            $query = '';
-            $no_params = count($keys);
-            $first_written = 0;
-            //Build raw query from received parameters - The Event returned has to match EVERY desired category type,
-            //but if there are multiple categories in a type, it has to match only one
-            //Function is made up of two for cycles in case you ever need to change the number of categories - remove/add a type,
-            //you have to just add another category type into the array up top and it should work (ofc adjust the request body and validator)
-            for($i = 0; $i < $no_params; $i++){
-                $key = $keys[$i];
-                $no_args = count($request[$key]);
-                if ($no_args == 0){
-                    continue;
-                }
-                if($first_written == 0){
-                    $query .= "(categories.type = " . ($i+1) . " AND (categories.value =";
-                    $first_written = 1;
-                }
-                else {
-                    $query .= " AND (categories.type = " . ($i+1) . " AND (categories.value =";
-                }
-                foreach ($request[$key] as $category){
-                    if($no_args-- == 1){
-                        $query .= "'{$category}')";
-                    }
-                    else{
-                        $query .= "'{$category}' OR categories.value = ";
-                    }
-                }
-                $query .= ")";
-            }
-
-            $filtered_events;
-            //get all Events api is now unnecessary, since this one is capable of handling it
-            if($query == ''){
+            //Function receives a list of category ids, filters events which have one of those categories, at the end returns only unique events
+            $filtered_events = collect([]);
+            if(count($request['category_ids']) == 0){
                 $filtered_events = Event::all();
             }
             else {
-                $filtered_events = Event::select('events.*')
+                foreach($request['category_ids'] as $id){
+                    $query = 'event_categories.category_id = ?';
+                    $response = Event::select('events.*')
                             ->join('event_categories', 'events.id', '=', 'event_categories.event_id')
-                            ->join('categories', 'event_categories.category_id', '=', 'categories.id')
-                            ->whereRaw($query)->get();
+                            ->whereRaw($query, [$id])->get();
+                    $filtered_events = $filtered_events->merge($response);
+                };
             }
 
             if($filtered_events->isEmpty()){
-                return response()->json($filtered_events, 204);
+                return response()->json(null, 204);
             }
             else{
-                return response()->json($filtered_events, 200);
+                return response()->json($filtered_events->unique('id'), 200);
             }
         } catch(QueryException $e){
            return response()->json($e, 500);
