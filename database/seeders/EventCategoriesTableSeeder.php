@@ -81,14 +81,14 @@ class EventCategoriesTableSeeder extends Seeder
 	9 =>
         array (
             'event_id' => 78,
-            'category_id' => 10,
+            'category_id' => 1,
             'created_at' => '2020-10-30 00:30:39',
             'updated_at' => '2020-10-30 00:30:39',
 	),
 	10 =>
         array (
             'event_id' => 78,
-            'category_id' => 11,
+            'category_id' => 2,
             'created_at' => '2020-10-30 00:30:39',
             'updated_at' => '2020-10-30 00:30:39',
 	),
@@ -116,7 +116,7 @@ class EventCategoriesTableSeeder extends Seeder
 	14 =>
         array (
             'event_id' => 78,
-            'category_id' => 15,
+            'category_id' => 7,
             'created_at' => '2020-10-30 00:30:39',
             'updated_at' => '2020-10-30 00:30:39',
 	),

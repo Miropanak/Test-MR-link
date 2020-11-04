@@ -80,14 +80,14 @@ class CategoriesTableSeeder extends Seeder
 	9 =>
         array (
             'type' => 1,
-            'value' => 'Informatika',
+            'value' => 'Matematika',
             'created_at' => '2020-10-29 23:00:00',
             'updated_at' => '2020-10-29 23:00:00',
 	),
 	10 =>
         array (
             'type' => 2,
-            'value' => 'Procedurálne programovanie',
+            'value' => 'Rovnice',
             'created_at' => '2020-10-29 23:00:00',
             'updated_at' => '2020-10-29 23:00:00',
 	),
@@ -115,7 +115,7 @@ class CategoriesTableSeeder extends Seeder
 	14 =>
         array (
             'type' => 5,
-            'value' => '#programovanie',
+            'value' => '#matematika',
             'created_at' => '2020-10-29 23:00:00',
             'updated_at' => '2020-10-29 23:00:00',
         ),
