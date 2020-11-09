@@ -409,7 +409,7 @@ class EventController extends Controller
     /**
      * @OA\Post(
      *      path="/api/events",
-     *      operationId="createEvent ",
+     *      operationId="createEvent",
      *      tags={"Event"},
      *      summary="Creates new event",
      *      description="Creates new event",
@@ -438,7 +438,6 @@ class EventController extends Controller
      *     )
      */
 
-     //  "category_ids": [1,2,3,4]
     public function createEvent (Request $request) {
         $validator = Validator::make($request->all(), [
             'message' => 'string|required',
