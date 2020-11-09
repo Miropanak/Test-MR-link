@@ -850,25 +850,38 @@ class EventController extends Controller
         }
         try{
             //Function receives a list of category ids, filters events which have one of those categories, at the end returns only unique events
-            $filtered_events = collect([]);
-            if(count($request['category_ids']) == 0){
+            $filtered_events;
+            $categories_count = count($request['category_ids']);
+            if($categories_count == 0){
                 $filtered_events = Event::all();
             }
             else {
-                foreach($request['category_ids'] as $id){
-                    $query = 'event_categories.category_id = ?';
-                    $response = Event::select('events.*')
+                $categories = $request['category_ids'];
+                sort($categories);
+                
+                $array_string='ARRAY[';
+                for($i=0; $i<$categories_count; $i++){
+                    if($i == 0){
+                        $array_string .= $categories[$i];
+                    }
+                    else{
+                        $array_string .= ','.$categories[$i];
+                    }
+                }
+                $array_string.=']';
+                //SELECT event.*, ARRAY_AGG(CATEGORY_ID ORDER BY CATEGORY_ID) categories FROM event JOIN EVENT_CATEGORY EC on EVENT.ID = EC.EVENT_ID GROUP BY event.id HAVING ARRAY[1,3] = ARRAY_AGG(CATEGORY_ID);
+                $filtered_events = Event::select(\DB::raw('events.*, array_agg(event_categories.category_id ORDER BY event_categories.category_id) as categories'))
                             ->join('event_categories', 'events.id', '=', 'event_categories.event_id')
-                            ->whereRaw($query, [$id])->get();
-                    $filtered_events = $filtered_events->merge($response);
-                };
+                            ->groupBy('events.id')
+                            ->havingRaw('array_agg(event_categories.category_id ORDER BY event_categories.category_id) @> '.$array_string)
+                            ->get();
             }
 
             if($filtered_events->isEmpty()){
                 return response()->json(null, 204);
             }
             else{
-                return response()->json($filtered_events->unique('id'), 200);
+                return response()->json($filtered_events, 200);
             }
         } catch(QueryException $e){
            return response()->json($e, 500);
