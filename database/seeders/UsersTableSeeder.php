@@ -27,7 +27,9 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2020-03-01 15:36:38',
                 'updated_at' => '2020-03-01 15:36:38',
                 'deleted_at' => NULL,
-                'confirm_private_policy' => false,
+		'confirm_private_policy' => false,
+		'class' => 'nezadane',
+		'organization_id' => 1,
             ),
             1 => 
             array (
@@ -39,7 +41,9 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2020-03-01 15:36:38',
                 'updated_at' => '2020-03-01 15:36:38',
                 'deleted_at' => NULL,
-                'confirm_private_policy' => false,
+		'confirm_private_policy' => false,
+		'class' => 'nezadane',
+		'organization_id' => 2,
             ),
             2 => 
             array (
@@ -51,7 +55,9 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2020-03-01 15:36:38',
                 'updated_at' => '2020-03-01 15:36:38',
                 'deleted_at' => NULL,
-                'confirm_private_policy' => false,
+		'confirm_private_policy' => false,
+		'class' => '2A',
+		'organization_id' => 2,
             ),
             3 => 
             array (
@@ -63,7 +69,9 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2020-03-01 15:36:38',
                 'updated_at' => '2020-03-01 15:36:38',
                 'deleted_at' => NULL,
-                'confirm_private_policy' => false,
+		'confirm_private_policy' => false,
+		'class' => '3A',
+		'organization_id' => 2,
             ),
             4 => 
             array (
@@ -75,7 +83,9 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2020-03-01 15:36:38',
                 'updated_at' => '2020-03-01 15:36:38',
                 'deleted_at' => NULL,
-                'confirm_private_policy' => false,
+		'confirm_private_policy' => false,
+		'class' => '4A',
+		'organization_id' => 1,
             ),
             5 => 
             array (
@@ -87,7 +97,9 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2020-03-01 15:36:38',
                 'updated_at' => '2020-03-04 19:59:54',
                 'deleted_at' => NULL,
-                'confirm_private_policy' => false,
+		'confirm_private_policy' => false,
+		'class' => '5B',
+		'organization_id' => 1,
             ),
         ));
         
