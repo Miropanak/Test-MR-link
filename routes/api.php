@@ -120,12 +120,10 @@ Route::group(['prefix' => 'exam', 'middleware' => 'auth:api'], function () {
 Route::get('exam/{exam_id}/user/{user_id}', 'Api\ExamController@getExamAnswers');
 
 // CATEGORIES
-
 Route::group(['prefix' => 'categories'], function(){
     Route::get('{type}', 'Api\CategoriesController@getCategoriesType');
 });
 
-
-
-
-
+Route::group(['prefix' => 'categories', 'middleware' => 'auth:api'], function (){
+    Route::post('', 'Api\CategoriesController@createCategory');
+});
