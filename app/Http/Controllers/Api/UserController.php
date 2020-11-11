@@ -114,11 +114,15 @@ class UserController extends Controller
      *                   type="string",
      *                   format="password",
      *               ),
-     *              @OA\Property(
+     *               @OA\Property(
      *                   property="c_password",
      *                   type="string",
      *                   format="password",
-     *               )
+     *               ),
+     *               @OA\Property(
+     *                   property="organization_id",
+     *                   type="integer",
+     *               ), 
      *           )
      *       )
      *   ),
@@ -155,6 +159,7 @@ class UserController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6',
             'c_password' => 'required|same:password',
+            'organization_id' => 'required|integer',
         ]);
 
         if ($validator->fails()) {
@@ -368,7 +373,7 @@ class UserController extends Controller
 
     public function getUserActivities($user_id) {
         try{
-            $user = User::find($user_id); //not sure if this works
+            $user = User::find($user_id); 
             if ($user){
                 $activities = Activity::where("author_id", $user_id)->get();
                 return response()->json($activities, 200);
@@ -454,4 +459,62 @@ class UserController extends Controller
             return response()->json(null, 500);
         }
     }
+    
+    /**
+     * @OA\Put(
+     *      path="/api/users/{id}/changeUserSettings",
+     *      operationId="changeUserSettings",
+     *      tags={"User"},
+     *      summary="Change provided user settings",
+     *      description="Changes user settings based on request",
+     *      security={{"bearerAuth":{}}},
+     *      @OA\RequestBody(
+     *       required=true,
+     *       description="",
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               @OA\Property(
+     *                      property="name",
+     *                      type="string",
+     *                ),
+     *               @OA\Property(
+     *                      property="organization_id",
+     *                      type="integer",
+     *               ),
+     *               @OA\Property(
+     *                      property="class",
+     *                      type="string",
+     *               )
+     *           )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK"
+     *       ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Access forbidden",
+     *       ),
+     *     )
+     */
+
+    public function changeUserSettings(Request $request) {
+        try{
+            $user = Auth::user();
+            if($user){
+                //tu updatnem vsetky userove data
+                $user['name'] = request('name');
+                $user['organization_id'] = request('organization_id');
+                $user['class'] = request('class');
+                $user->save();
+                return response()->json("User info updated", 200);
+            } else{
+                return response()->json("User not logged in", 403);
+            }   
+        } catch(QueryException $e){
+            return response()->json($e, 500);
+        }
+    }   
 }
