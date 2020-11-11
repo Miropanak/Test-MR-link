@@ -40,8 +40,12 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('{id}/activities', 'Api\UserController@getUserActivities');
     Route::get('', 'Api\UserController@getUsers');
     Route::get('{id}/subscribed/activities', 'Api\UserController@subscribedActivity');
-
 });
+
+Route::group(['prefix' => 'users', 'middleware' => 'auth:api'], function () {
+    Route::put('{id}/changeUserSettings', 'Api\UserController@changeUserSettings');
+});
+
 // EVENTS
 Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {
     Route::post('', 'Api\EventController@createEvent');
