@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserType;
+use App\Models\Organizations;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Event;
@@ -516,5 +517,77 @@ class UserController extends Controller
         } catch(QueryException $e){
             return response()->json($e, 500);
         }
-    }   
+    }
+    
+    /**
+     * @OA\Get(
+     *      path="/api/organization/all",
+     *      operationId="getOrganizations",
+     *      tags={"Organization"},
+     *      summary="Gets all organizations",
+     *      description="Returns 'organizations' in system",
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK"
+     *       ),
+     *     )
+     */
+    public function getOrganizations(){
+        try{
+            $organizations = Organizations::all('id','name');
+            return response()->json($organizations, 200);
+        } catch(QueryException $e) {
+            return response()->json(null, 500);
+        }
+    }
+    
+    /**
+     * @OA\Get(
+     *      path="/api/users/{id}",
+     *      operationId="getUser",
+     *      tags={"User"},
+     *      summary="Gets user",
+     *      description="Returns 'user' by id",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="User id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *      @OA\Response(
+     *         response=404,
+     *         description="User not found",
+     *      ),
+     *     )
+     */
+    public function getUser($id){
+        try{
+            $user = User::selectRaw("users.*, organizations.name as org_name")
+                ->join('organizations', 'organizations.id', '=', 'users.organization_id')
+                ->where('users.id',$id)
+                ->get();
+            if (sizeof($user) > 0){
+                return response()->json($user, 200);
+            }else{
+                return response()->json("User does not exist", 404);
+            }
+        } catch(QueryException $e) {
+            if($e->getCode() === '22003'){
+                return response()->json(null, 400);
+            }else{
+                return response()->json(null, 500);
+            }
+        }
+    }
 }

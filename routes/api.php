@@ -39,11 +39,17 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('{id}/events', 'Api\UserController@getUserEvents');
     Route::get('{id}/activities', 'Api\UserController@getUserActivities');
     Route::get('', 'Api\UserController@getUsers');
-    Route::get('{id}/subscribed/activities', 'Api\UserController@subscribedActivity');
+    Route::get('{id}/subscribed/activities', 'Api\UserController@subscribedActivity');   
+    Route::get('{id}', 'Api\UserController@getUser');   
 });
 
 Route::group(['prefix' => 'users', 'middleware' => 'auth:api'], function () {
     Route::put('{id}/changeUserSettings', 'Api\UserController@changeUserSettings');
+});
+
+//ORGANIZATIONS
+Route::group(['prefix' => 'organization'], function () {
+    Route::get('all', 'Api\UserController@getOrganizations');
 });
 
 // EVENTS
