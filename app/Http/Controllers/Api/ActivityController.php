@@ -647,8 +647,8 @@ class ActivityController extends Controller
      *      path="/api/activity/{id}/student",
      *      operationId="addStudentsToActivity",
      *      tags={"Activity"},
-     *      summary="Adds Student to Activity",
-     *      description="Adds Student to Activity",
+     *      summary="Adds/Removes Student to Activity",
+     *      description="Api takes an array of student id's that are supposed to be in the activity. The old array is overwritten with the new one",
      *      security={{"bearerAuth":{}}},
      *     @OA\Parameter(
      *          name="id",
@@ -661,16 +661,11 @@ class ActivityController extends Controller
      *      ),
      *      @OA\RequestBody(
      *       required=true,
-     *       description="",
-     *       @OA\MediaType(
-     *           mediaType="application/json",
-     *           @OA\Schema(
-     *               @OA\Property(
-     *                      property="student_ids",
-     *                      type="integer",
-     *                )
-     *           )
-     *        )
+     *       description="JSON should hold 1 array. To remove all students send empty array",
+     *       @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="category_ids", type="array", @OA\Items(type="integer")),
+     *          )
      *      ),
      *      @OA\Response(
      *          response=200,
