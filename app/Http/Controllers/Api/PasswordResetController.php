@@ -129,7 +129,7 @@ class PasswordResetController extends Controller
             return response()->json(['message' => 'This password reset token is invalid.'], 404);
         }
 
-        return response()->json($passwordReset, $this->200); //TODO: needs to send react thingy
+        return response()->json($passwordReset, $this->successStatus); //TODO: needs to send react thingy
     }
 
     /**
