@@ -886,7 +886,83 @@ class EventController extends Controller
            return response()->json($e, 500);
        }
     }
+
+    /**
+     * @OA\Post(
+     *      path="/api/events/own",
+     *      operationId="filterOwnEvents",
+     *      tags={"Event"},
+     *      summary="Filters existing events based on selected categories",
+     *      description="User can choose what categories he wants to filter by. Categories should be sent in an array with their ID's",
+     *      security={{"bearerAuth":{}}},
+     *      @OA\RequestBody(
+     *       required=true,
+     *       description="JSON should hold 1 array, if no filtering is needed send empty array, function will return all events",
+     *       @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="category_ids", type="array", @OA\Items(type="integer")),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK"
+     *       ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="No content"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Data validation error - Invalid JSON body supplied",
+     *      ),
+     *     )
+     */
+    public function filterOwnEvents(Request $request){
+        $validator = Validator::make($request->all(), [
+            'category_ids.*' => 'integer',
+        ]);
+        if($validator->fails()) {
+            return response()->json(['Data validation error - Invalid JSON body supplied'=>$validator->errors()], 400);
+        }
+        try{
+            //Function receives a list of category ids, filters events which have one of those categories, at the end returns only unique events
+            $filtered_events;
+            $categories_count = count($request['category_ids']);
+            if($categories_count == 0){
+                $filtered_events = Event::all();
+            }
+            else {
+                $categories = $request['category_ids'];
+                sort($categories);
+                
+                $array_string='ARRAY[';
+                for($i=0; $i<$categories_count; $i++){
+                    if($i == 0){
+                        $array_string .= $categories[$i];
+                    }
+                    else{
+                        $array_string .= ','.$categories[$i];
+                    }
+                }
+                $array_string.=']';
+                //SELECT event.*, ARRAY_AGG(CATEGORY_ID ORDER BY CATEGORY_ID) categories FROM event JOIN EVENT_CATEGORY EC on EVENT.ID = EC.EVENT_ID GROUP BY event.id HAVING ARRAY[1,3] = ARRAY_AGG(CATEGORY_ID);
+                $filtered_events = Event::select(\DB::raw('events.*, array_agg(event_categories.category_id ORDER BY event_categories.category_id) as categories'))
+                            ->join('event_categories', 'events.id', '=', 'event_categories.event_id')
+                            ->groupBy('events.id')
+                            ->havingRaw('array_agg(event_categories.category_id ORDER BY event_categories.category_id) @> '.$array_string)
+                            ->where('author_id',Auth::user()->id)
+                            ->get();
+            }
+
+            if($filtered_events->isEmpty()){
+                return response()->json(null, 204);
+            }
+            else{
+                return response()->json($filtered_events, 200);
+            }
+        } catch(QueryException $e){
+           return response()->json($e, 500);
+       }
+    }
 }
-
-
 

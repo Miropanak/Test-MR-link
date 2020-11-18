@@ -55,6 +55,7 @@ Route::group(['prefix' => 'organization'], function () {
 // EVENTS
 Route::group(['prefix' => 'events', 'middleware' => 'auth:api'], function () {
     Route::post('', 'Api\EventController@createEvent');
+    Route::post('filterOwn', 'Api\EventController@filterOwnEvents');
 });
 
 Route::group(['prefix' => 'events'], function (){
