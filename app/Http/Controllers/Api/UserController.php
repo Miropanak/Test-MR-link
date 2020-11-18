@@ -462,12 +462,77 @@ class UserController extends Controller
     }
     
     /**
-     * @OA\Put(
-     *      path="/api/users/{id}/changeUserSettings",
-     *      operationId="changeUserSettings",
+     * @OA\Post(
+     *      path="/api/users/filter",
+     *      operationId="getFilteredUsers",
      *      tags={"User"},
-     *      summary="Change provided user settings",
-     *      description="Changes user settings based on request",
+     *      summary="Gets all users in class and organisation",
+     *      description="Returns 'users' based on filters",
+     *      @OA\RequestBody(
+     *       required=true,
+     *       description="",
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               @OA\Property(
+     *                      property="class",
+     *                      type="string"
+     *                ),
+     *               @OA\Property(
+     *                      property="organization_id",
+     *                      type="integer"
+     *               )
+     *           )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK"
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Invalid JSON body supplied"
+     *       )
+     *     )
+     */
+
+    public function getFilteredUsers(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'class' => 'nullable|string',
+            'organization_id' => 'integer'
+        ]);
+        
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()], 400);
+        }
+        
+        try{
+            if ($request['class'] != null && $request['organization_id']>0){
+                $users = User::select('id','name','email', 'organization_id', 'class')
+                ->where('organization_id', '=', $request['organization_id'])
+                ->where('class', '=', $request['class'])->get();
+            }else if($request['organization_id']>0){
+                $users = User::select('id','name','email', 'organization_id', 'class')
+                ->where('organization_id', '=', $request['organization_id'])->get();
+            }else if($request['class'] != null){
+                $users = User::select('id','name','email', 'organization_id', 'class')
+                ->where('class', '=', $request['class'])->get();
+            }else{
+                $users = User::select('id','name','email');
+            }
+            return response()->json($users, 200);
+        } catch(QueryException $e) {
+            return response()->json(null, 500);
+        }
+    }
+    
+    /**
+     * @OA\Put(
+     *      path="/api/users/changeUserInfo",
+     *      operationId="changeUserInfo",
+     *      tags={"User"},
+     *      summary="Change provided user info",
+     *      description="Changes user info based on request",
      *      security={{"bearerAuth":{}}},
      *      @OA\RequestBody(
      *       required=true,
@@ -501,7 +566,7 @@ class UserController extends Controller
      *     )
      */
 
-    public function changeUserSettings(Request $request) {
+    public function changeUserInfo(Request $request) {
         try{
             $user = Auth::user();
             if($user){
