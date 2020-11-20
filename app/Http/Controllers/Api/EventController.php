@@ -929,7 +929,7 @@ class EventController extends Controller
             $filtered_events;
             $categories_count = count($request['category_ids']);
             if($categories_count == 0){
-                $filtered_events = Event::all();
+                $filtered_events = Event::all()->where('author_id',Auth::user()->id);
             }
             else {
                 $categories = $request['category_ids'];
