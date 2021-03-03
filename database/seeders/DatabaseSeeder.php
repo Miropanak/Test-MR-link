@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
 	$this->call(OrganizationsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(EventsTableSeeder::class);
+        
         $this->call(OptionsTableSeeder::class);
         $this->call(StudyFieldsTableSeeder::class);
         $this->call(ActivitiesTableSeeder::class);
@@ -42,5 +43,6 @@ class DatabaseSeeder extends Seeder
 	$this->call(ActivityUnitTableSeeder::class);
 	$this->call(CategoriesTableSeeder::class);
 	$this->call(EventCategoriesTableSeeder::class);
+    $this->call(MixedSeeder::class);
     }
 }
