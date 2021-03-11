@@ -344,7 +344,7 @@ class EventController extends Controller
             if(count($options) > 0) {
                 return response()->json($options, 200);
             } else {
-                return response()->json(null, 404);
+                return response()->json([], 200);
             }
         } catch(QueryException $e) {
             if($e->getCode() === '22003') {
