@@ -59,6 +59,13 @@ class EventTypesTableSeeder extends Seeder
                 'updated_at' => '2020-03-01 15:36:38',
                 'deleted_at' => NULL,
             ),
+            6 => 
+            array (
+                'name' => 'Bez odpovede',
+                'created_at' => '2021-03-01 15:36:38',
+                'updated_at' => '2021-03-01 15:36:38',
+                'deleted_at' => NULL,
+            ),
         ));
         
         
