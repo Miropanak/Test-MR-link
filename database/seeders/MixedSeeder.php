@@ -13,12 +13,14 @@ class MixedSeeder extends Seeder
     public function run()
     {
 
-         #$users = \DB::table('users')->select('id')->orderBy('id', 'desc')->take(1);
-         #echo $users;
         \DB::table('events')->insert(array (
             array (
-                'message' => 'link na predlohu',
-                'header' => 'Napíšte text podľa predlohy. ',
+                'message' => '<pre>Vypracujte zadanie č.1 pomocou úloh, ktoré sú súčasťou konkrétneho zadania. 
+Je potrebné stiahnuť si nenaformátovaný text z url: https://drive.google.com/file/d/12N5D7KY308G8gq16z8iXiUDCipsjyFKe/view?usp=sharing .
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na ukážku dostupnú tu: https://drive.google.com/file/d/1hJeqlX1kuywvzOrHChzPfptHWWcXLHUr/view?usp=sharing .
+Prajeme veľa šťastia<\pre>',
+                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
                 'time_to_explain' => 0,
                 'time_to_handle' => 5,
                 'event_type_id' => 7,
@@ -49,8 +51,8 @@ class MixedSeeder extends Seeder
         
         \DB::table('units')->insert(array (
             array (
-                'title' => 'Prednáška 1: základy MS word',
-                'description' => '',
+                'title' => 'Zadanie č.1',
+                'description' => 'základy MS word',
                 'created_at' => '2021-03-01 15:36:39',
                 'updated_at' => '2021-03-01 15:36:39',
                 'deleted_at' => NULL,
@@ -107,8 +109,8 @@ class MixedSeeder extends Seeder
         
         \DB::table('events')->insert(array (
             array (
-                'message' => '',
-                'header' => 'V texte je použitý symbol európskej menovej jednotky €.',
+                'message' => 'V texte je použitý symbol európskej menovej jednotky €. PrepíŠ ho na "EUR"',
+                'header' => 'PrepíŠ znak € slovne.',
                 'time_to_explain' => 1,
                 'time_to_handle' => 1,
                 'event_type_id' => 7,
@@ -131,8 +133,8 @@ class MixedSeeder extends Seeder
         
         \DB::table('events')->insert(array (
             array (
-                'message' => '',
-                'header' => 'V texte je použitý dolný aj horný index.',
+                'message' => 'V skratkách kyselín a jednotkách objemu je potrebné čísla nahradiť adekvátnymi indexmi.',
+                'header' => 'V texte treba použiť dolný aj horný index.',
                 'time_to_explain' => 1,
                 'time_to_handle' => 1,
                 'event_type_id' => 7,
@@ -276,7 +278,7 @@ class MixedSeeder extends Seeder
         \DB::table('events')->insert(array (
             array (
                 'message' => 'Text o kyseline sírovej napíšte písmom Times New Roman, veľkosťou 11 bodov. Štýl písma – Všetky veľké. Text „dvojsýtna kyselina“ je umiestnený o 3 body vyššie. ',
-                'header' => 'Naformátuj časť textu časti 3 podľa zadania.',
+                'header' => 'Naformátuj text o kyseline sírovej časti 3 podľa zadania.',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -300,7 +302,7 @@ class MixedSeeder extends Seeder
         \DB::table('events')->insert(array (
             array (
                 'message' => 'Text o kyseline uhličité napíšte písmom Courier New, veľkosťou 11 bodov. Štýl písma – Všetky veľké. Text „je H2CO3“ je umiestnený o 3 body nižšie.',
-                'header' => 'Naformátuj časť text časti 3 podľa zadania.',
+                'header' => 'Naformátuj text o kyseline uhličitej časti 3 podľa zadania.',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -344,10 +346,10 @@ class MixedSeeder extends Seeder
                 'deleted_at' => NULL,
             )
         ));
-        #zadanie2
+        #word2
         \DB::table('units')->insert(array (
             array (
-                'title' => 'Prednáška 2: pokračovanie v MS word',
+                'title' => 'Zadanie č.2',
                 'description' => 'zarovnávanie, riadkovanie, odsadzovanie',
                 'created_at' => '2021-03-06 12:36:39',
                 'updated_at' => '2021-03-06 12:36:39',
@@ -372,8 +374,12 @@ class MixedSeeder extends Seeder
         #otázky k zadaniu 2
         \DB::table('events')->insert(array (
             array (
-                'message' => 'link na predlohu',
-                'header' => 'Napíšte text podľa predlohy.',
+                'message' => '<pre>Vypracujte zadanie č.2 pomocou úloh, ktoré sú súčasťou konkrétneho zadania. 
+Je potrebné stiahnuť si nenaformátovaný text z url: https://drive.google.com/file/d/1HTsn6EoFYg5yF8Tf51Ci_ITWaSMZUfhB/view?usp=sharing .
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na ukážku dostupnú tu: https://drive.google.com/file/d/1fvVrKm4KmvSTuYos4PrcYE_hZmq42zC2/view?usp=sharing .
+Prajeme veľa šťastia<\pre>',
+                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -589,8 +595,8 @@ class MixedSeeder extends Seeder
 		#Word3
         \DB::table('units')->insert(array (
             array (
-                'title' => 'Prednáška 3: orámovanie a podfarbenie MS Word',
-                'description' => '',
+                'title' => 'Zadanie č.3',
+                'description' => 'orámovanie a podfarbenie',
                 'created_at' => '2021-03-10 15:36:39',
                 'updated_at' => '2021-03-10 15:36:39',
                 'deleted_at' => NULL,
@@ -611,8 +617,12 @@ class MixedSeeder extends Seeder
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'link na predlohu',
-                'header' => 'Sformátujte text predlohy podľa pokynov:',
+                'message' => '<pre>Vypracujte zadanie č.3 pomocou úloh, ktoré sú súčasťou konkrétneho zadania. 
+Je potrebné stiahnuť si nenaformátovaný text z url: https://drive.google.com/file/d/1EIXOKc7iGZY3qkMI_w1Qthkv0vTagVq2/view?usp=sharing .
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na ukážku dostupnú tu: https://drive.google.com/file/d/17irZ1sGkrUOJ2mqlqrmhmpU_wjBLuRJQ/view?usp=sharing .
+Prajeme veľa šťastia<\pre>',
+                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -827,7 +837,7 @@ class MixedSeeder extends Seeder
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'celá stránka je ohraničená pomocou efektu žltej hviezdičky .',
+                'message' => 'Celá stránka je ohraničená pomocou efektu žltej hviezdičky.',
                 'header' => 'Naformátuj ohraničenie podľa pokynov:',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -851,7 +861,7 @@ class MixedSeeder extends Seeder
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'celá stránka je podfarbená svetlomodrou farbou (modrá, zvýraznenie 1, 80%)',
+                'message' => 'Celá stránka je podfarbená svetlomodrou farbou (modrá, zvýraznenie 1, 80%)',
                 'header' => 'Naformátuj podfarbenie podľa pokynov:',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -875,8 +885,8 @@ class MixedSeeder extends Seeder
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'na stránku umiestnime  vodotlač s červeným šikmým textom „Dôverné !!!“',
-                'header' => 'Na stránku umiestnime  vodotlač podľa pokynov:',
+                'message' => 'Na stránku umiestni  vodotlač s červeným šikmým textom „Dôverné !!!“',
+                'header' => 'Na stránku umiestni  vodotlač podľa pokynov:',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -900,8 +910,8 @@ class MixedSeeder extends Seeder
         #word4
         \DB::table('units')->insert(array (
             array (
-                'title' => 'Prednáška 4: odrážky a číslovanie v MS Word',
-                'description' => '',
+                'title' => 'Zadanie č.4',
+                'description' => 'odrážky a číslovanie',
                 'created_at' => '2021-03-10 15:36:39',
                 'updated_at' => '2021-03-10 15:36:39',
                 'deleted_at' => NULL,
@@ -922,8 +932,12 @@ class MixedSeeder extends Seeder
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'link na predlohu',
-                'header' => 'Sformátujte text predlohy podľa pokynov:',
+                'message' => '<pre>Vypracujte zadanie č.4 pomocou úloh, ktoré sú súčasťou konkrétneho zadania. 
+Je potrebné stiahnuť si nenaformátovaný text z url: https://drive.google.com/file/d/1Ad9luyN_PpM0FDJr2HJDFwmGCbYFWMB5/view?usp=sharing .
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na ukážku dostupnú tu: https://drive.google.com/file/d/1tBOGvCmvcmIzBLM3rX8-6GuNO2qhJRTV/view?usp=sharing .
+Prajeme veľa šťastia<\pre>',
+                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -1043,7 +1057,7 @@ class MixedSeeder extends Seeder
 		#zadanie5
         \DB::table('units')->insert(array (
             array (
-                'title' => 'Prednáška 5: pokračovanie v MS word',
+                'title' => 'Zadanie č.5',
                 'description' => 'tabulátory',
                 'created_at' => '2021-03-06 12:36:39',
                 'updated_at' => '2021-03-06 12:36:39',
@@ -1068,8 +1082,12 @@ class MixedSeeder extends Seeder
         #otázky k zadaniu 5
         \DB::table('events')->insert(array (
             array (
-                'message' => 'link na predlohu, link na obrazok',
-                'header' => 'Napíšte text podľa predlohy:',
+                'message' => '<pre>Vypracujte zadanie č.5 pomocou úloh, ktoré sú súčasťou konkrétneho zadania. 
+Je potrebné stiahnuť si nenaformátovaný text z url: https://drive.google.com/file/d/19N_CQ7RUu78BCwBwndjaayGoV8NgYbnm/view?usp=sharing .
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na ukážku dostupnú tu: https://drive.google.com/file/d/1NXxA4nbN85LdY_MuKR-uREefb4AcVdRt/view?usp=sharing .
+Prajeme veľa šťastia<\pre>',
+                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -1094,7 +1112,7 @@ class MixedSeeder extends Seeder
 		\DB::table('events')->insert(array (
             array (
                 'message' => 'Prvý nadpis napíšte písmom Monotype Corsiva, veľkosťou 20 bodov, tučné, medzera pred odstavcom je 6 bodov a medzera za odstavcom je 24 bodov, text je zarovnaný na stred.',
-                'header' => 'Upravte nadpis a text:',
+                'header' => 'Upravte prvý nadpis a text:',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -1193,8 +1211,8 @@ class MixedSeeder extends Seeder
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Jedálny lístok je ohraničený (ohraničenie stránky) pomocí efektu – zelené lístky. Na pozadie dáme zámok, ktorý sa nachádza medzi prílohami v prvej úlohe',
-                'header' => 'Pokračujte vo formátovaní:',
+                'message' => 'Jedálny lístok je ohraničený (ohraničenie stránky) pomocou efektu – zelené lístky. Na pozadie dáme zámok, ktorý sa nachádza v neformátovanom texte v prvej úlohe',
+                'header' => 'Pridajte pozadie a ohraničenie textu:',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -1218,8 +1236,8 @@ class MixedSeeder extends Seeder
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Nakoniec upravíme medzery medzi riadkami aby to vyšlo na 1 stranu.',
-                'header' => 'Upravte text tak, aby sa zmestil na jednu stranu:',
+                'message' => 'Nakoniec upravíme medzery medzi riadkami aby sa všetko zmestilo na 1 stranu.',
+                'header' => 'Dokončite zadanie č.5:',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -1244,7 +1262,7 @@ class MixedSeeder extends Seeder
 		#zadanie 9
         \DB::table('units')->insert(array (
             array (
-                'title' => 'Prednáška 9: pokračovanie v MS word',
+                'title' => 'Zadanie č.9',
                 'description' => 'štýly, obsah, citacie, poznámky pod čiarou',
                 'created_at' => '2021-03-06 12:36:39',
                 'updated_at' => '2021-03-06 12:36:39',
@@ -1269,8 +1287,12 @@ class MixedSeeder extends Seeder
         #otázky k zadaniu 9
         \DB::table('events')->insert(array (
             array (
-                'message' => 'link na predlohu - Zadanie č_9 text.docx, priloha2 - zoznam obrázkov, priloha3 - obrazok1 k hyperlinkom, priloha4 - obrazok2 k hyperlinkom, priloha5 - obrazok3 k hyperlinkom',
-                'header' => 'Napíšte text podľa predlohy:',
+                'message' => '<pre>Vypracujte zadanie č.9 pomocou úloh, ktoré sú súčasťou konkrétneho zadania. 
+Je potrebné stiahnuť si nenaformátovaný text z url: https://drive.google.com/file/d/14Ht-USOEn6We0sHPYZ69_lgz3YFrxYj9/view?usp=sharing .
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na ukážku dostupnú tu: https://drive.google.com/drive/folders/1iVi0M0a6CctYaGKbc6o0cZBbVU5rf-Pq?usp=sharing .
+Prajeme veľa šťastia<\pre>',
+                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -1294,7 +1316,8 @@ class MixedSeeder extends Seeder
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Celý text napíšte písmom Times New Roman, veľkosťou 12 bodov, zarovnaný do bloku. Riadkovanie 1,5, Medzera za odstavcom je 12 bodov. Prvý riadok odstavca odsadený o 1,5 cm. Text je A4 na orientovaný na výšku, ľavý okraj 3,5cm, pravý, horný, dolný 2,5cm.',
+                'message' => '<pre>Celý text napíšte písmom Times New Roman, veľkosťou 12 bodov, zarovnaný do bloku. Riadkovanie 1,5, Medzera za odstavcom je 12 bodov. Prvý riadok odstavca odsadený o 1,5 cm. Text je A4 na orientovaný na výšku, ľavý okraj 3,5cm, pravý, horný, dolný 2,5cm.
+V prípade problémov si môžete pozrieť dostupný videonávod tu: https://drive.google.com/file/d/1xsGD7Ltle4KJUY7_xtsR5GWr_T49Ij_U/view?usp=sharing .<\pre>',
                 'header' => 'Text je formátovaný pomocou štýlov:',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1344,7 +1367,8 @@ class MixedSeeder extends Seeder
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Každá hlavná kapitola začína na novej strane. 2,3 a 4 odstavec časti 2 Vznik vulkánov je odsadený vlastnou odrážkou sopka - Odsadenie odrážky je 0 cm a odsadenie textu za odrážkou je 1 cm, farba odrážky červená, tučne veľkosť 14',
+                'message' => '<pre>Každá hlavná kapitola začína na novej strane. 2,3 a 4 odstavec časti 2 Vznik vulkánov je odsadený vlastnou odrážkou sopka - Odsadenie odrážky je 0 cm a odsadenie textu za odrážkou je 1 cm, farba odrážky červená, tučne veľkosť 14.
+V prípade problémov si môžete pozrieť dostupný videonávod tu: https://drive.google.com/file/d/1FfH3V4_vazFviX3Exiv4-rQMzcPLvm1F/view?usp=sharing .<\pre>',
                 'header' => 'Text ďalej upravujte nasledovne:',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1394,7 +1418,8 @@ class MixedSeeder extends Seeder
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Na 1. Stranu dajte cez textové pole nadpis VULKÁNY písmom Tahoma, tučné veľkosť 48, medzery medzi písmenami rozšírené o 5 bodov, všetko veľkými písmenami, modrou tučne do stredu strany. Vložte nejaký text na - 3.stranu Úvod a na koniec Záver. Následne aktualizujte obsah!',
+                'message' => '<pre>Na 1. Stranu dajte cez textové pole nadpis VULKÁNY písmom Tahoma, tučné veľkosť 48, medzery medzi písmenami rozšírené o 5 bodov, všetko veľkými písmenami, modrou tučne do stredu strany. Vľavo dole vložte text "v Tisovci, 2020", vpravo dole Vaše meno a priezvisko (cez textové pole). Vložte nejaký text na - 3.stranu Úvod a na koniec Záver. Následne aktualizujte obsah!
+V prípade problémov si môžete pozrieť dostupný videonávod tu: https://drive.google.com/file/d/1MBKCkx8BgARvpM_1y3BoOTt1fqf3sBV5/view?usp=sharing .<\pre>',
                 'header' => 'Pokračujte vo formátovaní nadpisov a textov:',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1419,7 +1444,18 @@ class MixedSeeder extends Seeder
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'V texte sú použité obrázky. Prvý obrázok (Láva.jpg) – veľkosť obrázku je podľa potreby, umiestnenie na stred. Druhý obrázok (Stromboli.jpg) – umiestnenie na stred. Obrázky sú otitulkované. Titulok napíšte písmom Times new Roman, veľkosťou 9, kurzíva',
+                'message' => '<pre>V texte sú použité obrázky. Prvý obrázok (Láva.jpg) – veľkosť obrázku je podľa potreby, umiestnenie na stred. Druhý obrázok (Stromboli.jpg) – umiestnenie na stred. Obrázky sú otitulkované. Titulok napíšte písmom Times new Roman, veľkosťou 9, kurzíva.
+
+K obrázkom pridajte takéto popisy:
+Obr. 1: Výlev lávy sopky Kilauea 
+Obr. 2: Stromboli – najaktivnejšia sopka Európy
+Obr. 3: Vulkán Paricutin Mexiko
+Obr. 4: Iótó - ostrov vulkanického pôvodu
+Obr. 5: Mount Shasta California
+Obr. 6: Grand Prismatic Spring Yellowstone
+Obr. 7: Podmorská sopka blízko Samoy
+
+V prípade problémov si môžete pozrieť dostupný videonávod tu: https://drive.google.com/file/d/1DX_03e2rtWnOFdMngM9tUAZ5YEFvB6eu/view?usp=sharing .<\pre>',
                 'header' => 'Pracujte s obrázkami podľa pokynov:',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1444,7 +1480,7 @@ class MixedSeeder extends Seeder
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Vložte na koniec zoznam obrázkov, ktorý sa nachádza medzi prílohami vyššie. Vymažte zbytočné medzery a entery, aktualizujte obsah',
+                'message' => 'Na koniec vložte zoznam obrázkov. Vymažte zbytočné medzery a entery, aktualizujte obsah',
                 'header' => 'Pridajte zoznam obrázkov a aktualizujte obsah:',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1469,7 +1505,8 @@ class MixedSeeder extends Seeder
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Vložte zdroje a vygenerujte Požitú literatúru, aktualizujte obsah. Číslovanie strán je číslované bez prvej a druhej strany, na ktorej je obsah (na tretej strane (úvod) však číslovanie začína číslom 3)',
+                'message' => '<pre>Vložte zdroje a vygenerujte Požitú literatúru, aktualizujte obsah. Číslovanie strán je číslované bez prvej a druhej strany, na ktorej je obsah (na tretej strane (úvod) však číslovanie začína číslom 3)
+V prípade problémov si môžete pozrieť dostupný videonávod tu: https://drive.google.com/file/d/1kPZh7VWOFx9BN4pdnMZpTrXfp_QLZrZL/view?usp=sharing .<\pre>',
                 'header' => 'Vložte zdroje a upravte číslovanie:',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1494,7 +1531,9 @@ class MixedSeeder extends Seeder
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'To je veľmi jednoduché - označíte slovo alebo viac slov, kliknete pravým tlačidlom myši a vyberiete vložiť hypertextové prepojenie - do adresy prilepíte odkaz - slovo vám zmodrie a funguje ako odkaz(cez CTRL + klik), podobne si viete vkladať odkazy aj na iné dokumenty, obrázky vo Vašom počítači. Inšpirovať sa môžete obrázkami, ktoré sú súčasťou prílohy na začiatku zadania',
+                'message' => '<pre>To je veľmi jednoduché - označíte slovo alebo viac slov, kliknete pravým tlačidlom myši a vyberiete vložiť hypertextové prepojenie - do adresy prilepíte odkaz - slovo vám zmodrie a funguje ako odkaz(cez CTRL + klik), podobne si viete vkladať odkazy aj na iné dokumenty, obrázky vo Vašom počítači. 
+Inšpirovať sa môžete obrázkami, ktoré sú dostupné tu: https://drive.google.com/drive/folders/1b_G9FPdlLyHaXyX3SsAUNtDpOpFLYYvH?usp=sharing
+V prípade problémov si môžete pozrieť dostupný videonávod tu: https://drive.google.com/file/d/1SDNUEZPkQN7MIP2EZKuxcIN1RIXEWUsw/view?usp=sharing .<\pre>',
                 'header' => 'Vložte hypertextový odkaz do textu:',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
