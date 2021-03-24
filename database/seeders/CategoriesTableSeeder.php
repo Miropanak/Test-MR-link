@@ -118,8 +118,35 @@ class CategoriesTableSeeder extends Seeder
             'value' => '#matematika',
             'created_at' => '2020-10-29 23:00:00',
             'updated_at' => '2020-10-29 23:00:00',
-        ),
-
+    ),
+	15 =>
+        array (
+            'type' => 3,
+            'value' => 'prvý',
+            'created_at' => '2020-10-29 23:00:00',
+            'updated_at' => '2020-10-29 23:00:00',
+	),
+	16 =>
+        array (
+            'type' => 4,
+            'value' => '1A - A. skupina',
+            'created_at' => '2020-10-29 23:00:00',
+            'updated_at' => '2020-10-29 23:00:00',
+	),
+	17 =>
+        array (
+            'type' => 4,
+            'value' => '1B - B. skupina',
+            'created_at' => '2020-10-29 23:00:00',
+            'updated_at' => '2020-10-29 23:00:00',
+	),
+	18 =>
+        array (
+            'type' => 4,
+            'value' => '1A, 1B - AB. skupina',
+            'created_at' => '2020-10-29 23:00:00',
+            'updated_at' => '2020-10-29 23:00:00',
+	),
 
 	));
 
