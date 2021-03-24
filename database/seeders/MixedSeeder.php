@@ -12,6 +12,182 @@ class MixedSeeder extends Seeder
      */
     public function run()
     {
+        \DB::table('activities')->insert(array (
+            array (
+                'title' => 'Informatika',
+                'content' => 'Tento predmet sa zaoberá učením informatiky na strednej škole',
+                'public' => true,
+                'validated' => false,
+                'study_field_id' => 1,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $activity_id=\DB::getPDO() -> lastInsertId();
+        
+        #Bezpečnosť a hygiena pri práci, úvod
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '1. Bezpečnosť a hygiena pri práci, úvod - Zásady bezpečnosti a ochrany zdravia',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+        
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '2. Ergonómia pracoviska',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+        
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '3. Systém hodnotenia na hodinách informatiky',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '4. Edupage a školský server, vlastný priečinok',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+        
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '5. Spracovanie textov - Textový editor Word – popis prostredia, pojmy - w0 časť 1',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+        
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '6.  Textový editor Word – nastavenie prostredia, nastavenie strany - w0 časť 2',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+        
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '7. Formát textu – písmo - w1 časť 1',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
 
         \DB::table('events')->insert(array (
             array (
@@ -32,37 +208,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
                 'deleted_at' => NULL,
             ),             
         ));
-        
         $event_id=\DB::getPDO() -> lastInsertId();
-        
-        \DB::table('activities')->insert(array (
-            array (
-                'title' => 'Informatika',
-                'content' => 'Tento predmet sa zaoberá učením informatiky na strednej škole',
-                'public' => true,
-                'validated' => false,
-                'study_field_id' => 1,
-                'created_at' => '2021-03-01 15:36:39',
-                'updated_at' => '2021-03-01 15:36:39',
-                'deleted_at' => NULL,
-                'author_id' => 6,
-            ),
-        ));
-        
-        $activity_id=\DB::getPDO() -> lastInsertId();
-        
-        \DB::table('units')->insert(array (
-            array (
-                'title' => 'Zadanie č.1',
-                'description' => 'Základy Microsoft Word',
-                'created_at' => '2021-03-01 15:36:39',
-                'updated_at' => '2021-03-01 15:36:39',
-                'deleted_at' => NULL,
-                'author_id' => 6,
-            ),
-        ));
-        
-        $unit_id=\DB::getPDO() -> lastInsertId();
         
         \DB::table('units_events')->insert(array (
             array (
@@ -73,21 +219,10 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
                 'deleted_at' => NULL,
             ),
         ));
-        
-        \DB::table('activity_unit')->insert(array (
-            array (
-                'created_at' => '2021-03-01 15:36:39',
-                'updated_at' => '2021-03-01 15:36:39',
-                'activity_id' => $activity_id,
-                'unit_id' => $unit_id,
-                'unit_order_number' => 0,
-                'deleted_at' => NULL,
-            ),
-        ));  
 
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Nadpis „Dvojsýtne kyseliny“ napíšte písmom Verdana, veľkosťou  16 bodov, farba písma modrá, tučné, podčiarknuté jednoduchou čiarou (farbou písma), medzery medzi znakmi sú rozšírené o 3 body.',
+                'message' => '<pre>Nadpis „Dvojsýtne kyseliny“ napíšte písmom Verdana, veľkosťou  16 bodov, farba písma modrá, tučné, podčiarknuté jednoduchou čiarou (farbou písma), medzery medzi znakmi sú rozšírené o 3 body.</pre>',
                 'header' => 'Naformátuj nadpis podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 2,
@@ -111,7 +246,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'V texte je použitý symbol európskej menovej jednotky €. Prepíš ho na "EUR"',
+                'message' => '<pre>V texte je použitý symbol európskej menovej jednotky €. Prepíš ho na "EUR"</pre>',
                 'header' => 'Prepíš znak € slovne',
                 'time_to_explain' => 1,
                 'time_to_handle' => 1,
@@ -135,7 +270,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'V skratkách kyselín a jednotkách objemu je potrebné čísla nahradiť adekvátnymi indexmi.',
+                'message' => '<pre>V skratkách kyselín a jednotkách objemu je potrebné čísla nahradiť adekvátnymi indexmi.</pre>',
                 'header' => 'V texte treba použiť dolný aj horný index',
                 'time_to_explain' => 1,
                 'time_to_handle' => 1,
@@ -159,7 +294,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Podnadpisy „Kyselina sírová“ a „Kyselina uhličitá“ napíšte písmom Verdana, veľkosť 12 bodov, tučne. ',
+                'message' => '<pre>Podnadpisy „Kyselina sírová“ a „Kyselina uhličitá“ napíšte písmom Verdana, veľkosť 12 bodov, tučne.</pre>',
                 'header' => 'Naformátuj podnadpisy časti 1 podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 2,
@@ -183,7 +318,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Ostatný text napíšte písmom Verdana, veľkosťou 11 bodov. Vzorce kyselín napíšte kurzívou.',
+                'message' => '<pre>Ostatný text napíšte písmom Verdana, veľkosťou 11 bodov. Vzorce kyselín napíšte kurzívou.</pre>',
                 'header' => 'Naformátuj text časti 1 nasledovne',
                 'time_to_explain' => 1,
                 'time_to_handle' => 2,
@@ -204,10 +339,10 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
                 'deleted_at' => NULL,
             ),
         ));
-        
+         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Podnadpisy „Kyselina sírová“ a „Kyselina uhličitá“ napíšte písmom Verdana, veľkosťou 14 bodov, tučne. Štýl písma – Obrys, mierka 130%. ',
+                'message' => '<pre>Podnadpisy „Kyselina sírová“ a „Kyselina uhličitá“ napíšte písmom Verdana, veľkosťou 14 bodov, tučne. Štýl písma – Obrys, mierka 130%.</pre>',
                 'header' => 'Naformátuj podnadpisy časti 2 podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -229,9 +364,63 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
             )
         ));
             
+        #word1 part2
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '8. Formát textu – písmo - w1 časť 2',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();        
+            
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+        
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Ostatný text napíšte písmom Verdana, veľkosťou 11 bodov, podčiarknuté (podčiarknite len slová). ',
+                'message' => '<pre><b>Pokračujte v riešení zadania w1 pomocou nasledujúcich úloh.</b>
+
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/file/d/1hJeqlX1kuywvzOrHChzPfptHWWcXLHUr/view?usp=sharing">ukážku dostupnú tu</a>.
+
+<b>Prajeme veľa šťastia!</b></pre>',
+                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
+                'time_to_explain' => 0,
+                'time_to_handle' => 1,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-01 12:59:54',
+                'updated_at' => '2021-03-01 12:59:54',
+                'deleted_at' => NULL,
+            ),             
+        ));
+        $event_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            ),
+        ));
+                 
+        \DB::table('events')->insert(array (
+            array (
+                'message' => '<pre>Ostatný text napíšte písmom Verdana, veľkosťou 11 bodov, podčiarknuté (podčiarknite len slová).</pre>',
                 'header' => 'Naformátuj text časti 2 podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -255,7 +444,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Podnadpisy „Kyselina sírová“ a „Kyselina uhličitá“ napíšte písmom Verdana, veľkosťou 14 bodov, farba písma červená, podčiarknuté dvojitou čarou (farbou písma). Štýl písma – Kapitálky. ',
+                'message' => '<pre>Podnadpisy „Kyselina sírová“ a „Kyselina uhličitá“ napíšte písmom Verdana, veľkosťou 14 bodov, farba písma červená, podčiarknuté dvojitou čarou (farbou písma). Štýl písma – Kapitálky.</pre>',
                 'header' => 'Naformátuj podnadpisy časti 3 nasledovne',
                 'time_to_explain' => 3,
                 'time_to_handle' => 4,
@@ -279,7 +468,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
             
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Text o kyseline sírovej napíšte písmom Times New Roman, veľkosťou 11 bodov. Štýl písma – Všetky veľké. Text „dvojsýtna kyselina“ je umiestnený o 3 body vyššie. ',
+                'message' => '<pre>Text o kyseline sírovej napíšte písmom Times New Roman, veľkosťou 11 bodov. Štýl písma – Všetky veľké. Text „dvojsýtna kyselina“ je umiestnený o 3 body vyššie.</pre>',
                 'header' => 'Naformátuj text o kyseline sírovej časti 3 nasledovne',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -303,7 +492,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
             
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Text o kyseline uhličité napíšte písmom Courier New, veľkosťou 11 bodov. Štýl písma – Všetky veľké. Text „je H2CO3“ je umiestnený o 3 body nižšie.',
+                'message' => '<pre>Text o kyseline uhličité napíšte písmom Courier New, veľkosťou 11 bodov. Štýl písma – Všetky veľké. Text „je H2CO3“ je umiestnený o 3 body nižšie.</pre>',
                 'header' => 'Naformátuj text o kyseline uhličitej časti 3 podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -351,15 +540,14 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         #word2
         \DB::table('units')->insert(array (
             array (
-                'title' => 'Zadanie č.2',
-                'description' => 'Zarovnávanie, riadkovanie, odsadzovanie',
+                'title' => '9. Formát textu – odsek, odstavce - w2 časť 1',
+                'description' => '',
                 'created_at' => '2021-03-06 12:36:39',
                 'updated_at' => '2021-03-06 12:36:39',
                 'deleted_at' => NULL,
                 'author_id' => 6,
             ),
         ));
-        
         $unit_id=\DB::getPDO() -> lastInsertId();     
         
         \DB::table('activity_unit')->insert(array (
@@ -406,7 +594,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Nadpis „DESKTOP“ napíšte písmom Verdana veľkosťou 12 bodov, tučne, podčiarknutý jednoduchou čarou. Nadpis „HISTORIE“ napíšte písmom Verdana, veľkosťou 11 bodov, tučne.',
+                'message' => '<pre>Nadpis „DESKTOP“ napíšte písmom Verdana veľkosťou 12 bodov, tučne, podčiarknutý jednoduchou čarou. Nadpis „HISTORIE“ napíšte písmom Verdana, veľkosťou 11 bodov, tučne.</pre>',
                 'header' => 'Naformátuj nadpisy podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -430,7 +618,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Text napíšte typom písma Verdana, veľkosťou 11 bodov. Medzery za odstavcami sú 18 bodov. ',
+                'message' => '<pre>Text napíšte typom písma Verdana, veľkosťou 11 bodov. Medzery za odstavcami sú 18 bodov.</pre>',
                 'header' => 'Naformátuj text podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -454,7 +642,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Prvý odstavec je zarovnaný do bloku, prvý riadok je odsadený o 1,25 cm, riadkovanie jednoduché. ',
+                'message' => '<pre>Prvý odstavec je zarovnaný do bloku, prvý riadok je odsadený o 1,25 cm, riadkovanie jednoduché.</pre>',
                 'header' => 'Nastav prvý odstavec nasledovne',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -478,7 +666,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Druhý odstavec je zarovnaný vľavo, prvý riadok je predsadený o 1,25 cm, riadkovanie 1,5 riadku.',
+                'message' => '<pre>Druhý odstavec je zarovnaný vľavo, prvý riadok je predsadený o 1,25 cm, riadkovanie 1,5 riadku.</pre>',
                 'header' => 'Nastav druhý odstavec podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -500,9 +688,62 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
             )
         ));
         
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '10. Formát textu – odsek, odstavce - w2 časť 2',
+                'description' => '',
+                'created_at' => '2021-03-06 12:36:39',
+                'updated_at' => '2021-03-06 12:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();     
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-06-01 12:36:39',
+                'updated_at' => '2021-06-01 12:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        )); 
+        
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Tretí odstavec je zarovnaný vpravo, riadkovanie 1,5 riadku. ',
+                'message' => '<pre><b>Pokračujte v riešení zadania w2 pomocou nasledujúcich úloh.</b>
+
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/file/d/1fvVrKm4KmvSTuYos4PrcYE_hZmq42zC2/view?usp=sharing">ukážku dostupnú tu</a>.
+
+<b>Prajeme veľa šťastia!</b></pre>',
+                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
+                'time_to_explain' => 0,
+                'time_to_handle' => 1,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-01 12:59:54',
+                'updated_at' => '2021-03-01 12:59:54',
+                'deleted_at' => NULL,
+            ),             
+        ));
+        $event_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            ),
+        ));
+        
+        \DB::table('events')->insert(array (
+            array (
+                'message' => '<pre>Tretí odstavec je zarovnaný vpravo, riadkovanie 1,5 riadku.</pre>',
                 'header' => 'Nastav tretí odstavec podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -526,7 +767,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Štvrtý odstavec je zarovnaný do bloku, zarážky zľava 2,5 cm a sprava 2,5 cm, riadkovanie 1,5 riadku.',
+                'message' => '<pre>Štvrtý odstavec je zarovnaný do bloku, zarážky zľava 2,5 cm a sprava 2,5 cm, riadkovanie 1,5 riadku.</pre>',
                 'header' => 'Nastav štvrtý odstavec nasledovne',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -550,7 +791,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Piaty odstavec je zarovnaný vľavo, prvý riadok je odsadený o 2 cm, riadkovanie dvojité.',
+                'message' => '<pre>Piaty odstavec je zarovnaný vľavo, prvý riadok je odsadený o 2 cm, riadkovanie dvojité.</pre>',
                 'header' => 'Nastav piaty odstavec podľa pokynov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -574,7 +815,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Posledný odstavec je zarovnaný na stred, riadkovanie 1,5 riadku.',
+                'message' => '<pre>Posledný odstavec je zarovnaný na stred, riadkovanie 1,5 riadku.</pre>',
                 'header' => 'Nastav posledný odstavec podľa pokynov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -599,8 +840,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 		#Word3
         \DB::table('units')->insert(array (
             array (
-                'title' => 'Zadanie č.3',
-                'description' => 'Orámovanie a podfarbenie',
+                'title' => '11. Formát textu – orámovanie a podfarbenie - w3 časť 1',
+                'description' => '',
                 'created_at' => '2021-03-10 15:36:39',
                 'updated_at' => '2021-03-10 15:36:39',
                 'deleted_at' => NULL,
@@ -651,7 +892,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Nadpis „Precvičovanie“ napíšte písmom Verdana, veľkosťou 18 bodov, tučne, farba tmavomodrá, podčiarknuté dvojitou čarou, medzery medzi znakmi (riadkovanie) rozšírené o 4 body. Nadpis je zarovnaný na stred, medzera za nadpisom (odstavcom) je 42 bodov. Podfarbenie celého riadku stredne tmavou modrou farbou (-40%). ',
+                'message' => '<pre>Nadpis „Precvičovanie“ napíšte písmom Verdana, veľkosťou 18 bodov, tučne, farba tmavomodrá, podčiarknuté dvojitou čarou, medzery medzi znakmi (riadkovanie) rozšírené o 4 body. Nadpis je zarovnaný na stred, medzera za nadpisom (odstavcom) je 42 bodov. Podfarbenie celého riadku stredne tmavou modrou farbou (-40%).</pre>',
                 'header' => 'Naformátuj nadpis "Precvičovanie"',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -675,7 +916,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Podnadpis „Ohraničenie a tieňovanie“ napíšte písmom Verdana, veľkosťou 16 bodov, zarovnaný na stred, medzera pred odstavcom je 12 bodov a medzera za odstavcom je 18 bodov.',
+                'message' => '<pre>Podnadpis „Ohraničenie a tieňovanie“ napíšte písmom Verdana, veľkosťou 16 bodov, zarovnaný na stred, medzera pred odstavcom je 12 bodov a medzera za odstavcom je 18 bodov.</pre>',
                 'header' => 'Naformátuj podnadpis „Ohraničenie a tieňovanie“',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -699,7 +940,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
        
        \DB::table('events')->insert(array (
             array (
-                'message' => 'Ostatný text napíšte písmom Verdana, veľkosťou 11, medzery pred i za odstavcom sú 12 bodov. ',
+                'message' => '<pre>Ostatný text napíšte písmom Verdana, veľkosťou 11, medzery pred i za odstavcom sú 12 bodov.</pre>',
                 'header' => 'Naformátuj zvyšný text nasledovne',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -723,7 +964,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
        
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Prvý odstavec je zarovnaný do bloku, ohraničený okolo čiernou čiarou o šírke 1,5 bodu. Vzdialenosť medzi ohraničením a textom je hore a dole 5 bodov, vľavo a vpravo 7 bodov. ',
+                'message' => '<pre>Prvý odstavec je zarovnaný do bloku, ohraničený okolo čiernou čiarou o šírke 1,5 bodu. Vzdialenosť medzi ohraničením a textom je hore a dole 5 bodov, vľavo a vpravo 7 bodov.</pre>',
                 'header' => 'Naformátuj prvý odstavec podľa pokynov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -747,7 +988,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Druhý odstavec je zarovnaný do bloku, prvý riadok je odsadený o 2 cm, riadkovanie1,5 riadku.',
+                'message' => '<pre>Druhý odstavec je zarovnaný do bloku, prvý riadok je odsadený o 2 cm, riadkovanie1,5 riadku.</pre>',
                 'header' => 'Naformátuj druhý odstavec takto',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -769,9 +1010,61 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
             )
         ));        
 
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '12. Formát textu – orámovanie a podfarbenie - w3 časť 2',
+                'description' => '',
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+        
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Tretí odstavec je zarovnaný na stred, odsadenie zľava aj sprava o 2 cm, riadkovanie 1,5 riadku. Ohraničený zhora i zdola dvojitou čiernou čiarou o šírke 0,5 bodu. ',
+                'message' => '<pre><b>Pokračujte v riešení zadania w3 pomocou nasledujúcich úloh.</b>
+
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/file/d/17irZ1sGkrUOJ2mqlqrmhmpU_wjBLuRJQ/view?usp=sharing">ukážku dostupnú tu</a>.
+
+<b>Prajeme veľa šťastia!</b></pre>',
+                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
+                'time_to_explain' => 0,
+                'time_to_handle' => 1,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-01 12:59:54',
+                'updated_at' => '2021-03-01 12:59:54',
+                'deleted_at' => NULL,
+            ),             
+        ));
+        $event_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            ),
+        ));
+
+        \DB::table('events')->insert(array (
+            array (
+                'message' => '<pre>Tretí odstavec je zarovnaný na stred, odsadenie zľava aj sprava o 2 cm, riadkovanie 1,5 riadku. Ohraničený zhora i zdola dvojitou čiernou čiarou o šírke 0,5 bodu.</pre>',
                 'header' => 'Naformátuj tretí odstavec podľa pokynov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -795,7 +1088,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Štvrtý odstavec je zarovnaný do bloku, prvý riadok je predsadený o 1,5 cm, riadkovanie 1,5 riadku. ',
+                'message' => '<pre>Štvrtý odstavec je zarovnaný do bloku, prvý riadok je predsadený o 1,5 cm, riadkovanie 1,5 riadku.</pre>',
                 'header' => 'Naformátuj štvrtý odstavec nasledovne',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -819,7 +1112,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Piaty odstavec je zarovnaný vľavo, prvý riadok je predsadený o 2 cm, riadkovanie dvojité. Ohraničenie šedou čiarou o šírke 1,5 bodu, tieňovaný. (50%). ',
+                'message' => '<pre>Piaty odstavec je zarovnaný vľavo, prvý riadok je predsadený o 2 cm, riadkovanie dvojité. Ohraničenie šedou čiarou o šírke 1,5 bodu, tieňovaný. (50%).</pre>',
                 'header' => 'Naformátuj piaty odstavec',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -843,7 +1136,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Celá stránka je ohraničená pomocou efektu žltej hviezdičky.',
+                'message' => '<pre>Celá stránka je ohraničená pomocou efektu žltej hviezdičky.</pre>',
                 'header' => 'Naformátuj ohraničenie celej stránky',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -867,7 +1160,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Celá stránka je podfarbená svetlomodrou farbou (modrá, zvýraznenie 1, 80%)',
+                'message' => '<pre>Celá stránka je podfarbená svetlomodrou farbou (modrá, zvýraznenie 1, 80%)</pre>',
                 'header' => 'Naformátuj podfarbenie podľa popisu',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -891,8 +1184,54 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Na stránku umiestni vodotlač s červeným šikmým textom „Dôverné !!!“',
+                'message' => '<pre>Na stránku umiestni vodotlač s červeným šikmým textom „Dôverné !!!“</pre>',
                 'header' => 'Na stránku umiestni vodotlač',
+                'time_to_explain' => 2,
+                'time_to_handle' => 3,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-10 12:59:54',
+                'updated_at' => '2021-03-10 12:59:54',
+                'deleted_at' => NULL,
+            )             
+        ));
+        $event_id=\DB::getPDO() -> lastInsertId();
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'deleted_at' => NULL,
+            )
+        ));
+        
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '13. Zadanie na hodine (DU) - plagát, pozvánka - w3 časť 3',
+                'description' => '',
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+        
+        \DB::table('events')->insert(array (
+            array (
+                'message' => '<pre>Vypracuj domácu úlohu zadanú na hodine.</pre>',
+                'header' => 'Vypracuj domácu úlohu',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -916,8 +1255,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         #word4
         \DB::table('units')->insert(array (
             array (
-                'title' => 'Zadanie č.4',
-                'description' => 'Odrážky a číslovanie',
+                'title' => '14. Formát textu – odrážky - predvolené, vlastné - w4 časť 1',
+                'description' => '',
                 'created_at' => '2021-03-10 15:36:39',
                 'updated_at' => '2021-03-10 15:36:39',
                 'deleted_at' => NULL,
@@ -968,7 +1307,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
        \DB::table('events')->insert(array (
             array (
-                'message' => 'Text napíšte písmom Verdana, veľkosťou 11 bodov, podnadpisy sú tučné, veľkosťou 12 bodov a nadpis „Tematický plán“ veľkosťou 14 bodov, tučne. Medzera za nadpisom 12 bodov-jednotlivé časti oddeľte vodorovnou čiarou od jedného okraja po druhý, hrúbka čiary 1, farba tmavošedá',
+                'message' => '<pre>Text napíšte písmom Verdana, veľkosťou 11 bodov, podnadpisy sú tučné, veľkosťou 12 bodov a nadpis „Tematický plán“ veľkosťou 14 bodov, tučne. Medzera za nadpisom 12 bodov-jednotlivé časti oddeľte vodorovnou čiarou od jedného okraja po druhý, hrúbka čiary 1, farba tmavošedá</pre>',
                 'header' => 'Naformátujte text, podnadpisy a nadpisy predlohy',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -992,7 +1331,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Odrážka je typu šípka vpravo odsadená na zarážke 0,5 cm a text za odrážkou je odsadený na zarážke 1 cm. V druhom odstavci nastavte číslovanie písmenom (a,b,c...), ktoré je odsadené na zarážke 0,5 cm a text za číslom je odsadený na zarážke 2,2 cm, pred číslovanie je napísané slovo „bod“. ',
+                'message' => '<pre>Odrážka je typu šípka vpravo odsadená na zarážke 0,5 cm a text za odrážkou je odsadený na zarážke 1 cm. V druhom odstavci nastavte číslovanie písmenom (a,b,c...), ktoré je odsadené na zarážke 0,5 cm a text za číslom je odsadený na zarážke 2,2 cm, pred číslovanie je napísané slovo „bod“.</pre>',
                 'header' => 'Naformátujte časť 1 podľa pokynov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1014,9 +1353,62 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
             )
         ));
         
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '15. Formát textu – číslovanie - jednoduché, viacúrovňové - w4 časť 2',
+                'description' => '',
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+        
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Viacúrovňové číslovanie. Nadpis „Tematický plán“ je bez číslovania- 1. úroveň (podnadpisy)– číslovanie (číslom) je pri ľavom okraji, text je odsadený na zarážke 0,7 cm. 2. úroveň – číslovanie (číslom v tvare 1.1, 1.2 ...)  je odsadené na zarážke 0,7 cm, text je odsadený na zarážke 1,6 cm. ',
+                'message' => '<pre><b>Pokračujte v riešení zadania w4 pomocou nasledujúcich úloh.</b>
+
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/file/d/1tBOGvCmvcmIzBLM3rX8-6GuNO2qhJRTV/view?usp=sharing">ukážku dostupnú tu</a>.
+
+<b>Prajeme veľa šťastia!</b></pre>',
+                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
+                'time_to_explain' => 0,
+                'time_to_handle' => 1,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-01 12:59:54',
+                'updated_at' => '2021-03-01 12:59:54',
+                'deleted_at' => NULL,
+            ),             
+        ));
+        $event_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            ),
+        ));
+        
+        
+        \DB::table('events')->insert(array (
+            array (
+                'message' => '<pre>Viacúrovňové číslovanie. Nadpis „Tematický plán“ je bez číslovania- 1. úroveň (podnadpisy)– číslovanie (číslom) je pri ľavom okraji, text je odsadený na zarážke 0,7 cm. 2. úroveň – číslovanie (číslom v tvare 1.1, 1.2 ...)  je odsadené na zarážke 0,7 cm, text je odsadený na zarážke 1,6 cm.</pre>',
                 'header' => 'Naformátujte časť 2 podľa pokynov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 5,
@@ -1040,8 +1432,54 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => 'Viacúrovňové číslovanie. Nadpis „Tematický plán“ je s číslom 1. 1. úroveň – číslovanie (číslom) je pri ľavom okraji, text je odsadený na zarážke 0,7 cm. 2. úroveň (podnadpisy)– číslovanie (číslo.písmeno) je odsadené na zarážke 0,7 cm, text je odsadený na zarážke 1,8 cm. 3. úroveň –(odrážka) je odsadený na úroveň 1,8 cm. Odrážka je z knižnice odrážok – šipka dole čierna, hore čiernobiela. Text je odsadený na zarážke 2,3 cm',
+                'message' => '<pre>Viacúrovňové číslovanie. Nadpis „Tematický plán“ je s číslom 1. 1. úroveň – číslovanie (číslom) je pri ľavom okraji, text je odsadený na zarážke 0,7 cm. 2. úroveň (podnadpisy)– číslovanie (číslo.písmeno) je odsadené na zarážke 0,7 cm, text je odsadený na zarážke 1,8 cm. 3. úroveň –(odrážka) je odsadený na úroveň 1,8 cm. Odrážka je z knižnice odrážok – šipka dole čierna, hore čiernobiela. Text je odsadený na zarážke 2,3 cm</pre>',
                 'header' => 'Naformátujte časť 3 nasledovne',
+                'time_to_explain' => 2,
+                'time_to_handle' => 3,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-10 12:59:54',
+                'updated_at' => '2021-03-10 12:59:54',
+                'deleted_at' => NULL,
+            )             
+        ));
+        $event_id=\DB::getPDO() -> lastInsertId();
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'deleted_at' => NULL,
+            )
+        ));
+        
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '16. Zadanie na hodine (DU) - viacúrovňový zoznam - w4 časť 3',
+                'description' => '',
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+        
+        \DB::table('events')->insert(array (
+            array (
+                'message' => '<pre>Vypracuj domácu úlohu zadanú na hodine.</pre>',
+                'header' => 'Vypracuj domácu úlohu',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
