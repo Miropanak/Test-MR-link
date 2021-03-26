@@ -222,7 +222,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Nadpis „Dvojsýtne kyseliny“ napíšte písmom Verdana, veľkosťou  16 bodov, farba písma modrá, tučné, podčiarknuté jednoduchou čiarou (farbou písma), medzery medzi znakmi sú rozšírené o 3 body.</pre>',
+                'message' => '<pre>Nadpis „Dvojsýtne kyseliny“ napíšte písmom Verdana, veľkosťou  16 bodov, farba písma modrá, tučné,
+podčiarknuté jednoduchou čiarou (farbou písma), medzery medzi znakmi sú rozšírené o 3 body.</pre>',
                 'header' => 'Naformátuj nadpis podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 2,
@@ -318,7 +319,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Ostatný text napíšte písmom Verdana, veľkosťou 11 bodov. Vzorce kyselín napíšte kurzívou.</pre>',
+                'message' => '<pre>Ostatný text napíšte písmom Verdana, veľkosťou 11 bodov.
+Vzorce kyselín napíšte kurzívou.</pre>',
                 'header' => 'Naformátuj text časti 1 nasledovne',
                 'time_to_explain' => 1,
                 'time_to_handle' => 2,
@@ -342,7 +344,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
          
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Podnadpisy „Kyselina sírová“ a „Kyselina uhličitá“ napíšte písmom Verdana, veľkosťou 14 bodov, tučne. Štýl písma – Obrys, mierka 130%.</pre>',
+                'message' => '<pre>Podnadpisy „Kyselina sírová“ a „Kyselina uhličitá“ napíšte písmom Verdana, veľkosťou 14 bodov, tučne. 
+Štýl písma – Obrys, mierka 130%.</pre>',
                 'header' => 'Naformátuj podnadpisy časti 2 podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -444,7 +447,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Podnadpisy „Kyselina sírová“ a „Kyselina uhličitá“ napíšte písmom Verdana, veľkosťou 14 bodov, farba písma červená, podčiarknuté dvojitou čarou (farbou písma). Štýl písma – Kapitálky.</pre>',
+                'message' => '<pre>Podnadpisy „Kyselina sírová“ a „Kyselina uhličitá“ napíšte písmom Verdana, veľkosťou 14 bodov,
+farba písma červená, podčiarknuté dvojitou čarou (farbou písma). Štýl písma – Kapitálky.</pre>',
                 'header' => 'Naformátuj podnadpisy časti 3 nasledovne',
                 'time_to_explain' => 3,
                 'time_to_handle' => 4,
@@ -468,7 +472,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
             
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Text o kyseline sírovej napíšte písmom Times New Roman, veľkosťou 11 bodov. Štýl písma – Všetky veľké. Text „dvojsýtna kyselina“ je umiestnený o 3 body vyššie.</pre>',
+                'message' => '<pre>Text o kyseline sírovej napíšte písmom Times New Roman, veľkosťou 11 bodov.
+Štýl písma – Všetky veľké. Text „dvojsýtna kyselina“ je umiestnený o 3 body vyššie.</pre>',
                 'header' => 'Naformátuj text o kyseline sírovej časti 3 nasledovne',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -492,7 +497,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
             
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Text o kyseline uhličité napíšte písmom Courier New, veľkosťou 11 bodov. Štýl písma – Všetky veľké. Text „je H2CO3“ je umiestnený o 3 body nižšie.</pre>',
+                'message' => '<pre>Text o kyseline uhličité napíšte písmom Courier New, veľkosťou 11 bodov.
+Štýl písma – Všetky veľké. Text „je H2CO3“ je umiestnený o 3 body nižšie.</pre>',
                 'header' => 'Naformátuj text o kyseline uhličitej časti 3 podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -594,7 +600,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Nadpis „DESKTOP“ napíšte písmom Verdana veľkosťou 12 bodov, tučne, podčiarknutý jednoduchou čarou. Nadpis „HISTORIE“ napíšte písmom Verdana, veľkosťou 11 bodov, tučne.</pre>',
+                'message' => '<pre>Nadpis „DESKTOP“ napíšte písmom Verdana veľkosťou 12 bodov, tučne, podčiarknutý jednoduchou čarou.
+Nadpis „HISTORIE“ napíšte písmom Verdana, veľkosťou 11 bodov, tučne.</pre>',
                 'header' => 'Naformátuj nadpisy podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -618,7 +625,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Text napíšte typom písma Verdana, veľkosťou 11 bodov. Medzery za odstavcami sú 18 bodov.</pre>',
+                'message' => '<pre>Text napíšte typom písma Verdana, veľkosťou 11 bodov.
+Medzery za odstavcami sú 18 bodov.</pre>',
                 'header' => 'Naformátuj text podľa zadania',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -892,7 +900,10 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Nadpis „Precvičovanie“ napíšte písmom Verdana, veľkosťou 18 bodov, tučne, farba tmavomodrá, podčiarknuté dvojitou čarou, medzery medzi znakmi (riadkovanie) rozšírené o 4 body. Nadpis je zarovnaný na stred, medzera za nadpisom (odstavcom) je 42 bodov. Podfarbenie celého riadku stredne tmavou modrou farbou (-40%).</pre>',
+                'message' => '<pre>Nadpis „Precvičovanie“ napíšte písmom Verdana, veľkosťou 18 bodov, tučne, farba tmavomodrá,
+podčiarknuté dvojitou čarou, medzery medzi znakmi (riadkovanie) rozšírené o 4 body.
+Nadpis je zarovnaný na stred, medzera za nadpisom (odstavcom) je 42 bodov.
+Podfarbenie celého riadku stredne tmavou modrou farbou (-40%).</pre>',
                 'header' => 'Naformátuj nadpis "Precvičovanie"',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -916,7 +927,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Podnadpis „Ohraničenie a tieňovanie“ napíšte písmom Verdana, veľkosťou 16 bodov, zarovnaný na stred, medzera pred odstavcom je 12 bodov a medzera za odstavcom je 18 bodov.</pre>',
+                'message' => '<pre>Podnadpis „Ohraničenie a tieňovanie“ napíšte písmom Verdana, veľkosťou 16 bodov, zarovnaný na stred,
+medzera pred odstavcom je 12 bodov a medzera za odstavcom je 18 bodov.</pre>',
                 'header' => 'Naformátuj podnadpis „Ohraničenie a tieňovanie“',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -964,7 +976,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
        
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Prvý odstavec je zarovnaný do bloku, ohraničený okolo čiernou čiarou o šírke 1,5 bodu. Vzdialenosť medzi ohraničením a textom je hore a dole 5 bodov, vľavo a vpravo 7 bodov.</pre>',
+                'message' => '<pre>Prvý odstavec je zarovnaný do bloku, ohraničený okolo čiernou čiarou o šírke 1,5 bodu.
+Vzdialenosť medzi ohraničením a textom je hore a dole 5 bodov, vľavo a vpravo 7 bodov.</pre>',
                 'header' => 'Naformátuj prvý odstavec podľa pokynov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1064,7 +1077,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Tretí odstavec je zarovnaný na stred, odsadenie zľava aj sprava o 2 cm, riadkovanie 1,5 riadku. Ohraničený zhora i zdola dvojitou čiernou čiarou o šírke 0,5 bodu.</pre>',
+                'message' => '<pre>Tretí odstavec je zarovnaný na stred, odsadenie zľava aj sprava o 2 cm, riadkovanie 1,5 riadku.
+Ohraničený zhora i zdola dvojitou čiernou čiarou o šírke 0,5 bodu.</pre>',
                 'header' => 'Naformátuj tretí odstavec podľa pokynov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1112,7 +1126,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Piaty odstavec je zarovnaný vľavo, prvý riadok je predsadený o 2 cm, riadkovanie dvojité. Ohraničenie šedou čiarou o šírke 1,5 bodu, tieňovaný. (50%).</pre>',
+                'message' => '<pre>Piaty odstavec je zarovnaný vľavo, prvý riadok je predsadený o 2 cm, riadkovanie dvojité.
+Ohraničenie šedou čiarou o šírke 1,5 bodu, tieňovaný. (50%).</pre>',
                 'header' => 'Naformátuj piaty odstavec',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1307,7 +1322,9 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
        \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Text napíšte písmom Verdana, veľkosťou 11 bodov, podnadpisy sú tučné, veľkosťou 12 bodov a nadpis „Tematický plán“ veľkosťou 14 bodov, tučne. Medzera za nadpisom 12 bodov-jednotlivé časti oddeľte vodorovnou čiarou od jedného okraja po druhý, hrúbka čiary 1, farba tmavošedá</pre>',
+                'message' => '<pre>Text napíšte písmom Verdana, veľkosťou 11 bodov, podnadpisy sú tučné, veľkosťou 12 bodov a 
+nadpis „Tematický plán“ veľkosťou 14 bodov, tučne. 
+Medzera za nadpisom 12 bodov-jednotlivé časti oddeľte vodorovnou čiarou od jedného okraja po druhý, hrúbka čiary 1, farba tmavošedá</pre>',
                 'header' => 'Naformátujte text, podnadpisy a nadpisy predlohy',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1331,7 +1348,9 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Odrážka je typu šípka vpravo odsadená na zarážke 0,5 cm a text za odrážkou je odsadený na zarážke 1 cm. V druhom odstavci nastavte číslovanie písmenom (a,b,c...), ktoré je odsadené na zarážke 0,5 cm a text za číslom je odsadený na zarážke 2,2 cm, pred číslovanie je napísané slovo „bod“.</pre>',
+                'message' => '<pre>Odrážka je typu šípka vpravo odsadená na zarážke 0,5 cm a text za odrážkou je odsadený na zarážke 1 cm.
+V druhom odstavci nastavte číslovanie písmenom (a,b,c...), ktoré je odsadené na zarážke 0,5 cm a text za číslom je 
+odsadený na zarážke 2,2 cm, pred číslovanie je napísané slovo „bod“.</pre>',
                 'header' => 'Naformátujte časť 1 podľa pokynov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1408,7 +1427,9 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Viacúrovňové číslovanie. Nadpis „Tematický plán“ je bez číslovania- 1. úroveň (podnadpisy)– číslovanie (číslom) je pri ľavom okraji, text je odsadený na zarážke 0,7 cm. 2. úroveň – číslovanie (číslom v tvare 1.1, 1.2 ...)  je odsadené na zarážke 0,7 cm, text je odsadený na zarážke 1,6 cm.</pre>',
+                'message' => '<pre>Viacúrovňové číslovanie.
+Nadpis „Tematický plán“ je bez číslovania- 1. úroveň (podnadpisy)– číslovanie (číslom) je pri ľavom okraji, text je odsadený na zarážke 0,7 cm.
+2. úroveň – číslovanie (číslom v tvare 1.1, 1.2 ...)  je odsadené na zarážke 0,7 cm, text je odsadený na zarážke 1,6 cm.</pre>',
                 'header' => 'Naformátujte časť 2 podľa pokynov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 5,
@@ -1432,7 +1453,11 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre>Viacúrovňové číslovanie. Nadpis „Tematický plán“ je s číslom 1. 1. úroveň – číslovanie (číslom) je pri ľavom okraji, text je odsadený na zarážke 0,7 cm. 2. úroveň (podnadpisy)– číslovanie (číslo.písmeno) je odsadené na zarážke 0,7 cm, text je odsadený na zarážke 1,8 cm. 3. úroveň –(odrážka) je odsadený na úroveň 1,8 cm. Odrážka je z knižnice odrážok – šipka dole čierna, hore čiernobiela. Text je odsadený na zarážke 2,3 cm</pre>',
+                'message' => '<pre>Viacúrovňové číslovanie. 
+Nadpis „Tematický plán“ je s číslom 1. 1. úroveň – číslovanie (číslom) je pri ľavom okraji, text je odsadený na zarážke 0,7 cm. 
+2. úroveň (podnadpisy)– číslovanie (číslo.písmeno) je odsadené na zarážke 0,7 cm, text je odsadený na zarážke 1,8 cm.
+3. úroveň –(odrážka) je odsadený na úroveň 1,8 cm.
+Odrážka je z knižnice odrážok – šipka dole čierna, hore čiernobiela. Text je odsadený na zarážke 2,3 cm</pre>',
                 'header' => 'Naformátujte časť 3 nasledovne',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
