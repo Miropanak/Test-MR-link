@@ -2104,8 +2104,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
             array (
                 'message' => '<pre>Celý text napíšte písmom Times New Roman, veľkosťou 12 bodov, zarovnaný do bloku. 
 Riadkovanie nastavte na 1.5, medzera za odstavcom je 12 bodov. Prvý riadok odstavca odsadený o 1,5 cm. 
-Text je A4 na orientovaný na výšku, ľavý okraj 3,5cm, pravý, horný, dolný 2,5cm.
-V prípade problémov si môžete pozrieť dostupný videonávod <a href="https://drive.google.com/file/d/1xsGD7Ltle4KJUY7_xtsR5GWr_T49Ij_U/view?usp=sharing">kliknutím na tento odkaz</a>.</pre>',
+Text je A4 na orientovaný na výšku, ľavý okraj 3,5cm, pravý, horný, dolný 2,5cm.</pre>',
                 'header' => 'Text formátujte nasledovne',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -2127,6 +2126,17 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
                 'deleted_at' => NULL,
             )
         ));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'V prípade problémov si môžete pozrieť dostupný videonávod <a href="https://drive.google.com/file/d/1xsGD7Ltle4KJUY7_xtsR5GWr_T49Ij_U/view?usp=sharing">kliknutím na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
 		
 		\DB::table('events')->insert(array (
             array (
@@ -2213,8 +2223,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 		\DB::table('events')->insert(array (
             array (
                 'message' => '<pre>Každá hlavná kapitola začína na novej strane. 2,3 a 4 odstavec časti 2 Vznik vulkánov je odsadený vlastnou odrážkou sopka
-Odsadenie odrážky je 0 cm a odsadenie textu za odrážkou je 1 cm, farba odrážky červená, tučne veľkosť 14.
-V prípade problémov si môžete pozrieť dostupný videonávod <a href="https://drive.google.com/file/d/1FfH3V4_vazFviX3Exiv4-rQMzcPLvm1F/view?usp=sharing">kliknutím na tento odkaz</a>.</pre>',
+Odsadenie odrážky je 0 cm a odsadenie textu za odrážkou je 1 cm, farba odrážky červená, tučne veľkosť 14.</pre>',
                 'header' => 'Text ďalej upravujte nasledovne',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -2236,6 +2245,17 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
                 'deleted_at' => NULL,
             )
         ));
+				
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'V prípade problémov si môžete pozrieť dostupný videonávod <a href="https://drive.google.com/file/d/1FfH3V4_vazFviX3Exiv4-rQMzcPLvm1F/view?usp=sharing">kliknutím na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
 		
 		\DB::table('events')->insert(array (
             array (
@@ -2321,8 +2341,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
                 'message' => '<pre>Na 1. Stranu dajte cez textové pole nadpis VULKÁNY písmom Tahoma, tučné veľkosť 48, medzery medzi písmenami rozšírené o 5 bodov,
 všetko veľkými písmenami, modrou tučne do stredu strany. 
 Vľavo dole vložte text "v Tisovci, 2020", vpravo dole Vaše meno a priezvisko (cez textové pole). 
-Vložte nejaký text na - 3.stranu Úvod a na koniec Záver. Následne aktualizujte obsah!
-V prípade problémov si môžete pozrieť dostupný videonávod <a href="https://drive.google.com/file/d/1MBKCkx8BgARvpM_1y3BoOTt1fqf3sBV5/view?usp=sharing">kliknutím na tento odkaz</a>.</pre>',
+Vložte nejaký text na - 3.stranu Úvod a na koniec Záver. Následne aktualizujte obsah!</pre>',
                 'header' => 'Pokračujte vo formátovaní nadpisov a textov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -2344,6 +2363,17 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
                 'deleted_at' => NULL,
             )
         ));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'V prípade problémov si môžete pozrieť dostupný videonávod <a href="https://drive.google.com/file/d/1MBKCkx8BgARvpM_1y3BoOTt1fqf3sBV5/view?usp=sharing">kliknutím na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
 		
 		\DB::table('units')->insert(array (
             array (
@@ -2412,9 +2442,7 @@ Obr. 3: Vulkán Paricutin Mexiko
 Obr. 4: Iótó - ostrov vulkanického pôvodu
 Obr. 5: Mount Shasta California
 Obr. 6: Grand Prismatic Spring Yellowstone
-Obr. 7: Podmorská sopka blízko Samoy
-
-V prípade problémov si môžete pozrieť dostupný videonávod <a href="https://drive.google.com/file/d/1DX_03e2rtWnOFdMngM9tUAZ5YEFvB6eu/view?usp=sharing">kliknutím na tento odkaz</a>.</pre>',
+Obr. 7: Podmorská sopka blízko Samoy</pre>',
                 'header' => 'Pracujte s obrázkami podľa pokynov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -2436,6 +2464,17 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
                 'deleted_at' => NULL,
             )
         ));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'V prípade problémov si môžete pozrieť dostupný videonávod <a href="https://drive.google.com/file/d/1DX_03e2rtWnOFdMngM9tUAZ5YEFvB6eu/view?usp=sharing">kliknutím na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
 		
 		\DB::table('events')->insert(array (
             array (
@@ -2519,8 +2558,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 		\DB::table('events')->insert(array (
             array (
                 'message' => '<pre>Vložte zdroje a vygenerujte Požitú literatúru, aktualizujte obsah. Číslovanie strán je číslované bez prvej a druhej strany, 
-na ktorej je obsah (na tretej strane (úvod) však číslovanie začína číslom 3)
-V prípade problémov si môžete pozrieť dostupný videonávod <a href="https://drive.google.com/file/d/1kPZh7VWOFx9BN4pdnMZpTrXfp_QLZrZL/view?usp=sharing">kliknutím na tento odkaz</a>.</pre>',
+na ktorej je obsah (na tretej strane (úvod) však číslovanie začína číslom 3) </pre>',
                 'header' => 'Vložte zdroje a upravte číslovanie',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -2543,13 +2581,22 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
             )
         ));
 		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'V prípade problémov si môžete pozrieť dostupný videonávod <a href="https://drive.google.com/file/d/1kPZh7VWOFx9BN4pdnMZpTrXfp_QLZrZL/view?usp=sharing">kliknutím na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
+		
 		\DB::table('events')->insert(array (
             array (
                 'message' => '<pre>Toto je veľmi jednoduché - označíte slovo alebo viac slov, kliknete pravým tlačidlom myši a vyberiete vložiť 
 hypertextové prepojenie - do adresy prilepíte odkaz - slovo vám zmodrie a funguje ako odkaz(cez CTRL + klik). 
-Podobne si viete vkladať odkazy aj na iné dokumenty, obrázky vo Vašom počítači. 
-Inšpirovať sa môžete obrázkami, ktoré sú <a href="https://drive.google.com/drive/folders/1b_G9FPdlLyHaXyX3SsAUNtDpOpFLYYvH?usp=sharing">dostupné tu</a>.
-V prípade problémov si môžete pozrieť dostupný videonávod <a href="https://drive.google.com/file/d/1SDNUEZPkQN7MIP2EZKuxcIN1RIXEWUsw/view?usp=sharing">kliknutím na tento odkaz</a>.</pre>',
+Podobne si viete vkladať odkazy aj na iné dokumenty, obrázky vo Vašom počítači.</pre>',
                 'header' => 'Vložte hypertextový odkaz do textu',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -2571,6 +2618,28 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
                 'deleted_at' => NULL,
             )
         ));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'Inšpirovať sa môžete obrázkami, ktoré sú <a href="https://drive.google.com/drive/folders/1b_G9FPdlLyHaXyX3SsAUNtDpOpFLYYvH?usp=sharing">dostupné tu</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'V prípade problémov si môžete pozrieť dostupný videonávod <a href="https://drive.google.com/file/d/1SDNUEZPkQN7MIP2EZKuxcIN1RIXEWUsw/view?usp=sharing">kliknutím na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
 		
 		\DB::table('units')->insert(array (
             array (
