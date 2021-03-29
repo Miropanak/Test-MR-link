@@ -191,7 +191,7 @@ class MixedSeeder extends Seeder
 
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre><b>Vypracujte zadanie č.1 pomocou úloh, ktoré sú súčasťou konkrétneho zadania.</b>
+                'message' => '<pre><b>Vypracujte zadanie w1 pomocou úloh, ktoré sú súčasťou konkrétneho zadania.</b>
 
 Je potrebné stiahnuť si nenaformátovaný text z <a href="https://drive.google.com/file/d/12N5D7KY308G8gq16z8iXiUDCipsjyFKe/view?usp=sharing">url kliknutím na tento odkaz</a>.
 Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
@@ -399,7 +399,7 @@ Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popi
 Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/file/d/1hJeqlX1kuywvzOrHChzPfptHWWcXLHUr/view?usp=sharing">ukážku dostupnú tu</a>.
 
 <b>Prajeme veľa šťastia!</b></pre>',
-                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
+                'header' => 'Pracujte podľa nasledujúcich úloh',
                 'time_to_explain' => 0,
                 'time_to_handle' => 1,
                 'event_type_id' => 7,
@@ -570,7 +570,7 @@ farba písma červená, podčiarknuté dvojitou čarou (farbou písma). Štýl p
         #otázky k zadaniu 2
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre><b>Vypracujte zadanie č.2 pomocou úloh, ktoré sú súčasťou konkrétneho zadania.</b> 
+                'message' => '<pre><b>Vypracujte zadanie w2 pomocou úloh, ktoré sú súčasťou konkrétneho zadania.</b> 
 
 Je potrebné stiahnuť si nenaformátovaný text z <a href="https://drive.google.com/file/d/1HTsn6EoFYg5yF8Tf51Ci_ITWaSMZUfhB/view?usp=sharing">url kliknutím na tento odkaz</a>.
 Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
@@ -727,7 +727,7 @@ Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popi
 Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/file/d/1fvVrKm4KmvSTuYos4PrcYE_hZmq42zC2/view?usp=sharing">ukážku dostupnú tu</a>.
 
 <b>Prajeme veľa šťastia!</b></pre>',
-                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
+                'header' => 'Pracujte podľa nasledujúcich úloh',
                 'time_to_explain' => 0,
                 'time_to_handle' => 1,
                 'event_type_id' => 7,
@@ -870,7 +870,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre><b>Vypracujte zadanie č.3 pomocou úloh, ktoré sú súčasťou konkrétneho zadania.</b>
+                'message' => '<pre><b>Vypracujte zadanie w3 pomocou úloh, ktoré sú súčasťou konkrétneho zadania.</b>
 
 Je potrebné stiahnuť si nenaformátovaný text z <a href="https://drive.google.com/file/d/1EIXOKc7iGZY3qkMI_w1Qthkv0vTagVq2/view?usp=sharing">url kliknutím na tento odkaz</a>.
 Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
@@ -1053,7 +1053,7 @@ Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popi
 Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/file/d/17irZ1sGkrUOJ2mqlqrmhmpU_wjBLuRJQ/view?usp=sharing">ukážku dostupnú tu</a>.
 
 <b>Prajeme veľa šťastia!</b></pre>',
-                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
+                'header' => 'Pracujte podľa nasledujúcich úloh',
                 'time_to_explain' => 0,
                 'time_to_handle' => 1,
                 'event_type_id' => 7,
@@ -1292,7 +1292,7 @@ Ohraničenie šedou čiarou o šírke 1,5 bodu, tieňovaný. (50%).</pre>',
         
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre><b>Vypracujte zadanie č.4 pomocou úloh, ktoré sú súčasťou konkrétneho zadania.</b>
+                'message' => '<pre><b>Vypracujte zadanie w4 pomocou úloh, ktoré sú súčasťou konkrétneho zadania.</b>
 
 Je potrebné stiahnuť si nenaformátovaný text z <a href="https://drive.google.com/file/d/1Ad9luyN_PpM0FDJr2HJDFwmGCbYFWMB5/view?usp=sharing">url kliknutím na tento odkaz</a>.
 Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
@@ -1402,7 +1402,7 @@ Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popi
 Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/file/d/1tBOGvCmvcmIzBLM3rX8-6GuNO2qhJRTV/view?usp=sharing">ukážku dostupnú tu</a>.
 
 <b>Prajeme veľa šťastia!</b></pre>',
-                'header' => 'Stiahnite si nenaformátovaný text zadania a pracujte podľa nasledujúcich úloh',
+                'header' => 'Pracujte podľa nasledujúcich úloh',
                 'time_to_explain' => 0,
                 'time_to_handle' => 1,
                 'event_type_id' => 7,
@@ -1428,8 +1428,10 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         \DB::table('events')->insert(array (
             array (
                 'message' => '<pre>Viacúrovňové číslovanie.
-Nadpis „Tematický plán“ je bez číslovania- 1. úroveň (podnadpisy)– číslovanie (číslom) je pri ľavom okraji, text je odsadený na zarážke 0,7 cm.
-2. úroveň – číslovanie (číslom v tvare 1.1, 1.2 ...)  je odsadené na zarážke 0,7 cm, text je odsadený na zarážke 1,6 cm.</pre>',
+Nadpis „Tematický plán“ je bez číslovania- 1. úroveň (podnadpisy)– číslovanie (číslom) je pri ľavom okraji 
+- text je odsadený na zarážke 0,7 cm.
+2. úroveň – číslovanie (číslom v tvare 1.1, 1.2 ...)  je odsadené na zarážke 0,7 cm
+- text je odsadený na zarážke 1,6 cm.</pre>',
                 'header' => 'Naformátujte časť 2 podľa pokynov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 5,
@@ -1528,8 +1530,8 @@ Odrážka je z knižnice odrážok – šipka dole čierna, hore čiernobiela. T
 		#zadanie5
         \DB::table('units')->insert(array (
             array (
-                'title' => 'Zadanie č.5',
-                'description' => 'Tabulátory',
+                'title' => '17. Formát textu – tabulátory 1 - w5 časť 1',
+                'description' => '',
                 'created_at' => '2021-03-06 12:36:39',
                 'updated_at' => '2021-03-06 12:36:39',
                 'deleted_at' => NULL,
@@ -1553,7 +1555,7 @@ Odrážka je z knižnice odrážok – šipka dole čierna, hore čiernobiela. T
         #otázky k zadaniu 5
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre><b>Vypracujte zadanie č.5 pomocou úloh, ktoré sú súčasťou konkrétneho zadania.</b> 
+                'message' => '<pre><b>Vypracujte zadanie w5 pomocou úloh, ktoré sú súčasťou konkrétneho zadania.</b> 
 
 Je potrebné stiahnuť si nenaformátovaný text z <a href="https://drive.google.com/file/d/19N_CQ7RUu78BCwBwndjaayGoV8NgYbnm/view?usp=sharing">url kliknutím na tento odkaz</a>.
 Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
@@ -1584,7 +1586,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Prvý nadpis napíšte písmom Monotype Corsiva, veľkosťou 20 bodov, tučné, medzera pred odstavcom je 6 bodov a medzera za odstavcom je 24 bodov, text je zarovnaný na stred.',
+                'message' => '<pre>Prvý nadpis napíšte písmom Monotype Corsiva, veľkosťou 20 bodov, tučné, medzera pred odstavcom je 6 bodov a medzera za odstavcom je 24 bodov.
+Text je zarovnaný na stred.</pre>',
                 'header' => 'Upravte prvý nadpis a text',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1609,7 +1612,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Nadpis „Jedálny lístok“ napíšte písmom Monotype Corsiva, veľkosťou 36 bodov, tučne, medzera pred odstavcom je 6 bodov a medzera za odstavcom je 18 bodov, text je zarovnaný na stred. Písmo je rozšírené o 4 body.',
+                'message' => '<pre>Nadpis „Jedálny lístok“ napíšte písmom Monotype Corsiva, veľkosťou 36 bodov, tučne. 
+Medzera pred odstavcom je 6 bodov a medzera za odstavcom je 18 bodov, text je zarovnaný na stred. Písmo je rozšírené o 4 body.</pre>',
                 'header' => 'Upravte nadpis „Jedálny lístok“ nasledovne',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1634,8 +1638,62 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Prvý tabulátor (kde je váha jedla) je umiestnený na pozícii 2 cm so zarovnaním vpravo (Zarovnanie vpravo je použité preto, aby jednotky hmotnosti (gramy) boli umiestnené pod sebou) Zarážka druhého tabulátoru je umiestnená na pozícii 3 cm, zarovnanie vľavo. Tu je názov jedla. Posledný tabulátor je umiestnený na 15 cm, je zarovnaný doprava a je tu použitý vodiaci znak - bodka.',
+                'message' => '<pre>Prvý tabulátor (kde je váha jedla) je umiestnený na pozícii 2 cm so zarovnaním vpravo. 
+(Zarovnanie vpravo je použité preto, aby jednotky hmotnosti (gramy) boli umiestnené pod sebou) Zarážka druhého tabulátoru je umiestnená na pozícii 3 cm, zarovnanie vľavo. 
+Tu je názov jedla. Posledný tabulátor je umiestnený na 15 cm, je zarovnaný doprava a je tu použitý vodiaci znak - bodka.</pre>',
                 'header' => 'Tabulátory nastavte nasledovne',
+                'time_to_explain' => 2,
+                'time_to_handle' => 3,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-01 12:59:54',
+                'updated_at' => '2021-03-01 12:59:54',
+                'deleted_at' => NULL,
+            )             
+        ));
+		
+		$event_id=\DB::getPDO() -> lastInsertId();
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '18. Formát textu – tabulátory 2 Jedálny lístok - w5 časť 2',
+                'description' => '',
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+		
+		\DB::table('events')->insert(array (
+            array (
+                'message' => '<pre>Pokračujte v riešení zadania w5 pomocou nasledujúcich úloh.
+				
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/file/d/1NXxA4nbN85LdY_MuKR-uREefb4AcVdRt/view?usp=sharing">ukážku dostupnú tu</a>.
+
+<b>Prajeme veľa šťastia!</b></pre>',
+                'header' => 'Pracujte podľa nasledujúcich úloh',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -1659,7 +1717,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Text „Dobrou chuť prajú majiteľ ...“ napíšte písmom Tahoma, veľkosťou 9 bodov, kurzívou a je zarovnaný vpravo.',
+                'message' => '<pre>Text „Dobrou chuť prajú majiteľ ...“ napíšte písmom Tahoma, veľkosťou 9 bodov, kurzívou a je zarovnaný vpravo.</pre>',
                 'header' => 'Ďalej upravte text „Dobrou chuť prajú majiteľ ...“',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1684,7 +1742,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Jedálny lístok je ohraničený (ohraničenie stránky) pomocou efektu – zelené lístky. Na pozadie dáme zámok, ktorý sa nachádza v neformátovanom texte v prvej úlohe',
+                'message' => '<pre>Jedálny lístok je ohraničený (ohraničenie stránky) pomocou efektu – zelené lístky. 
+Na pozadie dáme zámok, ktorý sa nachádza v neformátovanom texte v prvej úlohe</pre>',
                 'header' => 'Pridajte pozadie a ohraničenie textu',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1709,8 +1768,8 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Nakoniec upravíme medzery medzi riadkami aby sa všetko zmestilo na 1 stranu.',
-                'header' => 'Dokončite zadanie č.5',
+                'message' => '<pre>Nakoniec upravíme medzery medzi riadkami aby sa všetko zmestilo na 1 stranu.</pre>',
+                'header' => 'Dokončite zadanie w5',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
                 'event_type_id' => 7,
@@ -1732,11 +1791,264 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
             )
         ));
 		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '19. Zadanie na hodine (DU) - nápojový lístok - w5 časť 3',
+                'description' => '',
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+		
+		\DB::table('events')->insert(array (
+            array (
+                'message' => '<pre>Vypracuj domácu úlohu zadanú na hodine.</pre>',
+                'header' => 'Vypracuj domácu úlohu',
+                'time_to_explain' => 2,
+                'time_to_handle' => 3,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-10 12:59:54',
+                'updated_at' => '2021-03-10 12:59:54',
+                'deleted_at' => NULL,
+            )             
+        ));
+        $event_id=\DB::getPDO() -> lastInsertId();
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-10 15:36:39',
+                'updated_at' => '2021-03-10 15:36:39',
+                'deleted_at' => NULL,
+            )
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '20. Formát textu – obrázky 1 - vloženie - w6 časť 1',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '21. Formát textu – obrázky 2 - obtekanie textu - w6 časť 2',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '22. Zadanie na hodine (DU) - vlastný poster - obrázky - w6 časť 3',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '23. Formát textu – hlavička, šablóna - w7 časť 1',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '24. Formát textu – päta, hlavičkový papier - w7 časť 2',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '25. Zadanie na hodine (DU) - vlastný hlavičkový papier - w7 časť 3',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '26. Formát textu – tabuľky vo worde - w8 časť 1',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '27. Formát textu – tvary vo worde - w8 časť 2',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '28. Formát textu – vzorce - w8 časť 3',
+                'description' => '',
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        $unit_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+		
 		#zadanie 9
         \DB::table('units')->insert(array (
             array (
-                'title' => 'Zadanie č.9',
-                'description' => 'Štýly, obsah, citacie, poznámky pod čiarou',
+                'title' => '29. Formát textu – štýly, vlasné štýly - w9 časť 1',
+                'description' => '',
                 'created_at' => '2021-03-06 12:36:39',
                 'updated_at' => '2021-03-06 12:36:39',
                 'deleted_at' => NULL,
@@ -1760,7 +2072,7 @@ Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete 
         #otázky k zadaniu 9
         \DB::table('events')->insert(array (
             array (
-                'message' => '<pre><b>Vypracujte zadanie č.9 pomocou úloh, ktoré sú súčasťou konkrétneho zadania.</b> 
+                'message' => '<pre><b>Vypracujte zadanie w9 pomocou úloh, ktoré sú súčasťou konkrétneho zadania.</b> 
 Je potrebné stiahnuť si nenaformátovaný text z <a href="https://drive.google.com/file/d/14Ht-USOEn6We0sHPYZ69_lgz3YFrxYj9/view?usp=sharing">url kliknutím na tento odkaz</a>.
 Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
 Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/drive/folders/1iVi0M0a6CctYaGKbc6o0cZBbVU5rf-Pq?usp=sharing">ukážku dostupnú tu</a>.
@@ -1818,7 +2130,10 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Vulkány, Vznik vulkánov, Typy vulkánov – nastavte na Nadpis 1 – prvá úroveň viacúrovňového zoznamu (1.) – písmom Verdana - veľkosť 16 – tučne, medzera za nadpisom 16, pred 0. Ďalej pokračujte s nadpismi: Erupcie vulkánov, Signály vulkánov, Monitorovanie vulkánov, Štítový vulkán,...  - Nadpis 2– druhá úroveň viacúrovňového zoznamu (1.1.) - písmom Verdana veľkosť 12 tučne, medzera za nadpisom 12, pred 6.',
+                'message' => '<pre>Vulkány, Vznik vulkánov, Typy vulkánov – nastavte na Nadpis 1 – prvá úroveň viacúrovňového zoznamu 
+(1.) – písmom Verdana - veľkosť 16 – tučne, medzera za nadpisom 16, pred 0. 
+Ďalej pokračujte s nadpismi: Erupcie vulkánov, Signály vulkánov, Monitorovanie vulkánov, Štítový vulkán,...  - Nadpis 2– druhá úroveň viacúrovňového zoznamu (1.1.) - 
+písmom Verdana veľkosť 12 tučne, medzera za nadpisom 12, pred 6.</pre>',
                 'header' => 'Pokračujte vo formátovaní nadpisov',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1839,6 +2154,60 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
                 'updated_at' => '2021-03-01 15:36:39',
                 'deleted_at' => NULL,
             )
+        ));
+		
+        \DB::table('units')->insert(array (
+            array (
+                'title' => '30. Formát textu – štýly - automatický obsah - w9 časť 2',
+                'description' => '',
+                'created_at' => '2021-03-06 12:36:39',
+                'updated_at' => '2021-03-06 12:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        
+        $unit_id=\DB::getPDO() -> lastInsertId();     
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-06-01 12:36:39',
+                'updated_at' => '2021-06-01 12:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+
+		\DB::table('events')->insert(array (
+            array (
+                'message' => '<pre><b>Pokračujte v riešení zadania w9 pomocou nasledujúcich úloh.</b>
+
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/drive/folders/1iVi0M0a6CctYaGKbc6o0cZBbVU5rf-Pq?usp=sharing">ukážku dostupnú tu</a>.
+
+<b>Prajeme veľa šťastia!</b></pre>',
+                'header' => 'Pracujte podľa nasledujúcich úloh',
+                'time_to_explain' => 0,
+                'time_to_handle' => 1,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-01 12:59:54',
+                'updated_at' => '2021-03-01 12:59:54',
+                'deleted_at' => NULL,
+            ),             
+        ));
+        $event_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            ),
         ));
 		
 		\DB::table('events')->insert(array (
@@ -1870,7 +2239,7 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Povkladajte na začiatok 3 prázdne strany, 1. bude názov, 2. obsah a 3. Úvod. Z textu vygenerujte na 2. stranu obsah',
+                'message' => '<pre>Povkladajte na začiatok 3 prázdne strany, 1. bude názov, 2. obsah a 3. Úvod. Z textu vygenerujte na 2. stranu obsah</pre>',
                 'header' => 'Pridajte prázdne strany a vygenerujte obsah',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1891,6 +2260,60 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
                 'updated_at' => '2021-03-01 15:36:39',
                 'deleted_at' => NULL,
             )
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '31. Formát textu – číslovanie strán, zlom strany, zlom sekcie - w9 časť 3',
+                'description' => '',
+                'created_at' => '2021-03-06 12:36:39',
+                'updated_at' => '2021-03-06 12:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        
+        $unit_id=\DB::getPDO() -> lastInsertId();     
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-06-01 12:36:39',
+                'updated_at' => '2021-06-01 12:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+
+		\DB::table('events')->insert(array (
+            array (
+                'message' => '<pre><b>Pokračujte v riešení zadania w9 pomocou nasledujúcich úloh.</b>
+
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/drive/folders/1iVi0M0a6CctYaGKbc6o0cZBbVU5rf-Pq?usp=sharing">ukážku dostupnú tu</a>.
+
+<b>Prajeme veľa šťastia!</b></pre>',
+                'header' => 'Pracujte podľa nasledujúcich úloh',
+                'time_to_explain' => 0,
+                'time_to_handle' => 1,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-01 12:59:54',
+                'updated_at' => '2021-03-01 12:59:54',
+                'deleted_at' => NULL,
+            ),             
+        ));
+        $event_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            ),
         ));
 		
 		\DB::table('events')->insert(array (
@@ -1920,6 +2343,60 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
                 'updated_at' => '2021-03-01 15:36:39',
                 'deleted_at' => NULL,
             )
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '32. Formát textu – Obrázky, popis, zoznam obrázkov - w9 časť 4',
+                'description' => '',
+                'created_at' => '2021-03-06 12:36:39',
+                'updated_at' => '2021-03-06 12:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        
+        $unit_id=\DB::getPDO() -> lastInsertId();     
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-06-01 12:36:39',
+                'updated_at' => '2021-06-01 12:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+		
+		\DB::table('events')->insert(array (
+            array (
+                'message' => '<pre><b>Pokračujte v riešení zadania w9 pomocou nasledujúcich úloh.</b>
+
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/drive/folders/1iVi0M0a6CctYaGKbc6o0cZBbVU5rf-Pq?usp=sharing">ukážku dostupnú tu</a>.
+
+<b>Prajeme veľa šťastia!</b></pre>',
+                'header' => 'Pracujte podľa nasledujúcich úloh',
+                'time_to_explain' => 0,
+                'time_to_handle' => 1,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-01 12:59:54',
+                'updated_at' => '2021-03-01 12:59:54',
+                'deleted_at' => NULL,
+            ),             
+        ));
+        $event_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            ),
         ));
 		
 		\DB::table('events')->insert(array (
@@ -1962,7 +2439,7 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
 		
 		\DB::table('events')->insert(array (
             array (
-                'message' => 'Na koniec vložte zoznam obrázkov. Vymažte zbytočné medzery a entery, aktualizujte obsah',
+                'message' => '<pre>Na koniec vložte zoznam obrázkov. Vymažte zbytočné medzery a entery, aktualizujte obsah</pre>',
                 'header' => 'Pridajte zoznam obrázkov a aktualizujte obsah',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
@@ -1983,6 +2460,60 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
                 'updated_at' => '2021-03-01 15:36:39',
                 'deleted_at' => NULL,
             )
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => '33. Formát textu – Citácie, poznámky pod čiarou, bibliografia - w9 časť 5',
+                'description' => '',
+                'created_at' => '2021-03-06 12:36:39',
+                'updated_at' => '2021-03-06 12:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        
+        $unit_id=\DB::getPDO() -> lastInsertId();     
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-06-01 12:36:39',
+                'updated_at' => '2021-06-01 12:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
+        ));
+		
+		\DB::table('events')->insert(array (
+            array (
+                'message' => '<pre><b>Pokračujte v riešení zadania w9 pomocou nasledujúcich úloh.</b>
+
+Pri niektorých úlohách sú dostupné odkazy na nápovedy. Nájdete ich v popise konkrétnej úlohy.
+Ak by ste si neboli istí, ako má finálna podoba dokumentu vyzerať, môžete sa pozrieť na <a href="https://drive.google.com/drive/folders/1iVi0M0a6CctYaGKbc6o0cZBbVU5rf-Pq?usp=sharing">ukážku dostupnú tu</a>.
+
+<b>Prajeme veľa šťastia!</b></pre>',
+                'header' => 'Pracujte podľa nasledujúcich úloh',
+                'time_to_explain' => 0,
+                'time_to_handle' => 1,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-01 12:59:54',
+                'updated_at' => '2021-03-01 12:59:54',
+                'deleted_at' => NULL,
+            ),             
+        ));
+        $event_id=\DB::getPDO() -> lastInsertId();
+        
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            ),
         ));
 		
 		\DB::table('events')->insert(array (
@@ -2039,6 +2570,30 @@ V prípade problémov si môžete pozrieť dostupný videonávod <a href="https:
                 'updated_at' => '2021-03-01 15:36:39',
                 'deleted_at' => NULL,
             )
+        ));
+		
+		\DB::table('units')->insert(array (
+            array (
+                'title' => 'Záverečná práca - domáce zadanie',
+                'description' => 'Viac informácií dostanete od svojho vyučujúceho',
+                'created_at' => '2021-03-06 12:36:39',
+                'updated_at' => '2021-03-06 12:36:39',
+                'deleted_at' => NULL,
+                'author_id' => 6,
+            ),
+        ));
+        
+        $unit_id=\DB::getPDO() -> lastInsertId();     
+        
+        \DB::table('activity_unit')->insert(array (
+            array (
+                'created_at' => '2021-06-01 12:36:39',
+                'updated_at' => '2021-06-01 12:36:39',
+                'activity_id' => $activity_id,
+                'unit_id' => $unit_id,
+                'unit_order_number' => 0,
+                'deleted_at' => NULL,
+            ),
         ));
     }
 }
