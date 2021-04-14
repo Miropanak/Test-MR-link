@@ -96,6 +96,7 @@ Route::group(['prefix' => 'activity'], function (){
 });
 
 Route::group(['prefix' => 'activity', 'middleware' => 'auth:api'], function () {
+    Route::put('save', 'Api\ActivityController@saveProgress');
     Route::get('{id}', 'Api\ActivityController@getActivity');
     Route::delete('{id}', 'Api\ActivityController@deleteActivity');
     Route::put('{id}', 'Api\ActivityController@updateActivity');

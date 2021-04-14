@@ -943,4 +943,92 @@ class ActivityController extends Controller
 
     }
 
+    /**
+     * @OA\Put(
+     *      path="/api/activity/save",
+     *      operationId="saveProgress",
+     *      tags={"Activity"},
+     *      summary="save Progress",
+     *      description="save",
+     *      security={{"bearerAuth":{}}},
+     *      @OA\RequestBody(
+     *       required=true,
+     *       description="",
+     *       @OA\MediaType(
+     *           mediaType="application/json",
+     *           @OA\Schema(
+     *               @OA\Property(
+     *                      property="activity_id",
+     *                      type="integer",
+     *                ),
+     *               @OA\Property(
+     *                      property="unit_id",
+     *                      type="integer",
+     *                ),
+     *               @OA\Property(
+     *                      property="states",
+     *                      type="integer",
+     *                )
+     *           )
+     *        )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid JSON body/ID supplied",
+     *      ),
+     *      @OA\Response(
+     *         response=403,
+     *         description="Access forbidden",
+     *      ),
+     *      @OA\Response(
+     *         response=404,
+     *         description="Activity not found",
+     *      ),
+     *     )
+     */
+    public function saveProgress(Request $request) {
+        
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'activity_id' => 'integer',
+            'unit_id' => 'integer',
+            'states.*' => 'integer',
+        ]);
+        
+        if($validator->fails()) {
+            return response()->json(['Data validation error'=>$validator->errors()], 400);
+        }
+
+        try{
+            $user = Auth::user();
+            if($user){
+                //tu updatnem vsetky userove data
+                $id = $user['id'];
+                
+                $pom = $request['states'];
+                if(is_array($pom))
+                {
+                    $myObj = strval(json_encode(array('id' => $request['states'])));
+
+                    $row = EventProgress::updateOrCreate(['activity_id' => $request['activity_id'], 'user_id' => $id, 'unit_id' => $request['unit_id']],[ 'done' => $myObj]);
+                    return response()->json("User info updated", 200);  
+                }
+                else
+                {
+                    return response()->json("Need array", 400); 
+                }
+                
+            } else{
+                return response()->json("User not logged in", 403);
+            }   
+        } catch(QueryException $e){
+            return response()->json($e, 500);
+        }
+
+    }
 }
