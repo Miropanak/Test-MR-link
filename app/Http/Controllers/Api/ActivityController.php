@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Models\Activity;
+use App\Models\User;
+use App\Models\Unit;
+use App\Models\EventProgress;
 use App\Models\ActivityUnit;
 use App\Models\ActivityUsers;
 use App\Http\Controllers\Controller;
@@ -135,6 +138,76 @@ class ActivityController extends Controller
                 return response()->json("ID is too long", 400); // bad id provided -> id too big for integer
             } else {
                 return response()->json(null, 500);
+            }
+        }
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/activity/{activityid}/{unitid}",
+     *      operationId="getUserProgress",
+     *      tags={"Activity"},
+     *      summary="Load the users progress",
+     *      description="Returns an array of event ids the user marked as done",
+     *      security={{"bearerAuth":{}}},
+     *      @OA\Parameter(
+     *          name="activityid",
+     *          description="activityid",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="unitid",
+     *          description="unitid",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK"
+     *       ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Activity not found"
+     *       ),
+     *      @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *      ),
+     *  )
+     */
+    public function getUserProgress($activityid,$unitid)
+    {
+        try{
+            $user = Auth::user()->id;
+            $activity = Activity::find($activityid);
+            if(!$activity){
+                return response()->json("Activity not found", 404);
+            }
+            $unit = Unit::find($unitid);
+            if(!$unit){
+                return response()->json("Unit not found", 404);
+            }
+            $where_condition = ['activity_id' => $activityid, 'user_id' => $user, 'unit_id' => $unitid];
+            
+            $result = EventProgress::where($where_condition)->get();
+        
+            if(count($result)) {
+                return response()->json(json_decode($result[0]->done)->id,200);
+            } else {
+                return response()->json([], 200);
+            }
+        }catch(QueryException $e) {
+            if ($e->getCode() === '22003') {
+                return response()->json("ID is too long", 400); // bad id provided -> id too big for integer
+            } else {
+                return response()->json($e, 500);
             }
         }
     }

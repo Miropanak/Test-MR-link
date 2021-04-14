@@ -105,6 +105,7 @@ Route::group(['prefix' => 'activity', 'middleware' => 'auth:api'], function () {
     Route::post('', 'Api\ActivityController@createActivity');
     Route::post('{id}/clone', 'Api\ActivityController@cloneActivity');
     Route::put('{id}/student', 'Api\ActivityController@addStudent');
+    Route::get('{activityid}/{unitid}', 'Api\ActivityController@getUserProgress');
 });
 
 
