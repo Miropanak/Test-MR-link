@@ -93,7 +93,6 @@ Route::group(['prefix' => 'activity'], function (){
     Route::get('study/fields', 'Api\ActivityController@getStudyFields');
     Route::get('{id}/units', 'Api\ActivityController@getActivityUnits');
     Route::get('{id}/subscribers', 'Api\ActivityController@getSubscribers');
-    Route::get('{userid}/{activityid}/{unitid}', 'Api\ActivityController@getUserProgress');
 });
 
 Route::group(['prefix' => 'activity', 'middleware' => 'auth:api'], function () {
@@ -106,6 +105,7 @@ Route::group(['prefix' => 'activity', 'middleware' => 'auth:api'], function () {
     Route::post('', 'Api\ActivityController@createActivity');
     Route::post('{id}/clone', 'Api\ActivityController@cloneActivity');
     Route::put('{id}/student', 'Api\ActivityController@addStudent');
+    Route::get('{activityid}/{unitid}', 'Api\ActivityController@getUserProgress');
 });
 
 

@@ -144,21 +144,12 @@ class ActivityController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/activity/{userid}/{activityid}/{unitid}",
+     *      path="/api/activity/{activityid}/{unitid}",
      *      operationId="getUserProgress",
-     *      tags={"Activity","Unit","User"},
+     *      tags={"Activity"},
      *      summary="Load the users progress",
      *      description="Returns an array of event ids the user marked as done",
      *      security={{"bearerAuth":{}}},
-     *      @OA\Parameter(
-     *          name="userid",
-     *          description="userid",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
      *      @OA\Parameter(
      *          name="activityid",
      *          description="activityid",
@@ -191,24 +182,19 @@ class ActivityController extends Controller
      *      ),
      *  )
      */
-    public function getUserProgress($userid,$activityid,$unitid)
+    public function getUserProgress($activityid,$unitid)
     {
         try{
+            $user = Auth::user()->id;
             $activity = Activity::find($activityid);
             if(!$activity){
                 return response()->json("Activity not found", 404);
             }
-
-            $user = User::find($userid);
-            if(!$user){
-                return response()->json("User not found", 404);
-            }
-
             $unit = Unit::find($unitid);
             if(!$unit){
                 return response()->json("Unit not found", 404);
             }
-            $where_condition = ['activity_id' => $activityid, 'user_id' => $userid, 'unit_id' => $unitid];
+            $where_condition = ['activity_id' => $activityid, 'user_id' => $user, 'unit_id' => $unitid];
             
             $result = EventProgress::where($where_condition)->get();
         
