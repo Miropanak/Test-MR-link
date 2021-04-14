@@ -1013,9 +1013,9 @@ class ActivityController extends Controller
                 $pom = $request['states'];
                 if(is_array($pom))
                 {
-                    $myObj = json_encode(array('id' => $request['states']));
+                    $myObj = strval(json_encode(array('id' => $request['states'])));
 
-                    $row = EventProgress::updateOrCreate(['activity_id' => $request['activity_id'], 'user_id' => $id, 'unit_id' => $request['unit_id']],[ 'done' => json_decode($myObj) ]);
+                    $row = EventProgress::updateOrCreate(['activity_id' => $request['activity_id'], 'user_id' => $id, 'unit_id' => $request['unit_id']],[ 'done' => $myObj]);
                     return response()->json("User info updated", 200);  
                 }
                 else

@@ -10,7 +10,7 @@ class EventProgress extends Model
     use HasFactory;
 
     protected $fillable = [
-        'activity_id', 'user_id', 'unit_id'
+        'activity_id', 'user_id', 'unit_id', 'done'
     ];
 }
 
