@@ -1998,6 +1998,186 @@ Na pozadie dáme zámok, ktorý sa nachádza v neformátovanom texte v prvej úl
             ),
         ));
 		
+		\DB::table('events')->insert(array (
+            array (
+                'message' => '<pre><b>Vypracujte zadanie w8 pomocou úloh, ktoré sú súčasťou konkrétneho zadania.</b> 
+Pri úlohách sú dostupné nápovedy a videonávody, nezabudnite ich preto skontrolovať :).
+
+<b>Prajeme veľa šťastia!</b></pre>',
+                'header' => 'Vypracujte zadanie w8 pomocou nasledujúcich úloh',
+                'time_to_explain' => 2,
+                'time_to_handle' => 3,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-01 12:59:54',
+                'updated_at' => '2021-03-01 12:59:54',
+                'deleted_at' => NULL,
+            )             
+        ));
+		
+		$event_id=\DB::getPDO() -> lastInsertId();
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+        ));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'Užitočné linky:',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'Tvorba jednoduchej tabuľky: <a href="https://www.youtube.com/watch?v=vJPGLunY-nc">videonávod dostupný po kliknutí na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'Zmena šírky a výšky tabuľky: <a href="https://www.youtube.com/watch?v=jWBb5pRwyOw">videonávod dostupný po kliknutí na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'Pridávanie a odstraňovanie riadkov a stĺpcov: <a href="https://www.youtube.com/watch?v=pl18AXsRVTg">videonávod dostupný po kliknutí na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'Orámovanie a podfarbenie: <a href="https://www.youtube.com/watch?v=oor-sX044CQ">videonávod dostupný po kliknutí na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'Neštandardné tabuľky: <a href="https://www.youtube.com/watch?v=AzSGTL8msus">videonávod dostupný po kliknutí na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'Zarovnanie, otočenie textu, okraje: <a href="https://www.youtube.com/watch?v=YZkjn-wJVWE">videonávod dostupný po kliknutí na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
+		
+		\DB::table('events')->insert(array (
+            array (
+                'message' => '<pre>Vytvorte tabuľku podľa <a href="https://drive.google.com/file/d/1OzhBG4pbVMMnALQ_WEhWivLIMGr3GW_s/view?usp=sharing">tohto obrázka</a> – použite písmo Georgia,
+OBJEDNÁVKU a text v sivom riadku zarovnajte na stred (vodorovne aj zvisle)
+Orámovanie celej tabuľky zelené, hrúbka 2,25 b.; orámovanie Dodávateľa čiernou,
+hrúbka 2,25b a orámovanie súčtu ceny – čierne, 1,5 b, podfarbenie sivé.</pre>',
+                'header' => 'Úloha č.1',
+                'time_to_explain' => 2,
+                'time_to_handle' => 3,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-01 12:59:54',
+                'updated_at' => '2021-03-01 12:59:54',
+                'deleted_at' => NULL,
+            )             
+        ));
+		
+		$event_id=\DB::getPDO() -> lastInsertId();
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+        ));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'Jednoduchý návod, ako vytvoriť tabuľku je <a href="https://drive.google.com/file/d/1hg9QrzxVsVcx_WkkuOti5Xpz4HKafSLP/view?usp=sharing">dostupný po kliknutí na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
+		
+		\DB::table('events')->insert(array (
+            array (
+                'message' => '<pre>Vytvorte krížovku s tajničkou podľa <a href="https://drive.google.com/file/d/1bBwVDV5lEWzJEbJkW1DqgdrCVVgK1v7n/view?usp=sharing">tohto obrázka</a>.</pre>',
+                'header' => 'Úloha č.2',
+                'time_to_explain' => 2,
+                'time_to_handle' => 3,
+                'event_type_id' => 7,
+                'author_id' => 6,
+                'created_at' => '2021-03-01 12:59:54',
+                'updated_at' => '2021-03-01 12:59:54',
+                'deleted_at' => NULL,
+            )             
+        ));
+		
+		$event_id=\DB::getPDO() -> lastInsertId();
+        \DB::table('units_events')->insert(array (
+            array (
+                'event_id' => $event_id,
+                'unit_id' => $unit_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+        ));
+		
+		\DB::table('helps')->insert(array (
+            array (
+                'name' => 'Odkaz na videonávod',
+				'url' => 'Pomôcka ako vytvoriť tajničku je <a href="https://drive.google.com/file/d/1vSfbQ1xjqrZWpwIrusYf99Boiy6cMVCO/view?usp=sharing">dostupná po kliknutí na tento odkaz</a>',
+                'event_id' => $event_id,
+                'created_at' => '2021-03-01 15:36:39',
+                'updated_at' => '2021-03-01 15:36:39',
+                'deleted_at' => NULL,
+            )
+		));
+		
 		\DB::table('units')->insert(array (
             array (
                 'title' => '27. Formát textu – tvary vo worde - w8 časť 2',
