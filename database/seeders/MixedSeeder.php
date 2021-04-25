@@ -2108,7 +2108,10 @@ Pri úlohách sú dostupné nápovedy a videonávody, nezabudnite ich preto skon
                 'message' => '<pre>Vytvorte tabuľku podľa <a href="https://drive.google.com/file/d/1OzhBG4pbVMMnALQ_WEhWivLIMGr3GW_s/view?usp=sharing">tohto obrázka</a> – použite písmo Georgia,
 OBJEDNÁVKU a text v sivom riadku zarovnajte na stred (vodorovne aj zvisle)
 Orámovanie celej tabuľky zelené, hrúbka 2,25 b.; orámovanie Dodávateľa čiernou,
-hrúbka 2,25b a orámovanie súčtu ceny – čierne, 1,5 b, podfarbenie sivé.</pre>',
+hrúbka 2,25b a orámovanie súčtu ceny – čierne, 1,5 b, podfarbenie sivé.
+
+<b>Odporúčame pozrieť toto video:</b>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AzSGTL8msus" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></pre>',
                 'header' => 'Úloha č.1',
                 'time_to_explain' => 2,
                 'time_to_handle' => 3,
